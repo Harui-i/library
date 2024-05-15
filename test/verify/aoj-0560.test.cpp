@@ -1,8 +1,6 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0560"
 
-#include <bits/stdc++.h>
-using namespace std;
-
+#include "../../template/template.hpp"
 #include "../../dp/cumulative-sum-2d.hpp"
 
 int main () {
