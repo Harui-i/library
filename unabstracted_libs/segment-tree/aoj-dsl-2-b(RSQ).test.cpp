@@ -1,8 +1,8 @@
-#define PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B
+#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B"
 
-#include <../template/template.hpp>
+#include "../../template/template.hpp"
 
-vector<int> dat;
+vector<ll> dat;
 int sz;
 
 // k番目(0-indexed)の値にaを加算
@@ -16,8 +16,10 @@ void update(int k, int a) {
 }
 
 // [l, r)の和を求める(l, rは0-indexed)
-int query(int l, int r) {
+ll query(int l, int r) {
+
   l += sz; r += sz;
+  assert(0<=l && 0<= r && l <= r);
   int L = 0, R = 0;
   while (l < r) {
     if (l % 2 == 1) {
@@ -46,11 +48,12 @@ int main() {
 
   while (q--) {
     int com, x, y; cin >> com >> x >> y;
+    x--;
     if (com == 0) {
       update(x, y);
     }
     else {
-      cout << query(x, y + 1) << endl;
+      cout << query(x, y) << endl;
     }
   }
   return 0;

@@ -1,6 +1,6 @@
-#include <bits/stdc++.h>
+#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F"
 
-#include <./template/template.hpp>
+#include "../../template/template.hpp"
 
 int sz;
 vector<int> dat, lazy;
