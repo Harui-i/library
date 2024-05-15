@@ -1,7 +1,7 @@
 ---
 title: Cumulative Sum 2D (二次元累積和)
-documentation_of: ./dp/cumulative-sum-2d.hpp
----
+documentation_of: //dp/cumulative-sum-2d.hpp
+---library/dp/cumulative-sum-2d.hpp
 
 ## コンストラクタ
 
