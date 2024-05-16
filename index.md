@@ -5,7 +5,11 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: dp/cumulative-sum-2d.hpp
-      title: dp/cumulative-sum-2d.hpp
+      title: "Cumulative Sum 2D (\u4E8C\u6B21\u5143\u7D2F\u7A4D\u548C)"
+    - icon: ':heavy_check_mark:'
+      path: dp/largest-reactangle-in-a-histogram.hpp
+      title: "\u30D2\u30B9\u30C8\u30B0\u30E9\u30E0\u5185\u306E\u6700\u5927\u9577\u65B9\
+        \u5F62"
   - name: math
     pages:
     - icon: ':warning:'
@@ -32,6 +36,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/aoj-0560.test.cpp
       title: test/verify/aoj-0560.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/aoj-dpl3-c.test.cpp
+      title: test/verify/aoj-dpl3-c.test.cpp
   - name: unabstracted_libs/segment-tree
     pages:
     - icon: ':heavy_check_mark:'

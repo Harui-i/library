@@ -7,6 +7,9 @@ data:
     path: test/verify/aoj-0560.test.cpp
     title: test/verify/aoj-0560.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/aoj-dpl3-c.test.cpp
+    title: test/verify/aoj-dpl3-c.test.cpp
+  - icon: ':heavy_check_mark:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,11 +81,12 @@ data:
   timestamp: '2024-05-14 18:24:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
+  - test/verify/aoj-0560.test.cpp
+  - test/verify/aoj-dpl3-c.test.cpp
+  - unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
-  - unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
-  - test/verify/aoj-0560.test.cpp
+  - unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
 documentation_of: template/template.hpp
 layout: document
 redirect_from:

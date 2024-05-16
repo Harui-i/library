@@ -7,19 +7,18 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: docs/segment-tree.md
     document_title: "Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     links: []
   bundledCode: "#line 1 \"structure/segment-tree/segment-tree.hpp\"\n/**\n * @brief\
-    \ Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/segment-tree.md\n\
-    \ */\n\n#include <vector>\n\nusing namespace std;\n\n"
-  code: "/**\n * @brief Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs\
-    \ docs/segment-tree.md\n */\n\n#include <vector>\n\nusing namespace std;\n\n"
+    \ Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n */\n\n#include <vector>\n\
+    \nusing namespace std;\n\n"
+  code: "/**\n * @brief Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n */\n\n\
+    #include <vector>\n\nusing namespace std;\n\n"
   dependsOn: []
   isVerificationFile: false
   path: structure/segment-tree/segment-tree.hpp
   requiredBy: []
-  timestamp: '2024-04-04 18:35:37+09:00'
+  timestamp: '2024-05-16 15:01:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: structure/segment-tree/segment-tree.hpp
