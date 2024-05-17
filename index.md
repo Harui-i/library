@@ -15,6 +15,9 @@ data:
     - icon: ':warning:'
       path: math/mod_pow.hpp
       title: mod pow
+    - icon: ':warning:'
+      path: math/modint.hpp
+      title: modint
   - name: structure/segment-tree
     pages:
     - icon: ':warning:'
