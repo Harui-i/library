@@ -184,6 +184,20 @@ struct FPS {
     return *this;
   }
 
+  FPS operator>>(int sz) const {
+    if ((int)this->size() <= sz) return {};
+    FPS ret(*this);
+    ret._vec.erase(ret._vec.begin(), ret._vec.begin() + sz);
+    return ret;
+  }
+
+  FPS operator<<(int sz) const {
+    FPS ret(*this);
+    ret._vec.insert(ret._vec.begin(), sz, mint(0));
+
+    return ret;
+  }
+
   friend FPS operator+(FPS a, const FPS& b) { return a += b; }
   friend FPS operator-(FPS a, const FPS& b) { return a -= b; }
   friend FPS operator*(FPS a, const FPS& b) { return a *= b; }

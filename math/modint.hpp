@@ -63,6 +63,10 @@ struct static_modint {
         return val() != other.val();
     }
 
+    constexpr bool operator==(const static_modint& other) const {
+        return val() == other.val();
+    }
+
     int val() const {
       return this->value;
     }
