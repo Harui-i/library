@@ -10,12 +10,17 @@ data:
       path: dp/largest-reactangle-in-a-histogram.hpp
       title: "\u30D2\u30B9\u30C8\u30B0\u30E9\u30E0\u5185\u306E\u6700\u5927\u9577\u65B9\
         \u5F62"
+  - name: formal-power-series
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: formal-power-series/formal-power-series.hpp
+      title: formal-power-series/formal-power-series.hpp
   - name: math
     pages:
     - icon: ':warning:'
       path: math/mod_pow.hpp
       title: mod pow
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: modint
   - name: structure/segment-tree
@@ -42,6 +47,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/aoj-dpl3-c.test.cpp
       title: test/verify/aoj-dpl3-c.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
+      title: test/verify/yosupo-inv-of-formal-power-series.test.cpp
   - name: unabstracted_libs/segment-tree
     pages:
     - icon: ':heavy_check_mark:'
