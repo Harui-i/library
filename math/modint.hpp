@@ -1,3 +1,5 @@
+#pragma once
+
 template<int MOD>
 struct static_modint {
     int value;
@@ -57,8 +59,12 @@ struct static_modint {
         return static_modint(*this) /= other;
     }
 
+    constexpr bool operator!=(const static_modint& other) const {
+        return val() != other.val();
+    }
+
     int val() const {
-      return this.val;
+      return this->value;
     }
 
     friend std::ostream& operator<<(std::ostream& os, const static_modint& mi) {
