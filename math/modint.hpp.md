@@ -37,13 +37,14 @@ data:
     \    }\n\n    constexpr static_modint operator/(const static_modint& other) const\
     \ {\n        return static_modint(*this) /= other;\n    }\n\n    constexpr bool\
     \ operator!=(const static_modint& other) const {\n        return val() != other.val();\n\
-    \    }\n\n    int val() const {\n      return this->value;\n    }\n\n    friend\
-    \ std::ostream& operator<<(std::ostream& os, const static_modint& mi) {\n    \
-    \    return os << mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream&\
-    \ is, static_modint& mi) {\n        long long x;\n        is >> x;\n        mi\
-    \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
-    \ modint = static_modint<mod>;\nusing modint998244353 = modint<998244353>;\nusing\
-    \ modint100000007 = modint<100000007>;\n"
+    \    }\n\n    constexpr bool operator==(const static_modint& other) const {\n\
+    \        return val() == other.val();\n    }\n\n    int val() const {\n      return\
+    \ this->value;\n    }\n\n    friend std::ostream& operator<<(std::ostream& os,\
+    \ const static_modint& mi) {\n        return os << mi.value;\n    }\n\n    friend\
+    \ std::istream& operator>>(std::istream& is, static_modint& mi) {\n        long\
+    \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
+    \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
+    \ = modint<998244353>;\nusing modint100000007 = modint<100000007>;\n"
   code: "#pragma once\n\ntemplate<int MOD>\nstruct static_modint {\n    int value;\n\
     \n    constexpr static_modint() : value(0) {}\n\n    constexpr static_modint(long\
     \ long v) {\n        value = int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr\
@@ -66,19 +67,20 @@ data:
     \        return *this *= other.inv();\n    }\n\n    constexpr static_modint operator/(const\
     \ static_modint& other) const {\n        return static_modint(*this) /= other;\n\
     \    }\n\n    constexpr bool operator!=(const static_modint& other) const {\n\
-    \        return val() != other.val();\n    }\n\n    int val() const {\n      return\
-    \ this->value;\n    }\n\n    friend std::ostream& operator<<(std::ostream& os,\
-    \ const static_modint& mi) {\n        return os << mi.value;\n    }\n\n    friend\
-    \ std::istream& operator>>(std::istream& is, static_modint& mi) {\n        long\
-    \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
-    \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
-    \ = modint<998244353>;\nusing modint100000007 = modint<100000007>;"
+    \        return val() != other.val();\n    }\n\n    constexpr bool operator==(const\
+    \ static_modint& other) const {\n        return val() == other.val();\n    }\n\
+    \n    int val() const {\n      return this->value;\n    }\n\n    friend std::ostream&\
+    \ operator<<(std::ostream& os, const static_modint& mi) {\n        return os <<\
+    \ mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream& is, static_modint&\
+    \ mi) {\n        long long x;\n        is >> x;\n        mi = static_modint(x);\n\
+    \        return is;\n    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\n\
+    using modint998244353 = modint<998244353>;\nusing modint100000007 = modint<100000007>;"
   dependsOn: []
   isVerificationFile: false
   path: math/modint.hpp
   requiredBy:
   - formal-power-series/formal-power-series.hpp
-  timestamp: '2024-05-19 16:05:31+09:00'
+  timestamp: '2024-05-19 17:06:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-inv-of-formal-power-series.test.cpp

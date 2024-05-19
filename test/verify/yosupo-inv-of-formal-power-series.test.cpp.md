@@ -50,14 +50,15 @@ data:
     \        return *this *= other.inv();\n    }\n\n    constexpr static_modint operator/(const\
     \ static_modint& other) const {\n        return static_modint(*this) /= other;\n\
     \    }\n\n    constexpr bool operator!=(const static_modint& other) const {\n\
-    \        return val() != other.val();\n    }\n\n    int val() const {\n      return\
-    \ this->value;\n    }\n\n    friend std::ostream& operator<<(std::ostream& os,\
-    \ const static_modint& mi) {\n        return os << mi.value;\n    }\n\n    friend\
-    \ std::istream& operator>>(std::istream& is, static_modint& mi) {\n        long\
-    \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
-    \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
-    \ = modint<998244353>;\nusing modint100000007 = modint<100000007>;\n#line 2 \"\
-    formal-power-series/formal-power-series.hpp\"\n\n#line 5 \"formal-power-series/formal-power-series.hpp\"\
+    \        return val() != other.val();\n    }\n\n    constexpr bool operator==(const\
+    \ static_modint& other) const {\n        return val() == other.val();\n    }\n\
+    \n    int val() const {\n      return this->value;\n    }\n\n    friend std::ostream&\
+    \ operator<<(std::ostream& os, const static_modint& mi) {\n        return os <<\
+    \ mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream& is, static_modint&\
+    \ mi) {\n        long long x;\n        is >> x;\n        mi = static_modint(x);\n\
+    \        return is;\n    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\n\
+    using modint998244353 = modint<998244353>;\nusing modint100000007 = modint<100000007>;\n\
+    #line 2 \"formal-power-series/formal-power-series.hpp\"\n\n#line 5 \"formal-power-series/formal-power-series.hpp\"\
     \n\nusing namespace std;\nusing mint = modint998244353;\n\n//ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
     // constexpr \u95A2\u6570\u5185\u3067 ZETAS \u914D\u5217\u3092\u8A2D\u5B9A\u3059\
     \u308B\u305F\u3081\u306E\u88DC\u52A9\u95A2\u6570\nconstexpr std::array<mint, 24>\
@@ -120,16 +121,20 @@ data:
     \ rhs) {\n    _vec = multiply(_vec, rhs._vec);\n    return *this;\n  }\n\n  FPS&\
     \ operator*=(const mint& rhs) {\n    for(int i=0; i<size(); i++) _vec[i] *= rhs;\n\
     \    return *this;\n  }\n\n  FPS& operator/=(const mint& rhs) {\n    for(int i=0;\
-    \ i<size(); i++) _vec[i] *= rhs.inv();\n    return *this;\n  }\n\n  friend FPS\
-    \ operator+(FPS a, const FPS& b) { return a += b; }\n  friend FPS operator-(FPS\
-    \ a, const FPS& b) { return a -= b; }\n  friend FPS operator*(FPS a, const FPS&\
-    \ b) { return a *= b; }\n\n  friend FPS operator*(FPS a, const mint& b) {return\
-    \ a *= b; }\n  friend FPS operator/(FPS a, const mint& b) {return a /= b; }\n\n\
-    \  FPS pre(int sz) const {\n    FPS ret = *this; \n    ret._vec.resize(sz);\n\n\
-    \    return ret;\n  }\n\n  void resize(int sz)  {\n    this->_vec.resize(sz);\n\
-    \  }\n\n  friend ostream& operator<<(ostream& os, const FPS& fps) {\n    for (int\
-    \ i = 0; i < fps.size(); ++i) {\n      if (i > 0) os << \" \";\n      os << fps._vec[i];\n\
-    \    }\n    return os;\n  }\n};\n#line 6 \"test/verify/yosupo-inv-of-formal-power-series.test.cpp\"\
+    \ i<size(); i++) _vec[i] *= rhs.inv();\n    return *this;\n  }\n\n  FPS operator>>(int\
+    \ sz) const {\n    if ((int)this->size() <= sz) return {};\n    FPS ret(*this);\n\
+    \    ret._vec.erase(ret._vec.begin(), ret._vec.begin() + sz);\n    return ret;\n\
+    \  }\n\n  FPS operator<<(int sz) const {\n    FPS ret(*this);\n    ret._vec.insert(ret._vec.begin(),\
+    \ sz, mint(0));\n\n    return ret;\n  }\n\n  friend FPS operator+(FPS a, const\
+    \ FPS& b) { return a += b; }\n  friend FPS operator-(FPS a, const FPS& b) { return\
+    \ a -= b; }\n  friend FPS operator*(FPS a, const FPS& b) { return a *= b; }\n\n\
+    \  friend FPS operator*(FPS a, const mint& b) {return a *= b; }\n  friend FPS\
+    \ operator/(FPS a, const mint& b) {return a /= b; }\n\n  FPS pre(int sz) const\
+    \ {\n    FPS ret = *this; \n    ret._vec.resize(sz);\n\n    return ret;\n  }\n\
+    \n  void resize(int sz)  {\n    this->_vec.resize(sz);\n  }\n\n  friend ostream&\
+    \ operator<<(ostream& os, const FPS& fps) {\n    for (int i = 0; i < fps.size();\
+    \ ++i) {\n      if (i > 0) os << \" \";\n      os << fps._vec[i];\n    }\n   \
+    \ return os;\n  }\n};\n#line 6 \"test/verify/yosupo-inv-of-formal-power-series.test.cpp\"\
     \n\nusing mint = modint998244353;\n\n\nint main() {\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n\
     \  for(int i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.inv_fast1(N)\
     \ << endl;\n\n}\n"
@@ -146,7 +151,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
   requiredBy: []
-  timestamp: '2024-05-19 16:05:31+09:00'
+  timestamp: '2024-05-19 17:06:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-inv-of-formal-power-series.test.cpp
