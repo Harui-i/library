@@ -14,7 +14,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: formal-power-series/formal-power-series.hpp
-      title: formal-power-series/formal-power-series.hpp
+      title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - name: math
     pages:
     - icon: ':warning:'

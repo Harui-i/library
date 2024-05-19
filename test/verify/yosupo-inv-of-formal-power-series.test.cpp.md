@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/formal-power-series.hpp
-    title: formal-power-series/formal-power-series.hpp
+    title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
