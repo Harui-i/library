@@ -28,6 +28,11 @@ data:
     - icon: ':warning:'
       path: structure/segment-tree/segment-tree.hpp
       title: "Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+  - name: structure
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: structure/slide-window-aggregation.hpp
+      title: Foldable Deque(Slide Window Aggregation)
   - name: template
     pages:
     - icon: ':heavy_check_mark:'
@@ -48,8 +53,14 @@ data:
       path: test/verify/aoj-dpl3-c.test.cpp
       title: test/verify/aoj-dpl3-c.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-deque-operate-all-composite.test.cpp
+      title: test/verify/yosupo-deque-operate-all-composite.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
       title: test/verify/yosupo-inv-of-formal-power-series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-queue-operate-all-composite.test.cpp
+      title: test/verify/yosupo-queue-operate-all-composite.test.cpp
   - name: unabstracted_libs/segment-tree
     pages:
     - icon: ':heavy_check_mark:'

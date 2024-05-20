@@ -7,8 +7,14 @@ data:
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-deque-operate-all-composite.test.cpp
+    title: test/verify/yosupo-deque-operate-all-composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-queue-operate-all-composite.test.cpp
+    title: test/verify/yosupo-queue-operate-all-composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -83,7 +89,9 @@ data:
   timestamp: '2024-05-19 17:06:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series.test.cpp
+  - test/verify/yosupo-queue-operate-all-composite.test.cpp
 documentation_of: math/modint.hpp
 layout: document
 title: modint

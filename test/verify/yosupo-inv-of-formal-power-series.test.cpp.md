@@ -135,15 +135,17 @@ data:
     \ operator<<(ostream& os, const FPS& fps) {\n    for (int i = 0; i < fps.size();\
     \ ++i) {\n      if (i > 0) os << \" \";\n      os << fps._vec[i];\n    }\n   \
     \ return os;\n  }\n};\n#line 6 \"test/verify/yosupo-inv-of-formal-power-series.test.cpp\"\
-    \n\nusing mint = modint998244353;\n\n\nint main() {\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n\
+    \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
+    \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n\
     \  for(int i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.inv_fast1(N)\
     \ << endl;\n\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
     \n\n#include \"../../template/template.hpp\"\n#include \"../../math/modint.hpp\"\
     \n#include \"../../formal-power-series/formal-power-series.hpp\"\n\nusing mint\
-    \ = modint998244353;\n\n\nint main() {\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n\
-    \  for(int i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.inv_fast1(N)\
-    \ << endl;\n\n}"
+    \ = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
+    \ cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n  for(int\
+    \ i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.inv_fast1(N)\
+    \ << endl;\n\n}\n"
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
@@ -151,7 +153,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
   requiredBy: []
-  timestamp: '2024-05-19 17:06:26+09:00'
+  timestamp: '2024-05-21 00:13:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-inv-of-formal-power-series.test.cpp
