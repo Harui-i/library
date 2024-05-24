@@ -16,6 +16,7 @@ T mod_pow(T x, int a, const T &p) {
 
     x = x * x;
     x %= p;
+    a /= 2;
   }
   return ret;
 }
