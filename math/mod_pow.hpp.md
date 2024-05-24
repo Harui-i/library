@@ -12,17 +12,17 @@ data:
   bundledCode: "#line 1 \"math/mod_pow.hpp\"\n/**\n * @brief mod pow\n *  \n * \n\
     */\n\ntemplate <typename T>\nT mod_pow(T x, int a, const T &p) {\n  assert(a >=\
     \ 0);\n  T ret = 1;\n  while(a > 0) {\n    if (a % 2 == 1) {\n      ret = ret\
-    \ * x;\n      ret %= p;\n    }\n\n    x = x * x;\n    x %= p;\n  }\n  return ret;\n\
-    }\n"
+    \ * x;\n      ret %= p;\n    }\n\n    x = x * x;\n    x %= p;\n    a /= 2;\n \
+    \ }\n  return ret;\n}\n"
   code: "/**\n * @brief mod pow\n *  \n * \n*/\n\ntemplate <typename T>\nT mod_pow(T\
     \ x, int a, const T &p) {\n  assert(a >= 0);\n  T ret = 1;\n  while(a > 0) {\n\
     \    if (a % 2 == 1) {\n      ret = ret * x;\n      ret %= p;\n    }\n\n    x\
-    \ = x * x;\n    x %= p;\n  }\n  return ret;\n}"
+    \ = x * x;\n    x %= p;\n    a /= 2;\n  }\n  return ret;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: math/mod_pow.hpp
   requiredBy: []
-  timestamp: '2024-05-14 18:24:32+09:00'
+  timestamp: '2024-05-24 23:54:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/mod_pow.hpp
