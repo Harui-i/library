@@ -41,11 +41,12 @@ data:
     \ Dfa<Alphabet, int> {\n  const int M;\n  const int N_siz;\n\npublic:\n  using\
     \ State = int;\n  RemainderAutomaton(int _N_siz, int _M) : M(_M), N_siz(_N_siz)\
     \ {}\n\n  State init() const override {\n    return State(0);\n  }\n\n  State\
-    \ next(State s, char c, int i) const override {\n    State ret = ((long long)s*10\
-    \ + (long long)(c - '0') )%M; \n\n    return ret;\n  }\n\n  bool accept(State\
-    \ s) const override {\n    return s == 0;\n  }\n\n  bool successful ([[maybe_unused]]\
-    \ State  s) const override {\n    return false;\n  }\n\n  bool unsuccessful([[maybe_unused]]\
-    \ State s) const override {\n    return false;\n  }\n  \n};\n"
+    \ next(State s, char c, [[maybe_unused]] int i) const override {\n    State ret\
+    \ = ((long long)s*10 + (long long)(c - '0') )%M; \n\n    return ret;\n  }\n\n\
+    \  bool accept(State s) const override {\n    return s == 0;\n  }\n\n  bool successful\
+    \ ([[maybe_unused]] State  s) const override {\n    return false;\n  }\n\n  bool\
+    \ unsuccessful([[maybe_unused]] State s) const override {\n    return false;\n\
+    \  }\n  \n};\n"
   code: "#include \"automaton.hpp\"\n\n// next\u306F\u6570\u5B57\u306E\u53F3\u7AEF\
     \u306B\u66F8\u304D\u52A0\u3048\u308B\u30A4\u30E1\u30FC\u30B8\u3002\u3064\u307E\
     \u308A\u3001\u3044\u308D\u3044\u308D\u306A\u6841\u6570\u3092\u8003\u3048\u3089\
@@ -57,18 +58,18 @@ data:
     \ \nclass RemainderAutomaton : public Dfa<Alphabet, int> {\n  const int M;\n \
     \ const int N_siz;\n\npublic:\n  using State = int;\n  RemainderAutomaton(int\
     \ _N_siz, int _M) : M(_M), N_siz(_N_siz) {}\n\n  State init() const override {\n\
-    \    return State(0);\n  }\n\n  State next(State s, char c, int i) const override\
-    \ {\n    State ret = ((long long)s*10 + (long long)(c - '0') )%M; \n\n    return\
-    \ ret;\n  }\n\n  bool accept(State s) const override {\n    return s == 0;\n \
-    \ }\n\n  bool successful ([[maybe_unused]] State  s) const override {\n    return\
-    \ false;\n  }\n\n  bool unsuccessful([[maybe_unused]] State s) const override\
-    \ {\n    return false;\n  }\n  \n};"
+    \    return State(0);\n  }\n\n  State next(State s, char c, [[maybe_unused]] int\
+    \ i) const override {\n    State ret = ((long long)s*10 + (long long)(c - '0')\
+    \ )%M; \n\n    return ret;\n  }\n\n  bool accept(State s) const override {\n \
+    \   return s == 0;\n  }\n\n  bool successful ([[maybe_unused]] State  s) const\
+    \ override {\n    return false;\n  }\n\n  bool unsuccessful([[maybe_unused]] State\
+    \ s) const override {\n    return false;\n  }\n  \n};"
   dependsOn:
   - dp/automaton/automaton.hpp
   isVerificationFile: false
   path: dp/automaton/remainder.hpp
   requiredBy: []
-  timestamp: '2024-05-29 17:51:14+09:00'
+  timestamp: '2024-05-29 21:25:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yuki-372-itsautomatic.test.cpp

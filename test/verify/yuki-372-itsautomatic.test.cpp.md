@@ -89,17 +89,18 @@ data:
     \ Dfa<Alphabet, int> {\n  const int M;\n  const int N_siz;\n\npublic:\n  using\
     \ State = int;\n  RemainderAutomaton(int _N_siz, int _M) : M(_M), N_siz(_N_siz)\
     \ {}\n\n  State init() const override {\n    return State(0);\n  }\n\n  State\
-    \ next(State s, char c, int i) const override {\n    State ret = ((long long)s*10\
-    \ + (long long)(c - '0') )%M; \n\n    return ret;\n  }\n\n  bool accept(State\
-    \ s) const override {\n    return s == 0;\n  }\n\n  bool successful ([[maybe_unused]]\
-    \ State  s) const override {\n    return false;\n  }\n\n  bool unsuccessful([[maybe_unused]]\
-    \ State s) const override {\n    return false;\n  }\n  \n};\n#line 6 \"test/verify/yuki-372-itsautomatic.test.cpp\"\
-    \n\nusing mint = modint100000007;\n\nint main() {\n  ios::sync_with_stdio(0);\
-    \ cin.tie(0); cout.tie(0);\n\n  string S; cin >> S;\n  vector<char> svec(S.begin(),\
-    \ S.end());\n\n  int M; cin >> M;\n\n  vector<char> alphabet = { '0', '1', '2',\
-    \ '3', '4', '5', '6', '7', '8', '9' };\n\n  RemainderAutomaton<char> ra(S.size(),\
-    \ M);\n\n\n  mint ans = 0;\n  vector<mint>dp1(M), dp2(M);\n\n\n  for (int i =\
-    \ 0; i < S.size(); i++) {\n    if (S[i] == '0') ans += 1;\n    else {\n      dp2[(S[i]\
+    \ next(State s, char c, [[maybe_unused]] int i) const override {\n    State ret\
+    \ = ((long long)s*10 + (long long)(c - '0') )%M; \n\n    return ret;\n  }\n\n\
+    \  bool accept(State s) const override {\n    return s == 0;\n  }\n\n  bool successful\
+    \ ([[maybe_unused]] State  s) const override {\n    return false;\n  }\n\n  bool\
+    \ unsuccessful([[maybe_unused]] State s) const override {\n    return false;\n\
+    \  }\n  \n};\n#line 6 \"test/verify/yuki-372-itsautomatic.test.cpp\"\n\nusing\
+    \ mint = modint100000007;\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
+    \ cout.tie(0);\n\n  string S; cin >> S;\n  vector<char> svec(S.begin(), S.end());\n\
+    \n  int M; cin >> M;\n\n  vector<char> alphabet = { '0', '1', '2', '3', '4', '5',\
+    \ '6', '7', '8', '9' };\n\n  RemainderAutomaton<char> ra(S.size(), M);\n\n\n \
+    \ mint ans = 0;\n  vector<mint>dp1(M), dp2(M);\n\n\n  for (int i = 0; i < (int)\
+    \ S.size(); i++) {\n    if (S[i] == '0') ans += 1;\n    else {\n      dp2[(S[i]\
     \ - '0') % M] += 1; // only one word substring, 'S[i]' .\n    }\n    for (int\
     \ j = 0; j < M; j++) {\n\n      dp2[j] += dp1[j]; // the case when S[i] is not\
     \ choosed\n\n      dp2[(j * 10 + S[i] - '0') % M] += dp1[j]; // the case when\
@@ -113,12 +114,12 @@ data:
     \ S.end());\n\n  int M; cin >> M;\n\n  vector<char> alphabet = { '0', '1', '2',\
     \ '3', '4', '5', '6', '7', '8', '9' };\n\n  RemainderAutomaton<char> ra(S.size(),\
     \ M);\n\n\n  mint ans = 0;\n  vector<mint>dp1(M), dp2(M);\n\n\n  for (int i =\
-    \ 0; i < S.size(); i++) {\n    if (S[i] == '0') ans += 1;\n    else {\n      dp2[(S[i]\
-    \ - '0') % M] += 1; // only one word substring, 'S[i]' .\n    }\n    for (int\
-    \ j = 0; j < M; j++) {\n\n      dp2[j] += dp1[j]; // the case when S[i] is not\
-    \ choosed\n\n      dp2[(j * 10 + S[i] - '0') % M] += dp1[j]; // the case when\
-    \ S[i] is choosen and added into past substrings\n\n    }\n\n    swap(dp1, dp2);\n\
-    \    dp2.assign(M, 0);\n  }\n  for(int i=0; i<M; i++) {\n    if (ra.accept(i))\
+    \ 0; i < (int) S.size(); i++) {\n    if (S[i] == '0') ans += 1;\n    else {\n\
+    \      dp2[(S[i] - '0') % M] += 1; // only one word substring, 'S[i]' .\n    }\n\
+    \    for (int j = 0; j < M; j++) {\n\n      dp2[j] += dp1[j]; // the case when\
+    \ S[i] is not choosed\n\n      dp2[(j * 10 + S[i] - '0') % M] += dp1[j]; // the\
+    \ case when S[i] is choosen and added into past substrings\n\n    }\n\n    swap(dp1,\
+    \ dp2);\n    dp2.assign(M, 0);\n  }\n  for(int i=0; i<M; i++) {\n    if (ra.accept(i))\
     \ ans += dp1[i];\n  }\n  cout << ans.val() << endl;\n\n\n  return 0;\n}"
   dependsOn:
   - template/template.hpp
@@ -128,7 +129,7 @@ data:
   isVerificationFile: true
   path: test/verify/yuki-372-itsautomatic.test.cpp
   requiredBy: []
-  timestamp: '2024-05-29 18:17:38+09:00'
+  timestamp: '2024-05-29 21:25:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yuki-372-itsautomatic.test.cpp
