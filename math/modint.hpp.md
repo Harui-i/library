@@ -5,7 +5,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
+  - icon: ':warning:'
+    path: test/verify/atcoder-tdpc-s.cpp
+    title: test/verify/atcoder-tdpc-s.cpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/verify/atcoder-tdpc-s.test.cpp
+    title: test/verify/atcoder-tdpc-s.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-deque-operate-all-composite.test.cpp
     title: test/verify/yosupo-deque-operate-all-composite.test.cpp
@@ -15,12 +21,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-queue-operate-all-composite.test.cpp
     title: test/verify/yosupo-queue-operate-all-composite.test.cpp
-  _isVerificationFailed: false
+  - icon: ':heavy_check_mark:'
+    path: test/verify/yuki-372-itsautomatic.test.cpp
+    title: test/verify/yuki-372-itsautomatic.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/modint.hpp\"\n\ntemplate<int MOD>\nstruct static_modint\
+  bundledCode: "#line 2 \"math/modint.hpp\"\ntemplate<int MOD>\nstruct static_modint\
     \ {\n    int value;\n\n    constexpr static_modint() : value(0) {}\n\n    constexpr\
     \ static_modint(long long v) {\n        value = int(((v % MOD) + MOD) % MOD);\n\
     \    }\n\n    constexpr static_modint& operator+=(const static_modint& other)\
@@ -50,8 +59,8 @@ data:
     \ std::istream& operator>>(std::istream& is, static_modint& mi) {\n        long\
     \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
     \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
-    \ = modint<998244353>;\nusing modint100000007 = modint<100000007>;\n"
-  code: "#pragma once\n\ntemplate<int MOD>\nstruct static_modint {\n    int value;\n\
+    \ = modint<998244353>;\nusing modint100000007 = modint<1000000007>;\n"
+  code: "#pragma once\ntemplate<int MOD>\nstruct static_modint {\n    int value;\n\
     \n    constexpr static_modint() : value(0) {}\n\n    constexpr static_modint(long\
     \ long v) {\n        value = int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr\
     \ static_modint& operator+=(const static_modint& other) {\n        if ((value\
@@ -80,18 +89,21 @@ data:
     \ mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream& is, static_modint&\
     \ mi) {\n        long long x;\n        is >> x;\n        mi = static_modint(x);\n\
     \        return is;\n    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\n\
-    using modint998244353 = modint<998244353>;\nusing modint100000007 = modint<100000007>;"
+    using modint998244353 = modint<998244353>;\nusing modint100000007 = modint<1000000007>;"
   dependsOn: []
   isVerificationFile: false
   path: math/modint.hpp
   requiredBy:
+  - test/verify/atcoder-tdpc-s.cpp
   - formal-power-series/formal-power-series.hpp
-  timestamp: '2024-05-19 17:06:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-29 18:17:38+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series.test.cpp
+  - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
+  - test/verify/atcoder-tdpc-s.test.cpp
 documentation_of: math/modint.hpp
 layout: document
 title: modint

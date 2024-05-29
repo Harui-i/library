@@ -1,49 +1,68 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: dp/automaton/remainder.hpp
+    title: "\u3042\u307E\u308A\u3092\u7BA1\u7406\u3059\u308B\u30AA\u30FC\u30C8\u30DE\
+      \u30C8\u30F3(remainder.hpp)"
+  - icon: ':warning:'
+    path: test/verify/atcoder-tdpc-s.cpp
+    title: test/verify/atcoder-tdpc-s.cpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/verify/atcoder-tdpc-s.test.cpp
+    title: test/verify/atcoder-tdpc-s.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/yuki-372-itsautomatic.test.cpp
+    title: test/verify/yuki-372-itsautomatic.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://shino16.github.io/blog/post/algo/%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3/
   bundledCode: "#line 1 \"dp/automaton/automaton.hpp\"\n// https://shino16.github.io/blog/post/algo/%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3/\n\
     // Dfa\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\ntemplate <typename Alphabet,\
     \ typename State>\nclass Dfa {\npublic:\n  virtual State init() const = 0; //\
-    \ \u521D\u671F\u72B6\u614B\u3092\u8FD4\u3059\n  virtual State next(State s, Alphabet\
-    \ a, int i) const = 0; // s\u306Ba\u3092\u5165\u529B\u3068\u3057\u3066\u4E0E\u3048\
-    \u305F\u6642\u306E\u6B21\u306E\u72B6\u614B\u3092\u8FD4\u3059\n  virtual bool accept(State\
-    \ s) const = 0; // s\u3092\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3\u304C\u53D7\u7406\
-    \u3059\u308B\u304B\u3069\u3046\u304B\n  virtual bool successful(State s) const\
-    \ { return false; } // \u3069\u3046\u3044\u3046\u3075\u3046\u306Bnext\u3057\u3066\
-    \u3044\u3053\u3046\u304C\u3001\u7D76\u5BFE\u306Baccept\u3055\u308C\u308B\u72B6\
-    \u614B\u304B\u3069\u3046\u304B\n  virtual bool unsuccessful(State s) const { return\
-    \ false; } // \u3069\u3046\u3044\u3046\u3075\u3046\u306Bnext\u3057\u3066\u3044\
-    \u3053\u3046\u304C\u3001\u7D76\u5BFE\u306Baccpet\u3055\u308C\u306A\u3044\u72B6\
-    \u614B\u304B\u3069\u3046\u304B\n};\n"
+    \ \u521D\u671F\u72B6\u614B\u3092\u8FD4\u3059\n  virtual State next([[maybe_unused]]\
+    \ State s, [[maybe_unused]] Alphabet a, [[maybe_unused]]int i) const = 0; // s\u306B\
+    a\u3092\u5165\u529B\u3068\u3057\u3066\u4E0E\u3048\u305F\u6642\u306E\u6B21\u306E\
+    \u72B6\u614B\u3092\u8FD4\u3059\n  virtual bool accept([[maybe_unused]] State s)\
+    \ const = 0; // s\u3092\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3\u304C\u53D7\u7406\u3059\
+    \u308B\u304B\u3069\u3046\u304B\n  virtual bool successful([[maybe_unused]] State\
+    \ s) const { return false; } // \u3069\u3046\u3044\u3046\u3075\u3046\u306Bnext\u3057\
+    \u3066\u3044\u3053\u3046\u304C\u3001\u7D76\u5BFE\u306Baccept\u3055\u308C\u308B\
+    \u72B6\u614B\u304B\u3069\u3046\u304B\n  virtual bool unsuccessful([[maybe_unused]]\
+    \ State s) const { return false; } // \u3069\u3046\u3044\u3046\u3075\u3046\u306B\
+    next\u3057\u3066\u3044\u3053\u3046\u304C\u3001\u7D76\u5BFE\u306Baccpet\u3055\u308C\
+    \u306A\u3044\u72B6\u614B\u304B\u3069\u3046\u304B\n};\n"
   code: "// https://shino16.github.io/blog/post/algo/%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3/\n\
     // Dfa\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\ntemplate <typename Alphabet,\
     \ typename State>\nclass Dfa {\npublic:\n  virtual State init() const = 0; //\
-    \ \u521D\u671F\u72B6\u614B\u3092\u8FD4\u3059\n  virtual State next(State s, Alphabet\
-    \ a, int i) const = 0; // s\u306Ba\u3092\u5165\u529B\u3068\u3057\u3066\u4E0E\u3048\
-    \u305F\u6642\u306E\u6B21\u306E\u72B6\u614B\u3092\u8FD4\u3059\n  virtual bool accept(State\
-    \ s) const = 0; // s\u3092\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3\u304C\u53D7\u7406\
-    \u3059\u308B\u304B\u3069\u3046\u304B\n  virtual bool successful(State s) const\
-    \ { return false; } // \u3069\u3046\u3044\u3046\u3075\u3046\u306Bnext\u3057\u3066\
-    \u3044\u3053\u3046\u304C\u3001\u7D76\u5BFE\u306Baccept\u3055\u308C\u308B\u72B6\
-    \u614B\u304B\u3069\u3046\u304B\n  virtual bool unsuccessful(State s) const { return\
-    \ false; } // \u3069\u3046\u3044\u3046\u3075\u3046\u306Bnext\u3057\u3066\u3044\
-    \u3053\u3046\u304C\u3001\u7D76\u5BFE\u306Baccpet\u3055\u308C\u306A\u3044\u72B6\
-    \u614B\u304B\u3069\u3046\u304B\n};"
+    \ \u521D\u671F\u72B6\u614B\u3092\u8FD4\u3059\n  virtual State next([[maybe_unused]]\
+    \ State s, [[maybe_unused]] Alphabet a, [[maybe_unused]]int i) const = 0; // s\u306B\
+    a\u3092\u5165\u529B\u3068\u3057\u3066\u4E0E\u3048\u305F\u6642\u306E\u6B21\u306E\
+    \u72B6\u614B\u3092\u8FD4\u3059\n  virtual bool accept([[maybe_unused]] State s)\
+    \ const = 0; // s\u3092\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3\u304C\u53D7\u7406\u3059\
+    \u308B\u304B\u3069\u3046\u304B\n  virtual bool successful([[maybe_unused]] State\
+    \ s) const { return false; } // \u3069\u3046\u3044\u3046\u3075\u3046\u306Bnext\u3057\
+    \u3066\u3044\u3053\u3046\u304C\u3001\u7D76\u5BFE\u306Baccept\u3055\u308C\u308B\
+    \u72B6\u614B\u304B\u3069\u3046\u304B\n  virtual bool unsuccessful([[maybe_unused]]\
+    \ State s) const { return false; } // \u3069\u3046\u3044\u3046\u3075\u3046\u306B\
+    next\u3057\u3066\u3044\u3053\u3046\u304C\u3001\u7D76\u5BFE\u306Baccpet\u3055\u308C\
+    \u306A\u3044\u72B6\u614B\u304B\u3069\u3046\u304B\n};"
   dependsOn: []
   isVerificationFile: false
   path: dp/automaton/automaton.hpp
-  requiredBy: []
-  timestamp: '2024-05-28 18:21:35+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - test/verify/atcoder-tdpc-s.cpp
+  - dp/automaton/remainder.hpp
+  timestamp: '2024-05-28 20:18:59+09:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/verify/yuki-372-itsautomatic.test.cpp
+  - test/verify/atcoder-tdpc-s.test.cpp
 documentation_of: dp/automaton/automaton.hpp
 layout: document
 title: "\u6C7A\u5B9A\u6027\u6709\u9650\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3(DFA, Deterministic\
@@ -55,9 +74,10 @@ title: "\u6C7A\u5B9A\u6027\u6709\u9650\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3(DFA, 
 有限な状態数で、状態と入力が決まると次の状態も一意に決まりますよでおなじみの、決定性有限オートマトン(Deterministic Finite Automaton)を扱うことを考えている。
 決定性じゃない(状態と入力に対して、次の状態が複数考えられるような)場合は、遷移先を集合としてみて(?)bitDPをすると有限な場合に帰着できるらしいですよ。
 
-めちゃめちゃ参考にしました 1: [https://kuretchi.github.io/blog/entries/automaton-dp/]
-めちゃめちゃ参考にしました 2: [https://shino16.github.io/blog/post/algo/%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3/] 
-めちゃめちゃ参考にしました 3: [https://ja.wikipedia.org/wiki/%E6%B1%BA%E5%AE%9A%E6%80%A7%E6%9C%89%E9%99%90%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3]
+めちゃめちゃ参考にしました 1: [https://kuretchi.github.io/blog/entries/automaton-dp/](https://kuretchi.github.io/blog/entries/automaton-dp/)
+
+めちゃめちゃ参考にしました 2: [https://shino16.github.io/blog/post/algo/%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3/](https://shino16.github.io/blog/post/algo/%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3/) 
+めちゃめちゃ参考にしました 3: [https://ja.wikipedia.org/wiki/%E6%B1%BA%E5%AE%9A%E6%80%A7%E6%9C%89%E9%99%90%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3](https://ja.wikipedia.org/wiki/%E6%B1%BA%E5%AE%9A%E6%80%A7%E6%9C%89%E9%99%90%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3)
 
 
 定義は3に書いてある。 1は"~な数の個数"だけではなくて"~な数についてxxした総和"みたいなものも扱えることを取り上げている(実際、ジグザグ数の総和を(個数ではなく!!)求めている)が、ちょっとよくわからない部分も多い。

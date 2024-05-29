@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -28,8 +28,8 @@ data:
     template<class T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;}\
     \ return false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\n\
     const ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n\
-    #line 2 \"math/modint.hpp\"\n\ntemplate<int MOD>\nstruct static_modint {\n   \
-    \ int value;\n\n    constexpr static_modint() : value(0) {}\n\n    constexpr static_modint(long\
+    #line 2 \"math/modint.hpp\"\ntemplate<int MOD>\nstruct static_modint {\n    int\
+    \ value;\n\n    constexpr static_modint() : value(0) {}\n\n    constexpr static_modint(long\
     \ long v) {\n        value = int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr\
     \ static_modint& operator+=(const static_modint& other) {\n        if ((value\
     \ += other.value) >= MOD) value -= MOD;\n        return *this;\n    }\n\n    constexpr\
@@ -57,7 +57,7 @@ data:
     \ mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream& is, static_modint&\
     \ mi) {\n        long long x;\n        is >> x;\n        mi = static_modint(x);\n\
     \        return is;\n    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\n\
-    using modint998244353 = modint<998244353>;\nusing modint100000007 = modint<100000007>;\n\
+    using modint998244353 = modint<998244353>;\nusing modint100000007 = modint<1000000007>;\n\
     #line 2 \"formal-power-series/formal-power-series.hpp\"\n\n#line 5 \"formal-power-series/formal-power-series.hpp\"\
     \n\nusing namespace std;\nusing mint = modint998244353;\n\n//ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
     // constexpr \u95A2\u6570\u5185\u3067 ZETAS \u914D\u5217\u3092\u8A2D\u5B9A\u3059\
@@ -153,7 +153,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
   requiredBy: []
-  timestamp: '2024-05-21 00:13:35+09:00'
+  timestamp: '2024-05-29 18:17:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-inv-of-formal-power-series.test.cpp

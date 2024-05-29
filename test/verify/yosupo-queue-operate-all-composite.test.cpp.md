@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
   - icon: ':heavy_check_mark:'
     path: structure/slide-window-aggregation.hpp
     title: Foldable Deque(Slide Window Aggregation)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -28,8 +28,8 @@ data:
     template<class T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;}\
     \ return false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\n\
     const ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n\
-    #line 2 \"math/modint.hpp\"\n\ntemplate<int MOD>\nstruct static_modint {\n   \
-    \ int value;\n\n    constexpr static_modint() : value(0) {}\n\n    constexpr static_modint(long\
+    #line 2 \"math/modint.hpp\"\ntemplate<int MOD>\nstruct static_modint {\n    int\
+    \ value;\n\n    constexpr static_modint() : value(0) {}\n\n    constexpr static_modint(long\
     \ long v) {\n        value = int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr\
     \ static_modint& operator+=(const static_modint& other) {\n        if ((value\
     \ += other.value) >= MOD) value -= MOD;\n        return *this;\n    }\n\n    constexpr\
@@ -57,7 +57,7 @@ data:
     \ mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream& is, static_modint&\
     \ mi) {\n        long long x;\n        is >> x;\n        mi = static_modint(x);\n\
     \        return is;\n    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\n\
-    using modint998244353 = modint<998244353>;\nusing modint100000007 = modint<100000007>;\n\
+    using modint998244353 = modint<998244353>;\nusing modint100000007 = modint<1000000007>;\n\
     #line 1 \"structure/slide-window-aggregation.hpp\"\ntemplate <class S, S (*op)(S,\
     \ S), S (*e)()>\nstruct FoldableDeque {\n  struct Node {\n    S val;\n    S prod;\n\
     \  };\n\n  vector<Node> front, back;\n\n  FoldableDeque() : front(), back() {}\n\
@@ -111,7 +111,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-queue-operate-all-composite.test.cpp
   requiredBy: []
-  timestamp: '2024-05-21 00:35:00+09:00'
+  timestamp: '2024-05-29 18:17:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-queue-operate-all-composite.test.cpp

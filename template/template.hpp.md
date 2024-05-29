@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/verify/atcoder-tdpc-s.cpp
+    title: test/verify/atcoder-tdpc-s.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-0560.test.cpp
@@ -9,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-dpl3-c.test.cpp
     title: test/verify/aoj-dpl3-c.test.cpp
+  - icon: ':x:'
+    path: test/verify/atcoder-tdpc-s.test.cpp
+    title: test/verify/atcoder-tdpc-s.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-deque-operate-all-composite.test.cpp
     title: test/verify/yosupo-deque-operate-all-composite.test.cpp
@@ -18,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-queue-operate-all-composite.test.cpp
     title: test/verify/yosupo-queue-operate-all-composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/yuki-372-itsautomatic.test.cpp
+    title: test/verify/yuki-372-itsautomatic.test.cpp
   - icon: ':heavy_check_mark:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
@@ -30,9 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: '#line 1 "template/template.hpp"
@@ -86,15 +95,18 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: template/template.hpp
-  requiredBy: []
+  requiredBy:
+  - test/verify/atcoder-tdpc-s.cpp
   timestamp: '2024-05-14 18:24:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series.test.cpp
   - test/verify/aoj-0560.test.cpp
+  - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
   - test/verify/aoj-dpl3-c.test.cpp
+  - test/verify/atcoder-tdpc-s.test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
