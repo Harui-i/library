@@ -16,7 +16,7 @@ public:
     return State(0);
   }
 
-  State next(State s, char c, int i) const override {
+  State next(State s, char c, [[maybe_unused]] int i) const override {
     State ret = ((long long)s*10 + (long long)(c - '0') )%M; 
 
     return ret;

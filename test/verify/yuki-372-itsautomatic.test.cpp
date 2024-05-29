@@ -23,7 +23,7 @@ int main() {
   vector<mint>dp1(M), dp2(M);
 
 
-  for (int i = 0; i < S.size(); i++) {
+  for (int i = 0; i < (int) S.size(); i++) {
     if (S[i] == '0') ans += 1;
     else {
       dp2[(S[i] - '0') % M] += 1; // only one word substring, 'S[i]' .
