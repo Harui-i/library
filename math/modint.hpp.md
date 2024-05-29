@@ -9,9 +9,6 @@ data:
     path: test/verify/atcoder-tdpc-s.cpp
     title: test/verify/atcoder-tdpc-s.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/verify/atcoder-tdpc-s.test.cpp
-    title: test/verify/atcoder-tdpc-s.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-deque-operate-all-composite.test.cpp
     title: test/verify/yosupo-deque-operate-all-composite.test.cpp
@@ -24,9 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/modint.hpp\"\ntemplate<int MOD>\nstruct static_modint\
@@ -97,13 +94,12 @@ data:
   - test/verify/atcoder-tdpc-s.cpp
   - formal-power-series/formal-power-series.hpp
   timestamp: '2024-05-29 18:17:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series.test.cpp
   - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
-  - test/verify/atcoder-tdpc-s.test.cpp
 documentation_of: math/modint.hpp
 layout: document
 title: modint

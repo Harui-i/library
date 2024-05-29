@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: dp/automaton
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: dp/automaton/automaton.hpp
       title: "\u6C7A\u5B9A\u6027\u6709\u9650\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3(DFA,\
         \ Deterministic Finite Automaton)"
@@ -30,7 +30,7 @@ data:
     - icon: ':warning:'
       path: math/mod_pow.hpp
       title: math/mod_pow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: modint
   - name: structure/segment-tree
@@ -45,7 +45,7 @@ data:
       title: Foldable Deque(Slide Window Aggregation)
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
   - name: test/verify
@@ -67,9 +67,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/aoj-dpl3-c.test.cpp
       title: test/verify/aoj-dpl3-c.test.cpp
-    - icon: ':x:'
-      path: test/verify/atcoder-tdpc-s.test.cpp
-      title: test/verify/atcoder-tdpc-s.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-deque-operate-all-composite.test.cpp
       title: test/verify/yosupo-deque-operate-all-composite.test.cpp
