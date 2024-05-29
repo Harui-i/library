@@ -54,8 +54,8 @@ data:
       path: test/verify/atcoder-tdpc-s.cpp
       title: test/verify/atcoder-tdpc-s.cpp
     - icon: ':warning:'
-      path: test/verify/yosupo-log-of-formal-power-seris-test.cpp
-      title: test/verify/yosupo-log-of-formal-power-seris-test.cpp
+      path: test/verify/yosupo-log-of-formal-power-series-test.cpp
+      title: test/verify/yosupo-log-of-formal-power-series-test.cpp
   verificationCategories:
   - name: .
     pages:

@@ -6,8 +6,8 @@ data:
     title: modint
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: test/verify/yosupo-log-of-formal-power-seris-test.cpp
-    title: test/verify/yosupo-log-of-formal-power-seris-test.cpp
+    path: test/verify/yosupo-log-of-formal-power-series-test.cpp
+    title: test/verify/yosupo-log-of-formal-power-series-test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
@@ -224,7 +224,7 @@ data:
   isVerificationFile: false
   path: formal-power-series/formal-power-series.hpp
   requiredBy:
-  - test/verify/yosupo-log-of-formal-power-seris-test.cpp
+  - test/verify/yosupo-log-of-formal-power-series-test.cpp
   timestamp: '2024-05-29 22:04:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

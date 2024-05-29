@@ -6,8 +6,8 @@ data:
     path: test/verify/atcoder-tdpc-s.cpp
     title: test/verify/atcoder-tdpc-s.cpp
   - icon: ':warning:'
-    path: test/verify/yosupo-log-of-formal-power-seris-test.cpp
-    title: test/verify/yosupo-log-of-formal-power-seris-test.cpp
+    path: test/verify/yosupo-log-of-formal-power-series-test.cpp
+    title: test/verify/yosupo-log-of-formal-power-series-test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-0560.test.cpp
@@ -97,7 +97,7 @@ data:
   path: template/template.hpp
   requiredBy:
   - test/verify/atcoder-tdpc-s.cpp
-  - test/verify/yosupo-log-of-formal-power-seris-test.cpp
+  - test/verify/yosupo-log-of-formal-power-series-test.cpp
   timestamp: '2024-05-14 18:24:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
