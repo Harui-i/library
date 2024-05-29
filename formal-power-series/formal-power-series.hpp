@@ -100,7 +100,7 @@ struct FPS {
     for (int d=1; d < deg; d <<= 1) {
       FPS g_twice = g * mint(2);
       FPS fgg = (*this).pre(d*2) * g * g;
-      
+     
       g = g_twice - fgg;
       g.resize(d*2);
     }
@@ -138,6 +138,34 @@ struct FPS {
     }
 
     return g.pre(deg);
+  }
+
+  FPS log(int deg=-1) {
+    assert(_vec[0] == mint(1));
+
+    if (deg == -1) deg = size();
+    FPS df = this->diff();
+    FPS iv = this->inv_fast1(deg);
+    FPS ret = (df * iv).pre(deg-1).integral();
+
+    return ret;
+  }
+
+  FPS integral() const {
+    const int N = size();
+    FPS ret(N+1);
+
+    for(int i=0; i<N; i++) ret[i+1] = _vec[i] * mint(i+1).inv();
+
+    return ret;
+  }
+
+  FPS diff() const {
+    const int N = size();
+    FPS ret(max(0, N-1));
+    for(int i=1; i<N; i++) ret[i-1] = mint(i) * _vec[i];
+
+    return ret;
   }
 
   FPS(vector<mint> vec) {
@@ -210,6 +238,14 @@ struct FPS {
     ret._vec.resize(sz);
 
     return ret;
+  }
+
+  const mint& operator[](size_t i) const {
+    return _vec[i];
+  }
+
+  mint& operator[](size_t i) {
+    return _vec[i];
   }
 
   void resize(int sz)  {

@@ -22,8 +22,31 @@ FPS(int sz)
 ```
 項の数で初期化(最大の次数とは1ズレる)
 
-## inv_fast1
+## inv系
+
+### inv_fast1
 逆元を(体数倍の分だけ)速めに求める
 
-## inv_naive
+### inv_naive
 逆元を(定数倍の分だけ)遅めに求める
+
+## diff
+微分。
+
+### 計算量
+mintが四則演算 $O(1)$ なら、
+- $O\left(N\right)$
+
+
+## integral
+積分。mintが四則演算 $O(1)$ なら、$O\left(N\right)$
+
+### 計算量
+mintが四則演算 $O(1)$ なら、
+- $O\left(N\right)$
+
+## log
+logを求める。定数項が`1`でないことを要求する。
+
+### 計算量
+$O(N \log N)$
