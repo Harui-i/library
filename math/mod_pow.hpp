@@ -1,8 +1,4 @@
-/**
- * @brief mod pow
- *  
- * 
-*/
+#pragma once
 
 template <typename T>
 T mod_pow(T x, int a, const T &p) {

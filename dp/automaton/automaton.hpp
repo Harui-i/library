@@ -4,8 +4,8 @@ template <typename Alphabet, typename State>
 class Dfa {
 public:
   virtual State init() const = 0; // 初期状態を返す
-  virtual State next(State s, Alphabet a, int i) const = 0; // sにaを入力として与えた時の次の状態を返す
-  virtual bool accept(State s) const = 0; // sをオートマトンが受理するかどうか
-  virtual bool successful(State s) const { return false; } // どういうふうにnextしていこうが、絶対にacceptされる状態かどうか
-  virtual bool unsuccessful(State s) const { return false; } // どういうふうにnextしていこうが、絶対にaccpetされない状態かどうか
+  virtual State next([[maybe_unused]] State s, [[maybe_unused]] Alphabet a, [[maybe_unused]]int i) const = 0; // sにaを入力として与えた時の次の状態を返す
+  virtual bool accept([[maybe_unused]] State s) const = 0; // sをオートマトンが受理するかどうか
+  virtual bool successful([[maybe_unused]] State s) const { return false; } // どういうふうにnextしていこうが、絶対にacceptされる状態かどうか
+  virtual bool unsuccessful([[maybe_unused]] State s) const { return false; } // どういうふうにnextしていこうが、絶対にaccpetされない状態かどうか
 };

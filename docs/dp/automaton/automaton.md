@@ -8,9 +8,10 @@ documentation_of: //dp/automaton/automaton.hpp
 有限な状態数で、状態と入力が決まると次の状態も一意に決まりますよでおなじみの、決定性有限オートマトン(Deterministic Finite Automaton)を扱うことを考えている。
 決定性じゃない(状態と入力に対して、次の状態が複数考えられるような)場合は、遷移先を集合としてみて(?)bitDPをすると有限な場合に帰着できるらしいですよ。
 
-めちゃめちゃ参考にしました 1: [https://kuretchi.github.io/blog/entries/automaton-dp/]
-めちゃめちゃ参考にしました 2: [https://shino16.github.io/blog/post/algo/%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3/] 
-めちゃめちゃ参考にしました 3: [https://ja.wikipedia.org/wiki/%E6%B1%BA%E5%AE%9A%E6%80%A7%E6%9C%89%E9%99%90%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3]
+めちゃめちゃ参考にしました 1: [https://kuretchi.github.io/blog/entries/automaton-dp/](https://kuretchi.github.io/blog/entries/automaton-dp/)
+
+めちゃめちゃ参考にしました 2: [https://shino16.github.io/blog/post/algo/%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3/](https://shino16.github.io/blog/post/algo/%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3/) 
+めちゃめちゃ参考にしました 3: [https://ja.wikipedia.org/wiki/%E6%B1%BA%E5%AE%9A%E6%80%A7%E6%9C%89%E9%99%90%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3](https://ja.wikipedia.org/wiki/%E6%B1%BA%E5%AE%9A%E6%80%A7%E6%9C%89%E9%99%90%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3)
 
 
 定義は3に書いてある。 1は"~な数の個数"だけではなくて"~な数についてxxした総和"みたいなものも扱えることを取り上げている(実際、ジグザグ数の総和を(個数ではなく!!)求めている)が、ちょっとよくわからない部分も多い。
