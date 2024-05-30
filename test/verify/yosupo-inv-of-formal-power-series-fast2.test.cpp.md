@@ -173,37 +173,36 @@ data:
     \ ret[i+1] = _vec[i] * mint(i+1).inv();\n\n    return ret;\n  }\n\n  FPS diff()\
     \ const {\n    const int N = size();\n    FPS ret(max(0, N-1));\n    for(int i=1;\
     \ i<N; i++) ret[i-1] = mint(i) * _vec[i];\n\n    return ret;\n  }\n\n  FPS(vector<mint>\
-    \ vec) {\n    _vec = vec;\n  }\n\n  FPS(initializer_list<mint> ilist) {\n    _vec\
-    \ = ilist;\n  }\n\n  // \u9805\u306E\u6570\u306B\u63C3\u3048\u305F\u307B\u3046\
-    \u304C\u3088\u3055\u305D\u3046\n  FPS(int sz) {\n    _vec.resize(sz);\n  }\n\n\
-    \  int size() const {\n    return _vec.size();\n  }\n\n  FPS& operator+=(const\
-    \ FPS& rhs) {\n    if (rhs.size() > this->size()) _vec.resize(rhs.size());\n \
-    \   for (int i = 0; i < (int)rhs.size(); ++i) _vec[i] += rhs._vec[i];\n    return\
-    \ *this;\n  }\n\n  FPS& operator-=(const FPS& rhs) {\n    if (rhs.size() > this->size())\
-    \ this->_vec.resize(rhs.size());\n    for (int i = 0; i < (int)rhs.size(); ++i)\
-    \ _vec[i] -= rhs._vec[i];\n    return *this;\n  }\n\n  FPS& operator*=(const FPS&\
-    \ rhs) {\n    _vec = multiply(_vec, rhs._vec);\n    return *this;\n  }\n\n  FPS&\
-    \ operator*=(const mint& rhs) {\n    for(int i=0; i<size(); i++) _vec[i] *= rhs;\n\
-    \    return *this;\n  }\n\n  FPS& operator/=(const mint& rhs) {\n    for(int i=0;\
-    \ i<size(); i++) _vec[i] *= rhs.inv();\n    return *this;\n  }\n\n  FPS operator>>(int\
-    \ sz) const {\n    if ((int)this->size() <= sz) return {};\n    FPS ret(*this);\n\
-    \    ret._vec.erase(ret._vec.begin(), ret._vec.begin() + sz);\n    return ret;\n\
-    \  }\n\n  FPS operator<<(int sz) const {\n    FPS ret(*this);\n    ret._vec.insert(ret._vec.begin(),\
-    \ sz, mint(0));\n\n    return ret;\n  }\n\n  friend FPS operator+(FPS a, const\
-    \ FPS& b) { return a += b; }\n  friend FPS operator-(FPS a, const FPS& b) { return\
-    \ a -= b; }\n  friend FPS operator*(FPS a, const FPS& b) { return a *= b; }\n\n\
-    \  friend FPS operator*(FPS a, const mint& b) {return a *= b; }\n  friend FPS\
-    \ operator/(FPS a, const mint& b) {return a /= b; }\n\n  FPS pre(int sz) const\
-    \ {\n    FPS ret = *this; \n    ret._vec.resize(sz);\n\n    return ret;\n  }\n\
-    \n  const mint& operator[](size_t i) const {\n    return _vec[i];\n  }\n\n  mint&\
-    \ operator[](size_t i) {\n    return _vec[i];\n  }\n\n  void resize(int sz)  {\n\
-    \    this->_vec.resize(sz);\n  }\n\n  friend ostream& operator<<(ostream& os,\
-    \ const FPS& fps) {\n    for (int i = 0; i < fps.size(); ++i) {\n      if (i >\
-    \ 0) os << \" \";\n      os << fps._vec[i];\n    }\n    return os;\n  }\n};\n\
-    #line 6 \"test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp\"\n\nusing\
-    \ mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
-    \ cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n  for(int\
-    \ i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.inv_fast2(N)\
+    \ vec) : _vec(vec) {\n  }\n\n  FPS(initializer_list<mint> ilist) : _vec(ilist)\
+    \ {\n  }\n\n  // \u9805\u306E\u6570\u306B\u63C3\u3048\u305F\u307B\u3046\u304C\u3088\
+    \u3055\u305D\u3046\n  FPS(int sz) : _vec(vector<mint>(sz)) {\n  }\n\n  int size()\
+    \ const {\n    return _vec.size();\n  }\n\n  FPS& operator+=(const FPS& rhs) {\n\
+    \    if (rhs.size() > this->size()) _vec.resize(rhs.size());\n    for (int i =\
+    \ 0; i < (int)rhs.size(); ++i) _vec[i] += rhs._vec[i];\n    return *this;\n  }\n\
+    \n  FPS& operator-=(const FPS& rhs) {\n    if (rhs.size() > this->size()) this->_vec.resize(rhs.size());\n\
+    \    for (int i = 0; i < (int)rhs.size(); ++i) _vec[i] -= rhs._vec[i];\n    return\
+    \ *this;\n  }\n\n  FPS& operator*=(const FPS& rhs) {\n    _vec = multiply(_vec,\
+    \ rhs._vec);\n    return *this;\n  }\n\n  FPS& operator*=(const mint& rhs) {\n\
+    \    for(int i=0; i<size(); i++) _vec[i] *= rhs;\n    return *this;\n  }\n\n \
+    \ FPS& operator/=(const mint& rhs) {\n    for(int i=0; i<size(); i++) _vec[i]\
+    \ *= rhs.inv();\n    return *this;\n  }\n\n  FPS operator>>(int sz) const {\n\
+    \    if ((int)this->size() <= sz) return {};\n    FPS ret(*this);\n    ret._vec.erase(ret._vec.begin(),\
+    \ ret._vec.begin() + sz);\n    return ret;\n  }\n\n  FPS operator<<(int sz) const\
+    \ {\n    FPS ret(*this);\n    ret._vec.insert(ret._vec.begin(), sz, mint(0));\n\
+    \n    return ret;\n  }\n\n  friend FPS operator+(FPS a, const FPS& b) { return\
+    \ a += b; }\n  friend FPS operator-(FPS a, const FPS& b) { return a -= b; }\n\
+    \  friend FPS operator*(FPS a, const FPS& b) { return a *= b; }\n\n  friend FPS\
+    \ operator*(FPS a, const mint& b) {return a *= b; }\n  friend FPS operator/(FPS\
+    \ a, const mint& b) {return a /= b; }\n\n  FPS pre(int sz) const {\n    FPS ret\
+    \ = *this; \n    ret._vec.resize(sz);\n\n    return ret;\n  }\n\n  const mint&\
+    \ operator[](size_t i) const {\n    return _vec[i];\n  }\n\n  mint& operator[](size_t\
+    \ i) {\n    return _vec[i];\n  }\n\n  void resize(int sz)  {\n    this->_vec.resize(sz);\n\
+    \  }\n\n  friend ostream& operator<<(ostream& os, const FPS& fps) {\n    for (int\
+    \ i = 0; i < fps.size(); ++i) {\n      if (i > 0) os << \" \";\n      os << fps._vec[i].val();\n\
+    \    }\n    return os;\n  }\n};\n#line 6 \"test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp\"\
+    \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
+    \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n\
+    \  for(int i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.inv_fast2(N)\
     \ << endl;\n\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
     \n\n#include \"../../template/template.hpp\"\n#include \"../../math/modint.hpp\"\
@@ -219,7 +218,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
   requiredBy: []
-  timestamp: '2024-05-30 15:14:58+09:00'
+  timestamp: '2024-05-31 01:05:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
