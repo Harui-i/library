@@ -20,7 +20,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series
     links:
     - https://judge.yosupo.jp/problem/inv_of_formal_power_series
-  bundledCode: "#line 1 \"test/verify/yosupo-inv-of-formal-power-series.test.cpp\"\
+  bundledCode: "#line 1 \"test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
     \n\n#line 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\ntypedef long long ll;\ntypedef unsigned int uint;\ntemplate<class T> inline\
@@ -201,32 +201,32 @@ data:
     \    this->_vec.resize(sz);\n  }\n\n  friend ostream& operator<<(ostream& os,\
     \ const FPS& fps) {\n    for (int i = 0; i < fps.size(); ++i) {\n      if (i >\
     \ 0) os << \" \";\n      os << fps._vec[i];\n    }\n    return os;\n  }\n};\n\
-    #line 6 \"test/verify/yosupo-inv-of-formal-power-series.test.cpp\"\n\nusing mint\
-    \ = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
+    #line 6 \"test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp\"\n\nusing\
+    \ mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
     \ cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n  for(int\
-    \ i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.inv_fast1(N)\
+    \ i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.inv_naive(N)\
     \ << endl;\n\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
     \n\n#include \"../../template/template.hpp\"\n#include \"../../math/modint.hpp\"\
     \n#include \"../../formal-power-series/formal-power-series.hpp\"\n\nusing mint\
     \ = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
     \ cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n  for(int\
-    \ i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.inv_fast1(N)\
+    \ i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.inv_naive(N)\
     \ << endl;\n\n}\n"
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
   - formal-power-series/formal-power-series.hpp
   isVerificationFile: true
-  path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
+  path: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
   requiredBy: []
   timestamp: '2024-05-30 14:58:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/verify/yosupo-inv-of-formal-power-series.test.cpp
+documentation_of: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
 layout: document
 redirect_from:
-- /verify/test/verify/yosupo-inv-of-formal-power-series.test.cpp
-- /verify/test/verify/yosupo-inv-of-formal-power-series.test.cpp.html
-title: test/verify/yosupo-inv-of-formal-power-series.test.cpp
+- /verify/test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
+- /verify/test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp.html
+title: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
 ---

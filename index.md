@@ -53,9 +53,6 @@ data:
     - icon: ':warning:'
       path: test/verify/atcoder-tdpc-s.cpp
       title: test/verify/atcoder-tdpc-s.cpp
-    - icon: ':warning:'
-      path: test/verify/yosupo-log-of-formal-power-series-test.cpp
-      title: test/verify/yosupo-log-of-formal-power-series-test.cpp
   verificationCategories:
   - name: .
     pages:
@@ -74,8 +71,17 @@ data:
       path: test/verify/yosupo-deque-operate-all-composite.test.cpp
       title: test/verify/yosupo-deque-operate-all-composite.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
+      title: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
+      title: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
       title: test/verify/yosupo-inv-of-formal-power-series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-log-of-formal-power-series-fast1.test.cpp
+      title: test/verify/yosupo-log-of-formal-power-series-fast1.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-queue-operate-all-composite.test.cpp
       title: test/verify/yosupo-queue-operate-all-composite.test.cpp
