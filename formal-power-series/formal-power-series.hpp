@@ -231,17 +231,14 @@ struct FPS {
     return ret;
   }
 
-  FPS(vector<mint> vec) {
-    _vec = vec;
+  FPS(vector<mint> vec) : _vec(vec) {
   }
 
-  FPS(initializer_list<mint> ilist) {
-    _vec = ilist;
+  FPS(initializer_list<mint> ilist) : _vec(ilist) {
   }
 
   // 項の数に揃えたほうがよさそう
-  FPS(int sz) {
-    _vec.resize(sz);
+  FPS(int sz) : _vec(vector<mint>(sz)) {
   }
 
   int size() const {
@@ -318,7 +315,7 @@ struct FPS {
   friend ostream& operator<<(ostream& os, const FPS& fps) {
     for (int i = 0; i < fps.size(); ++i) {
       if (i > 0) os << " ";
-      os << fps._vec[i];
+      os << fps._vec[i].val();
     }
     return os;
   }
