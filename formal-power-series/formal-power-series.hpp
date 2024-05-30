@@ -109,7 +109,7 @@ struct FPS {
   }
 
   // FFTの回数を節約したNewton法での逆元計算
-  FPS inv_fast1(int deg) const {
+  FPS inv_fast1(int deg=-1) const {
     assert(_vec[0] != mint(0));
     if (deg == -1) deg = size();
     FPS g(1);
@@ -139,6 +139,70 @@ struct FPS {
 
     return g.pre(deg);
   }
+  
+  // 巡回畳み込みを利用してFFTの回数を節約したNewton法による逆元計算
+  // https://paper.dropbox.com/doc/fps--CQCZhUV1oN9UT3BCLrowhxgzAg-EoHXQDZxfduAB8wD1PMBW
+  // 元の記事とはg_2dとかの命名が違う。f_2dなどの下付きの数字は、このコードでは形式的べき級数のサイズを表す。
+  // ニュートン法1回あたりのFFTの計算量が、5 * F(2d)になる。
+  // ↓コメントアウトのToggle切り替え用
+  //*
+  FPS inv_fast2(int deg=-1) const {
+    assert(_vec[0] != mint(0));
+    if (deg == -1) deg = size();
+    FPS g(1);
+    g._vec[0] = mint(_vec[0]).inv();
+
+    for(int d=1; d<deg; d <<= 1) {
+      // g_2n = g_n - (f_n g_n - 1) g_n
+      // e_n := f_n g_n - 1
+
+      FPS f_2d = (*this).pre(2*d);
+      FPS g_d = g.pre(2*d);
+      FPS g_origin = g.pre(2*d); // 後々使いたいので保存しておく
+
+      CooleyTukeyNTT998244353(f_2d._vec, false);
+      CooleyTukeyNTT998244353(g_d._vec, false);
+      assert(2*d == (int)g_d.size() && f_2d.size() == g_d.size());
+      FPS h_2d(2*d);
+      for(int i=0; i<2*d; i++) h_2d[i] = f_2d[i] * g_d[i];
+      CooleyTukeyNTT998244353(h_2d._vec, true);
+
+      // こうすることで、h_2dは f_2d * g_dの 2d次未満の項に一致する。
+      // h_2dはf_2dとg_dのサイズ2dの巡回畳み込みであるから、 h_2dの項は下図のようになっている。
+      // ここで、h_2dのうちほしい部分は左上と、右上の部分のみ。(f_2d*g_dの2d次未満がほしいので)
+      // 左上の部分は、g_dの性質から、 1, 0, 0, ... となっていることがわかる。
+      // 右下の部分は deg(f_2d) < 2d, deg(g_d) < d → deg(f_2d*g_d) < 3d となって、0となっていることがわかる。
+      // よって、h_2dの[d,2d)の部分はf_2d*g_dの[d,2d)に一致するので何も処理する必要がなく、
+      // h_2dの[0,d)の部分は余計な足し算が入ってしまっているが、1,0,0,...に変えてしまえばよい。
+      //    [0, d)の項            [d, 2d)の項
+      //    f_2d*g_dの[0,d)       f_2d*g_dの[d, 2d)
+      //    f_2d*g_dの[2d, 3d)    f_2d*g_dの[3d, 4d)
+
+      //assert(h_2d[0] == mint(1));
+      h_2d[0]  = mint(0); // h_2dを (f_2d * g_d - 1)に変えちゃう。
+      for(int i=1; i<d; i++) h_2d[i] = 0; 
+
+      CooleyTukeyNTT998244353(h_2d._vec, false);
+      for(int i=0; i<2*d; i++) h_2d[i] = g_d[i] * h_2d[i];
+      CooleyTukeyNTT998244353(h_2d._vec, true);
+      for(int i=0; i<d; i++) h_2d[i] = mint(0);
+    
+      // h_2d - 1 =: h'_2dとおく。
+      // g_2d = g_d - h'_2d * g_d であり、さっきと同じような図を書くと, h_2d * g_dを巡回畳み込みしたものは、下図のようになっている。
+      // 左上はall-zero(定数項も0にしたので)、右下も次数の関係から全部0なので、h_2d * g_dは、巡回畳み込みをしたものの[0,d)の項を0にすることで得られる。 
+      //    [0, d)の項            [d, 2d)の項
+      //    h'_2d*g_dの[0,d)       h'_2d*g_dの[d, 2d)
+      //    h'_2d*g_dの[2d, 3d)    h'_2d*g_dの[3d, 4d)
+
+      g = g_origin - h_2d;
+      g.resize(d*2);
+
+    }
+
+    return g.pre(deg);
+
+  }
+  //*/
 
   FPS log(int deg=-1) {
     assert(_vec[0] == mint(1));

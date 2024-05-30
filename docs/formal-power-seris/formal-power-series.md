@@ -24,11 +24,17 @@ FPS(int sz)
 
 ## inv系
 
+### inv_fast2
+これが最速のはず。
+Library Checkerでは500msほど。
+
 ### inv_fast1
 逆元を(体数倍の分だけ)速めに求める
+Library Checkerでは650msほど。
 
 ### inv_naive
 逆元を(定数倍の分だけ)遅めに求める
+Library Checkerでは920msほど。
 
 ## diff
 微分。
