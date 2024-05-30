@@ -178,7 +178,6 @@ struct FPS {
       //    f_2d*g_dの[0,d)       f_2d*g_dの[d, 2d)
       //    f_2d*g_dの[2d, 3d)    f_2d*g_dの[3d, 4d)
 
-      //assert(h_2d[0] == mint(1));
       h_2d[0]  = mint(0); // h_2dを (f_2d * g_d - 1)に変えちゃう。
       for(int i=1; i<d; i++) h_2d[i] = 0; 
 
@@ -209,7 +208,7 @@ struct FPS {
 
     if (deg == -1) deg = size();
     FPS df = this->diff();
-    FPS iv = this->inv_fast1(deg);
+    FPS iv = this->inv_fast2(deg);
     FPS ret = (df * iv).pre(deg-1).integral();
 
     return ret;

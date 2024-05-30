@@ -24,6 +24,10 @@ FPS(int sz)
 
 ## inv系
 
+### 計算量
+下の3つのどれも、FPSのサイズ(最大次数+1)を $N$ として
+- $O(N \log N)$
+
 ### inv_fast2
 これが最速のはず。
 Library Checkerでは500msほど。
@@ -45,7 +49,7 @@ mintが四則演算 $O(1)$ なら、
 
 
 ## integral
-積分。mintが四則演算 $O(1)$ なら、$O\left(N\right)$
+積分。
 
 ### 計算量
 mintが四則演算 $O(1)$ なら、
