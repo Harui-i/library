@@ -149,10 +149,9 @@ data:
     \u307E\u3048\u3070\u3088\u3044\u3002\n      //    [0, d)\u306E\u9805         \
     \   [d, 2d)\u306E\u9805\n      //    f_2d*g_d\u306E[0,d)       f_2d*g_d\u306E\
     [d, 2d)\n      //    f_2d*g_d\u306E[2d, 3d)    f_2d*g_d\u306E[3d, 4d)\n\n    \
-    \  //assert(h_2d[0] == mint(1));\n      h_2d[0]  = mint(0); // h_2d\u3092 (f_2d\
-    \ * g_d - 1)\u306B\u5909\u3048\u3061\u3083\u3046\u3002\n      for(int i=1; i<d;\
-    \ i++) h_2d[i] = 0; \n\n      CooleyTukeyNTT998244353(h_2d._vec, false);\n   \
-    \   for(int i=0; i<2*d; i++) h_2d[i] = g_d[i] * h_2d[i];\n      CooleyTukeyNTT998244353(h_2d._vec,\
+    \  h_2d[0]  = mint(0); // h_2d\u3092 (f_2d * g_d - 1)\u306B\u5909\u3048\u3061\u3083\
+    \u3046\u3002\n      for(int i=1; i<d; i++) h_2d[i] = 0; \n\n      CooleyTukeyNTT998244353(h_2d._vec,\
+    \ false);\n      for(int i=0; i<2*d; i++) h_2d[i] = g_d[i] * h_2d[i];\n      CooleyTukeyNTT998244353(h_2d._vec,\
     \ true);\n      for(int i=0; i<d; i++) h_2d[i] = mint(0);\n    \n      // h_2d\
     \ - 1 =: h'_2d\u3068\u304A\u304F\u3002\n      // g_2d = g_d - h'_2d * g_d \u3067\
     \u3042\u308A\u3001\u3055\u3063\u304D\u3068\u540C\u3058\u3088\u3046\u306A\u56F3\
@@ -168,7 +167,7 @@ data:
     [2d, 3d)    h'_2d*g_d\u306E[3d, 4d)\n\n      g = g_origin - h_2d;\n      g.resize(d*2);\n\
     \n    }\n\n    return g.pre(deg);\n\n  }\n  //*/\n\n  FPS log(int deg=-1) {\n\
     \    assert(_vec[0] == mint(1));\n\n    if (deg == -1) deg = size();\n    FPS\
-    \ df = this->diff();\n    FPS iv = this->inv_fast1(deg);\n    FPS ret = (df *\
+    \ df = this->diff();\n    FPS iv = this->inv_fast2(deg);\n    FPS ret = (df *\
     \ iv).pre(deg-1).integral();\n\n    return ret;\n  }\n\n  FPS integral() const\
     \ {\n    const int N = size();\n    FPS ret(N+1);\n\n    for(int i=0; i<N; i++)\
     \ ret[i+1] = _vec[i] * mint(i+1).inv();\n\n    return ret;\n  }\n\n  FPS diff()\
@@ -220,7 +219,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
   requiredBy: []
-  timestamp: '2024-05-30 14:58:51+09:00'
+  timestamp: '2024-05-30 15:14:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
