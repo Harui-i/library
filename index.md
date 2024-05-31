@@ -25,6 +25,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: formal-power-series/formal-power-series.hpp
       title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
+    - icon: ':heavy_check_mark:'
+      path: formal-power-series/sparse-fps.hpp
+      title: formal-power-series/sparse-fps.hpp
   - name: math
     pages:
     - icon: ':warning:'
@@ -76,6 +79,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
       title: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
+      title: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
       title: test/verify/yosupo-inv-of-formal-power-series.test.cpp

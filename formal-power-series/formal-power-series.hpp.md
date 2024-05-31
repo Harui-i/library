@@ -4,7 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: formal-power-series/sparse-fps.hpp
+    title: formal-power-series/sparse-fps.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
@@ -12,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
+    title: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series.test.cpp
@@ -344,7 +350,8 @@ data:
   - math/modint.hpp
   isVerificationFile: false
   path: formal-power-series/formal-power-series.hpp
-  requiredBy: []
+  requiredBy:
+  - formal-power-series/sparse-fps.hpp
   timestamp: '2024-05-31 01:05:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -352,6 +359,7 @@ data:
   - test/verify/yosupo-inv-of-formal-power-series.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
+  - test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
 documentation_of: formal-power-series/formal-power-series.hpp
 layout: document
 title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"

@@ -22,6 +22,9 @@ data:
     path: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
+    title: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -114,6 +117,7 @@ data:
   - test/verify/aoj-0560.test.cpp
   - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
+  - test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
   - test/verify/aoj-dpl3-c.test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp

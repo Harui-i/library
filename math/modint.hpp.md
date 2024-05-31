@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
+  - icon: ':heavy_check_mark:'
+    path: formal-power-series/sparse-fps.hpp
+    title: formal-power-series/sparse-fps.hpp
   - icon: ':warning:'
     path: test/verify/atcoder-tdpc-s.cpp
     title: test/verify/atcoder-tdpc-s.cpp
@@ -18,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
+    title: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series.test.cpp
@@ -101,6 +107,7 @@ data:
   path: math/modint.hpp
   requiredBy:
   - test/verify/atcoder-tdpc-s.cpp
+  - formal-power-series/sparse-fps.hpp
   - formal-power-series/formal-power-series.hpp
   timestamp: '2024-05-29 18:17:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -112,6 +119,7 @@ data:
   - test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
   - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
+  - test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
 documentation_of: math/modint.hpp
 layout: document
 title: modint
