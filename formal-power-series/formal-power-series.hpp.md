@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/sparse-fps.hpp
-    title: formal-power-series/sparse-fps.hpp
+    title: sparse-fps
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
