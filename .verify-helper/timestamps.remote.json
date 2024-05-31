@@ -5,6 +5,7 @@
 "test/verify/yosupo-deque-operate-all-composite.test.cpp": "2024-05-29 18:17:38 +0900",
 "test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp": "2024-05-31 01:05:50 +0900",
 "test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp": "2024-05-31 01:05:50 +0900",
+"test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp": "2024-05-31 23:23:37 +0900",
 "test/verify/yosupo-inv-of-formal-power-series.test.cpp": "2024-05-31 01:05:50 +0900",
 "test/verify/yosupo-log-of-formal-power-series-fast1.test.cpp": "2024-05-31 01:05:50 +0900",
 "test/verify/yosupo-queue-operate-all-composite.test.cpp": "2024-05-29 18:17:38 +0900",
