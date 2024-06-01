@@ -22,10 +22,10 @@ data:
         \u5F62"
   - name: formal-power-series
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: formal-power-series/formal-power-series.hpp
       title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: formal-power-series/sparse-fps.hpp
       title: sparse-fps
   - name: math
@@ -33,7 +33,7 @@ data:
     - icon: ':warning:'
       path: math/mod_pow.hpp
       title: math/mod_pow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.hpp
       title: modint
   - name: structure/segment-tree
@@ -48,7 +48,7 @@ data:
       title: Foldable Deque(Slide Window Aggregation)
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/template.hpp
       title: template/template.hpp
   - name: test/verify
@@ -74,18 +74,21 @@ data:
       path: test/verify/yosupo-deque-operate-all-composite.test.cpp
       title: test/verify/yosupo-deque-operate-all-composite.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-exp-of-formal-power-series.test.cpp
+      title: test/verify/yosupo-exp-of-formal-power-series.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
       title: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
       title: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
       title: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
       title: test/verify/yosupo-inv-of-formal-power-series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yosupo-log-of-formal-power-series-fast1.test.cpp
       title: test/verify/yosupo-log-of-formal-power-series-fast1.test.cpp
     - icon: ':heavy_check_mark:'

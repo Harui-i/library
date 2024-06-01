@@ -1,32 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: formal-power-series/sparse-fps.hpp
     title: sparse-fps
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-exp-of-formal-power-series.test.cpp
+    title: test/verify/yosupo-exp-of-formal-power-series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-log-of-formal-power-series-fast1.test.cpp
     title: test/verify/yosupo-log-of-formal-power-series-fast1.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://paper.dropbox.com/doc/fps--CQCZhUV1oN9UT3BCLrowhxgzAg-EoHXQDZxfduAB8wD1PMBW
@@ -169,14 +172,19 @@ data:
     \u308B\u3002 \n      //    [0, d)\u306E\u9805            [d, 2d)\u306E\u9805\n\
     \      //    h'_2d*g_d\u306E[0,d)       h'_2d*g_d\u306E[d, 2d)\n      //    h'_2d*g_d\u306E\
     [2d, 3d)    h'_2d*g_d\u306E[3d, 4d)\n\n      g = g_origin - h_2d;\n      g.resize(d*2);\n\
-    \n    }\n\n    return g.pre(deg);\n\n  }\n  //*/\n\n  FPS log(int deg=-1) {\n\
-    \    assert(_vec[0] == mint(1));\n\n    if (deg == -1) deg = size();\n    FPS\
-    \ df = this->diff();\n    FPS iv = this->inv_fast2(deg);\n    FPS ret = (df *\
-    \ iv).pre(deg-1).integral();\n\n    return ret;\n  }\n\n  FPS integral() const\
-    \ {\n    const int N = size();\n    FPS ret(N+1);\n\n    for(int i=0; i<N; i++)\
-    \ ret[i+1] = _vec[i] * mint(i+1).inv();\n\n    return ret;\n  }\n\n  FPS diff()\
-    \ const {\n    const int N = size();\n    FPS ret(max(0, N-1));\n    for(int i=1;\
-    \ i<N; i++) ret[i-1] = mint(i) * _vec[i];\n\n    return ret;\n  }\n\n  FPS(vector<mint>\
+    \n    }\n\n    return g.pre(deg);\n\n  }\n  //*/\n\n  FPS log(int deg=-1) const\
+    \ {\n    assert(_vec[0] == mint(1));\n\n    if (deg == -1) deg = size();\n   \
+    \ FPS df = this->diff();\n    FPS iv = this->inv_fast2(deg);\n    FPS ret = (df\
+    \ * iv).pre(deg-1).integral();\n\n    return ret;\n  }\n\n  FPS exp(int deg=-1)\
+    \ const {\n    assert(_vec[0] == mint(0));\n\n    if (deg == -1) deg = size();\n\
+    \    FPS g(1);\n    g[0] = 1;\n    for (int d=1; d<deg; d <<= 1) {\n      // g_2d\
+    \ = g_d * (f(x) + 1 - log(g_d))\n      FPS fpl1 = (*this + mint(1)).pre(2*d);\n\
+    \      FPS logg = g.log(2*d);\n      FPS right = (fpl1 - logg);\n\n      g = (g\
+    \ * right).pre(2*d);\n    }\n\n    return g.pre(deg);\n  }\n\n  FPS integral()\
+    \ const {\n    const int N = size();\n    FPS ret(N+1);\n\n    for(int i=0; i<N;\
+    \ i++) ret[i+1] = _vec[i] * mint(i+1).inv();\n\n    return ret;\n  }\n\n  FPS\
+    \ diff() const {\n    const int N = size();\n    FPS ret(max(0, N-1));\n    for(int\
+    \ i=1; i<N; i++) ret[i-1] = mint(i) * _vec[i];\n\n    return ret;\n  }\n\n  FPS(vector<mint>\
     \ vec) : _vec(vec) {\n  }\n\n  FPS(initializer_list<mint> ilist) : _vec(ilist)\
     \ {\n  }\n\n  // \u9805\u306E\u6570\u306B\u63C3\u3048\u305F\u307B\u3046\u304C\u3088\
     \u3055\u305D\u3046\n  FPS(int sz) : _vec(vector<mint>(sz)) {\n  }\n\n  int size()\
@@ -186,24 +194,28 @@ data:
     \n  FPS& operator-=(const FPS& rhs) {\n    if (rhs.size() > this->size()) this->_vec.resize(rhs.size());\n\
     \    for (int i = 0; i < (int)rhs.size(); ++i) _vec[i] -= rhs._vec[i];\n    return\
     \ *this;\n  }\n\n  FPS& operator*=(const FPS& rhs) {\n    _vec = multiply(_vec,\
-    \ rhs._vec);\n    return *this;\n  }\n\n  FPS& operator*=(const mint& rhs) {\n\
-    \    for(int i=0; i<size(); i++) _vec[i] *= rhs;\n    return *this;\n  }\n\n \
-    \ FPS& operator/=(const mint& rhs) {\n    for(int i=0; i<size(); i++) _vec[i]\
-    \ *= rhs.inv();\n    return *this;\n  }\n\n  FPS operator>>(int sz) const {\n\
-    \    if ((int)this->size() <= sz) return {};\n    FPS ret(*this);\n    ret._vec.erase(ret._vec.begin(),\
+    \ rhs._vec);\n    return *this;\n  }\n\n  FPS& operator+=(const mint& rhs) {\n\
+    \    _vec[0] += rhs;\n    return *this;\n  }\n\n  FPS& operator-=(const mint&\
+    \ rhs) {\n    _vec[0] -= rhs;\n    return *this;\n  }\n\n  FPS& operator*=(const\
+    \ mint& rhs) {\n    for(int i=0; i<size(); i++) _vec[i] *= rhs;\n    return *this;\n\
+    \  }\n\n  FPS& operator/=(const mint& rhs) {\n    for(int i=0; i<size(); i++)\
+    \ _vec[i] *= rhs.inv();\n    return *this;\n  }\n\n  FPS operator>>(int sz) const\
+    \ {\n    if ((int)this->size() <= sz) return {};\n    FPS ret(*this);\n    ret._vec.erase(ret._vec.begin(),\
     \ ret._vec.begin() + sz);\n    return ret;\n  }\n\n  FPS operator<<(int sz) const\
     \ {\n    FPS ret(*this);\n    ret._vec.insert(ret._vec.begin(), sz, mint(0));\n\
     \n    return ret;\n  }\n\n  friend FPS operator+(FPS a, const FPS& b) { return\
     \ a += b; }\n  friend FPS operator-(FPS a, const FPS& b) { return a -= b; }\n\
     \  friend FPS operator*(FPS a, const FPS& b) { return a *= b; }\n\n  friend FPS\
-    \ operator*(FPS a, const mint& b) {return a *= b; }\n  friend FPS operator/(FPS\
-    \ a, const mint& b) {return a /= b; }\n\n  FPS pre(int sz) const {\n    FPS ret\
-    \ = *this; \n    ret._vec.resize(sz);\n\n    return ret;\n  }\n\n  const mint&\
-    \ operator[](size_t i) const {\n    return _vec[i];\n  }\n\n  mint& operator[](size_t\
-    \ i) {\n    return _vec[i];\n  }\n\n  void resize(int sz)  {\n    this->_vec.resize(sz);\n\
-    \  }\n\n  friend ostream& operator<<(ostream& os, const FPS& fps) {\n    for (int\
-    \ i = 0; i < fps.size(); ++i) {\n      if (i > 0) os << \" \";\n      os << fps._vec[i].val();\n\
-    \    }\n    return os;\n  }\n};\n"
+    \ operator+(FPS a, const mint& b) {return a += b; }\n  friend FPS operator-(FPS\
+    \ a, const mint& b) {return a -= b; }\n  friend FPS operator*(FPS a, const mint&\
+    \ b) {return a *= b; }\n  friend FPS operator/(FPS a, const mint& b) {return a\
+    \ /= b; }\n\n  FPS pre(int sz) const {\n    FPS ret = *this; \n    ret._vec.resize(sz);\n\
+    \n    return ret;\n  }\n\n  const mint& operator[](size_t i) const {\n    return\
+    \ _vec[i];\n  }\n\n  mint& operator[](size_t i) {\n    return _vec[i];\n  }\n\n\
+    \  void resize(int sz)  {\n    this->_vec.resize(sz);\n  }\n\n  friend ostream&\
+    \ operator<<(ostream& os, const FPS& fps) {\n    for (int i = 0; i < fps.size();\
+    \ ++i) {\n      if (i > 0) os << \" \";\n      os << fps._vec[i].val();\n    }\n\
+    \    return os;\n  }\n};\n"
   code: "#pragma once\n\n#include \"../math/modint.hpp\"\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\nusing mint = modint998244353;\n\n//ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
     // constexpr \u95A2\u6570\u5185\u3067 ZETAS \u914D\u5217\u3092\u8A2D\u5B9A\u3059\
@@ -311,14 +323,19 @@ data:
     \u308B\u3002 \n      //    [0, d)\u306E\u9805            [d, 2d)\u306E\u9805\n\
     \      //    h'_2d*g_d\u306E[0,d)       h'_2d*g_d\u306E[d, 2d)\n      //    h'_2d*g_d\u306E\
     [2d, 3d)    h'_2d*g_d\u306E[3d, 4d)\n\n      g = g_origin - h_2d;\n      g.resize(d*2);\n\
-    \n    }\n\n    return g.pre(deg);\n\n  }\n  //*/\n\n  FPS log(int deg=-1) {\n\
-    \    assert(_vec[0] == mint(1));\n\n    if (deg == -1) deg = size();\n    FPS\
-    \ df = this->diff();\n    FPS iv = this->inv_fast2(deg);\n    FPS ret = (df *\
-    \ iv).pre(deg-1).integral();\n\n    return ret;\n  }\n\n  FPS integral() const\
-    \ {\n    const int N = size();\n    FPS ret(N+1);\n\n    for(int i=0; i<N; i++)\
-    \ ret[i+1] = _vec[i] * mint(i+1).inv();\n\n    return ret;\n  }\n\n  FPS diff()\
-    \ const {\n    const int N = size();\n    FPS ret(max(0, N-1));\n    for(int i=1;\
-    \ i<N; i++) ret[i-1] = mint(i) * _vec[i];\n\n    return ret;\n  }\n\n  FPS(vector<mint>\
+    \n    }\n\n    return g.pre(deg);\n\n  }\n  //*/\n\n  FPS log(int deg=-1) const\
+    \ {\n    assert(_vec[0] == mint(1));\n\n    if (deg == -1) deg = size();\n   \
+    \ FPS df = this->diff();\n    FPS iv = this->inv_fast2(deg);\n    FPS ret = (df\
+    \ * iv).pre(deg-1).integral();\n\n    return ret;\n  }\n\n  FPS exp(int deg=-1)\
+    \ const {\n    assert(_vec[0] == mint(0));\n\n    if (deg == -1) deg = size();\n\
+    \    FPS g(1);\n    g[0] = 1;\n    for (int d=1; d<deg; d <<= 1) {\n      // g_2d\
+    \ = g_d * (f(x) + 1 - log(g_d))\n      FPS fpl1 = (*this + mint(1)).pre(2*d);\n\
+    \      FPS logg = g.log(2*d);\n      FPS right = (fpl1 - logg);\n\n      g = (g\
+    \ * right).pre(2*d);\n    }\n\n    return g.pre(deg);\n  }\n\n  FPS integral()\
+    \ const {\n    const int N = size();\n    FPS ret(N+1);\n\n    for(int i=0; i<N;\
+    \ i++) ret[i+1] = _vec[i] * mint(i+1).inv();\n\n    return ret;\n  }\n\n  FPS\
+    \ diff() const {\n    const int N = size();\n    FPS ret(max(0, N-1));\n    for(int\
+    \ i=1; i<N; i++) ret[i-1] = mint(i) * _vec[i];\n\n    return ret;\n  }\n\n  FPS(vector<mint>\
     \ vec) : _vec(vec) {\n  }\n\n  FPS(initializer_list<mint> ilist) : _vec(ilist)\
     \ {\n  }\n\n  // \u9805\u306E\u6570\u306B\u63C3\u3048\u305F\u307B\u3046\u304C\u3088\
     \u3055\u305D\u3046\n  FPS(int sz) : _vec(vector<mint>(sz)) {\n  }\n\n  int size()\
@@ -328,33 +345,38 @@ data:
     \n  FPS& operator-=(const FPS& rhs) {\n    if (rhs.size() > this->size()) this->_vec.resize(rhs.size());\n\
     \    for (int i = 0; i < (int)rhs.size(); ++i) _vec[i] -= rhs._vec[i];\n    return\
     \ *this;\n  }\n\n  FPS& operator*=(const FPS& rhs) {\n    _vec = multiply(_vec,\
-    \ rhs._vec);\n    return *this;\n  }\n\n  FPS& operator*=(const mint& rhs) {\n\
-    \    for(int i=0; i<size(); i++) _vec[i] *= rhs;\n    return *this;\n  }\n\n \
-    \ FPS& operator/=(const mint& rhs) {\n    for(int i=0; i<size(); i++) _vec[i]\
-    \ *= rhs.inv();\n    return *this;\n  }\n\n  FPS operator>>(int sz) const {\n\
-    \    if ((int)this->size() <= sz) return {};\n    FPS ret(*this);\n    ret._vec.erase(ret._vec.begin(),\
+    \ rhs._vec);\n    return *this;\n  }\n\n  FPS& operator+=(const mint& rhs) {\n\
+    \    _vec[0] += rhs;\n    return *this;\n  }\n\n  FPS& operator-=(const mint&\
+    \ rhs) {\n    _vec[0] -= rhs;\n    return *this;\n  }\n\n  FPS& operator*=(const\
+    \ mint& rhs) {\n    for(int i=0; i<size(); i++) _vec[i] *= rhs;\n    return *this;\n\
+    \  }\n\n  FPS& operator/=(const mint& rhs) {\n    for(int i=0; i<size(); i++)\
+    \ _vec[i] *= rhs.inv();\n    return *this;\n  }\n\n  FPS operator>>(int sz) const\
+    \ {\n    if ((int)this->size() <= sz) return {};\n    FPS ret(*this);\n    ret._vec.erase(ret._vec.begin(),\
     \ ret._vec.begin() + sz);\n    return ret;\n  }\n\n  FPS operator<<(int sz) const\
     \ {\n    FPS ret(*this);\n    ret._vec.insert(ret._vec.begin(), sz, mint(0));\n\
     \n    return ret;\n  }\n\n  friend FPS operator+(FPS a, const FPS& b) { return\
     \ a += b; }\n  friend FPS operator-(FPS a, const FPS& b) { return a -= b; }\n\
     \  friend FPS operator*(FPS a, const FPS& b) { return a *= b; }\n\n  friend FPS\
-    \ operator*(FPS a, const mint& b) {return a *= b; }\n  friend FPS operator/(FPS\
-    \ a, const mint& b) {return a /= b; }\n\n  FPS pre(int sz) const {\n    FPS ret\
-    \ = *this; \n    ret._vec.resize(sz);\n\n    return ret;\n  }\n\n  const mint&\
-    \ operator[](size_t i) const {\n    return _vec[i];\n  }\n\n  mint& operator[](size_t\
-    \ i) {\n    return _vec[i];\n  }\n\n  void resize(int sz)  {\n    this->_vec.resize(sz);\n\
-    \  }\n\n  friend ostream& operator<<(ostream& os, const FPS& fps) {\n    for (int\
-    \ i = 0; i < fps.size(); ++i) {\n      if (i > 0) os << \" \";\n      os << fps._vec[i].val();\n\
-    \    }\n    return os;\n  }\n};\n"
+    \ operator+(FPS a, const mint& b) {return a += b; }\n  friend FPS operator-(FPS\
+    \ a, const mint& b) {return a -= b; }\n  friend FPS operator*(FPS a, const mint&\
+    \ b) {return a *= b; }\n  friend FPS operator/(FPS a, const mint& b) {return a\
+    \ /= b; }\n\n  FPS pre(int sz) const {\n    FPS ret = *this; \n    ret._vec.resize(sz);\n\
+    \n    return ret;\n  }\n\n  const mint& operator[](size_t i) const {\n    return\
+    \ _vec[i];\n  }\n\n  mint& operator[](size_t i) {\n    return _vec[i];\n  }\n\n\
+    \  void resize(int sz)  {\n    this->_vec.resize(sz);\n  }\n\n  friend ostream&\
+    \ operator<<(ostream& os, const FPS& fps) {\n    for (int i = 0; i < fps.size();\
+    \ ++i) {\n      if (i > 0) os << \" \";\n      os << fps._vec[i].val();\n    }\n\
+    \    return os;\n  }\n};\n"
   dependsOn:
   - math/modint.hpp
   isVerificationFile: false
   path: formal-power-series/formal-power-series.hpp
   requiredBy:
   - formal-power-series/sparse-fps.hpp
-  timestamp: '2024-05-31 01:05:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-06-01 15:15:59+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/verify/yosupo-exp-of-formal-power-series.test.cpp
   - test/verify/yosupo-log-of-formal-power-series-fast1.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
@@ -422,3 +444,11 @@ logを求める。定数項が`1`でないことを要求する。
 
 ### 計算量
 $O(N \log N)$
+
+## exp
+expを求める。定数項が`0`であることを要求する。
+~~現在はバグっている！~~ → 治りました`
+
+### 計算量
+
+- $O(N \log N)$

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"formal-power-series/sparse-fps.hpp\"\n#include <vector>\n\
@@ -157,14 +157,19 @@ data:
     \u308B\u3002 \n      //    [0, d)\u306E\u9805            [d, 2d)\u306E\u9805\n\
     \      //    h'_2d*g_d\u306E[0,d)       h'_2d*g_d\u306E[d, 2d)\n      //    h'_2d*g_d\u306E\
     [2d, 3d)    h'_2d*g_d\u306E[3d, 4d)\n\n      g = g_origin - h_2d;\n      g.resize(d*2);\n\
-    \n    }\n\n    return g.pre(deg);\n\n  }\n  //*/\n\n  FPS log(int deg=-1) {\n\
-    \    assert(_vec[0] == mint(1));\n\n    if (deg == -1) deg = size();\n    FPS\
-    \ df = this->diff();\n    FPS iv = this->inv_fast2(deg);\n    FPS ret = (df *\
-    \ iv).pre(deg-1).integral();\n\n    return ret;\n  }\n\n  FPS integral() const\
-    \ {\n    const int N = size();\n    FPS ret(N+1);\n\n    for(int i=0; i<N; i++)\
-    \ ret[i+1] = _vec[i] * mint(i+1).inv();\n\n    return ret;\n  }\n\n  FPS diff()\
-    \ const {\n    const int N = size();\n    FPS ret(max(0, N-1));\n    for(int i=1;\
-    \ i<N; i++) ret[i-1] = mint(i) * _vec[i];\n\n    return ret;\n  }\n\n  FPS(vector<mint>\
+    \n    }\n\n    return g.pre(deg);\n\n  }\n  //*/\n\n  FPS log(int deg=-1) const\
+    \ {\n    assert(_vec[0] == mint(1));\n\n    if (deg == -1) deg = size();\n   \
+    \ FPS df = this->diff();\n    FPS iv = this->inv_fast2(deg);\n    FPS ret = (df\
+    \ * iv).pre(deg-1).integral();\n\n    return ret;\n  }\n\n  FPS exp(int deg=-1)\
+    \ const {\n    assert(_vec[0] == mint(0));\n\n    if (deg == -1) deg = size();\n\
+    \    FPS g(1);\n    g[0] = 1;\n    for (int d=1; d<deg; d <<= 1) {\n      // g_2d\
+    \ = g_d * (f(x) + 1 - log(g_d))\n      FPS fpl1 = (*this + mint(1)).pre(2*d);\n\
+    \      FPS logg = g.log(2*d);\n      FPS right = (fpl1 - logg);\n\n      g = (g\
+    \ * right).pre(2*d);\n    }\n\n    return g.pre(deg);\n  }\n\n  FPS integral()\
+    \ const {\n    const int N = size();\n    FPS ret(N+1);\n\n    for(int i=0; i<N;\
+    \ i++) ret[i+1] = _vec[i] * mint(i+1).inv();\n\n    return ret;\n  }\n\n  FPS\
+    \ diff() const {\n    const int N = size();\n    FPS ret(max(0, N-1));\n    for(int\
+    \ i=1; i<N; i++) ret[i-1] = mint(i) * _vec[i];\n\n    return ret;\n  }\n\n  FPS(vector<mint>\
     \ vec) : _vec(vec) {\n  }\n\n  FPS(initializer_list<mint> ilist) : _vec(ilist)\
     \ {\n  }\n\n  // \u9805\u306E\u6570\u306B\u63C3\u3048\u305F\u307B\u3046\u304C\u3088\
     \u3055\u305D\u3046\n  FPS(int sz) : _vec(vector<mint>(sz)) {\n  }\n\n  int size()\
@@ -174,27 +179,31 @@ data:
     \n  FPS& operator-=(const FPS& rhs) {\n    if (rhs.size() > this->size()) this->_vec.resize(rhs.size());\n\
     \    for (int i = 0; i < (int)rhs.size(); ++i) _vec[i] -= rhs._vec[i];\n    return\
     \ *this;\n  }\n\n  FPS& operator*=(const FPS& rhs) {\n    _vec = multiply(_vec,\
-    \ rhs._vec);\n    return *this;\n  }\n\n  FPS& operator*=(const mint& rhs) {\n\
-    \    for(int i=0; i<size(); i++) _vec[i] *= rhs;\n    return *this;\n  }\n\n \
-    \ FPS& operator/=(const mint& rhs) {\n    for(int i=0; i<size(); i++) _vec[i]\
-    \ *= rhs.inv();\n    return *this;\n  }\n\n  FPS operator>>(int sz) const {\n\
-    \    if ((int)this->size() <= sz) return {};\n    FPS ret(*this);\n    ret._vec.erase(ret._vec.begin(),\
+    \ rhs._vec);\n    return *this;\n  }\n\n  FPS& operator+=(const mint& rhs) {\n\
+    \    _vec[0] += rhs;\n    return *this;\n  }\n\n  FPS& operator-=(const mint&\
+    \ rhs) {\n    _vec[0] -= rhs;\n    return *this;\n  }\n\n  FPS& operator*=(const\
+    \ mint& rhs) {\n    for(int i=0; i<size(); i++) _vec[i] *= rhs;\n    return *this;\n\
+    \  }\n\n  FPS& operator/=(const mint& rhs) {\n    for(int i=0; i<size(); i++)\
+    \ _vec[i] *= rhs.inv();\n    return *this;\n  }\n\n  FPS operator>>(int sz) const\
+    \ {\n    if ((int)this->size() <= sz) return {};\n    FPS ret(*this);\n    ret._vec.erase(ret._vec.begin(),\
     \ ret._vec.begin() + sz);\n    return ret;\n  }\n\n  FPS operator<<(int sz) const\
     \ {\n    FPS ret(*this);\n    ret._vec.insert(ret._vec.begin(), sz, mint(0));\n\
     \n    return ret;\n  }\n\n  friend FPS operator+(FPS a, const FPS& b) { return\
     \ a += b; }\n  friend FPS operator-(FPS a, const FPS& b) { return a -= b; }\n\
     \  friend FPS operator*(FPS a, const FPS& b) { return a *= b; }\n\n  friend FPS\
-    \ operator*(FPS a, const mint& b) {return a *= b; }\n  friend FPS operator/(FPS\
-    \ a, const mint& b) {return a /= b; }\n\n  FPS pre(int sz) const {\n    FPS ret\
-    \ = *this; \n    ret._vec.resize(sz);\n\n    return ret;\n  }\n\n  const mint&\
-    \ operator[](size_t i) const {\n    return _vec[i];\n  }\n\n  mint& operator[](size_t\
-    \ i) {\n    return _vec[i];\n  }\n\n  void resize(int sz)  {\n    this->_vec.resize(sz);\n\
-    \  }\n\n  friend ostream& operator<<(ostream& os, const FPS& fps) {\n    for (int\
-    \ i = 0; i < fps.size(); ++i) {\n      if (i > 0) os << \" \";\n      os << fps._vec[i].val();\n\
-    \    }\n    return os;\n  }\n};\n#line 6 \"formal-power-series/sparse-fps.hpp\"\
-    \n\n// calculate inverse of f(sparse)\n// deg : -1 + ( maximum degree of g )\n\
-    template <typename mint>\nFPS inv_sparse(const vector<pair<int,mint>>& f, int\
-    \ deg) {\n  assert(deg >= 0);\n  for(int i=0; i<(int)f.size()-1; i++) assert(f[i].first\
+    \ operator+(FPS a, const mint& b) {return a += b; }\n  friend FPS operator-(FPS\
+    \ a, const mint& b) {return a -= b; }\n  friend FPS operator*(FPS a, const mint&\
+    \ b) {return a *= b; }\n  friend FPS operator/(FPS a, const mint& b) {return a\
+    \ /= b; }\n\n  FPS pre(int sz) const {\n    FPS ret = *this; \n    ret._vec.resize(sz);\n\
+    \n    return ret;\n  }\n\n  const mint& operator[](size_t i) const {\n    return\
+    \ _vec[i];\n  }\n\n  mint& operator[](size_t i) {\n    return _vec[i];\n  }\n\n\
+    \  void resize(int sz)  {\n    this->_vec.resize(sz);\n  }\n\n  friend ostream&\
+    \ operator<<(ostream& os, const FPS& fps) {\n    for (int i = 0; i < fps.size();\
+    \ ++i) {\n      if (i > 0) os << \" \";\n      os << fps._vec[i].val();\n    }\n\
+    \    return os;\n  }\n};\n#line 6 \"formal-power-series/sparse-fps.hpp\"\n\n//\
+    \ calculate inverse of f(sparse)\n// deg : -1 + ( maximum degree of g )\ntemplate\
+    \ <typename mint>\nFPS inv_sparse(const vector<pair<int,mint>>& f, int deg) {\n\
+    \  assert(deg >= 0);\n  for(int i=0; i<(int)f.size()-1; i++) assert(f[i].first\
     \ < f[i+1].first); \n  assert(f[0].first == 0 && f[0].second != mint(0));\n\n\
     \  mint f0inv = f[0].second.inv();\n  vector<mint> g(deg); g[0] = f0inv;\n  for(int\
     \ i=0; i<deg-1; i++) {\n    for (pair<int,mint> pim : f) {\n      if (i+1 - pim.first\
@@ -239,8 +248,8 @@ data:
   isVerificationFile: false
   path: formal-power-series/sparse-fps.hpp
   requiredBy: []
-  timestamp: '2024-05-31 23:23:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-06-01 15:15:59+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
 documentation_of: formal-power-series/sparse-fps.hpp

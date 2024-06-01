@@ -16,18 +16,21 @@ data:
     path: test/verify/yosupo-deque-operate-all-composite.test.cpp
     title: test/verify/yosupo-deque-operate-all-composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-exp-of-formal-power-series.test.cpp
+    title: test/verify/yosupo-exp-of-formal-power-series.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-log-of-formal-power-series-fast1.test.cpp
     title: test/verify/yosupo-log-of-formal-power-series-fast1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -48,9 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: '#line 1 "template/template.hpp"
@@ -107,9 +110,10 @@ data:
   requiredBy:
   - test/verify/atcoder-tdpc-s.cpp
   timestamp: '2024-05-14 18:24:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
+  - test/verify/yosupo-exp-of-formal-power-series.test.cpp
   - test/verify/yosupo-log-of-formal-power-series-fast1.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
