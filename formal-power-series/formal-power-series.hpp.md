@@ -1,13 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: formal-power-series/sparse-fps.hpp
     title: sparse-fps
+  - icon: ':warning:'
+    path: test/verify/yosupo-inv-of-formal-power-series-fast1-test.cpp
+    title: test/verify/yosupo-inv-of-formal-power-series-fast1-test.cpp
+  - icon: ':warning:'
+    path: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
+    title: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-exp-of-formal-power-series.test.cpp
@@ -16,20 +22,14 @@ data:
     path: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
-    title: test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
-  - icon: ':x:'
     path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - icon: ':x:'
-    path: test/verify/yosupo-inv-of-formal-power-series.test.cpp
-    title: test/verify/yosupo-inv-of-formal-power-series.test.cpp
-  - icon: ':x:'
-    path: test/verify/yosupo-log-of-formal-power-series-fast1.test.cpp
-    title: test/verify/yosupo-log-of-formal-power-series-fast1.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-log-of-formal-power-series.test.cpp
+    title: test/verify/yosupo-log-of-formal-power-series.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://paper.dropbox.com/doc/fps--CQCZhUV1oN9UT3BCLrowhxgzAg-EoHXQDZxfduAB8wD1PMBW
@@ -372,16 +372,16 @@ data:
   isVerificationFile: false
   path: formal-power-series/formal-power-series.hpp
   requiredBy:
+  - test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
+  - test/verify/yosupo-inv-of-formal-power-series-fast1-test.cpp
   - formal-power-series/sparse-fps.hpp
   timestamp: '2024-06-01 15:15:59+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-exp-of-formal-power-series.test.cpp
-  - test/verify/yosupo-log-of-formal-power-series-fast1.test.cpp
-  - test/verify/yosupo-inv-of-formal-power-series.test.cpp
-  - test/verify/yosupo-inv-of-formal-power-series-naive.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/yosupo-log-of-formal-power-series.test.cpp
 documentation_of: formal-power-series/formal-power-series.hpp
 layout: document
 title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
