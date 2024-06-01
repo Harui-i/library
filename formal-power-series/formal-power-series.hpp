@@ -203,7 +203,7 @@ struct FPS {
   }
   //*/
 
-  FPS log(int deg=-1) {
+  FPS log(int deg=-1) const {
     assert(_vec[0] == mint(1));
 
     if (deg == -1) deg = size();
@@ -212,6 +212,24 @@ struct FPS {
     FPS ret = (df * iv).pre(deg-1).integral();
 
     return ret;
+  }
+
+  FPS exp(int deg=-1) const {
+    assert(_vec[0] == mint(0));
+
+    if (deg == -1) deg = size();
+    FPS g(1);
+    g[0] = 1;
+    for (int d=1; d<deg; d <<= 1) {
+      // g_2d = g_d * (f(x) + 1 - log(g_d))
+      FPS fpl1 = (*this + mint(1)).pre(2*d);
+      FPS logg = g.log(2*d);
+      FPS right = (fpl1 - logg);
+
+      g = (g * right).pre(2*d);
+    }
+
+    return g.pre(deg);
   }
 
   FPS integral() const {
@@ -262,6 +280,16 @@ struct FPS {
     return *this;
   }
 
+  FPS& operator+=(const mint& rhs) {
+    _vec[0] += rhs;
+    return *this;
+  }
+
+  FPS& operator-=(const mint& rhs) {
+    _vec[0] -= rhs;
+    return *this;
+  }
+
   FPS& operator*=(const mint& rhs) {
     for(int i=0; i<size(); i++) _vec[i] *= rhs;
     return *this;
@@ -290,6 +318,8 @@ struct FPS {
   friend FPS operator-(FPS a, const FPS& b) { return a -= b; }
   friend FPS operator*(FPS a, const FPS& b) { return a *= b; }
 
+  friend FPS operator+(FPS a, const mint& b) {return a += b; }
+  friend FPS operator-(FPS a, const mint& b) {return a -= b; }
   friend FPS operator*(FPS a, const mint& b) {return a *= b; }
   friend FPS operator/(FPS a, const mint& b) {return a /= b; }
 
