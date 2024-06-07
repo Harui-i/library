@@ -1,7 +1,7 @@
 #pragma once
 
 template <typename T>
-T mod_pow(T x, int a, const T &p) {
+T mod_pow(T x, ll a, const T &p) {
   assert(a >= 0);
   T ret = 1;
   while(a > 0) {
