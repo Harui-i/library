@@ -40,6 +40,6 @@ public:
     return vec[i];
   }
 
-  friend Matrix<T> operator*(Matrix a, const Matrix<T>& b) { return a *= b; }
-  friend Matrix<T> operator^(Matrix a, const Matrix<T>& b) { return a^=b; }
+  friend SquareMatrix<T> operator*(SquareMatrix<T> a, const SquareMatrix<T>& b) { return a *= b; }
+  friend SquareMatrix<T> operator^(SquareMatrix<T> a, const SquareMatrix<T>& b) { return a^=b; }
 };

@@ -17,7 +17,7 @@ public:
     for (int i=0; i<N; i++) for (int k=0; k<M; k++) for(int j=0; j<rhs.M; j++) {
       ret.vec[i][j] += vec[i][k] * rhs.vec[k][j];
     } 
-    vec = ret;
+    vec = ret.vec;
 
     return *this;
   }

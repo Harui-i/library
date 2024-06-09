@@ -1,10 +1,10 @@
 #define PROBLEM "https://yukicoder.me/problems/no/372"
 
-#include "../../template/template.hpp"
-#include "../../math/modint.hpp"
-#include "../../dp/automaton/remainder.hpp"
+#include "template/template.hpp"
+#include "math/modint.hpp"
+#include "dp/automaton/remainder.hpp"
 
-using mint = modint100000007;
+using mint = modint1000000007;
 
 int main() {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
