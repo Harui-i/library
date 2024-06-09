@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':x:'
     path: math/matrix/square_matrix.hpp
-    title: math/matrix/square_matrix.hpp
+    title: "SquareMatrix(\u6B63\u65B9\u884C\u5217)"
   - icon: ':question:'
     path: math/modint.hpp
     title: modint

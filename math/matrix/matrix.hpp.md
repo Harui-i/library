@@ -39,8 +39,11 @@ data:
   - test/verify/yosupo-matrix-product.test.cpp
 documentation_of: math/matrix/matrix.hpp
 layout: document
-redirect_from:
-- /library/math/matrix/matrix.hpp
-- /library/math/matrix/matrix.hpp.html
-title: math/matrix/matrix.hpp
+title: "Matrix(\u884C\u5217)"
 ---
+
+行列色々を実装
+
+TODO
+- rankとか逆行列とか、様々な掃き出し法による計算
+- 定数倍、行列の和や差など

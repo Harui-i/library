@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':x:'
     path: math/matrix/matrix.hpp
-    title: math/matrix/matrix.hpp
+    title: "Matrix(\u884C\u5217)"
   - icon: ':question:'
     path: math/modint.hpp
     title: modint

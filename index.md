@@ -32,10 +32,10 @@ data:
     pages:
     - icon: ':x:'
       path: math/matrix/matrix.hpp
-      title: math/matrix/matrix.hpp
+      title: "Matrix(\u884C\u5217)"
     - icon: ':x:'
       path: math/matrix/square_matrix.hpp
-      title: math/matrix/square_matrix.hpp
+      title: "SquareMatrix(\u6B63\u65B9\u884C\u5217)"
   - name: math
     pages:
     - icon: ':warning:'
@@ -51,7 +51,7 @@ data:
       title: "Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - name: structure
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: structure/slide-window-aggregation.hpp
       title: Foldable Deque(Slide Window Aggregation)
   - name: template
@@ -105,7 +105,7 @@ data:
     - icon: ':x:'
       path: test/verify/yosupo-pow-of-matrix.test.cpp
       title: test/verify/yosupo-pow-of-matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-queue-operate-all-composite.test.cpp
       title: test/verify/yosupo-queue-operate-all-composite.test.cpp
     - icon: ':x:'
