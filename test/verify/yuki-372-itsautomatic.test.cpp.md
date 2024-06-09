@@ -95,7 +95,7 @@ data:
     \ ([[maybe_unused]] State  s) const override {\n    return false;\n  }\n\n  bool\
     \ unsuccessful([[maybe_unused]] State s) const override {\n    return false;\n\
     \  }\n  \n};\n#line 6 \"test/verify/yuki-372-itsautomatic.test.cpp\"\n\nusing\
-    \ mint = modint100000007;\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
+    \ mint = modint1000000007;\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
     \ cout.tie(0);\n\n  string S; cin >> S;\n  vector<char> svec(S.begin(), S.end());\n\
     \n  int M; cin >> M;\n\n  vector<char> alphabet = { '0', '1', '2', '3', '4', '5',\
     \ '6', '7', '8', '9' };\n\n  RemainderAutomaton<char> ra(S.size(), M);\n\n\n \
@@ -107,19 +107,19 @@ data:
     \ S[i] is choosen and added into past substrings\n\n    }\n\n    swap(dp1, dp2);\n\
     \    dp2.assign(M, 0);\n  }\n  for(int i=0; i<M; i++) {\n    if (ra.accept(i))\
     \ ans += dp1[i];\n  }\n  cout << ans.val() << endl;\n\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/372\"\n\n#include \"../../template/template.hpp\"\
-    \n#include \"../../math/modint.hpp\"\n#include \"../../dp/automaton/remainder.hpp\"\
-    \n\nusing mint = modint100000007;\n\nint main() {\n  ios::sync_with_stdio(0);\
-    \ cin.tie(0); cout.tie(0);\n\n  string S; cin >> S;\n  vector<char> svec(S.begin(),\
-    \ S.end());\n\n  int M; cin >> M;\n\n  vector<char> alphabet = { '0', '1', '2',\
-    \ '3', '4', '5', '6', '7', '8', '9' };\n\n  RemainderAutomaton<char> ra(S.size(),\
-    \ M);\n\n\n  mint ans = 0;\n  vector<mint>dp1(M), dp2(M);\n\n\n  for (int i =\
-    \ 0; i < (int) S.size(); i++) {\n    if (S[i] == '0') ans += 1;\n    else {\n\
-    \      dp2[(S[i] - '0') % M] += 1; // only one word substring, 'S[i]' .\n    }\n\
-    \    for (int j = 0; j < M; j++) {\n\n      dp2[j] += dp1[j]; // the case when\
-    \ S[i] is not choosed\n\n      dp2[(j * 10 + S[i] - '0') % M] += dp1[j]; // the\
-    \ case when S[i] is choosen and added into past substrings\n\n    }\n\n    swap(dp1,\
-    \ dp2);\n    dp2.assign(M, 0);\n  }\n  for(int i=0; i<M; i++) {\n    if (ra.accept(i))\
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/372\"\n\n#include \"template/template.hpp\"\
+    \n#include \"math/modint.hpp\"\n#include \"dp/automaton/remainder.hpp\"\n\nusing\
+    \ mint = modint1000000007;\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
+    \ cout.tie(0);\n\n  string S; cin >> S;\n  vector<char> svec(S.begin(), S.end());\n\
+    \n  int M; cin >> M;\n\n  vector<char> alphabet = { '0', '1', '2', '3', '4', '5',\
+    \ '6', '7', '8', '9' };\n\n  RemainderAutomaton<char> ra(S.size(), M);\n\n\n \
+    \ mint ans = 0;\n  vector<mint>dp1(M), dp2(M);\n\n\n  for (int i = 0; i < (int)\
+    \ S.size(); i++) {\n    if (S[i] == '0') ans += 1;\n    else {\n      dp2[(S[i]\
+    \ - '0') % M] += 1; // only one word substring, 'S[i]' .\n    }\n    for (int\
+    \ j = 0; j < M; j++) {\n\n      dp2[j] += dp1[j]; // the case when S[i] is not\
+    \ choosed\n\n      dp2[(j * 10 + S[i] - '0') % M] += dp1[j]; // the case when\
+    \ S[i] is choosen and added into past substrings\n\n    }\n\n    swap(dp1, dp2);\n\
+    \    dp2.assign(M, 0);\n  }\n  for(int i=0; i<M; i++) {\n    if (ra.accept(i))\
     \ ans += dp1[i];\n  }\n  cout << ans.val() << endl;\n\n\n  return 0;\n}"
   dependsOn:
   - template/template.hpp
@@ -129,7 +129,7 @@ data:
   isVerificationFile: true
   path: test/verify/yuki-372-itsautomatic.test.cpp
   requiredBy: []
-  timestamp: '2024-06-09 18:28:49+09:00'
+  timestamp: '2024-06-10 01:49:10+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/verify/yuki-372-itsautomatic.test.cpp

@@ -64,7 +64,7 @@ data:
     \ 0 && _M > 0);\n  }\n\n  Matrix& operator*=(const Matrix& rhs)  {\n    assert(M\
     \ == rhs.N);\n    Matrix ret(N,rhs.M);\n    for (int i=0; i<N; i++) for (int k=0;\
     \ k<M; k++) for(int j=0; j<rhs.M; j++) {\n      ret.vec[i][j] += vec[i][k] * rhs.vec[k][j];\n\
-    \    } \n    vec = ret;\n\n    return *this;\n  }\n\n  vector<T>& operator[](int\
+    \    } \n    vec = ret.vec;\n\n    return *this;\n  }\n\n  vector<T>& operator[](int\
     \ i) {\n    assert(i < N);\n    return vec[i];\n  }\n\n  friend Matrix<T> operator*(Matrix\
     \ a, const Matrix<T>& b) { return a *= b; }\n\n};\n#line 6 \"test/verify/yosupo-matrix-product.test.cpp\"\
     \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
@@ -75,15 +75,14 @@ data:
     \ j=0; j<K; j++) {\n      cout << C[i][j].val();\n      if (j == K-1) cout <<\
     \ endl;\n      else cout << \" \";\n    }\n  }\n\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#include\
-    \ \"../../template/template.hpp\"\n#include \"../../math/modint.hpp\"\n#include\
-    \ \"../../math/matrix/matrix.hpp\"\n\nusing mint = modint998244353;\n\n\nint main()\
-    \ {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int N, M, K; cin >>\
-    \ N >> M >> K;\n\n  Matrix<mint> A(N, M);\n  Matrix<mint> B(M, K);\n\n  for(int\
-    \ i=0; i<N; i++) for(int j=0; j<M; j++) cin >> A[i][j];\n\n  for(int i=0; i<M;\
-    \ i++) for(int j=0; j<K; j++) cin >> B[i][j];\n\n  Matrix<mint> C = A * B; \n\
-    \  for(int i=0; i<N; i++) {\n    for(int j=0; j<K; j++) {\n      cout << C[i][j].val();\n\
-    \      if (j == K-1) cout << endl;\n      else cout << \" \";\n    }\n  }\n\n\
-    }\n"
+    \ \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include \"math/matrix/matrix.hpp\"\
+    \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
+    \ cin.tie(0); cout.tie(0);\n  int N, M, K; cin >> N >> M >> K;\n\n  Matrix<mint>\
+    \ A(N, M);\n  Matrix<mint> B(M, K);\n\n  for(int i=0; i<N; i++) for(int j=0; j<M;\
+    \ j++) cin >> A[i][j];\n\n  for(int i=0; i<M; i++) for(int j=0; j<K; j++) cin\
+    \ >> B[i][j];\n\n  Matrix<mint> C = A * B; \n  for(int i=0; i<N; i++) {\n    for(int\
+    \ j=0; j<K; j++) {\n      cout << C[i][j].val();\n      if (j == K-1) cout <<\
+    \ endl;\n      else cout << \" \";\n    }\n  }\n\n}\n"
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
@@ -91,7 +90,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-matrix-product.test.cpp
   requiredBy: []
-  timestamp: '2024-06-09 18:28:49+09:00'
+  timestamp: '2024-06-10 01:49:10+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/verify/yosupo-matrix-product.test.cpp

@@ -69,10 +69,10 @@ data:
     \ 1;\n\n    while (k > 0) {\n      if (k&1) {\n        B *= *this;\n      }\n\
     \      *this *= *this;\n      k >>= 1;\n    }\n    *this = B;\n    return *this;\
     \    \n  }\n  \n  vector<T>& operator[](int i) {\n    assert(i < N);\n    return\
-    \ vec[i];\n  }\n\n  friend Matrix<T> operator*(Matrix a, const Matrix<T>& b) {\
-    \ return a *= b; }\n  friend Matrix<T> operator^(Matrix a, const Matrix<T>& b)\
-    \ { return a^=b; }\n};\n#line 6 \"test/verify/yosupo-pow-of-matrix.test.cpp\"\n\
-    \nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
+    \ vec[i];\n  }\n\n  friend SquareMatrix<T> operator*(SquareMatrix<T> a, const\
+    \ SquareMatrix<T>& b) { return a *= b; }\n  friend SquareMatrix<T> operator^(SquareMatrix<T>\
+    \ a, const SquareMatrix<T>& b) { return a^=b; }\n};\n#line 6 \"test/verify/yosupo-pow-of-matrix.test.cpp\"\
+    \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
     \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  ll K; cin >> K;\n\n  SquareMatrix<mint>A(N);\n\
     \n  for(int i=0; i<N; i++) for(int j=0; j<N; j++) cin >> A[i][j];\n\n  A ^= K;\n\
     \  for(int i=0; i<N; i++) {\n    for(int j=0; j<N; j++) {\n      cout << A[i][j].val();\n\
@@ -91,7 +91,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-pow-of-matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-06-09 18:28:49+09:00'
+  timestamp: '2024-06-10 01:49:10+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/verify/yosupo-pow-of-matrix.test.cpp

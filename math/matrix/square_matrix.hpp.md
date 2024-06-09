@@ -22,9 +22,9 @@ data:
     \ 1;\n\n    while (k > 0) {\n      if (k&1) {\n        B *= *this;\n      }\n\
     \      *this *= *this;\n      k >>= 1;\n    }\n    *this = B;\n    return *this;\
     \    \n  }\n  \n  vector<T>& operator[](int i) {\n    assert(i < N);\n    return\
-    \ vec[i];\n  }\n\n  friend Matrix<T> operator*(Matrix a, const Matrix<T>& b) {\
-    \ return a *= b; }\n  friend Matrix<T> operator^(Matrix a, const Matrix<T>& b)\
-    \ { return a^=b; }\n};\n"
+    \ vec[i];\n  }\n\n  friend SquareMatrix<T> operator*(SquareMatrix<T> a, const\
+    \ SquareMatrix<T>& b) { return a *= b; }\n  friend SquareMatrix<T> operator^(SquareMatrix<T>\
+    \ a, const SquareMatrix<T>& b) { return a^=b; }\n};\n"
   code: "#pragma once\n\ntemplate <class T> \nstruct SquareMatrix  {\nprivate:\n \
     \ int N;\n  vector<vector<T>> vec;\npublic:\n  SquareMatrix(int _N) : N(_N), vec(vector<vector<T>>(_N,\
     \ vector<T>(_N)))  {}\n\n  SquareMatrix& operator*=(const SquareMatrix<T>& rhs)\
@@ -35,14 +35,15 @@ data:
     \    for(int i=0; i<N; i++) B[i][i] = 1;\n\n    while (k > 0) {\n      if (k&1)\
     \ {\n        B *= *this;\n      }\n      *this *= *this;\n      k >>= 1;\n   \
     \ }\n    *this = B;\n    return *this;    \n  }\n  \n  vector<T>& operator[](int\
-    \ i) {\n    assert(i < N);\n    return vec[i];\n  }\n\n  friend Matrix<T> operator*(Matrix\
-    \ a, const Matrix<T>& b) { return a *= b; }\n  friend Matrix<T> operator^(Matrix\
-    \ a, const Matrix<T>& b) { return a^=b; }\n};"
+    \ i) {\n    assert(i < N);\n    return vec[i];\n  }\n\n  friend SquareMatrix<T>\
+    \ operator*(SquareMatrix<T> a, const SquareMatrix<T>& b) { return a *= b; }\n\
+    \  friend SquareMatrix<T> operator^(SquareMatrix<T> a, const SquareMatrix<T>&\
+    \ b) { return a^=b; }\n};"
   dependsOn: []
   isVerificationFile: false
   path: math/matrix/square_matrix.hpp
   requiredBy: []
-  timestamp: '2024-06-09 18:28:49+09:00'
+  timestamp: '2024-06-10 01:49:10+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/verify/yosupo-pow-of-matrix.test.cpp
