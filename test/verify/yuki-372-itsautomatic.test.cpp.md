@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/automaton/automaton.hpp
     title: "\u6C7A\u5B9A\u6027\u6709\u9650\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3(DFA,\
       \ Deterministic Finite Automaton)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/automaton/remainder.hpp
     title: "\u3042\u307E\u308A\u3092\u7BA1\u7406\u3059\u308B\u30AA\u30FC\u30C8\u30DE\
       \u30C8\u30F3(remainder.hpp)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/372
@@ -62,8 +62,8 @@ data:
     \ std::istream& operator>>(std::istream& is, static_modint& mi) {\n        long\
     \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
     \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
-    \ = modint<998244353>;\nusing modint100000007 = modint<1000000007>;\n#line 1 \"\
-    dp/automaton/automaton.hpp\"\n// https://shino16.github.io/blog/post/algo/%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3/\n\
+    \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n#line 1\
+    \ \"dp/automaton/automaton.hpp\"\n// https://shino16.github.io/blog/post/algo/%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3/\n\
     // Dfa\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\ntemplate <typename Alphabet,\
     \ typename State>\nclass Dfa {\npublic:\n  virtual State init() const = 0; //\
     \ \u521D\u671F\u72B6\u614B\u3092\u8FD4\u3059\n  virtual State next([[maybe_unused]]\
@@ -129,8 +129,8 @@ data:
   isVerificationFile: true
   path: test/verify/yuki-372-itsautomatic.test.cpp
   requiredBy: []
-  timestamp: '2024-05-29 21:25:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-09 18:28:49+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/verify/yuki-372-itsautomatic.test.cpp
 layout: document

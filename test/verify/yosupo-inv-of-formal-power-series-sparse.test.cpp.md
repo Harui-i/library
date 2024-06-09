@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/sparse-fps.hpp
     title: sparse-fps
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -60,7 +60,7 @@ data:
     \ mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream& is, static_modint&\
     \ mi) {\n        long long x;\n        is >> x;\n        mi = static_modint(x);\n\
     \        return is;\n    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\n\
-    using modint998244353 = modint<998244353>;\nusing modint100000007 = modint<1000000007>;\n\
+    using modint998244353  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\
     #line 2 \"formal-power-series/formal-power-series.hpp\"\n\n#line 5 \"formal-power-series/formal-power-series.hpp\"\
     \n\nusing namespace std;\nusing mint = modint998244353;\n\n//ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
     // constexpr \u95A2\u6570\u5185\u3067 ZETAS \u914D\u5217\u3092\u8A2D\u5B9A\u3059\
@@ -253,7 +253,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
   requiredBy: []
-  timestamp: '2024-06-01 15:15:59+09:00'
+  timestamp: '2024-06-09 18:28:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp

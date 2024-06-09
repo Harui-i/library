@@ -33,15 +33,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-log-of-formal-power-series.test.cpp
     title: test/verify/yosupo-log-of-formal-power-series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/verify/yosupo-matrix-product.test.cpp
+    title: test/verify/yosupo-matrix-product.test.cpp
+  - icon: ':x:'
+    path: test/verify/yosupo-pow-of-matrix.test.cpp
+    title: test/verify/yosupo-pow-of-matrix.test.cpp
+  - icon: ':x:'
     path: test/verify/yosupo-queue-operate-all-composite.test.cpp
     title: test/verify/yosupo-queue-operate-all-composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/modint.hpp\"\ntemplate<int MOD>\nstruct static_modint\
@@ -74,7 +80,7 @@ data:
     \ std::istream& operator>>(std::istream& is, static_modint& mi) {\n        long\
     \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
     \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
-    \ = modint<998244353>;\nusing modint100000007 = modint<1000000007>;\n"
+    \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n"
   code: "#pragma once\ntemplate<int MOD>\nstruct static_modint {\n    int value;\n\
     \n    constexpr static_modint() : value(0) {}\n\n    constexpr static_modint(long\
     \ long v) {\n        value = int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr\
@@ -104,7 +110,7 @@ data:
     \ mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream& is, static_modint&\
     \ mi) {\n        long long x;\n        is >> x;\n        mi = static_modint(x);\n\
     \        return is;\n    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\n\
-    using modint998244353 = modint<998244353>;\nusing modint100000007 = modint<1000000007>;"
+    using modint998244353  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;"
   dependsOn: []
   isVerificationFile: false
   path: math/modint.hpp
@@ -114,15 +120,17 @@ data:
   - test/verify/yosupo-inv-of-formal-power-series-fast1-test.cpp
   - formal-power-series/sparse-fps.hpp
   - formal-power-series/formal-power-series.hpp
-  timestamp: '2024-05-29 18:17:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-06-09 18:28:49+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-exp-of-formal-power-series.test.cpp
+  - test/verify/yosupo-matrix-product.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
   - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/yosupo-pow-of-matrix.test.cpp
   - test/verify/yosupo-log-of-formal-power-series.test.cpp
 documentation_of: math/modint.hpp
 layout: document

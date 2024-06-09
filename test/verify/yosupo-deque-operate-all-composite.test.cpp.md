@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: structure/slide-window-aggregation.hpp
     title: Foldable Deque(Slide Window Aggregation)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -57,7 +57,7 @@ data:
     \ mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream& is, static_modint&\
     \ mi) {\n        long long x;\n        is >> x;\n        mi = static_modint(x);\n\
     \        return is;\n    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\n\
-    using modint998244353 = modint<998244353>;\nusing modint100000007 = modint<1000000007>;\n\
+    using modint998244353  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\
     #line 1 \"structure/slide-window-aggregation.hpp\"\ntemplate <class S, S (*op)(S,\
     \ S), S (*e)()>\nstruct FoldableDeque {\n  struct Node {\n    S val;\n    S prod;\n\
     \  };\n\n  vector<Node> front, back;\n\n  FoldableDeque() : front(), back() {}\n\
@@ -115,7 +115,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-deque-operate-all-composite.test.cpp
   requiredBy: []
-  timestamp: '2024-05-29 18:17:38+09:00'
+  timestamp: '2024-06-09 18:28:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-deque-operate-all-composite.test.cpp
