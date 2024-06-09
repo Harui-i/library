@@ -84,5 +84,5 @@ struct static_modint {
 
 template <int mod>
 using modint = static_modint<mod>;
-using modint998244353 = modint<998244353>;
-using modint100000007 = modint<1000000007>;
+using modint998244353  = modint<998244353>;
+using modint1000000007 = modint<1000000007>;
