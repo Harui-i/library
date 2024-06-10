@@ -2,7 +2,7 @@
 
 #include "template/template.hpp"
 #include "math/modint.hpp"
-#include "math/matrix/square_matrix.hpp"
+#include "math/matrix/matrix.hpp"
 
 using mint = modint998244353;
 
@@ -12,7 +12,7 @@ int main() {
   int N; cin >> N;
   ll K; cin >> K;
 
-  SquareMatrix<mint>A(N);
+  Matrix<mint>A(N,N);
 
   for(int i=0; i<N; i++) for(int j=0; j<N; j++) cin >> A[i][j];
 
