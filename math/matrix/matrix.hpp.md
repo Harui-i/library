@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-inverse-of-matrix.test.cpp
     title: test/verify/yosupo-inverse-of-matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -15,9 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-rank-of-matrix.test.cpp
     title: test/verify/yosupo-rank-of-matrix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/matrix/matrix.hpp\"\n\ntemplate <class T>\nstruct Matrix{\n\
@@ -127,7 +127,7 @@ data:
   path: math/matrix/matrix.hpp
   requiredBy: []
   timestamp: '2024-06-10 19:49:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-matrix-product.test.cpp
   - test/verify/yosupo-inverse-of-matrix.test.cpp
@@ -161,3 +161,9 @@ TODO
 ### 計算量
 行の数を$N$として
 - $O(N^3)$
+
+## determinant
+いるか？未実装
+
+## 線形連立方程式を解くやつ
+ほしい。未実装

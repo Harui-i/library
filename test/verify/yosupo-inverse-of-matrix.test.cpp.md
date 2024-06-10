@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/inverse_matrix
@@ -112,8 +112,8 @@ data:
     \ = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
     \ cout.tie(0);\n  int N; cin >> N;\n\n  Matrix<mint>A(N,N);\n\n  for(int i=0;\
     \ i<N; i++) for(int j=0; j<N; j++) cin >> A[i][j];\n  Matrix<mint> inv = A.inverse();\n\
-    \  if (inv.N == 0) {\n    cout << -1 << endl;\n  }\n  else {\n    for(int i=0;\
-    \ i<N; i++) {\n      for(int j=0; j<N; j++) {\n        cout << inv[i][j].val();\n\
+    \  if (inv.size().first == 0) {\n    cout << -1 << endl;\n  }\n  else {\n    for(int\
+    \ i=0; i<N; i++) {\n      for(int j=0; j<N; j++) {\n        cout << inv[i][j].val();\n\
     \        if (j != N-1) cout << \" \";\n        else cout << endl;\n      }\n \
     \   }\n  }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\n\n#include\
@@ -121,10 +121,10 @@ data:
     \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
     \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n\n  Matrix<mint>A(N,N);\n\n  for(int\
     \ i=0; i<N; i++) for(int j=0; j<N; j++) cin >> A[i][j];\n  Matrix<mint> inv =\
-    \ A.inverse();\n  if (inv.N == 0) {\n    cout << -1 << endl;\n  }\n  else {\n\
-    \    for(int i=0; i<N; i++) {\n      for(int j=0; j<N; j++) {\n        cout <<\
-    \ inv[i][j].val();\n        if (j != N-1) cout << \" \";\n        else cout <<\
-    \ endl;\n      }\n    }\n  }\n}\n"
+    \ A.inverse();\n  if (inv.size().first == 0) {\n    cout << -1 << endl;\n  }\n\
+    \  else {\n    for(int i=0; i<N; i++) {\n      for(int j=0; j<N; j++) {\n    \
+    \    cout << inv[i][j].val();\n        if (j != N-1) cout << \" \";\n        else\
+    \ cout << endl;\n      }\n    }\n  }\n}\n"
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
@@ -132,8 +132,8 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-inverse-of-matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-06-10 19:49:02+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-06-10 19:59:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-inverse-of-matrix.test.cpp
 layout: document
