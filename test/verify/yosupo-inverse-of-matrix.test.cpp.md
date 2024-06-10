@@ -12,9 +12,9 @@ data:
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/inverse_matrix
@@ -58,30 +58,37 @@ data:
     \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
     \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
     \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n#line 2\
-    \ \"math/matrix/matrix.hpp\"\n\ntemplate <class T>\nstruct Matrix{\nprotected:\
-    \ \n  vector<vector<T>>vec;\npublic:\n  const int N, M;\n\n  Matrix(int _N, int\
-    \ _M) : N(_N), M(_M), vec(vector<vector<T>>(_N, vector<T>(_M))) {\n    assert(_N\
-    \ >= 0 && _M >= 0); // 0*0\u306E\u884C\u5217\u3092\u8FD4\u3057\u305F\u3044\u3068\
-    \u304D\u3082\u3042\u308B(\u9006\u884C\u5217\u306A\u304B\u3063\u305F\u3068\u304D\
-    \u3068\u304B)\n  }\n\n  Matrix operator*(const Matrix& rhs) const  {\n    assert(M\
-    \ == rhs.N);\n    Matrix ret(N,rhs.M);\n    for (int i=0; i<N; i++) for (int k=0;\
+    \ \"math/matrix/matrix.hpp\"\n\ntemplate <class T>\nstruct Matrix{\nprivate: \n\
+    \  vector<vector<T>>vec;\n  int N, M;\npublic:\n\n  Matrix(int _N, int _M) : N(_N),\
+    \ M(_M), vec(vector<vector<T>>(_N, vector<T>(_M))) {\n    assert(_N >= 0 && _M\
+    \ >= 0); // 0*0\u306E\u884C\u5217\u3092\u8FD4\u3057\u305F\u3044\u3068\u304D\u3082\
+    \u3042\u308B(\u9006\u884C\u5217\u306A\u304B\u3063\u305F\u3068\u304D\u3068\u304B\
+    )\n  }\n\n  Matrix<T> operator*(const Matrix<T>& rhs) const  {\n    assert(M ==\
+    \ rhs.N);\n    Matrix ret(N,rhs.M);\n    for (int i=0; i<N; i++) for (int k=0;\
     \ k<M; k++) for(int j=0; j<rhs.M; j++) {\n      ret.vec[i][j] += vec[i][k] * rhs.vec[k][j];\n\
-    \    } \n\n    return ret;\n  }\n\n  Matrix operator^(unsigned long long k) const\
-    \ {\n    assert(N == M);\n    Matrix ret(N, N);\n    for(int i=0; i<N; i++) ret[i][i]\
-    \ = T(1);\n\n    Matrix base = *this;\n\n    while (k > 0) {\n      if (k & 1)\
-    \ {\n        ret *= base;\n      }\n\n      base *= base;\n      k >>= 1; \n \
-    \   }\n\n    return ret;\n  }\n\n  vector<T>& operator[](int i) {\n    assert(i\
-    \ < N);\n    return vec[i];\n  }\n\n  Matrix<T>& operator*=(const Matrix<T>& b)\
-    \ { return (*this) = (*this) * b; }\n  Matrix<T>& operator^=(const unsigned long\
-    \ long k) { return (*this) = (*this) ^ k; }\n\n  int rank() {\n    return sweep(M);\n\
-    \  }\n\n  // \u9006\u884C\u5217\u3092\u8FD4\u3059\u3002\u306A\u3051\u308C\u3070\
-    0*0\u884C\u5217\u3092\u8FD4\u3059(\u3053\u308C\u306FGifted infants\u306E\u30DE\
-    \u30CD\u3060\u304C\u30010*0\u3092\u8FD4\u3059\u5B09\u3057\u3055\u306F\u3044\u307E\
-    \u3044\u3061\u308F\u304B\u3063\u3066\u3044\u306A\u3044\u3002\u5909\u3048\u308B\
-    \u304B\u3082\u3002)\n  Matrix<T> inverse() const {\n    assert(N == M);\n    Matrix\
-    \ A(N, 2*N);\n    for(int i=0; i<N; i++) for(int j=0; j<N; j++) A[i][j] = vec[i][j];\n\
-    \    for(int i=0; i<N; i++) A[i][N+i] = T(1);\n    int rank = A.sweep(N);\n  \
-    \  if (rank < N) return Matrix(0,0);\n\n    Matrix<T> ret(N, N);\n    for(int\
+    \    } \n\n    return ret;\n  }\n\n  Matrix<T> operator^(unsigned long long k)\
+    \ const {\n    assert(N == M);\n    Matrix<T> ret(N, N);\n    for(int i=0; i<N;\
+    \ i++) ret[i][i] = T(1);\n\n    Matrix<T> base = *this;\n\n    while (k > 0) {\n\
+    \      if (k & 1) {\n        ret *= base;\n      }\n\n      base *= base;\n  \
+    \    k >>= 1; \n    }\n\n    return ret;\n  }\n\n  vector<T>& operator[](int i)\
+    \ {\n    assert(i < N);\n    return vec[i];\n  }\n\n  Matrix<T>& operator*=(const\
+    \ Matrix<T>& b) { return (*this) = (*this) * b; }\n  Matrix<T>& operator^=(const\
+    \ unsigned long long k) { return (*this) = (*this) ^ k; }\n\n  // \u3055\u3059\
+    \u304C\u306Brank\u3092\u77E5\u308B\u306E\u306B\u526F\u4F5C\u7528\u304C\u3042\u308B\
+    \u306E\u306F\u30E4\u30D0\u3044\u306E\u3067\n  int rank() const {\n    Matrix A\
+    \ = *this;\n    return A.sweep(M);\n  }\n\n  // \u30B5\u30A4\u30BA\u3092\u8FD4\
+    \u3059\u3002N,M\u3092const\u306B\u3057\u305F\u3044\u3051\u3069const\u306B\u3059\
+    \u308B\u3068*=\u3084^=\u304C\u9762\u5012\u306B\u306A\u308B\u305F\u3081\u3001N,M\u3092\
+    \u975Econst\u306Eprivate\u306B\u3059\u308B\u3053\u3068\u3067\u306A\u3093\u3068\
+    \u304B\u3059\u308B\u3002\n  pair<int,int> size() const {\n    return make_pair(N,\
+    \ M);\n  }\n\n  // \u9006\u884C\u5217\u3092\u8FD4\u3059\u3002\u306A\u3051\u308C\
+    \u30700*0\u884C\u5217\u3092\u8FD4\u3059(\u3053\u308C\u306FGifted infants\u306E\
+    \u30DE\u30CD\u3060\u304C\u30010*0\u3092\u8FD4\u3059\u5B09\u3057\u3055\u306F\u3044\
+    \u307E\u3044\u3061\u308F\u304B\u3063\u3066\u3044\u306A\u3044\u3002\u5909\u3048\
+    \u308B\u304B\u3082\u3002)\n  Matrix<T> inverse() const {\n    assert(N == M);\n\
+    \    Matrix A(N, 2*N);\n    for(int i=0; i<N; i++) for(int j=0; j<N; j++) A[i][j]\
+    \ = vec[i][j];\n    for(int i=0; i<N; i++) A[i][N+i] = T(1);\n    int rank = A.sweep(N);\n\
+    \    if (rank < N) return Matrix(0,0);\n\n    Matrix<T> ret(N, N);\n    for(int\
     \ i=0; i<N; i++) for(int j=0; j<N; j++) ret[i][j] = A[i][N+j];\n\n    return ret;\n\
     \  }  \n\nprivate:\n// 0<= j < var\u306Aj\u5217\u76EE\u306B\u3064\u3044\u3066\u6383\
     \u304D\u51FA\u3057\u3066\u3001rank\u3092\u8FD4\u3059\n\nint sweep(int var) {\n\
@@ -125,8 +132,8 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-inverse-of-matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-06-10 19:28:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-10 19:49:02+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/verify/yosupo-inverse-of-matrix.test.cpp
 layout: document

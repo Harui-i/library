@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-inverse-of-matrix.test.cpp
     title: test/verify/yosupo-inverse-of-matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-matrix-product.test.cpp
     title: test/verify/yosupo-matrix-product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-pow-of-matrix.test.cpp
     title: test/verify/yosupo-pow-of-matrix.test.cpp
   - icon: ':heavy_check_mark:'
