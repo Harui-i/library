@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_product
@@ -61,12 +61,17 @@ data:
     \ \"math/matrix/matrix.hpp\"\n\ntemplate <class T>\nstruct Matrix{\nprotected:\
     \ \n  vector<vector<T>>vec;\n  int N, M;\npublic:\n\n  Matrix(int _N, int _M)\
     \ : N(_N), M(_M), vec(vector<vector<T>>(_N, vector<T>(_M))) {\n    assert(_N >\
-    \ 0 && _M > 0);\n  }\n\n  Matrix& operator*=(const Matrix& rhs)  {\n    assert(M\
+    \ 0 && _M > 0);\n  }\n\n  Matrix operator*(const Matrix& rhs) const  {\n    assert(M\
     \ == rhs.N);\n    Matrix ret(N,rhs.M);\n    for (int i=0; i<N; i++) for (int k=0;\
     \ k<M; k++) for(int j=0; j<rhs.M; j++) {\n      ret.vec[i][j] += vec[i][k] * rhs.vec[k][j];\n\
-    \    } \n    vec = ret.vec;\n\n    return *this;\n  }\n\n  vector<T>& operator[](int\
-    \ i) {\n    assert(i < N);\n    return vec[i];\n  }\n\n  friend Matrix<T> operator*(Matrix\
-    \ a, const Matrix<T>& b) { return a *= b; }\n\n};\n#line 6 \"test/verify/yosupo-matrix-product.test.cpp\"\
+    \    } \n\n    return ret;\n  }\n\n  Matrix operator^(unsigned long long k) const\
+    \ {\n    assert(N == M);\n    Matrix ret(N, N);\n    for(int i=0; i<N; i++) ret[i][i]\
+    \ = T(1);\n\n    Matrix base = *this;\n\n    while (k > 0) {\n      if (k & 1)\
+    \ {\n        ret *= base;\n      }\n\n      base *= base;\n      k >>= 1; \n \
+    \   }\n\n    return ret;\n  }\n\n  vector<T>& operator[](int i) {\n    assert(i\
+    \ < N);\n    return vec[i];\n  }\n\n  Matrix<T>& operator*=(const Matrix<T>& b)\
+    \ { return (*this) = (*this) * b; }\n  Matrix<T>& operator^=(const unsigned long\
+    \ long k) { return (*this) = (*this) ^ k; }\n};\n#line 6 \"test/verify/yosupo-matrix-product.test.cpp\"\
     \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
     \ cin.tie(0); cout.tie(0);\n  int N, M, K; cin >> N >> M >> K;\n\n  Matrix<mint>\
     \ A(N, M);\n  Matrix<mint> B(M, K);\n\n  for(int i=0; i<N; i++) for(int j=0; j<M;\
@@ -90,8 +95,8 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-matrix-product.test.cpp
   requiredBy: []
-  timestamp: '2024-06-10 01:49:10+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-06-10 16:47:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-matrix-product.test.cpp
 layout: document

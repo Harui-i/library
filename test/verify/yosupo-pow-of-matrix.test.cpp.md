@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
-    path: math/matrix/square_matrix.hpp
-    title: "SquareMatrix(\u6B63\u65B9\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: math/matrix/matrix.hpp
+    title: "Matrix(\u884C\u5217)"
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/pow_of_matrix
@@ -58,41 +58,41 @@ data:
     \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
     \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
     \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n#line 2\
-    \ \"math/matrix/square_matrix.hpp\"\n\ntemplate <class T> \nstruct SquareMatrix\
-    \  {\nprivate:\n  int N;\n  vector<vector<T>> vec;\npublic:\n  SquareMatrix(int\
-    \ _N) : N(_N), vec(vector<vector<T>>(_N, vector<T>(_N)))  {}\n\n  SquareMatrix&\
-    \ operator*=(const SquareMatrix<T>& rhs)  {\n    assert(N == rhs.N);\n    SquareMatrix\
-    \ ret(N);\n\n    for (int i=0; i<N; i++) for (int k=0; k<N; k++) for(int j=0;\
-    \ j<rhs.N; j++) {\n      ret.vec[i][j] += vec[i][k] * rhs.vec[k][j];\n    } \n\
-    \    vec = ret.vec;\n\n    return *this;\n  }\n\n  SquareMatrix& operator^=(unsigned\
-    \ long long k) {\n    SquareMatrix B(N);\n    for(int i=0; i<N; i++) B[i][i] =\
-    \ 1;\n\n    while (k > 0) {\n      if (k&1) {\n        B *= *this;\n      }\n\
-    \      *this *= *this;\n      k >>= 1;\n    }\n    *this = B;\n    return *this;\
-    \    \n  }\n  \n  vector<T>& operator[](int i) {\n    assert(i < N);\n    return\
-    \ vec[i];\n  }\n\n  friend SquareMatrix<T> operator*(SquareMatrix<T> a, const\
-    \ SquareMatrix<T>& b) { return a *= b; }\n  friend SquareMatrix<T> operator^(SquareMatrix<T>\
-    \ a, const SquareMatrix<T>& b) { return a^=b; }\n};\n#line 6 \"test/verify/yosupo-pow-of-matrix.test.cpp\"\
+    \ \"math/matrix/matrix.hpp\"\n\ntemplate <class T>\nstruct Matrix{\nprotected:\
+    \ \n  vector<vector<T>>vec;\n  int N, M;\npublic:\n\n  Matrix(int _N, int _M)\
+    \ : N(_N), M(_M), vec(vector<vector<T>>(_N, vector<T>(_M))) {\n    assert(_N >\
+    \ 0 && _M > 0);\n  }\n\n  Matrix operator*(const Matrix& rhs) const  {\n    assert(M\
+    \ == rhs.N);\n    Matrix ret(N,rhs.M);\n    for (int i=0; i<N; i++) for (int k=0;\
+    \ k<M; k++) for(int j=0; j<rhs.M; j++) {\n      ret.vec[i][j] += vec[i][k] * rhs.vec[k][j];\n\
+    \    } \n\n    return ret;\n  }\n\n  Matrix operator^(unsigned long long k) const\
+    \ {\n    assert(N == M);\n    Matrix ret(N, N);\n    for(int i=0; i<N; i++) ret[i][i]\
+    \ = T(1);\n\n    Matrix base = *this;\n\n    while (k > 0) {\n      if (k & 1)\
+    \ {\n        ret *= base;\n      }\n\n      base *= base;\n      k >>= 1; \n \
+    \   }\n\n    return ret;\n  }\n\n  vector<T>& operator[](int i) {\n    assert(i\
+    \ < N);\n    return vec[i];\n  }\n\n  Matrix<T>& operator*=(const Matrix<T>& b)\
+    \ { return (*this) = (*this) * b; }\n  Matrix<T>& operator^=(const unsigned long\
+    \ long k) { return (*this) = (*this) ^ k; }\n};\n#line 6 \"test/verify/yosupo-pow-of-matrix.test.cpp\"\
     \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
-    \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  ll K; cin >> K;\n\n  SquareMatrix<mint>A(N);\n\
+    \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  ll K; cin >> K;\n\n  Matrix<mint>A(N,N);\n\
     \n  for(int i=0; i<N; i++) for(int j=0; j<N; j++) cin >> A[i][j];\n\n  A ^= K;\n\
     \  for(int i=0; i<N; i++) {\n    for(int j=0; j<N; j++) {\n      cout << A[i][j].val();\n\
     \      if (j == N-1) cout << endl;\n      else cout << \" \";\n    }\n  }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_matrix\"\n\n#include\
-    \ \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include \"math/matrix/square_matrix.hpp\"\
+    \ \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include \"math/matrix/matrix.hpp\"\
     \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
-    \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  ll K; cin >> K;\n\n  SquareMatrix<mint>A(N);\n\
+    \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  ll K; cin >> K;\n\n  Matrix<mint>A(N,N);\n\
     \n  for(int i=0; i<N; i++) for(int j=0; j<N; j++) cin >> A[i][j];\n\n  A ^= K;\n\
     \  for(int i=0; i<N; i++) {\n    for(int j=0; j<N; j++) {\n      cout << A[i][j].val();\n\
     \      if (j == N-1) cout << endl;\n      else cout << \" \";\n    }\n  }\n}\n"
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
-  - math/matrix/square_matrix.hpp
+  - math/matrix/matrix.hpp
   isVerificationFile: true
   path: test/verify/yosupo-pow-of-matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-06-10 01:49:10+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-06-10 16:47:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-pow-of-matrix.test.cpp
 layout: document
