@@ -2,16 +2,16 @@
 
 template <class T>
 struct Matrix{
-protected: 
+private: 
   vector<vector<T>>vec;
+  int N, M;
 public:
-  const int N, M;
 
   Matrix(int _N, int _M) : N(_N), M(_M), vec(vector<vector<T>>(_N, vector<T>(_M))) {
     assert(_N >= 0 && _M >= 0); // 0*0の行列を返したいときもある(逆行列なかったときとか)
   }
 
-  Matrix operator*(const Matrix& rhs) const  {
+  Matrix<T> operator*(const Matrix<T>& rhs) const  {
     assert(M == rhs.N);
     Matrix ret(N,rhs.M);
     for (int i=0; i<N; i++) for (int k=0; k<M; k++) for(int j=0; j<rhs.M; j++) {
@@ -21,12 +21,12 @@ public:
     return ret;
   }
 
-  Matrix operator^(unsigned long long k) const {
+  Matrix<T> operator^(unsigned long long k) const {
     assert(N == M);
-    Matrix ret(N, N);
+    Matrix<T> ret(N, N);
     for(int i=0; i<N; i++) ret[i][i] = T(1);
 
-    Matrix base = *this;
+    Matrix<T> base = *this;
 
     while (k > 0) {
       if (k & 1) {
@@ -48,8 +48,15 @@ public:
   Matrix<T>& operator*=(const Matrix<T>& b) { return (*this) = (*this) * b; }
   Matrix<T>& operator^=(const unsigned long long k) { return (*this) = (*this) ^ k; }
 
-  int rank() {
-    return sweep(M);
+  // さすがにrankを知るのに副作用があるのはヤバいので
+  int rank() const {
+    Matrix A = *this;
+    return A.sweep(M);
+  }
+
+  // サイズを返す。N,Mをconstにしたいけどconstにすると*=や^=が面倒になるため、N,Mを非constのprivateにすることでなんとかする。
+  pair<int,int> size() const {
+    return make_pair(N, M);
   }
 
   // 逆行列を返す。なければ0*0行列を返す(これはGifted infantsのマネだが、0*0を返す嬉しさはいまいちわかっていない。変えるかも。)
