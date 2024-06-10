@@ -15,7 +15,7 @@ int main() {
 
   for(int i=0; i<N; i++) for(int j=0; j<N; j++) cin >> A[i][j];
   Matrix<mint> inv = A.inverse();
-  if (inv.N == 0) {
+  if (inv.size().first == 0) {
     cout << -1 << endl;
   }
   else {
