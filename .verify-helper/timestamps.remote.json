@@ -6,6 +6,7 @@
 "test/verify/yosupo-exp-of-formal-power-series.test.cpp": "2024-06-09 18:28:49 +0900",
 "test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp": "2024-06-09 18:28:49 +0900",
 "test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp": "2024-06-09 18:28:49 +0900",
+"test/verify/yosupo-inverse-of-matrix.test.cpp": "2024-06-10 19:59:32 +0900",
 "test/verify/yosupo-log-of-formal-power-series.test.cpp": "2024-06-09 18:28:49 +0900",
 "test/verify/yosupo-matrix-product.test.cpp": "2024-06-10 19:49:02 +0900",
 "test/verify/yosupo-pow-of-matrix.test.cpp": "2024-06-10 19:49:02 +0900",
