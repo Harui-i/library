@@ -17,11 +17,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/matrix_product
+    PROBLEM: https://judge.yosupo.jp/problem/inverse_matrix
     links:
-    - https://judge.yosupo.jp/problem/matrix_product
-  bundledCode: "#line 1 \"test/verify/yosupo-matrix-product.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#line 1 \"template/template.hpp\"\
+    - https://judge.yosupo.jp/problem/inverse_matrix
+  bundledCode: "#line 1 \"test/verify/yosupo-inverse-of-matrix.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\n\n#line 1 \"template/template.hpp\"\
     \n#include <bits/stdc++.h>\nusing namespace std;\ntypedef long long ll;\ntypedef\
     \ unsigned int uint;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if\
     \ (a<b) {a=b; return true;} return false;}\ntemplate<class T> inline bool chmin(T&\
@@ -101,37 +101,37 @@ data:
     \u3092\u3059\u308B\n      if (row != rank) {\n        T fac = vec[row][col];\n\
     \        for(int col2=0; col2<M; col2++) {\n          vec[row][col2] -= vec[rank][col2]\
     \ * fac;\n        }\n      }\n    }\n    rank++;\n  }\n\n  return rank;\n}\n\n\
-    \n};\n#line 6 \"test/verify/yosupo-matrix-product.test.cpp\"\n\nusing mint = modint998244353;\n\
-    \n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int N,\
-    \ M, K; cin >> N >> M >> K;\n\n  Matrix<mint> A(N, M);\n  Matrix<mint> B(M, K);\n\
-    \n  for(int i=0; i<N; i++) for(int j=0; j<M; j++) cin >> A[i][j];\n\n  for(int\
-    \ i=0; i<M; i++) for(int j=0; j<K; j++) cin >> B[i][j];\n\n  Matrix<mint> C =\
-    \ A * B; \n  for(int i=0; i<N; i++) {\n    for(int j=0; j<K; j++) {\n      cout\
-    \ << C[i][j].val();\n      if (j == K-1) cout << endl;\n      else cout << \"\
-    \ \";\n    }\n  }\n\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#include\
+    \n};\n#line 6 \"test/verify/yosupo-inverse-of-matrix.test.cpp\"\n\nusing mint\
+    \ = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
+    \ cout.tie(0);\n  int N; cin >> N;\n\n  Matrix<mint>A(N,N);\n\n  for(int i=0;\
+    \ i<N; i++) for(int j=0; j<N; j++) cin >> A[i][j];\n  Matrix<mint> inv = A.inverse();\n\
+    \  if (inv.N == 0) {\n    cout << -1 << endl;\n  }\n  else {\n    for(int i=0;\
+    \ i<N; i++) {\n      for(int j=0; j<N; j++) {\n        cout << inv[i][j].val();\n\
+    \        if (j != N-1) cout << \" \";\n        else cout << endl;\n      }\n \
+    \   }\n  }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\n\n#include\
     \ \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include \"math/matrix/matrix.hpp\"\
     \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
-    \ cin.tie(0); cout.tie(0);\n  int N, M, K; cin >> N >> M >> K;\n\n  Matrix<mint>\
-    \ A(N, M);\n  Matrix<mint> B(M, K);\n\n  for(int i=0; i<N; i++) for(int j=0; j<M;\
-    \ j++) cin >> A[i][j];\n\n  for(int i=0; i<M; i++) for(int j=0; j<K; j++) cin\
-    \ >> B[i][j];\n\n  Matrix<mint> C = A * B; \n  for(int i=0; i<N; i++) {\n    for(int\
-    \ j=0; j<K; j++) {\n      cout << C[i][j].val();\n      if (j == K-1) cout <<\
-    \ endl;\n      else cout << \" \";\n    }\n  }\n\n}\n"
+    \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n\n  Matrix<mint>A(N,N);\n\n  for(int\
+    \ i=0; i<N; i++) for(int j=0; j<N; j++) cin >> A[i][j];\n  Matrix<mint> inv =\
+    \ A.inverse();\n  if (inv.N == 0) {\n    cout << -1 << endl;\n  }\n  else {\n\
+    \    for(int i=0; i<N; i++) {\n      for(int j=0; j<N; j++) {\n        cout <<\
+    \ inv[i][j].val();\n        if (j != N-1) cout << \" \";\n        else cout <<\
+    \ endl;\n      }\n    }\n  }\n}\n"
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
   - math/matrix/matrix.hpp
   isVerificationFile: true
-  path: test/verify/yosupo-matrix-product.test.cpp
+  path: test/verify/yosupo-inverse-of-matrix.test.cpp
   requiredBy: []
   timestamp: '2024-06-10 19:28:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/verify/yosupo-matrix-product.test.cpp
+documentation_of: test/verify/yosupo-inverse-of-matrix.test.cpp
 layout: document
 redirect_from:
-- /verify/test/verify/yosupo-matrix-product.test.cpp
-- /verify/test/verify/yosupo-matrix-product.test.cpp.html
-title: test/verify/yosupo-matrix-product.test.cpp
+- /verify/test/verify/yosupo-inverse-of-matrix.test.cpp
+- /verify/test/verify/yosupo-inverse-of-matrix.test.cpp.html
+title: test/verify/yosupo-inverse-of-matrix.test.cpp
 ---

@@ -30,7 +30,7 @@ data:
       title: sparse-fps
   - name: math/matrix
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/matrix/matrix.hpp
       title: "Matrix(\u884C\u5217)"
   - name: math
@@ -38,7 +38,7 @@ data:
     - icon: ':warning:'
       path: math/mod_pow.hpp
       title: math/mod_pow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.hpp
       title: modint
   - name: structure/segment-tree
@@ -53,7 +53,7 @@ data:
       title: Foldable Deque(Slide Window Aggregation)
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/template.hpp
       title: template/template.hpp
   - name: test/verify
@@ -94,17 +94,23 @@ data:
       path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
       title: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-inverse-of-matrix.test.cpp
+      title: test/verify/yosupo-inverse-of-matrix.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-log-of-formal-power-series.test.cpp
       title: test/verify/yosupo-log-of-formal-power-series.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-matrix-product.test.cpp
       title: test/verify/yosupo-matrix-product.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yosupo-pow-of-matrix.test.cpp
       title: test/verify/yosupo-pow-of-matrix.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-queue-operate-all-composite.test.cpp
       title: test/verify/yosupo-queue-operate-all-composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-rank-of-matrix.test.cpp
+      title: test/verify/yosupo-rank-of-matrix.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yuki-372-itsautomatic.test.cpp
       title: test/verify/yuki-372-itsautomatic.test.cpp

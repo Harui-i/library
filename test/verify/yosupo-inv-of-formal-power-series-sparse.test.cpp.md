@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/sparse-fps.hpp
     title: sparse-fps
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

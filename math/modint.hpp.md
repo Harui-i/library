@@ -31,23 +31,29 @@ data:
     path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-inverse-of-matrix.test.cpp
+    title: test/verify/yosupo-inverse-of-matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-log-of-formal-power-series.test.cpp
     title: test/verify/yosupo-log-of-formal-power-series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-matrix-product.test.cpp
     title: test/verify/yosupo-matrix-product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-pow-of-matrix.test.cpp
     title: test/verify/yosupo-pow-of-matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-queue-operate-all-composite.test.cpp
     title: test/verify/yosupo-queue-operate-all-composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-rank-of-matrix.test.cpp
+    title: test/verify/yosupo-rank-of-matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/modint.hpp\"\ntemplate<int MOD>\nstruct static_modint\
@@ -121,7 +127,7 @@ data:
   - formal-power-series/sparse-fps.hpp
   - formal-power-series/formal-power-series.hpp
   timestamp: '2024-06-09 18:28:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-exp-of-formal-power-series.test.cpp
@@ -130,7 +136,9 @@ data:
   - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/yosupo-inverse-of-matrix.test.cpp
   - test/verify/yosupo-pow-of-matrix.test.cpp
+  - test/verify/yosupo-rank-of-matrix.test.cpp
   - test/verify/yosupo-log-of-formal-power-series.test.cpp
 documentation_of: math/modint.hpp
 layout: document
