@@ -6,14 +6,14 @@ data:
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
+    path: formal-power-series/fps998.hpp
+    title: formal-power-series/fps998.hpp
+  - icon: ':heavy_check_mark:'
     path: formal-power-series/sparse-fps.hpp
     title: sparse-fps
   - icon: ':warning:'
     path: test/verify/atcoder-tdpc-s.cpp
     title: test/verify/atcoder-tdpc-s.cpp
-  - icon: ':warning:'
-    path: test/verify/yosupo-inv-of-formal-power-series-fast1-test.cpp
-    title: test/verify/yosupo-inv-of-formal-power-series-fast1-test.cpp
   - icon: ':warning:'
     path: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
@@ -126,8 +126,8 @@ data:
   requiredBy:
   - test/verify/atcoder-tdpc-s.cpp
   - test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
-  - test/verify/yosupo-inv-of-formal-power-series-fast1-test.cpp
   - formal-power-series/sparse-fps.hpp
+  - formal-power-series/fps998.hpp
   - formal-power-series/formal-power-series.hpp
   timestamp: '2024-06-09 18:28:49+09:00'
   verificationStatus: LIBRARY_ALL_AC

@@ -6,9 +6,6 @@ data:
     path: test/verify/atcoder-tdpc-s.cpp
     title: test/verify/atcoder-tdpc-s.cpp
   - icon: ':warning:'
-    path: test/verify/yosupo-inv-of-formal-power-series-fast1-test.cpp
-    title: test/verify/yosupo-inv-of-formal-power-series-fast1-test.cpp
-  - icon: ':warning:'
     path: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
   _extendedVerifiedWith:
@@ -125,7 +122,6 @@ data:
   requiredBy:
   - test/verify/atcoder-tdpc-s.cpp
   - test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
-  - test/verify/yosupo-inv-of-formal-power-series-fast1-test.cpp
   timestamp: '2024-05-14 18:24:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
