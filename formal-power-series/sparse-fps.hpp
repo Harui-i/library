@@ -7,7 +7,7 @@ using namespace std;
 // calculate inverse of f(sparse)
 // deg : -1 + ( maximum degree of g )
 template <typename mint>
-FPS inv_sparse(const vector<pair<int,mint>>& f, int deg) {
+FPS<mint> inv_sparse(const vector<pair<int,mint>>& f, int deg) {
   assert(deg >= 0);
   for(int i=0; i<(int)f.size()-1; i++) assert(f[i].first < f[i+1].first); 
   assert(f[0].first == 0 && f[0].second != mint(0));
@@ -26,7 +26,7 @@ FPS inv_sparse(const vector<pair<int,mint>>& f, int deg) {
 }
 
 template <typename mint>
-FPS inv_sparse(const FPS& f, int deg) {
+FPS<mint> inv_sparse(const FPS<mint>& f, int deg) {
   vector<pair<int,mint>> vpim;
   for(int i=0; i<f.size(); i++) if (f[i] != mint(0)) vpim.emplace_back(i, f[i]);
 
