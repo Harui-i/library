@@ -1,8 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/log_of_formal_power_series"
 
-#include "../../template/template.hpp"
-#include "../../math/modint.hpp"
-#include "../../formal-power-series/formal-power-series.hpp"
+#include "template/template.hpp"
+#include "math/modint.hpp"
+#include "formal-power-series/formal-power-series.hpp"
+#include "formal-power-series/fps998.hpp"
 
 using mint = modint998244353;
 
