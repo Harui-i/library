@@ -69,6 +69,8 @@ struct FPS {
 
 
   vector<mint> multiply(vector<mint> const& a, vector<mint> const& b) {
+    if (a.size() == 0 || b.size() == 0) return vector<mint>();
+    
     vector<mint> fa(a.begin(), a.end()), fb(b.begin(), b.end());
     int n = 1 << lg2(a.size() + b.size());
     //while (n < (int)(a.size() + b.size())) n <<= 1;
@@ -280,6 +282,30 @@ struct FPS {
     return *this;
   }
 
+  // Nyaan先生のライブラリを大写経....
+  FPS& operator/=(const FPS& rhs) {
+    if (size() < rhs.size()) {
+      return *this =  FPS(0);
+    }
+    int sz = size() - rhs.size() + 1;
+
+    FPS left = (*this).rev().pre(sz);
+    FPS right = rhs.rev();
+    right = right.inv_fast2(sz);
+    FPS mp = left*right;
+    mp = mp.pre(sz);
+    mp = mp.rev();
+    return *this = mp;
+    return *this = (left * right).pre(sz).rev();
+    //return *this =  ((*this).rev().pre(sz) * rhs.rev().inv_fast2(sz)).pre(sz).rev();
+  }
+
+  FPS& operator%=(const FPS &rhs) {
+    *this -= *this / rhs * rhs;
+    shrink(); 
+    return *this;
+  }
+
   FPS& operator+=(const mint& rhs) {
     _vec[0] += rhs;
     return *this;
@@ -317,16 +343,26 @@ struct FPS {
   friend FPS operator+(FPS a, const FPS& b) { return a += b; }
   friend FPS operator-(FPS a, const FPS& b) { return a -= b; }
   friend FPS operator*(FPS a, const FPS& b) { return a *= b; }
+  friend FPS operator/(FPS a, const FPS& b) { return a /= b; }
+  friend FPS operator%(FPS a, const FPS& b) {return a %= b; }
 
   friend FPS operator+(FPS a, const mint& b) {return a += b; }
   friend FPS operator-(FPS a, const mint& b) {return a -= b; }
   friend FPS operator*(FPS a, const mint& b) {return a *= b; }
   friend FPS operator/(FPS a, const mint& b) {return a /= b; }
-
+  
+  // sz次未満の項を取ってくる
   FPS pre(int sz) const {
     FPS ret = *this; 
     ret._vec.resize(sz);
 
+    return ret;
+  }
+
+  FPS rev() const {
+    FPS ret = *this;
+    reverse(ret._vec.begin(), ret._vec.end());
+    
     return ret;
   }
 
@@ -340,6 +376,10 @@ struct FPS {
 
   void resize(int sz)  {
     this->_vec.resize(sz);
+  }
+
+  void shrink() {
+    while (size() > 0 && _vec.back() == mint(0)) _vec.pop_back();
   }
 
   friend ostream& operator<<(ostream& os, const FPS& fps) {
