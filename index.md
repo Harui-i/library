@@ -85,6 +85,9 @@ data:
       path: test/verify/yosupo-deque-operate-all-composite.test.cpp
       title: test/verify/yosupo-deque-operate-all-composite.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-division-of-polynomials.test.cpp
+      title: test/verify/yosupo-division-of-polynomials.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-exp-of-formal-power-series.test.cpp
       title: test/verify/yosupo-exp-of-formal-power-series.test.cpp
     - icon: ':heavy_check_mark:'

@@ -14,20 +14,22 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/division_of_polynomials
     links:
-    - https://judge.yosupo.jp/problem/inv_of_formal_power_series
-  bundledCode: "#line 1 \"test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
-    \n\n#line 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\ntypedef long long ll;\ntypedef unsigned int uint;\ntemplate<class T> inline\
-    \ bool chmax(T& a, const T& b) {if (a<b) {a=b; return true;} return false;}\n\
-    template<class T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;}\
-    \ return false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\n\
-    const ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n\
-    #line 2 \"math/modint.hpp\"\ntemplate<int MOD>\nstruct static_modint {\n    int\
-    \ value;\n\n    constexpr static_modint() : value(0) {}\n\n    constexpr static_modint(long\
+    - https://judge.yosupo.jp/problem/division_of_polynomials
+  bundledCode: "#line 1 \"test/verify/yosupo-division-of-polynomials.test.cpp\"\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\n\n\
+    #line 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\
+    typedef long long ll;\ntypedef unsigned int uint;\ntemplate<class T> inline bool\
+    \ chmax(T& a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
+    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
+    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
+    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
+    \ 2 \"math/modint.hpp\"\ntemplate<int MOD>\nstruct static_modint {\n    int value;\n\
+    \n    constexpr static_modint() : value(0) {}\n\n    constexpr static_modint(long\
     \ long v) {\n        value = int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr\
     \ static_modint& operator+=(const static_modint& other) {\n        if ((value\
     \ += other.value) >= MOD) value -= MOD;\n        return *this;\n    }\n\n    constexpr\
@@ -221,32 +223,37 @@ data:
     \ {\n    while (size() > 0 && _vec.back() == mint(0)) _vec.pop_back();\n  }\n\n\
     \  friend ostream& operator<<(ostream& os, const FPS& fps) {\n    for (int i =\
     \ 0; i < fps.size(); ++i) {\n      if (i > 0) os << \" \";\n      os << fps._vec[i].val();\n\
-    \    }\n    return os;\n  }\n};\n#line 6 \"test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp\"\
-    \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
-    \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n\
-    \  for(int i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.inv_naive(N)\
-    \ << endl;\n\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
-    \n\n#include \"../../template/template.hpp\"\n#include \"../../math/modint.hpp\"\
-    \n#include \"../../formal-power-series/formal-power-series.hpp\"\n\nusing mint\
-    \ = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
-    \ cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n  for(int\
-    \ i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.inv_naive(N)\
-    \ << endl;\n\n}\n"
+    \    }\n    return os;\n  }\n};\n#line 6 \"test/verify/yosupo-division-of-polynomials.test.cpp\"\
+    \n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int N,\
+    \ M; cin >> N >> M;\n\n  FPS f(N); for(int i=0; i<N; i++) cin >> f[i];\n  FPS\
+    \ g(M); for(int i=0; i<M; i++) cin >> g[i];\n\n  FPS quotient = f / g;\n  FPS\
+    \ remainder = f % g;\n  int u = quotient.size();\n  int v = remainder.size();\n\
+    \  cout << u << \" \" << v << \"\\n\";\n  for(int i=0; i<u; i++) cout << quotient[i]\
+    \ << \" \";\n  cout << \"\\n\";\n\n  for(int i=0; i<v; i++) cout << remainder[i]\
+    \ << \" \";\n  cout << \"\\n\";\n\n}\n\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\
+    \n\n#include \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include\
+    \ \"formal-power-series/formal-power-series.hpp\"\n\nint main() {\n  ios::sync_with_stdio(0);\
+    \ cin.tie(0); cout.tie(0);\n  int N, M; cin >> N >> M;\n\n  FPS f(N); for(int\
+    \ i=0; i<N; i++) cin >> f[i];\n  FPS g(M); for(int i=0; i<M; i++) cin >> g[i];\n\
+    \n  FPS quotient = f / g;\n  FPS remainder = f % g;\n  int u = quotient.size();\n\
+    \  int v = remainder.size();\n  cout << u << \" \" << v << \"\\n\";\n  for(int\
+    \ i=0; i<u; i++) cout << quotient[i] << \" \";\n  cout << \"\\n\";\n\n  for(int\
+    \ i=0; i<v; i++) cout << remainder[i] << \" \";\n  cout << \"\\n\";\n\n}\n\n"
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
   - formal-power-series/formal-power-series.hpp
-  isVerificationFile: false
-  path: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
+  isVerificationFile: true
+  path: test/verify/yosupo-division-of-polynomials.test.cpp
   requiredBy: []
   timestamp: '2024-06-12 12:49:04+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
+documentation_of: test/verify/yosupo-division-of-polynomials.test.cpp
 layout: document
 redirect_from:
-- /library/test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
-- /library/test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp.html
-title: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
+- /verify/test/verify/yosupo-division-of-polynomials.test.cpp
+- /verify/test/verify/yosupo-division-of-polynomials.test.cpp.html
+title: test/verify/yosupo-division-of-polynomials.test.cpp
 ---

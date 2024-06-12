@@ -22,6 +22,9 @@ data:
     path: test/verify/yosupo-deque-operate-all-composite.test.cpp
     title: test/verify/yosupo-deque-operate-all-composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-division-of-polynomials.test.cpp
+    title: test/verify/yosupo-division-of-polynomials.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-exp-of-formal-power-series.test.cpp
     title: test/verify/yosupo-exp-of-formal-power-series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -126,6 +129,7 @@ data:
   timestamp: '2024-05-14 18:24:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/verify/yosupo-division-of-polynomials.test.cpp
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-exp-of-formal-power-series.test.cpp
   - test/verify/yosupo-matrix-product.test.cpp
