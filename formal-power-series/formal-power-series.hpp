@@ -288,16 +288,16 @@ struct FPS {
       return *this =  FPS(0);
     }
     int sz = size() - rhs.size() + 1;
-
-    FPS left = (*this).rev().pre(sz);
-    FPS right = rhs.rev();
-    right = right.inv_fast2(sz);
-    FPS mp = left*right;
-    mp = mp.pre(sz);
-    mp = mp.rev();
-    return *this = mp;
-    return *this = (left * right).pre(sz).rev();
-    //return *this =  ((*this).rev().pre(sz) * rhs.rev().inv_fast2(sz)).pre(sz).rev();
+//
+//    FPS left = (*this).rev().pre(sz);
+//    FPS right = rhs.rev();
+//    right = right.inv_fast2(sz);
+//    FPS mp = left*right;
+//    mp = mp.pre(sz);
+//    mp = mp.rev();
+//    return *this = mp;
+//    return *this = (left * right).pre(sz).rev();
+    return *this =  ((*this).rev().pre(sz) * rhs.rev().inv_fast2(sz)).pre(sz).rev();
   }
 
   FPS& operator%=(const FPS &rhs) {
