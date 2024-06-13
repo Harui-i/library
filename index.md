@@ -22,6 +22,9 @@ data:
         \u5F62"
   - name: formal-power-series
     pages:
+    - icon: ':warning:'
+      path: formal-power-series/fiduccia.hpp
+      title: formal-power-series/fiduccia.hpp
     - icon: ':heavy_check_mark:'
       path: formal-power-series/formal-power-series.hpp
       title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
@@ -67,6 +70,9 @@ data:
     - icon: ':warning:'
       path: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
       title: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
+    - icon: ':warning:'
+      path: test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+      title: test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   verificationCategories:
   - name: .
     pages:

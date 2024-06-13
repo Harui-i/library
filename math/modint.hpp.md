@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: formal-power-series/fiduccia.hpp
+    title: formal-power-series/fiduccia.hpp
   - icon: ':heavy_check_mark:'
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
@@ -17,6 +20,9 @@ data:
   - icon: ':warning:'
     path: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
+  - icon: ':warning:'
+    path: test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+    title: test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-deque-operate-all-composite.test.cpp
@@ -125,8 +131,10 @@ data:
   path: math/modint.hpp
   requiredBy:
   - test/verify/atcoder-tdpc-s.cpp
+  - test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   - test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
   - formal-power-series/sparse-fps.hpp
+  - formal-power-series/fiduccia.hpp
   - formal-power-series/fps998.hpp
   - formal-power-series/formal-power-series.hpp
   timestamp: '2024-06-09 18:28:49+09:00'

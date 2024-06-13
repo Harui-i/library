@@ -5,6 +5,9 @@ data:
     path: math/modint.hpp
     title: modint
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: formal-power-series/fiduccia.hpp
+    title: formal-power-series/fiduccia.hpp
   - icon: ':heavy_check_mark:'
     path: formal-power-series/fps998.hpp
     title: formal-power-series/fps998.hpp
@@ -14,6 +17,9 @@ data:
   - icon: ':warning:'
     path: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
     title: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
+  - icon: ':warning:'
+    path: test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+    title: test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-division-of-polynomials.test.cpp
@@ -227,8 +233,10 @@ data:
   isVerificationFile: false
   path: formal-power-series/formal-power-series.hpp
   requiredBy:
+  - test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   - test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
   - formal-power-series/sparse-fps.hpp
+  - formal-power-series/fiduccia.hpp
   - formal-power-series/fps998.hpp
   timestamp: '2024-06-13 00:02:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
