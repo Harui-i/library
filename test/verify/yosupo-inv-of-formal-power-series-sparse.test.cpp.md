@@ -5,6 +5,9 @@ data:
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
+    path: formal-power-series/formal-power-series.hpp
+    title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
+  - icon: ':heavy_check_mark:'
     path: formal-power-series/fps998.hpp
     title: formal-power-series/fps998.hpp
   - icon: ':heavy_check_mark:'
@@ -68,7 +71,7 @@ data:
     \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
     \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
     \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\n\n#line\
-    \ 2 \"formal-power-series/formal-power-series.hpp\"\n\n#line 5 \"formal-power-series/formal-power-series.hpp\"\
+    \ 1 \"formal-power-series/formal-power-series.hpp\"\n\n\n\n#line 6 \"formal-power-series/formal-power-series.hpp\"\
     \n\nusing namespace std;\n\n\n\ntemplate <typename mint>\nstruct FPS {\n  vector<mint>\
     \ _vec;\n\n  constexpr int lg2(int N) const {\n    int ret = 0;\n    if ( N >\
     \ 0) ret = 31 - __builtin_clz(N);\n    if ((1LL << ret) < N) ret++;\n    return\
@@ -145,8 +148,9 @@ data:
     \u306B\u3088\u3063\u3066\u7570\u306A\u308B\n  virtual FPS inv(int deg=-1) const;\n\
     \  virtual void CooleyTukeyNTT998244353(vector<mint>&a, bool is_reverse) const;\n\
     //  virtual FPS exp(int deg=-1) const;\n  virtual vector<mint> multiply(const\
-    \ vector<mint>& a, const vector<mint>& b);\n  };\n#line 2 \"formal-power-series/fps998.hpp\"\
-    \n\nusing mint = modint998244353;\n//ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
+    \ vector<mint>& a, const vector<mint>& b);\n  };\n\n\n#line 1 \"formal-power-series/fps998.hpp\"\
+    \n\n\n\n\n#line 6 \"formal-power-series/fps998.hpp\"\n\nusing mint = modint998244353;\n\
+    //ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
     // constexpr \u95A2\u6570\u5185\u3067 ZETAS \u914D\u5217\u3092\u8A2D\u5B9A\u3059\
     \u308B\u305F\u3081\u306E\u88DC\u52A9\u95A2\u6570\nconstexpr std::array<mint, 24>\
     \ setup_zetas() {\n  std::array<mint, 24> zetas;\n  zetas[23] = mint(3).pow(119);\n\
@@ -244,27 +248,28 @@ data:
     \        [d, 2d)\u306E\u9805\n    //    h'_2d*g_d\u306E[0,d)       h'_2d*g_d\u306E\
     [d, 2d)\n    //    h'_2d*g_d\u306E[2d, 3d)    h'_2d*g_d\u306E[3d, 4d)\n\n    g\
     \ = g_origin - h_2d;\n    g.resize(d * 2);\n\n  }\n\n  return g.pre(deg);\n}\n\
-    \n#line 3 \"formal-power-series/sparse-fps.hpp\"\nusing namespace std;\n\n#line\
-    \ 6 \"formal-power-series/sparse-fps.hpp\"\n\n// calculate inverse of f(sparse)\n\
-    // deg : -1 + ( maximum degree of g )\ntemplate <typename mint>\nFPS<mint> inv_sparse(const\
-    \ vector<pair<int,mint>>& f, int deg) {\n  assert(deg >= 0);\n  for(int i=0; i<(int)f.size()-1;\
-    \ i++) assert(f[i].first < f[i+1].first); \n  assert(f[0].first == 0 && f[0].second\
-    \ != mint(0));\n\n  mint f0inv = f[0].second.inv();\n  vector<mint> g(deg); g[0]\
-    \ = f0inv;\n  for(int i=0; i<deg-1; i++) {\n    for (pair<int,mint> pim : f) {\n\
-    \      if (i+1 - pim.first >= 0) g[i+1] -= pim.second * g[i+1 - pim.first];\n\
-    \      else continue;\n    }\n    g[i+1] *= f0inv;\n  }\n\n  return g;\n}\n\n\
-    template <typename mint>\nFPS<mint> inv_sparse(const FPS<mint>& f, int deg) {\n\
-    \  vector<pair<int,mint>> vpim;\n  for(int i=0; i<f.size(); i++) if (f[i] != mint(0))\
-    \ vpim.emplace_back(i, f[i]);\n\n  return inv_sparse(vpim, deg);\n}\n\n\n/* tabun\
-    \ baggute masu. TODO\ntemplate<typename mint>\nFPS multiply_sparse(const FPS&\
-    \ f, const vector<pair<int,mint>>& g, int deg) {\n\n  \n\n  FPS ret(deg);\n  for\
-    \ (pair<int,mint> pim : g) {\n    assert(pim.second != 0);\n    if (pim.second\
-    \ == 0) continue;\n\n    for(int i=0; i<f.size(); i++) {\n      if (i+pim.first\
-    \ >= ret.size()) continue;\n      if (f[i] != mint(0) && pim.second != mint(0))\
-    \ ret[i+pim.first] += pim.second * f[i];\n    }\n  }\n\n  return ret;\n}\n\ntemplate\
-    \ <typename mint>\nFPS multiply_sparse(const FPS& f, const FPS& g) {\n  vector<pair<mint,int>>\
-    \ vpmi;\n\n  for(int i=0; i<g.size(); i++) if (g[i] != mint(0)) vpmi.emplace_back(i,\
-    \ g[i]);\n\n  return multiply_sparse(f, vpmi);\n}\n*/\n#line 8 \"test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp\"\
+    \n\n#line 1 \"formal-power-series/sparse-fps.hpp\"\n\n\n\n#line 5 \"formal-power-series/sparse-fps.hpp\"\
+    \nusing namespace std;\n\n#line 8 \"formal-power-series/sparse-fps.hpp\"\n\n//\
+    \ calculate inverse of f(sparse)\n// deg : -1 + ( maximum degree of g )\ntemplate\
+    \ <typename mint>\nFPS<mint> inv_sparse(const vector<pair<int,mint>>& f, int deg)\
+    \ {\n  assert(deg >= 0);\n  for(int i=0; i<(int)f.size()-1; i++) assert(f[i].first\
+    \ < f[i+1].first); \n  assert(f[0].first == 0 && f[0].second != mint(0));\n\n\
+    \  mint f0inv = f[0].second.inv();\n  vector<mint> g(deg); g[0] = f0inv;\n  for(int\
+    \ i=0; i<deg-1; i++) {\n    for (pair<int,mint> pim : f) {\n      if (i+1 - pim.first\
+    \ >= 0) g[i+1] -= pim.second * g[i+1 - pim.first];\n      else continue;\n   \
+    \ }\n    g[i+1] *= f0inv;\n  }\n\n  return g;\n}\n\ntemplate <typename mint>\n\
+    FPS<mint> inv_sparse(const FPS<mint>& f, int deg) {\n  vector<pair<int,mint>>\
+    \ vpim;\n  for(int i=0; i<f.size(); i++) if (f[i] != mint(0)) vpim.emplace_back(i,\
+    \ f[i]);\n\n  return inv_sparse(vpim, deg);\n}\n\n\n/* tabun baggute masu. TODO\n\
+    template<typename mint>\nFPS multiply_sparse(const FPS& f, const vector<pair<int,mint>>&\
+    \ g, int deg) {\n\n  \n\n  FPS ret(deg);\n  for (pair<int,mint> pim : g) {\n \
+    \   assert(pim.second != 0);\n    if (pim.second == 0) continue;\n\n    for(int\
+    \ i=0; i<f.size(); i++) {\n      if (i+pim.first >= ret.size()) continue;\n  \
+    \    if (f[i] != mint(0) && pim.second != mint(0)) ret[i+pim.first] += pim.second\
+    \ * f[i];\n    }\n  }\n\n  return ret;\n}\n\ntemplate <typename mint>\nFPS multiply_sparse(const\
+    \ FPS& f, const FPS& g) {\n  vector<pair<mint,int>> vpmi;\n\n  for(int i=0; i<g.size();\
+    \ i++) if (g[i] != mint(0)) vpmi.emplace_back(i, g[i]);\n\n  return multiply_sparse(f,\
+    \ vpmi);\n}\n*/\n\n\n#line 8 \"test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp\"\
     \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
     \ cin.tie(0); cout.tie(0);\n  int N, K; cin >> N >> K;\n  vector<pair<int,mint>>\
     \ ia(K);\n  for(int i=0; i<K; i++) cin >> ia[i].first >> ia[i].second;\n\n  FPS<mint>\
@@ -285,10 +290,11 @@ data:
   - math/modint.hpp
   - formal-power-series/fps998.hpp
   - formal-power-series/sparse-fps.hpp
+  - formal-power-series/formal-power-series.hpp
   isVerificationFile: true
   path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
   requiredBy: []
-  timestamp: '2024-06-14 19:04:40+09:00'
+  timestamp: '2024-06-14 19:20:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp

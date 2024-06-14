@@ -60,7 +60,7 @@ data:
     \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
     \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
     \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\n\n#line\
-    \ 2 \"formal-power-series/formal-power-series.hpp\"\n\n#line 5 \"formal-power-series/formal-power-series.hpp\"\
+    \ 1 \"formal-power-series/formal-power-series.hpp\"\n\n\n\n#line 6 \"formal-power-series/formal-power-series.hpp\"\
     \n\nusing namespace std;\n\n\n\ntemplate <typename mint>\nstruct FPS {\n  vector<mint>\
     \ _vec;\n\n  constexpr int lg2(int N) const {\n    int ret = 0;\n    if ( N >\
     \ 0) ret = 31 - __builtin_clz(N);\n    if ((1LL << ret) < N) ret++;\n    return\
@@ -137,7 +137,7 @@ data:
     \u306B\u3088\u3063\u3066\u7570\u306A\u308B\n  virtual FPS inv(int deg=-1) const;\n\
     \  virtual void CooleyTukeyNTT998244353(vector<mint>&a, bool is_reverse) const;\n\
     //  virtual FPS exp(int deg=-1) const;\n  virtual vector<mint> multiply(const\
-    \ vector<mint>& a, const vector<mint>& b);\n  };\n#line 6 \"test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp\"\
+    \ vector<mint>& a, const vector<mint>& b);\n  };\n\n\n#line 6 \"test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp\"\
     \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
     \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n\
     \  for(int i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.inv_naive(N)\
@@ -157,7 +157,7 @@ data:
   isVerificationFile: false
   path: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
   requiredBy: []
-  timestamp: '2024-06-14 19:04:40+09:00'
+  timestamp: '2024-06-14 19:20:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp

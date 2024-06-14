@@ -17,9 +17,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"formal-power-series/sparse-fps.hpp\"\n#include <vector>\n\
-    using namespace std;\n\n#line 2 \"formal-power-series/formal-power-series.hpp\"\
-    \n\n#line 1 \"math/modint.hpp\"\n\n\n\ntemplate<int MOD>\nstruct static_modint\
+  bundledCode: "#line 1 \"formal-power-series/sparse-fps.hpp\"\n\n\n\n#include <vector>\n\
+    using namespace std;\n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\
+    \n\n\n\n#line 1 \"math/modint.hpp\"\n\n\n\ntemplate<int MOD>\nstruct static_modint\
     \ {\n    int value;\n\n    constexpr static_modint() : value(0) {}\n\n    constexpr\
     \ static_modint(long long v) {\n        value = int(((v % MOD) + MOD) % MOD);\n\
     \    }\n\n    constexpr static_modint& operator+=(const static_modint& other)\
@@ -50,7 +50,7 @@ data:
     \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
     \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
     \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\n\n#line\
-    \ 4 \"formal-power-series/formal-power-series.hpp\"\n#include <bits/stdc++.h>\n\
+    \ 5 \"formal-power-series/formal-power-series.hpp\"\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\n\n\ntemplate <typename mint>\nstruct FPS {\n  vector<mint>\
     \ _vec;\n\n  constexpr int lg2(int N) const {\n    int ret = 0;\n    if ( N >\
     \ 0) ret = 31 - __builtin_clz(N);\n    if ((1LL << ret) < N) ret++;\n    return\
@@ -127,7 +127,7 @@ data:
     \u306B\u3088\u3063\u3066\u7570\u306A\u308B\n  virtual FPS inv(int deg=-1) const;\n\
     \  virtual void CooleyTukeyNTT998244353(vector<mint>&a, bool is_reverse) const;\n\
     //  virtual FPS exp(int deg=-1) const;\n  virtual vector<mint> multiply(const\
-    \ vector<mint>& a, const vector<mint>& b);\n  };\n#line 6 \"formal-power-series/sparse-fps.hpp\"\
+    \ vector<mint>& a, const vector<mint>& b);\n  };\n\n\n#line 8 \"formal-power-series/sparse-fps.hpp\"\
     \n\n// calculate inverse of f(sparse)\n// deg : -1 + ( maximum degree of g )\n\
     template <typename mint>\nFPS<mint> inv_sparse(const vector<pair<int,mint>>& f,\
     \ int deg) {\n  assert(deg >= 0);\n  for(int i=0; i<(int)f.size()-1; i++) assert(f[i].first\
@@ -147,8 +147,9 @@ data:
     \ * f[i];\n    }\n  }\n\n  return ret;\n}\n\ntemplate <typename mint>\nFPS multiply_sparse(const\
     \ FPS& f, const FPS& g) {\n  vector<pair<mint,int>> vpmi;\n\n  for(int i=0; i<g.size();\
     \ i++) if (g[i] != mint(0)) vpmi.emplace_back(i, g[i]);\n\n  return multiply_sparse(f,\
-    \ vpmi);\n}\n*/\n"
-  code: "#pragma once\n#include <vector>\nusing namespace std;\n\n#include \"formal-power-series.hpp\"\
+    \ vpmi);\n}\n*/\n\n\n"
+  code: "#ifndef HARUILIB_FORMAL_POWER_SERIES_SPARSE_FPS_HPP\n#define HARUILIB_FORMAL_POWER_SERIES_SPARSE_FPS_HPP\n\
+    \n#include <vector>\nusing namespace std;\n\n#include \"formal-power-series.hpp\"\
     \n\n// calculate inverse of f(sparse)\n// deg : -1 + ( maximum degree of g )\n\
     template <typename mint>\nFPS<mint> inv_sparse(const vector<pair<int,mint>>& f,\
     \ int deg) {\n  assert(deg >= 0);\n  for(int i=0; i<(int)f.size()-1; i++) assert(f[i].first\
@@ -168,14 +169,14 @@ data:
     \ * f[i];\n    }\n  }\n\n  return ret;\n}\n\ntemplate <typename mint>\nFPS multiply_sparse(const\
     \ FPS& f, const FPS& g) {\n  vector<pair<mint,int>> vpmi;\n\n  for(int i=0; i<g.size();\
     \ i++) if (g[i] != mint(0)) vpmi.emplace_back(i, g[i]);\n\n  return multiply_sparse(f,\
-    \ vpmi);\n}\n*/"
+    \ vpmi);\n}\n*/\n\n#endif // HARUILIB_FORMAL_POWER_SERIES_SPARSE_FPS_HPP"
   dependsOn:
   - formal-power-series/formal-power-series.hpp
   - math/modint.hpp
   isVerificationFile: false
   path: formal-power-series/sparse-fps.hpp
   requiredBy: []
-  timestamp: '2024-06-14 19:04:40+09:00'
+  timestamp: '2024-06-14 19:20:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp

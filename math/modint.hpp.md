@@ -69,7 +69,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-matrix-product.test.cpp
     title: test/verify/yosupo-matrix-product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-pow-of-matrix.test.cpp
     title: test/verify/yosupo-pow-of-matrix.test.cpp
   - icon: ':x:'

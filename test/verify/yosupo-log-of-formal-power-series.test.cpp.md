@@ -65,7 +65,7 @@ data:
     \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
     \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
     \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\n\n#line\
-    \ 2 \"formal-power-series/formal-power-series.hpp\"\n\n#line 5 \"formal-power-series/formal-power-series.hpp\"\
+    \ 1 \"formal-power-series/formal-power-series.hpp\"\n\n\n\n#line 6 \"formal-power-series/formal-power-series.hpp\"\
     \n\nusing namespace std;\n\n\n\ntemplate <typename mint>\nstruct FPS {\n  vector<mint>\
     \ _vec;\n\n  constexpr int lg2(int N) const {\n    int ret = 0;\n    if ( N >\
     \ 0) ret = 31 - __builtin_clz(N);\n    if ((1LL << ret) < N) ret++;\n    return\
@@ -142,8 +142,9 @@ data:
     \u306B\u3088\u3063\u3066\u7570\u306A\u308B\n  virtual FPS inv(int deg=-1) const;\n\
     \  virtual void CooleyTukeyNTT998244353(vector<mint>&a, bool is_reverse) const;\n\
     //  virtual FPS exp(int deg=-1) const;\n  virtual vector<mint> multiply(const\
-    \ vector<mint>& a, const vector<mint>& b);\n  };\n#line 2 \"formal-power-series/fps998.hpp\"\
-    \n\nusing mint = modint998244353;\n//ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
+    \ vector<mint>& a, const vector<mint>& b);\n  };\n\n\n#line 1 \"formal-power-series/fps998.hpp\"\
+    \n\n\n\n\n#line 6 \"formal-power-series/fps998.hpp\"\n\nusing mint = modint998244353;\n\
+    //ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
     // constexpr \u95A2\u6570\u5185\u3067 ZETAS \u914D\u5217\u3092\u8A2D\u5B9A\u3059\
     \u308B\u305F\u3081\u306E\u88DC\u52A9\u95A2\u6570\nconstexpr std::array<mint, 24>\
     \ setup_zetas() {\n  std::array<mint, 24> zetas;\n  zetas[23] = mint(3).pow(119);\n\
@@ -241,7 +242,7 @@ data:
     \        [d, 2d)\u306E\u9805\n    //    h'_2d*g_d\u306E[0,d)       h'_2d*g_d\u306E\
     [d, 2d)\n    //    h'_2d*g_d\u306E[2d, 3d)    h'_2d*g_d\u306E[3d, 4d)\n\n    g\
     \ = g_origin - h_2d;\n    g.resize(d * 2);\n\n  }\n\n  return g.pre(deg);\n}\n\
-    \n#line 7 \"test/verify/yosupo-log-of-formal-power-series.test.cpp\"\n\nusing\
+    \n\n#line 7 \"test/verify/yosupo-log-of-formal-power-series.test.cpp\"\n\nusing\
     \ mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
     \ cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n  for(int\
     \ i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.log(N) << endl;\n\
@@ -262,7 +263,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-log-of-formal-power-series.test.cpp
   requiredBy: []
-  timestamp: '2024-06-14 19:04:40+09:00'
+  timestamp: '2024-06-14 19:20:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-log-of-formal-power-series.test.cpp

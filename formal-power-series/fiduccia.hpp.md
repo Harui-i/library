@@ -18,7 +18,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"formal-power-series/fiduccia.hpp\"\n#include <vector>\n\
-    #line 2 \"formal-power-series/formal-power-series.hpp\"\n\n#line 1 \"math/modint.hpp\"\
+    #line 1 \"formal-power-series/formal-power-series.hpp\"\n\n\n\n#line 1 \"math/modint.hpp\"\
     \n\n\n\ntemplate<int MOD>\nstruct static_modint {\n    int value;\n\n    constexpr\
     \ static_modint() : value(0) {}\n\n    constexpr static_modint(long long v) {\n\
     \        value = int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr static_modint&\
@@ -49,7 +49,7 @@ data:
     \ mi) {\n        long long x;\n        is >> x;\n        mi = static_modint(x);\n\
     \        return is;\n    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\n\
     using modint998244353  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\
-    \n\n#line 4 \"formal-power-series/formal-power-series.hpp\"\n#include <bits/stdc++.h>\n\
+    \n\n#line 5 \"formal-power-series/formal-power-series.hpp\"\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\n\n\ntemplate <typename mint>\nstruct FPS {\n  vector<mint>\
     \ _vec;\n\n  constexpr int lg2(int N) const {\n    int ret = 0;\n    if ( N >\
     \ 0) ret = 31 - __builtin_clz(N);\n    if ((1LL << ret) < N) ret++;\n    return\
@@ -126,7 +126,7 @@ data:
     \u306B\u3088\u3063\u3066\u7570\u306A\u308B\n  virtual FPS inv(int deg=-1) const;\n\
     \  virtual void CooleyTukeyNTT998244353(vector<mint>&a, bool is_reverse) const;\n\
     //  virtual FPS exp(int deg=-1) const;\n  virtual vector<mint> multiply(const\
-    \ vector<mint>& a, const vector<mint>& b);\n  };\n#line 3 \"formal-power-series/fiduccia.hpp\"\
+    \ vector<mint>& a, const vector<mint>& b);\n  };\n\n\n#line 3 \"formal-power-series/fiduccia.hpp\"\
     \n\n// BAGUTTERU!!! gomen!!!!\n// given linear recurrence sequence a_{n+K}= c_1\
     \ a_{n+K-1} + c_2 a_{n+k-2} + \\dots + c_{K-1} a_{n+1} + c_K a_n\n// a_0, a_1,\
     \ \\dots, a_{K-1} are given\n// calculate a_N (N-th term of linear recurrence\
@@ -177,7 +177,7 @@ data:
   path: formal-power-series/fiduccia.hpp
   requiredBy:
   - test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
-  timestamp: '2024-06-14 19:04:40+09:00'
+  timestamp: '2024-06-14 19:20:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: formal-power-series/fiduccia.hpp
