@@ -3,11 +3,11 @@ data:
   libraryCategories:
   - name: dp/automaton
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: dp/automaton/automaton.hpp
       title: "\u6C7A\u5B9A\u6027\u6709\u9650\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3(DFA,\
         \ Deterministic Finite Automaton)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: dp/automaton/remainder.hpp
       title: "\u3042\u307E\u308A\u3092\u7BA1\u7406\u3059\u308B\u30AA\u30FC\u30C8\u30DE\
         \u30C8\u30F3(remainder.hpp)"
@@ -36,15 +36,18 @@ data:
       title: sparse-fps
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: graph/diameter.hpp
+      title: graph/diameter.hpp
+    - icon: ':x:'
       path: graph/dijkstra.hpp
       title: graph/dijkstra.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/graph_template.hpp
       title: graph/graph_template.hpp
   - name: math/matrix
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/matrix/matrix.hpp
       title: "Matrix(\u884C\u5217)"
   - name: math
@@ -52,7 +55,7 @@ data:
     - icon: ':warning:'
       path: math/mod_pow.hpp
       title: math/mod_pow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.hpp
       title: modint
   - name: structure/segment-tree
@@ -62,12 +65,12 @@ data:
       title: "Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - name: structure
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: structure/slide-window-aggregation.hpp
       title: Foldable Deque(Slide Window Aggregation)
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/template.hpp
       title: template/template.hpp
   - name: test/verify
@@ -119,19 +122,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-matrix-product.test.cpp
       title: test/verify/yosupo-matrix-product.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yosupo-pow-of-matrix.test.cpp
       title: test/verify/yosupo-pow-of-matrix.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yosupo-queue-operate-all-composite.test.cpp
       title: test/verify/yosupo-queue-operate-all-composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yosupo-rank-of-matrix.test.cpp
       title: test/verify/yosupo-rank-of-matrix.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yosupo-shortest-path.test.cpp
       title: test/verify/yosupo-shortest-path.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: test/verify/yosupo-tree-diameter.test.cpp
+      title: test/verify/yosupo-tree-diameter.test.cpp
+    - icon: ':x:'
       path: test/verify/yuki-372-itsautomatic.test.cpp
       title: test/verify/yuki-372-itsautomatic.test.cpp
     - icon: ':heavy_check_mark:'

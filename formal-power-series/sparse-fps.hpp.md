@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
   _extendedRequiredBy: []
@@ -19,8 +19,8 @@ data:
     links: []
   bundledCode: "#line 2 \"formal-power-series/sparse-fps.hpp\"\n#include <vector>\n\
     using namespace std;\n\n#line 2 \"formal-power-series/formal-power-series.hpp\"\
-    \n\n#line 2 \"math/modint.hpp\"\ntemplate<int MOD>\nstruct static_modint {\n \
-    \   int value;\n\n    constexpr static_modint() : value(0) {}\n\n    constexpr\
+    \n\n#line 1 \"math/modint.hpp\"\n\n\n\ntemplate<int MOD>\nstruct static_modint\
+    \ {\n    int value;\n\n    constexpr static_modint() : value(0) {}\n\n    constexpr\
     \ static_modint(long long v) {\n        value = int(((v % MOD) + MOD) % MOD);\n\
     \    }\n\n    constexpr static_modint& operator+=(const static_modint& other)\
     \ {\n        if ((value += other.value) >= MOD) value -= MOD;\n        return\
@@ -49,9 +49,9 @@ data:
     \ std::istream& operator>>(std::istream& is, static_modint& mi) {\n        long\
     \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
     \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
-    \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n#line 4\
-    \ \"formal-power-series/formal-power-series.hpp\"\n#include <bits/stdc++.h>\n\n\
-    using namespace std;\n\n\n\ntemplate <typename mint>\nstruct FPS {\n  vector<mint>\
+    \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\n\n#line\
+    \ 4 \"formal-power-series/formal-power-series.hpp\"\n#include <bits/stdc++.h>\n\
+    \nusing namespace std;\n\n\n\ntemplate <typename mint>\nstruct FPS {\n  vector<mint>\
     \ _vec;\n\n  constexpr int lg2(int N) const {\n    int ret = 0;\n    if ( N >\
     \ 0) ret = 31 - __builtin_clz(N);\n    if ((1LL << ret) < N) ret++;\n    return\
     \ ret;\n  }\n\n  // \u30CA\u30A4\u30FC\u30D6\u306A\u30CB\u30E5\u30FC\u30C8\u30F3\
@@ -175,7 +175,7 @@ data:
   isVerificationFile: false
   path: formal-power-series/sparse-fps.hpp
   requiredBy: []
-  timestamp: '2024-06-13 00:02:42+09:00'
+  timestamp: '2024-06-14 19:04:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp

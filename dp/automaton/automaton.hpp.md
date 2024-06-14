@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/automaton/remainder.hpp
     title: "\u3042\u307E\u308A\u3092\u7BA1\u7406\u3059\u308B\u30AA\u30FC\u30C8\u30DE\
       \u30C8\u30F3(remainder.hpp)"
@@ -10,12 +10,12 @@ data:
     path: test/verify/atcoder-tdpc-s.cpp
     title: test/verify/atcoder-tdpc-s.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://shino16.github.io/blog/post/algo/%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3/
@@ -56,7 +56,7 @@ data:
   - test/verify/atcoder-tdpc-s.cpp
   - dp/automaton/remainder.hpp
   timestamp: '2024-05-28 20:18:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/verify/yuki-372-itsautomatic.test.cpp
 documentation_of: dp/automaton/automaton.hpp
