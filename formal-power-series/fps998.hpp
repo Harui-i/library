@@ -1,3 +1,7 @@
+#ifndef HARUILIB_FORMAL_POWER_SERIES_FPS998_HPP
+#define HARUILIB_FORMAL_POWER_SERIES_FPS998_HPP
+
+
 #include "formal-power-series/formal-power-series.hpp"
 
 using mint = modint998244353;
@@ -180,3 +184,4 @@ FPS<mint> FPS<mint>::inv(int deg) const {
   return g.pre(deg);
 }
 
+#endif // HARUILIB_FORMAL_POWER_SERIES_FPS998_HPP

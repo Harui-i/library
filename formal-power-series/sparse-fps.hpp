@@ -1,4 +1,6 @@
-#pragma once
+#ifndef HARUILIB_FORMAL_POWER_SERIES_SPARSE_FPS_HPP
+#define HARUILIB_FORMAL_POWER_SERIES_SPARSE_FPS_HPP
+
 #include <vector>
 using namespace std;
 
@@ -63,3 +65,5 @@ FPS multiply_sparse(const FPS& f, const FPS& g) {
   return multiply_sparse(f, vpmi);
 }
 */
+
+#endif // HARUILIB_FORMAL_POWER_SERIES_SPARSE_FPS_HPP

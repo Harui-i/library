@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HARUILIB_FORMAL_POWER_SERIES_FORMAL_POWER_SERIES_HPP
+#define HARUILIB_FORMAL_POWER_SERIES_FORMAL_POWER_SERIES_HPP
 
 #include "../math/modint.hpp"
 #include <bits/stdc++.h>
@@ -229,3 +230,5 @@ struct FPS {
 //  virtual FPS exp(int deg=-1) const;
   virtual vector<mint> multiply(const vector<mint>& a, const vector<mint>& b);
   };
+
+#endif // HARUILIB_FORMAL_POWER_SERIES_FORMAL_POWER_SERIES_HPP
