@@ -1,6 +1,6 @@
 ---
 titel: Dijkstra(ダイクストラ法)
-documentation_of: //graph/dijkstra.md
+documentation_of: //graph/dijkstra.hpp
 ---
 
 負辺のないグラフでの最短距離を求めるアルゴリズム。
