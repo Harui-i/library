@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HARUILIB_MATH_MOD_POW_HPP
+#define HARUILIB_MATH_MOD_POW_HPP
 
 template <typename T>
 T mod_pow(T x, ll a, const T &p) {
@@ -16,3 +17,5 @@ T mod_pow(T x, ll a, const T &p) {
   }
   return ret;
 }
+
+#endif // HARUI MOD_POW_HPP

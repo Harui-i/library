@@ -1,4 +1,6 @@
-#pragma once
+#ifndef HARUILIB_GRAPH_DIAMETER_HPP
+#define HARUILIB_GRAPH_DIAMETER_HPP
+
 
 #include <vector>
 #include <queue>
@@ -82,3 +84,5 @@ namespace mylib {
   }
 
 } // namespace mylib
+
+#endif // HARUILIB_GRAPH_DIAMETER_HPP

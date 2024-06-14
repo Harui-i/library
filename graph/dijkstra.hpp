@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HARUILIB_GRAPH_DIJKSTRA_HPP
+#define HARUILIB_GRAPH_DIJKSTRA_HPP
 
 #include "graph/graph_template.hpp"
 
@@ -58,3 +59,5 @@ pair<vector<T>, vector<int>> dijkstra_path(const Graph<T>& graph, int start) {
 
   return make_pair(dist, prev);
 }
+
+#endif // HARUILIB_GRAPH_DIJKSTRA_HPP

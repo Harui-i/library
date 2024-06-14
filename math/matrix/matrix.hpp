@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HARUILIB_MATH_MATRIX_MATRIX_HPP
+#define HARUILIB_MATH_MATRIX_MATRIX_HPP
 
 template <class T>
 struct Matrix{
@@ -118,3 +119,5 @@ int sweep(int var) {
 
 
 };
+
+#endif // HARUILIB_MATH_MATRIX_MATRIX_HPP

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef HARUILIB_MATH_MODINT_HPP
+#define HARUILIB_MATH_MODINT_HPP
+
 template<int MOD>
 struct static_modint {
     int value;
@@ -86,3 +88,5 @@ template <int mod>
 using modint = static_modint<mod>;
 using modint998244353  = modint<998244353>;
 using modint1000000007 = modint<1000000007>;
+
+#endif // HARUILIB_MATH_MODINT_HPP

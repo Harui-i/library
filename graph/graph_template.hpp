@@ -1,4 +1,6 @@
-#pragma once
+#ifndef HARUILIB_GRAPH_TEMPLATE_HPP
+#define HARUILIB_GRAPH_TEMPLATE_HPP
+
 #include <vector>
 template <typename T>
 struct Edge {
@@ -33,3 +35,5 @@ struct Graph : vector<vector<Edge<T>>> {
   }
 
 };
+
+#endif // HARUILIB_GRAPH_TEMPLATE_HPP
