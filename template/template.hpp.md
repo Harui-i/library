@@ -52,6 +52,9 @@ data:
     path: test/verify/yosupo-rank-of-matrix.test.cpp
     title: test/verify/yosupo-rank-of-matrix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-shortest-path.test.cpp
+    title: test/verify/yosupo-shortest-path.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
   - icon: ':heavy_check_mark:'
@@ -131,6 +134,7 @@ data:
   verifiedWith:
   - test/verify/yosupo-division-of-polynomials.test.cpp
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
+  - test/verify/yosupo-shortest-path.test.cpp
   - test/verify/yosupo-exp-of-formal-power-series.test.cpp
   - test/verify/yosupo-matrix-product.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp

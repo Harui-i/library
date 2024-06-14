@@ -34,6 +34,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: formal-power-series/sparse-fps.hpp
       title: sparse-fps
+  - name: graph
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: graph/dijkstra.hpp
+      title: graph/dijkstra.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/graph_template.hpp
+      title: graph/graph_template.hpp
   - name: math/matrix
     pages:
     - icon: ':heavy_check_mark:'
@@ -120,6 +128,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-rank-of-matrix.test.cpp
       title: test/verify/yosupo-rank-of-matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-shortest-path.test.cpp
+      title: test/verify/yosupo-shortest-path.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yuki-372-itsautomatic.test.cpp
       title: test/verify/yuki-372-itsautomatic.test.cpp
