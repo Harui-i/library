@@ -72,18 +72,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-pow-of-matrix.test.cpp
     title: test/verify/yosupo-pow-of-matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-queue-operate-all-composite.test.cpp
     title: test/verify/yosupo-queue-operate-all-composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-rank-of-matrix.test.cpp
     title: test/verify/yosupo-rank-of-matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/modint.hpp\"\n\n\n\ntemplate<int MOD>\nstruct static_modint\
@@ -163,7 +163,7 @@ data:
   - formal-power-series/fps998.hpp
   - formal-power-series/formal-power-series.hpp
   timestamp: '2024-06-14 19:04:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-division-of-polynomials.test.cpp
   - test/verify/yosupo-division-of-polynomials.test.cpp

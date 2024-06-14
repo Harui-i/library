@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-deque-operate-all-composite.test.cpp
     title: test/verify/yosupo-deque-operate-all-composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-queue-operate-all-composite.test.cpp
     title: test/verify/yosupo-queue-operate-all-composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"structure/slide-window-aggregation.hpp\"\ntemplate <class\
@@ -66,7 +66,7 @@ data:
   path: structure/slide-window-aggregation.hpp
   requiredBy: []
   timestamp: '2024-05-21 00:35:00+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp

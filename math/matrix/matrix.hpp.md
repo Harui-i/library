@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-pow-of-matrix.test.cpp
     title: test/verify/yosupo-pow-of-matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-rank-of-matrix.test.cpp
     title: test/verify/yosupo-rank-of-matrix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/matrix/matrix.hpp\"\n\n\n\ntemplate <class T>\nstruct\
@@ -128,7 +128,7 @@ data:
   path: math/matrix/matrix.hpp
   requiredBy: []
   timestamp: '2024-06-14 19:04:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-matrix-product.test.cpp
   - test/verify/yosupo-inverse-of-matrix.test.cpp
