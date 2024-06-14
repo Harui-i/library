@@ -1,5 +1,4 @@
 #pragma once
-
 #include <vector>
 
 namespace std {
@@ -14,8 +13,6 @@ namespace std {
     Edge(int _from, int _to) : from(_from), to(_to), cost(T(1)) {}
 
   };
-
-
 
 
   template <typename T>
