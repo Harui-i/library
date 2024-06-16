@@ -45,19 +45,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/graph_template.hpp
       title: graph/graph_template.hpp
-  - name: math/matrix
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: math/matrix/matrix.hpp
-      title: "Matrix(\u884C\u5217)"
   - name: math
     pages:
+    - icon: ':warning:'
+      path: math/count_by_remainder.hpp
+      title: math/count_by_remainder.hpp
     - icon: ':warning:'
       path: math/mod_pow.hpp
       title: math/mod_pow.hpp
     - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: modint
+  - name: math/matrix
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: math/matrix/matrix.hpp
+      title: "Matrix(\u884C\u5217)"
   - name: structure/segment-tree
     pages:
     - icon: ':warning:'
