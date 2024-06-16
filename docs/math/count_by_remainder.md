@@ -1,9 +1,13 @@
 ---
-titel: $L$以上$R$未満で$M$で割った余りが$b$である整数の個数
+titel: count by remainder
 documentation_of: //math/count_by_remainder.hpp
 ---
 
+$L$ 以上 $R$未満であって、$M$で割った余りが$b$である整数の個数を求める。
+こんなんソラで書くのは頭バグらせますからね。
+
 ## count_by_remainder
+
 ```
 T count_by_remainder(T l, T r, T b, T M)
 ```
@@ -13,8 +17,10 @@ T count_by_remainder(T l, T r, T b, T M)
 - $O(1)$
 
 ###　実装例
+
 verify先がAtCしかみつからなかったので。
-``` C++
+
+```C++
 #include "math/count_by_remainder.hpp"
 
 int main() {
@@ -27,4 +33,6 @@ int main() {
   return 0;
 }
 ```
-問題: (https://atcoder.jp/contests/abc334/submissions/54631702) [https://atcoder.jp/contests/abc334/submissions/54631702]
+
+
+問題:  [https://atcoder.jp/contests/abc334/submissions/54631702] ( https://atcoder.jp/contests/abc334/submissions/54631702 )
