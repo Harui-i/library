@@ -35,11 +35,14 @@ data:
   verifiedWith: []
 documentation_of: math/count_by_remainder.hpp
 layout: document
-titel: "$L$\u4EE5\u4E0A$R$\u672A\u6E80\u3067$M$\u3067\u5272\u3063\u305F\u4F59\u308A\
-  \u304C$b$\u3067\u3042\u308B\u6574\u6570\u306E\u500B\u6570"
+titel: count by remainder
 ---
 
+$L$ 以上 $R$未満であって、$M$で割った余りが$b$である整数の個数を求める。
+こんなんソラで書くのは頭バグらせますからね。
+
 ## count_by_remainder
+
 ```
 T count_by_remainder(T l, T r, T b, T M)
 ```
@@ -49,8 +52,10 @@ T count_by_remainder(T l, T r, T b, T M)
 - $O(1)$
 
 ###　実装例
+
 verify先がAtCしかみつからなかったので。
-``` C++
+
+```C++
 #include "math/count_by_remainder.hpp"
 
 int main() {
@@ -63,4 +68,6 @@ int main() {
   return 0;
 }
 ```
-問題: (https://atcoder.jp/contests/abc334/submissions/54631702) [https://atcoder.jp/contests/abc334/submissions/54631702]
+
+
+問題:  [https://atcoder.jp/contests/abc334/submissions/54631702] ( https://atcoder.jp/contests/abc334/submissions/54631702 )
