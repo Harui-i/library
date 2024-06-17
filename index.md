@@ -1,6 +1,11 @@
 ---
 data:
   libraryCategories:
+  - name: convolution
+    pages:
+    - icon: ':warning:'
+      path: convolution/superset-zeta-moebius-transform.hpp
+      title: "\u4E0A\u4F4D\u96C6\u5408\u306E\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB"
   - name: dp/automaton
     pages:
     - icon: ':heavy_check_mark:'
