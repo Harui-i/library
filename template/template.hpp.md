@@ -19,6 +19,9 @@ data:
     path: test/verify/aoj-dpl3-c.test.cpp
     title: test/verify/aoj-dpl3-c.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-and-convolution.test.cpp
+    title: test/verify/yosupo-and-convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-deque-operate-all-composite.test.cpp
     title: test/verify/yosupo-deque-operate-all-composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -139,6 +142,7 @@ data:
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-shortest-path.test.cpp
   - test/verify/yosupo-exp-of-formal-power-series.test.cpp
+  - test/verify/yosupo-and-convolution.test.cpp
   - test/verify/yosupo-matrix-product.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
   - test/verify/aoj-0560.test.cpp

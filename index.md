@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: convolution
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: convolution/superset-zeta-moebius-transform.hpp
       title: "\u4E0A\u4F4D\u96C6\u5408\u306E\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB"
   - name: dp/automaton
@@ -106,6 +106,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/aoj-dpl3-c.test.cpp
       title: test/verify/aoj-dpl3-c.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-and-convolution.test.cpp
+      title: test/verify/yosupo-and-convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-deque-operate-all-composite.test.cpp
       title: test/verify/yosupo-deque-operate-all-composite.test.cpp

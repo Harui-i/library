@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-and-convolution.test.cpp
+    title: test/verify/yosupo-and-convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/superset-zeta-moebius-transform.hpp\"\n\n\n\n\
@@ -38,8 +41,9 @@ data:
   path: convolution/superset-zeta-moebius-transform.hpp
   requiredBy: []
   timestamp: '2024-06-18 00:02:31+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/verify/yosupo-and-convolution.test.cpp
 documentation_of: convolution/superset-zeta-moebius-transform.hpp
 layout: document
 title: "\u4E0A\u4F4D\u96C6\u5408\u306E\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB"
@@ -48,7 +52,7 @@ title: "\u4E0A\u4F4D\u96C6\u5408\u306E\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB
 ## 概要
 
 サイズ$N$の集合 $S$について、$f(S)$が($2^N$の`vector`で)与えられたときに、
-$$ g(S) = \Sum_{S \subseteq T} f(S) $$ を求めたり(Zeta)、その逆変換を求めたり(Möbius)する。
+$ g(S) = \Sum_{S \subseteq T} f(S) $ を求めたり(Zeta)、その逆変換を求めたり(Möbius)する。
 
 
 ### 計算量
