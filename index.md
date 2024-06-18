@@ -4,6 +4,10 @@ data:
   - name: convolution
     pages:
     - icon: ':heavy_check_mark:'
+      path: convolution/divisor-multiple-zeta-moebius-transform.hpp
+      title: "\u500D\u6570/\u7D04\u6570\u95A2\u4FC2\u306B\u3064\u3044\u3066\u306E\u30BC\
+        \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
+    - icon: ':heavy_check_mark:'
       path: convolution/superset-zeta-moebius-transform.hpp
       title: "\u4E0A\u4F4D\u96C6\u5408\u306E\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB"
   - name: dp/automaton
@@ -118,6 +122,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-exp-of-formal-power-series.test.cpp
       title: test/verify/yosupo-exp-of-formal-power-series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-gcd-convolution.test.cpp
+      title: test/verify/yosupo-gcd-convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
       title: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
