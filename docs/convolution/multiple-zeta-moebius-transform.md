@@ -8,7 +8,7 @@ documentation_of: //convolution/multiple-zeta-moebius-transform.hpp
 計算量は $ O(N \log \log N) $ にできるけど、よくわからないので妥協。
 
 ### 倍数についてのゼータ変換
-長さ$N$の数列$A$が与えられたときに、 $ A^{\star}_i = \Sigma_{i \mid j} A_j $ を求める。
+長さ$N$の数列$A$が与えられたときに、 $ A^{\prime}_i = \Sigma_{i \mid j} A_j $ を求める。
 
 ### 計算量
 
@@ -25,6 +25,6 @@ documentation_of: //convolution/multiple-zeta-moebius-transform.hpp
 ### 何が嬉しいのか
 
 数列$A$と$B$が与えられたとして、倍数についてのゼータ変換をすることで
-$ A^{\star}$と$B^{\star} $を得る。 $ A^{\star}_i B^{\star}_i = \Sigma_{i \mid j , i \mid k} A_j B_k $ であり、
+$ A^{\prime}$と$B^{\prime} $を得る。 $ A^{\prime}_i B^{\prime}_i = \Sigma_{i \mid j , i \mid k} A_j B_k $ であり、
 
-$ {i \mid j , i \mid k} $ とは $ i | gcd(j,k) $ と言い換えられるから、$A^{\star} B^{\star} $ を倍数についてメビウス変換することで、gcd畳み込みができる、みたいな感じ。(書いてて自信なくなってきたな。間違ってるかも)
+$ {i \mid j , i \mid k} $ とは $ i \mid gcd(j,k) $ と言い換えられるから、$A^{\prime} B^{\prime} $ を倍数についてメビウス変換することで、gcd畳み込みができる、みたいな感じ。(書いてて自信なくなってきたな。間違ってるかも)

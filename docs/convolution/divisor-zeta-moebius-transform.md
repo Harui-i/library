@@ -22,3 +22,9 @@ documentation_of: //convolution/divisor-zeta-moebius-transform.hpp
 
 - $O(N \log N) $
 
+
+## 何が嬉しいのか
+
+一言で : 添字lcmで畳み込みができる
+
+約数についてメビウス変換んしたあと各点積とってゼータ変換取ったらlcm畳み込みになる。TODO: 書く
