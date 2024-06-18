@@ -2,7 +2,7 @@
 
 #include "template/template.hpp"
 #include "math/modint.hpp"
-#include "convolution/divisor-multiple-zeta-moebius-transform.hpp"
+#include "convolution/multiple-zeta-moebius-transform.hpp"
 
 using mint = modint998244353;
 
