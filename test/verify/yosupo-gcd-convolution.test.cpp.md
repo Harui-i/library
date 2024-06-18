@@ -77,7 +77,18 @@ data:
     \ T>\n  std::vector<T> moebius_transform_naive(const std::vector<T>& f) {\n  \
     \  int N = f.size()-1;\n    std::vector<T> g = f;\n    for (int i=N; i>=1; i--)\
     \ {\n      for (int j=2*i; j<=N; j+=i) {\n        g[i] -= g[j];\n      }\n   \
-    \ }\n    return g;\n  }\n\n}\n\n\n\n#line 6 \"test/verify/yosupo-gcd-convolution.test.cpp\"\
+    \ }\n    return g;\n  }\n\n}\n\nnamespace divisor {\n  // \u7D04\u6570\u306B\u3064\
+    \u3044\u3066\u306E\u30BC\u30FC\u30BF\u5909\u63DB\u3002 g_n = \\Sigma_{m|n} f_m\
+    \ \u306A\u308B g \u3092\u6C42\u3081\u308B\u3002\n  template <typename T>\n  std::vector<T>\
+    \ zeta_transform_naive(const std::vector<T>& f) {\n    int N = f.size() - 1;\n\
+    \    std::vector<T> g = f;\n\n    for(int i=1; i<=N; i++) {\n      for(int j=2*i;\
+    \ j<=N; j+=i) {\n        g[j] += f[i];\n      }\n    }\n\n    return g;\n  }\n\
+    \n  // \u7D04\u6570\u306B\u3064\u3044\u3066\u306E\u30E1\u30D3\u30A6\u30B9\u5909\
+    \u63DB\u3002 f_n = \\Sigma_{m|n} g_m \u306A\u308B g \u3092\u6C42\u3081\u308B\u3002\
+    \n  template <typename T>\n  std::vector<T> moebius_transform_naive(const std::vector<T>&\
+    \ f) {\n    int N = f.size() - 1;\n    std::vector<T> g = f;\n\n    for (int i=1;\
+    \ i<=N; i++) {\n      for (int j=i*2; j<= N; j+=i) {\n        g[j] -= g[i];\n\
+    \      }\n    }\n\n    return g;\n  }\n}\n\n\n\n#line 6 \"test/verify/yosupo-gcd-convolution.test.cpp\"\
     \n\nusing mint = modint998244353;\n\nint main() {\n  ios::sync_with_stdio(0);\
     \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  vector<mint>a(N+1); for(int\
     \ i=0; i<N; i++) cin >> a[i+1];\n  vector<mint>b(N+1); for(int i=0; i<N; i++)\
@@ -101,7 +112,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-gcd-convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-06-18 18:48:26+09:00'
+  timestamp: '2024-06-18 22:37:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-gcd-convolution.test.cpp
