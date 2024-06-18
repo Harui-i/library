@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: convolution
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: convolution/divisor-zeta-moebius-transform.hpp
       title: "\u7D04\u6570\u306B\u3064\u3044\u3066\u306E\u30BC\u30FC\u30BF\u5909\u63DB\
         /\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -138,6 +138,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-inverse-of-matrix.test.cpp
       title: test/verify/yosupo-inverse-of-matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-lcm-convolution.test.cpp
+      title: test/verify/yosupo-lcm-convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-log-of-formal-power-series.test.cpp
       title: test/verify/yosupo-log-of-formal-power-series.test.cpp

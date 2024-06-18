@@ -67,6 +67,9 @@ data:
     path: test/verify/yosupo-inverse-of-matrix.test.cpp
     title: test/verify/yosupo-inverse-of-matrix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-lcm-convolution.test.cpp
+    title: test/verify/yosupo-lcm-convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-log-of-formal-power-series.test.cpp
     title: test/verify/yosupo-log-of-formal-power-series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -182,6 +185,7 @@ data:
   - test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
   - test/verify/yuki-372-itsautomatic.test.cpp
+  - test/verify/yosupo-lcm-convolution.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
   - test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp

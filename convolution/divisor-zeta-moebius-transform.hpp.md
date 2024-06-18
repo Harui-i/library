@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-lcm-convolution.test.cpp
+    title: test/verify/yosupo-lcm-convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convolution/divisor-zeta-moebius-transform.hpp\"\n\n\n\n\
@@ -40,8 +43,9 @@ data:
   path: convolution/divisor-zeta-moebius-transform.hpp
   requiredBy: []
   timestamp: '2024-06-18 23:58:45+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/verify/yosupo-lcm-convolution.test.cpp
 documentation_of: convolution/divisor-zeta-moebius-transform.hpp
 layout: document
 title: "\u7D04\u6570\u306B\u3064\u3044\u3066\u306E\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\
@@ -67,3 +71,9 @@ title: "\u7D04\u6570\u306B\u3064\u3044\u3066\u306E\u30BC\u30FC\u30BF\u5909\u63DB
 
 - $O(N \log N) $
 
+
+## 何が嬉しいのか
+
+一言で : 添字lcmで畳み込みができる
+
+約数についてメビウス変換んしたあと各点積とってゼータ変換取ったらlcm畳み込みになる。TODO: 書く
