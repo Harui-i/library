@@ -3,6 +3,8 @@ title: 倍数についてのゼータ変換/メビウス変換
 documentation_of: //convolution/multiple-zeta-moebius-transform.hpp
 ---
 
+TODO: `map`で渡すタイプのゼータ/メビウス変換について書く
+
 ## 概要
 
 計算量は $ O(N \log \log N) $ にできるけど、よくわからないので妥協。
