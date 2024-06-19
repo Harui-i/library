@@ -33,7 +33,32 @@ namespace divisor {
 
     return g;
   }
-}
 
+  template <typename I, typename T>
+  std::map<I, T> zeta_transform(const std::map<I, T>& mp) {
+    std::map<I, T> ret = mp;
+    for (auto p2itr = mp.rbegin(); p2itr!=mp.rend(); p2itr++) {
+      for (auto p1itr = next(p2itr); p1itr != mp.rend(); p1itr++) {
+        if ((*p2itr).first % (*p1itr).first == 0) ret[(*p2itr).first] += ret[(*p1itr).first];
+      }
+    }
+
+    return ret;
+  }
+
+
+  template <typename I, typename T>
+  std::map<I, T> moebius_transform(const std::map<I, T>& mp) {
+    std::map<I, T> ret = mp;
+
+    for (auto p1itr = ret.begin(); p1itr != ret.end(); p1itr++) {
+      for (auto p2itr = next(p1itr); p2itr != ret.end(); p2itr++) {
+        if ( (*p2itr).first % (*p1itr).first == 0) ret[(*p2itr).first] -= ret[(*p1itr).first];
+      }
+    }
+
+    return ret;
+  }
+} // namespace divisor
 
 #endif // HARUILIB_CONVOLUTION_DIVISOR_ZETA_MOEBIUS_TRANSFORM_HPP
