@@ -66,12 +66,12 @@ data:
     - icon: ':warning:'
       path: math/mod_pow.hpp
       title: math/mod_pow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: modint
   - name: math/matrix
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/matrix.hpp
       title: "Matrix(\u884C\u5217)"
   - name: structure/segment-tree
@@ -86,7 +86,7 @@ data:
       title: Foldable Deque(Slide Window Aggregation)
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
   - name: test/unittest
@@ -180,7 +180,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/math/matrix/yosupo-matrix-product.test.cpp
       title: test/verify/math/matrix/yosupo-matrix-product.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
       title: test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
     - icon: ':heavy_check_mark:'
