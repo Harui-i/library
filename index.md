@@ -66,12 +66,12 @@ data:
     - icon: ':warning:'
       path: math/mod_pow.hpp
       title: math/mod_pow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.hpp
       title: modint
   - name: math/matrix
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/matrix/matrix.hpp
       title: "Matrix(\u884C\u5217)"
   - name: structure/segment-tree
@@ -86,7 +86,7 @@ data:
       title: Foldable Deque(Slide Window Aggregation)
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/template.hpp
       title: template/template.hpp
   - name: test/verify
@@ -94,12 +94,14 @@ data:
     - icon: ':warning:'
       path: test/verify/atcoder-tdpc-s.cpp
       title: test/verify/atcoder-tdpc-s.cpp
+  - name: test/verify/fps
+    pages:
     - icon: ':warning:'
-      path: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
-      title: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
+      path: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
+      title: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
     - icon: ':warning:'
-      path: test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
-      title: test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+      path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+      title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   verificationCategories:
   - name: .
     pages:
@@ -115,47 +117,11 @@ data:
       path: test/verify/aoj-dpl3-c.test.cpp
       title: test/verify/aoj-dpl3-c.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/verify/yosupo-and-convolution.test.cpp
-      title: test/verify/yosupo-and-convolution.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-deque-operate-all-composite.test.cpp
       title: test/verify/yosupo-deque-operate-all-composite.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/verify/yosupo-division-of-polynomials.test.cpp
-      title: test/verify/yosupo-division-of-polynomials.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/verify/yosupo-exp-of-formal-power-series.test.cpp
-      title: test/verify/yosupo-exp-of-formal-power-series.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/verify/yosupo-gcd-convolution.test.cpp
-      title: test/verify/yosupo-gcd-convolution.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
-      title: test/verify/yosupo-inv-of-formal-power-series-fast2.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
-      title: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/verify/yosupo-inverse-of-matrix.test.cpp
-      title: test/verify/yosupo-inverse-of-matrix.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/verify/yosupo-lcm-convolution.test.cpp
-      title: test/verify/yosupo-lcm-convolution.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/verify/yosupo-log-of-formal-power-series.test.cpp
-      title: test/verify/yosupo-log-of-formal-power-series.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/verify/yosupo-matrix-product.test.cpp
-      title: test/verify/yosupo-matrix-product.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/verify/yosupo-pow-of-matrix.test.cpp
-      title: test/verify/yosupo-pow-of-matrix.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-queue-operate-all-composite.test.cpp
       title: test/verify/yosupo-queue-operate-all-composite.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/verify/yosupo-rank-of-matrix.test.cpp
-      title: test/verify/yosupo-rank-of-matrix.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-shortest-path.test.cpp
       title: test/verify/yosupo-shortest-path.test.cpp
@@ -168,6 +134,48 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yuki-9000.test.cpp
       title: test/verify/yuki-9000.test.cpp
+  - name: test/verify/convolution
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/verify/convolution/yosupo-and-convolution.test.cpp
+      title: test/verify/convolution/yosupo-and-convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/convolution/yosupo-gcd-convolution.test.cpp
+      title: test/verify/convolution/yosupo-gcd-convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/convolution/yosupo-lcm-convolution.test.cpp
+      title: test/verify/convolution/yosupo-lcm-convolution.test.cpp
+  - name: test/verify/fps
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/verify/fps/yosupo-division-of-polynomials.test.cpp
+      title: test/verify/fps/yosupo-division-of-polynomials.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
+      title: test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
+      title: test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+      title: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+      title: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+  - name: test/verify/math/matrix
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+      title: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/math/matrix/yosupo-matrix-product.test.cpp
+      title: test/verify/math/matrix/yosupo-matrix-product.test.cpp
+    - icon: ':x:'
+      path: test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
+      title: test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
+      title: test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
   - name: unabstracted_libs/segment-tree
     pages:
     - icon: ':heavy_check_mark:'

@@ -5,21 +5,15 @@ data:
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
-    path: formal-power-series/formal-power-series.hpp
-    title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
     path: formal-power-series/fps998.hpp
     title: formal-power-series/fps998.hpp
-  - icon: ':heavy_check_mark:'
-    path: formal-power-series/sparse-fps.hpp
-    title: sparse-fps
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -29,11 +23,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse
+    PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series
     links:
-    - https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse
-  bundledCode: "#line 1 \"test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse\"\
+    - https://judge.yosupo.jp/problem/inv_of_formal_power_series
+  bundledCode: "#line 1 \"test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
     \n\n#line 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\ntypedef long long ll;\ntypedef unsigned int uint;\ntemplate<class T> inline\
     \ bool chmax(T& a, const T& b) {if (a<b) {a=b; return true;} return false;}\n\
@@ -248,59 +242,32 @@ data:
     \        [d, 2d)\u306E\u9805\n    //    h'_2d*g_d\u306E[0,d)       h'_2d*g_d\u306E\
     [d, 2d)\n    //    h'_2d*g_d\u306E[2d, 3d)    h'_2d*g_d\u306E[3d, 4d)\n\n    g\
     \ = g_origin - h_2d;\n    g.resize(d * 2);\n\n  }\n\n  return g.pre(deg);\n}\n\
-    \n\n#line 1 \"formal-power-series/sparse-fps.hpp\"\n\n\n\n#line 5 \"formal-power-series/sparse-fps.hpp\"\
-    \nusing namespace std;\n\n#line 8 \"formal-power-series/sparse-fps.hpp\"\n\n//\
-    \ calculate inverse of f(sparse)\n// deg : -1 + ( maximum degree of g )\ntemplate\
-    \ <typename mint>\nFPS<mint> inv_sparse(const vector<pair<int,mint>>& f, int deg)\
-    \ {\n  assert(deg >= 0);\n  for(int i=0; i<(int)f.size()-1; i++) assert(f[i].first\
-    \ < f[i+1].first); \n  assert(f[0].first == 0 && f[0].second != mint(0));\n\n\
-    \  mint f0inv = f[0].second.inv();\n  vector<mint> g(deg); g[0] = f0inv;\n  for(int\
-    \ i=0; i<deg-1; i++) {\n    for (pair<int,mint> pim : f) {\n      if (i+1 - pim.first\
-    \ >= 0) g[i+1] -= pim.second * g[i+1 - pim.first];\n      else continue;\n   \
-    \ }\n    g[i+1] *= f0inv;\n  }\n\n  return g;\n}\n\ntemplate <typename mint>\n\
-    FPS<mint> inv_sparse(const FPS<mint>& f, int deg) {\n  vector<pair<int,mint>>\
-    \ vpim;\n  for(int i=0; i<f.size(); i++) if (f[i] != mint(0)) vpim.emplace_back(i,\
-    \ f[i]);\n\n  return inv_sparse(vpim, deg);\n}\n\n\n/* tabun baggute masu. TODO\n\
-    template<typename mint>\nFPS multiply_sparse(const FPS& f, const vector<pair<int,mint>>&\
-    \ g, int deg) {\n\n  \n\n  FPS ret(deg);\n  for (pair<int,mint> pim : g) {\n \
-    \   assert(pim.second != 0);\n    if (pim.second == 0) continue;\n\n    for(int\
-    \ i=0; i<f.size(); i++) {\n      if (i+pim.first >= ret.size()) continue;\n  \
-    \    if (f[i] != mint(0) && pim.second != mint(0)) ret[i+pim.first] += pim.second\
-    \ * f[i];\n    }\n  }\n\n  return ret;\n}\n\ntemplate <typename mint>\nFPS multiply_sparse(const\
-    \ FPS& f, const FPS& g) {\n  vector<pair<mint,int>> vpmi;\n\n  for(int i=0; i<g.size();\
-    \ i++) if (g[i] != mint(0)) vpmi.emplace_back(i, g[i]);\n\n  return multiply_sparse(f,\
-    \ vpmi);\n}\n*/\n\n\n#line 8 \"test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp\"\
+    \n\n#line 7 \"test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp\"\
     \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
-    \ cin.tie(0); cout.tie(0);\n  int N, K; cin >> N >> K;\n  vector<pair<int,mint>>\
-    \ ia(K);\n  for(int i=0; i<K; i++) cin >> ia[i].first >> ia[i].second;\n\n  FPS<mint>\
-    \ inv = inv_sparse(ia, N);\n  for(int i=0; i<N; i++) cout << inv[i] << \" \";\n\
-    \  cout << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse\"\
+    \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  FPS<mint> a_fps(N);\n  for(int\
+    \ i=0; i<N; i++) cin >> a_fps[i];\n\n  cout << a_fps.inv(N) << endl;\n\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
     \n\n#include \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include\
     \ \"formal-power-series/formal-power-series.hpp\"\n#include \"formal-power-series/fps998.hpp\"\
-    \n#include \"formal-power-series/sparse-fps.hpp\"\n\nusing mint = modint998244353;\n\
-    \n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int N,\
-    \ K; cin >> N >> K;\n  vector<pair<int,mint>> ia(K);\n  for(int i=0; i<K; i++)\
-    \ cin >> ia[i].first >> ia[i].second;\n\n  FPS<mint> inv = inv_sparse(ia, N);\n\
-    \  for(int i=0; i<N; i++) cout << inv[i] << \" \";\n  cout << endl;\n}\n"
+    \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
+    \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  FPS<mint> a_fps(N);\n  for(int\
+    \ i=0; i<N; i++) cin >> a_fps[i];\n\n  cout << a_fps.inv(N) << endl;\n\n}\n"
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
   - formal-power-series/formal-power-series.hpp
   - math/modint.hpp
   - formal-power-series/fps998.hpp
-  - formal-power-series/sparse-fps.hpp
-  - formal-power-series/formal-power-series.hpp
   isVerificationFile: true
-  path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  path: test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
   requiredBy: []
-  timestamp: '2024-06-14 19:20:17+09:00'
+  timestamp: '2024-06-19 18:05:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
+documentation_of: test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
-- /verify/test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp.html
-title: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
+- /verify/test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
+- /verify/test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp.html
+title: test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
 ---

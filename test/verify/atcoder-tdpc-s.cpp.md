@@ -5,10 +5,10 @@ data:
     path: dp/automaton/automaton.hpp
     title: "\u6C7A\u5B9A\u6027\u6709\u9650\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3(DFA,\
       \ Deterministic Finite Automaton)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

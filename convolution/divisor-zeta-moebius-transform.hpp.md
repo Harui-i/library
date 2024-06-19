@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/verify/yosupo-lcm-convolution.test.cpp
-    title: test/verify/yosupo-lcm-convolution.test.cpp
+    path: test/verify/convolution/yosupo-lcm-convolution.test.cpp
+    title: test/verify/convolution/yosupo-lcm-convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -45,7 +45,7 @@ data:
   timestamp: '2024-06-18 23:58:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yosupo-lcm-convolution.test.cpp
+  - test/verify/convolution/yosupo-lcm-convolution.test.cpp
 documentation_of: convolution/divisor-zeta-moebius-transform.hpp
 layout: document
 title: "\u7D04\u6570\u306B\u3064\u3044\u3066\u306E\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\

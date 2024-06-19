@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
-    path: formal-power-series/fiduccia.hpp
-    title: formal-power-series/fiduccia.hpp
+  - icon: ':heavy_check_mark:'
+    path: formal-power-series/formal-power-series.hpp
+    title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
@@ -11,24 +11,29 @@ data:
     path: formal-power-series/fps998.hpp
     title: formal-power-series/fps998.hpp
   - icon: ':heavy_check_mark:'
+    path: formal-power-series/sparse-fps.hpp
+    title: sparse-fps
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse
     links:
-    - https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
-  bundledCode: "#line 1 \"test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    - https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse
+  bundledCode: "#line 1 \"test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse\"\
     \n\n#line 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\ntypedef long long ll;\ntypedef unsigned int uint;\ntemplate<class T> inline\
     \ bool chmax(T& a, const T& b) {if (a<b) {a=b; return true;} return false;}\n\
@@ -243,60 +248,59 @@ data:
     \        [d, 2d)\u306E\u9805\n    //    h'_2d*g_d\u306E[0,d)       h'_2d*g_d\u306E\
     [d, 2d)\n    //    h'_2d*g_d\u306E[2d, 3d)    h'_2d*g_d\u306E[3d, 4d)\n\n    g\
     \ = g_origin - h_2d;\n    g.resize(d * 2);\n\n  }\n\n  return g.pre(deg);\n}\n\
-    \n\n#line 7 \"test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp\"\
-    \n\n#line 3 \"formal-power-series/fiduccia.hpp\"\n\n// BAGUTTERU!!! gomen!!!!\n\
-    // given linear recurrence sequence a_{n+K}= c_1 a_{n+K-1} + c_2 a_{n+k-2} + \\\
-    dots + c_{K-1} a_{n+1} + c_K a_n\n// a_0, a_1, \\dots, a_{K-1} are given\n// calculate\
-    \ a_N (N-th term of linear recurrence sequence) time complexity is O(K log K log\
-    \ N) (when NNT is used), O(K^2 log N) (when naive convolution is used).\ntemplate\
-    \ <typename mint> \nmint Fiduccia(const vector<mint>& a, const vector<mint>& c,\
-    \ unsigned long long  N) {\n  if (N < a.size()) return a[N];\n  assert(a.size()\
-    \ == c.size());\n  int K = c.size();\n\n  FPS<mint> varphi(K+1); \n  varphi[K]\
-    \ = mint(1);\n  for(int i=0; i<K; i++) varphi[i] = mint(-1) * c[K-i-1];\n\n  //\
-    \ calculate x^N mod varphi, using square and multiply technique.\n  // Note that\
-    \ there is two way to implement the methodlogy. LSB-first algorithm(famous one\
-    \ ) and MSB-first alogirthm.\n int msb=0;\n  for (int i=0; 1ULL<< i <=N; i++)\
-    \ {\n    if (N & (1ULL << i)) msb = i;\n  }\n  FPS<mint> remainder(1); remainder[0]\
-    \ = mint(1);\n  for (int i=msb; i>=0; i--) {\n    if (N & (1ULL << i)) {\n   \
-    \   remainder = remainder << 1; // it is equal to remainder *= x.\n      if (remainder.size()\
-    \ >= varphi.size()) remainder %= varphi;\n    }\n    if (i != 0) {\n      remainder\
-    \ *= remainder; // NTT\u306A\u3089\u3001NTT\u914D\u5217\u3092\u4F7F\u3044\u56DE\
-    \u3059\u3053\u3068\u3067\u5B9A\u6570\u500D\u304C\u826F\u304F\u306A\u308B\u306D\
-    \n      if (remainder.size() >= varphi.size()) remainder %= varphi;\n    }\n \
-    \ }\n\n  // remainder = x^N mod varphi \n  mint ret = 0;\n  assert(remainder.size()\
-    \ <= K);\n  for(int i=0; i<remainder.size(); i++) {\n    ret += remainder[i] *\
-    \ a[i];\n  }\n\n  return ret;\n}\n#line 9 \"test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp\"\
+    \n\n#line 1 \"formal-power-series/sparse-fps.hpp\"\n\n\n\n#line 5 \"formal-power-series/sparse-fps.hpp\"\
+    \nusing namespace std;\n\n#line 8 \"formal-power-series/sparse-fps.hpp\"\n\n//\
+    \ calculate inverse of f(sparse)\n// deg : -1 + ( maximum degree of g )\ntemplate\
+    \ <typename mint>\nFPS<mint> inv_sparse(const vector<pair<int,mint>>& f, int deg)\
+    \ {\n  assert(deg >= 0);\n  for(int i=0; i<(int)f.size()-1; i++) assert(f[i].first\
+    \ < f[i+1].first); \n  assert(f[0].first == 0 && f[0].second != mint(0));\n\n\
+    \  mint f0inv = f[0].second.inv();\n  vector<mint> g(deg); g[0] = f0inv;\n  for(int\
+    \ i=0; i<deg-1; i++) {\n    for (pair<int,mint> pim : f) {\n      if (i+1 - pim.first\
+    \ >= 0) g[i+1] -= pim.second * g[i+1 - pim.first];\n      else continue;\n   \
+    \ }\n    g[i+1] *= f0inv;\n  }\n\n  return g;\n}\n\ntemplate <typename mint>\n\
+    FPS<mint> inv_sparse(const FPS<mint>& f, int deg) {\n  vector<pair<int,mint>>\
+    \ vpim;\n  for(int i=0; i<f.size(); i++) if (f[i] != mint(0)) vpim.emplace_back(i,\
+    \ f[i]);\n\n  return inv_sparse(vpim, deg);\n}\n\n\n/* tabun baggute masu. TODO\n\
+    template<typename mint>\nFPS multiply_sparse(const FPS& f, const vector<pair<int,mint>>&\
+    \ g, int deg) {\n\n  \n\n  FPS ret(deg);\n  for (pair<int,mint> pim : g) {\n \
+    \   assert(pim.second != 0);\n    if (pim.second == 0) continue;\n\n    for(int\
+    \ i=0; i<f.size(); i++) {\n      if (i+pim.first >= ret.size()) continue;\n  \
+    \    if (f[i] != mint(0) && pim.second != mint(0)) ret[i+pim.first] += pim.second\
+    \ * f[i];\n    }\n  }\n\n  return ret;\n}\n\ntemplate <typename mint>\nFPS multiply_sparse(const\
+    \ FPS& f, const FPS& g) {\n  vector<pair<mint,int>> vpmi;\n\n  for(int i=0; i<g.size();\
+    \ i++) if (g[i] != mint(0)) vpmi.emplace_back(i, g[i]);\n\n  return multiply_sparse(f,\
+    \ vpmi);\n}\n*/\n\n\n#line 8 \"test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp\"\
     \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
-    \ cin.tie(0); cout.tie(0);\n  int d; cin >> d;\n  ll K; cin >> K;\n  vector<mint>a(d);\
-    \ for(int i=0; i<d; i++) cin >> a[i];\n  vector<mint>c(d); for(int i=0; i<d; i++)\
-    \ cin >> c[i];\n\n  reverse(c.begin(), c.end()); \n  mint ans = Fiduccia(a,c,K);\n\
-    \n  cout << ans.val() << \"\\n\";\n\n\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    \ cin.tie(0); cout.tie(0);\n  int N, K; cin >> N >> K;\n  vector<pair<int,mint>>\
+    \ ia(K);\n  for(int i=0; i<K; i++) cin >> ia[i].first >> ia[i].second;\n\n  FPS<mint>\
+    \ inv = inv_sparse(ia, N);\n  for(int i=0; i<N; i++) cout << inv[i] << \" \";\n\
+    \  cout << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse\"\
     \n\n#include \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include\
     \ \"formal-power-series/formal-power-series.hpp\"\n#include \"formal-power-series/fps998.hpp\"\
-    \n\n#include \"formal-power-series/fiduccia.hpp\"\n\nusing mint = modint998244353;\n\
-    \n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int d;\
-    \ cin >> d;\n  ll K; cin >> K;\n  vector<mint>a(d); for(int i=0; i<d; i++) cin\
-    \ >> a[i];\n  vector<mint>c(d); for(int i=0; i<d; i++) cin >> c[i];\n\n  reverse(c.begin(),\
-    \ c.end()); \n  mint ans = Fiduccia(a,c,K);\n\n  cout << ans.val() << \"\\n\"\
-    ;\n\n\n}\n"
+    \n#include \"formal-power-series/sparse-fps.hpp\"\n\nusing mint = modint998244353;\n\
+    \n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int N,\
+    \ K; cin >> N >> K;\n  vector<pair<int,mint>> ia(K);\n  for(int i=0; i<K; i++)\
+    \ cin >> ia[i].first >> ia[i].second;\n\n  FPS<mint> inv = inv_sparse(ia, N);\n\
+    \  for(int i=0; i<N; i++) cout << inv[i] << \" \";\n  cout << endl;\n}\n"
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
   - formal-power-series/formal-power-series.hpp
   - math/modint.hpp
   - formal-power-series/fps998.hpp
-  - formal-power-series/fiduccia.hpp
-  isVerificationFile: false
-  path: test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+  - formal-power-series/sparse-fps.hpp
+  - formal-power-series/formal-power-series.hpp
+  isVerificationFile: true
+  path: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
   requiredBy: []
-  timestamp: '2024-06-14 19:20:17+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2024-06-19 18:05:48+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+documentation_of: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
 layout: document
 redirect_from:
-- /library/test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
-- /library/test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp.html
-title: test/verify/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+- /verify/test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+- /verify/test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp.html
+title: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
 ---

@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/fps998.hpp
     title: formal-power-series/fps998.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -23,12 +23,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/log_of_formal_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/division_of_polynomials
     links:
-    - https://judge.yosupo.jp/problem/log_of_formal_power_series
-  bundledCode: "#line 1 \"test/verify/yosupo-log-of-formal-power-series.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\
-    \n\n#line 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    - https://judge.yosupo.jp/problem/division_of_polynomials
+  bundledCode: "#line 1 \"test/verify/fps/yosupo-division-of-polynomials.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\n\
+    \n#line 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\ntypedef long long ll;\ntypedef unsigned int uint;\ntemplate<class T> inline\
     \ bool chmax(T& a, const T& b) {if (a<b) {a=b; return true;} return false;}\n\
     template<class T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;}\
@@ -242,18 +242,24 @@ data:
     \        [d, 2d)\u306E\u9805\n    //    h'_2d*g_d\u306E[0,d)       h'_2d*g_d\u306E\
     [d, 2d)\n    //    h'_2d*g_d\u306E[2d, 3d)    h'_2d*g_d\u306E[3d, 4d)\n\n    g\
     \ = g_origin - h_2d;\n    g.resize(d * 2);\n\n  }\n\n  return g.pre(deg);\n}\n\
-    \n\n#line 7 \"test/verify/yosupo-log-of-formal-power-series.test.cpp\"\n\nusing\
-    \ mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
-    \ cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n  for(int\
-    \ i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.log(N) << endl;\n\
-    \n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\
+    \n\n#line 7 \"test/verify/fps/yosupo-division-of-polynomials.test.cpp\"\n\nint\
+    \ main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int N, M; cin\
+    \ >> N >> M;\n\n  FPS<mint> f(N); for(int i=0; i<N; i++) cin >> f[i];\n  FPS<mint>\
+    \ g(M); for(int i=0; i<M; i++) cin >> g[i];\n\n  FPS quotient = f / g;\n  FPS\
+    \ remainder = f % g;\n  int u = quotient.size();\n  int v = remainder.size();\n\
+    \  cout << u << \" \" << v << \"\\n\";\n  for(int i=0; i<u; i++) cout << quotient[i]\
+    \ << \" \";\n  cout << \"\\n\";\n\n  for(int i=0; i<v; i++) cout << remainder[i]\
+    \ << \" \";\n  cout << \"\\n\";\n\n}\n\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\
     \n\n#include \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include\
     \ \"formal-power-series/formal-power-series.hpp\"\n#include \"formal-power-series/fps998.hpp\"\
-    \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
-    \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n\
-    \  for(int i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.log(N)\
-    \ << endl;\n\n}\n"
+    \n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int N,\
+    \ M; cin >> N >> M;\n\n  FPS<mint> f(N); for(int i=0; i<N; i++) cin >> f[i];\n\
+    \  FPS<mint> g(M); for(int i=0; i<M; i++) cin >> g[i];\n\n  FPS quotient = f /\
+    \ g;\n  FPS remainder = f % g;\n  int u = quotient.size();\n  int v = remainder.size();\n\
+    \  cout << u << \" \" << v << \"\\n\";\n  for(int i=0; i<u; i++) cout << quotient[i]\
+    \ << \" \";\n  cout << \"\\n\";\n\n  for(int i=0; i<v; i++) cout << remainder[i]\
+    \ << \" \";\n  cout << \"\\n\";\n\n}\n\n"
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
@@ -261,15 +267,15 @@ data:
   - math/modint.hpp
   - formal-power-series/fps998.hpp
   isVerificationFile: true
-  path: test/verify/yosupo-log-of-formal-power-series.test.cpp
+  path: test/verify/fps/yosupo-division-of-polynomials.test.cpp
   requiredBy: []
-  timestamp: '2024-06-14 19:20:17+09:00'
+  timestamp: '2024-06-19 18:05:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/verify/yosupo-log-of-formal-power-series.test.cpp
+documentation_of: test/verify/fps/yosupo-division-of-polynomials.test.cpp
 layout: document
 redirect_from:
-- /verify/test/verify/yosupo-log-of-formal-power-series.test.cpp
-- /verify/test/verify/yosupo-log-of-formal-power-series.test.cpp.html
-title: test/verify/yosupo-log-of-formal-power-series.test.cpp
+- /verify/test/verify/fps/yosupo-division-of-polynomials.test.cpp
+- /verify/test/verify/fps/yosupo-division-of-polynomials.test.cpp.html
+title: test/verify/fps/yosupo-division-of-polynomials.test.cpp
 ---

@@ -4,20 +4,20 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/verify/yosupo-inverse-of-matrix.test.cpp
-    title: test/verify/yosupo-inverse-of-matrix.test.cpp
+    path: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+    title: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/verify/yosupo-matrix-product.test.cpp
-    title: test/verify/yosupo-matrix-product.test.cpp
+    path: test/verify/math/matrix/yosupo-matrix-product.test.cpp
+    title: test/verify/math/matrix/yosupo-matrix-product.test.cpp
+  - icon: ':x:'
+    path: test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
+    title: test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/verify/yosupo-pow-of-matrix.test.cpp
-    title: test/verify/yosupo-pow-of-matrix.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/verify/yosupo-rank-of-matrix.test.cpp
-    title: test/verify/yosupo-rank-of-matrix.test.cpp
-  _isVerificationFailed: false
+    path: test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
+    title: test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/matrix/matrix.hpp\"\n\n\n\ntemplate <class T>\nstruct\
@@ -128,12 +128,12 @@ data:
   path: math/matrix/matrix.hpp
   requiredBy: []
   timestamp: '2024-06-14 19:04:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/verify/yosupo-matrix-product.test.cpp
-  - test/verify/yosupo-inverse-of-matrix.test.cpp
-  - test/verify/yosupo-pow-of-matrix.test.cpp
-  - test/verify/yosupo-rank-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-matrix-product.test.cpp
+  - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
 documentation_of: math/matrix/matrix.hpp
 layout: document
 title: "Matrix(\u884C\u5217)"

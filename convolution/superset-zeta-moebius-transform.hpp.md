@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/verify/yosupo-and-convolution.test.cpp
-    title: test/verify/yosupo-and-convolution.test.cpp
+    path: test/verify/convolution/yosupo-and-convolution.test.cpp
+    title: test/verify/convolution/yosupo-and-convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -43,7 +43,7 @@ data:
   timestamp: '2024-06-18 00:02:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yosupo-and-convolution.test.cpp
+  - test/verify/convolution/yosupo-and-convolution.test.cpp
 documentation_of: convolution/superset-zeta-moebius-transform.hpp
 layout: document
 title: "\u4E0A\u4F4D\u96C6\u5408\u306E\u9AD8\u901F\u30BC\u30FC\u30BF\u5909\u63DB"

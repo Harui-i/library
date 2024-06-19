@@ -4,14 +4,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
-    title: test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
+    path: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+    title: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -179,7 +179,7 @@ data:
   timestamp: '2024-06-14 19:20:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
 documentation_of: formal-power-series/sparse-fps.hpp
 layout: document
 title: sparse-fps

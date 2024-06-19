@@ -5,24 +5,29 @@ data:
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
+    path: formal-power-series/fps998.hpp
+    title: formal-power-series/fps998.hpp
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/exp_of_formal_power_series
     links:
-    - https://judge.yosupo.jp/problem/inv_of_formal_power_series
-  bundledCode: "#line 1 \"test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
+    - https://judge.yosupo.jp/problem/exp_of_formal_power_series
+  bundledCode: "#line 1 \"test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
     \n\n#line 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\ntypedef long long ll;\ntypedef unsigned int uint;\ntemplate<class T> inline\
     \ bool chmax(T& a, const T& b) {if (a<b) {a=b; return true;} return false;}\n\
@@ -137,33 +142,134 @@ data:
     \u306B\u3088\u3063\u3066\u7570\u306A\u308B\n  virtual FPS inv(int deg=-1) const;\n\
     \  virtual void CooleyTukeyNTT998244353(vector<mint>&a, bool is_reverse) const;\n\
     //  virtual FPS exp(int deg=-1) const;\n  virtual vector<mint> multiply(const\
-    \ vector<mint>& a, const vector<mint>& b);\n  };\n\n\n#line 6 \"test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp\"\
+    \ vector<mint>& a, const vector<mint>& b);\n  };\n\n\n#line 1 \"formal-power-series/fps998.hpp\"\
+    \n\n\n\n\n#line 6 \"formal-power-series/fps998.hpp\"\n\nusing mint = modint998244353;\n\
+    //ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
+    // constexpr \u95A2\u6570\u5185\u3067 ZETAS \u914D\u5217\u3092\u8A2D\u5B9A\u3059\
+    \u308B\u305F\u3081\u306E\u88DC\u52A9\u95A2\u6570\nconstexpr std::array<mint, 24>\
+    \ setup_zetas() {\n  std::array<mint, 24> zetas;\n  zetas[23] = mint(3).pow(119);\n\
+    \  for (int i = 22; i >= 0; --i) {\n    zetas[i] = (zetas[i + 1] * zetas[i + 1]);\n\
+    \  }\n  return zetas;\n}\n\n// \u30B3\u30F3\u30D1\u30A4\u30EB\u6642\u306B ZETAS\
+    \ \u914D\u5217\u3092\u521D\u671F\u5316\nconstexpr array<mint, 24> ZETAS = setup_zetas();\n\
+    \n\n\n// \u53C2\u8003: https://www.creativ.xyz/fast-fourier-transform/\ntemplate\
+    \ <typename mint>\nvoid FPS<mint>::CooleyTukeyNTT998244353(vector<mint>& a, bool\
+    \ is_reverse) const {\n  int N = a.size();\n  int lgN = lg2(N);\n  //for (int\
+    \ i = 0; 1 << i < N; i++) lgN++;\n  assert(N == 1 << lgN);\n\n  for (int i = 0;\
+    \ i < N; i++) {\n    int j = 0;\n    for (int k = 0; k < lgN; k++) j |= (i >>\
+    \ k & 1) << (lgN - 1 - k);\n    if (i < j) swap(a[i], a[j]);\n  }\n\n  int lgb\
+    \ = -1;\n  for (int b = 1; b < N; b *= 2) {\n    lgb++;\n    mint mpzeta = ZETAS[lgb\
+    \ + 1];\n    if (is_reverse) mpzeta = mpzeta.inv();\n    mint zeta = 1;\n\n  \
+    \  for (int j = 0; j < b; j++) {\n      for (int k = 0; k < N; k += b * 2) {\n\
+    \        mint s = a[j + k];\n        mint t = (a[j + k + b] * zeta);\n       \
+    \ a[j + k] = (s + t);\n        a[j + k + b] = (s - t);\n      }\n      zeta *=\
+    \ mpzeta;\n    }\n  }\n  if (is_reverse) {\n    mint size_inv = mint(N).inv();\n\
+    \    for (int i = 0; i < N; i++) {\n      a[i] *= size_inv;\n    }\n  }\n}\n\n\
+    template <typename mint>\nvector<mint> FPS<mint>::multiply(const vector<mint>&\
+    \ a, const vector<mint>& b) {\n  if (a.size() == 0 || b.size() == 0) return vector<mint>();\n\
+    \n  vector<mint> fa(a.begin(), a.end()), fb(b.begin(), b.end());\n  int n = 1\
+    \ << lg2(a.size() + b.size());\n  //while (n < (int)(a.size() + b.size())) n <<=\
+    \ 1;\n\n  fa.resize(n);\n  fb.resize(n);\n\n  vector<mint>fc(n);\n  if (min(a.size(),\
+    \ b.size()) <= 40) {\n    for (int i = 0; i < (int)a.size(); i++) for (int j =\
+    \ 0; j < (int)b.size(); j++) fc[i + j] += fa[i] * fb[j];\n  }\n  else {\n    CooleyTukeyNTT998244353(fa,\
+    \ false);\n    CooleyTukeyNTT998244353(fb, false);\n    for (int i = 0; i < n;\
+    \ ++i) fc[i] = fa[i] * fb[i];\n    CooleyTukeyNTT998244353(fc, true);\n  }\n \
+    \ fc.resize(a.size() + b.size() - 1);\n  return fc;\n}\n\n\n// FFT\u306E\u56DE\
+    \u6570\u3092\u7BC0\u7D04\u3057\u305FNewton\u6CD5\u3067\u306E\u9006\u5143\u8A08\
+    \u7B97\n/* \ntemplate <typename mint>\nFPS<mint> FPS<mint>::inv_fast1(int deg\
+    \ = -1) const {\n  assert(_vec[0] != mint(0));\n  if (deg == -1) deg = size();\n\
+    \  FPS g(1);\n  g._vec[0] = mint(_vec[0]).inv();\n\n  for (int d = 1; d < deg;\
+    \ d <<= 1) {\n    FPS g_squared = g;\n    FPS g_twice = g * mint(2);\n\n    g_squared.resize(d\
+    \ * 4);\n    CooleyTukeyNTT998244353(g_squared._vec, false);\n    for (int i =\
+    \ 0; i < g_squared.size(); i++) g_squared._vec[i] *= g_squared._vec[i];\n\n  \
+    \  FPS fgg = (*this).FPS::pre(d * 2);\n    fgg.resize(d * 4);\n    CooleyTukeyNTT998244353(fgg._vec,\
+    \ false);\n\n    for (int i = 0; i < fgg.size(); i++) {\n      fgg._vec[i] *=\
+    \ g_squared._vec[i];\n    }\n    CooleyTukeyNTT998244353(fgg._vec, true);\n  \
+    \  fgg.resize(d * 4 - 2);\n\n    g = (g_twice - fgg);\n    g.resize(d * 2);\n\
+    \  }\n\n  return g.pre(deg);\n} \n*/\n\n// \u5DE1\u56DE\u7573\u307F\u8FBC\u307F\
+    \u3092\u5229\u7528\u3057\u3066FFT\u306E\u56DE\u6570\u3092\u7BC0\u7D04\u3057\u305F\
+    Newton\u6CD5\u306B\u3088\u308B\u9006\u5143\u8A08\u7B97\n// https://paper.dropbox.com/doc/fps--CQCZhUV1oN9UT3BCLrowhxgzAg-EoHXQDZxfduAB8wD1PMBW\n\
+    // \u5143\u306E\u8A18\u4E8B\u3068\u306Fg_2d\u3068\u304B\u306E\u547D\u540D\u304C\
+    \u9055\u3046\u3002f_2d\u306A\u3069\u306E\u4E0B\u4ED8\u304D\u306E\u6570\u5B57\u306F\
+    \u3001\u3053\u306E\u30B3\u30FC\u30C9\u3067\u306F\u5F62\u5F0F\u7684\u3079\u304D\
+    \u7D1A\u6570\u306E\u30B5\u30A4\u30BA\u3092\u8868\u3059\u3002\n// \u30CB\u30E5\u30FC\
+    \u30C8\u30F3\u6CD51\u56DE\u3042\u305F\u308A\u306EFFT\u306E\u8A08\u7B97\u91CF\u304C\
+    \u30015 * F(2d)\u306B\u306A\u308B\u3002\n// \u2193\u30B3\u30E1\u30F3\u30C8\u30A2\
+    \u30A6\u30C8\u306EToggle\u5207\u308A\u66FF\u3048\u7528\n//*\n\ntemplate <typename\
+    \ mint>\nFPS<mint> FPS<mint>::inv(int deg) const {\n  assert(_vec[0] != mint(0));\n\
+    \  if (deg == -1) deg = size();\n  FPS g(1);\n  g._vec[0] = mint(_vec[0]).inv();\n\
+    \n  for (int d = 1; d < deg; d <<= 1) {\n    // g_2n = g_n - (f_n g_n - 1) g_n\n\
+    \    // e_n := f_n g_n - 1\n\n    FPS f_2d = (*this).pre(2 * d);\n    FPS g_d\
+    \ = g.pre(2 * d);\n    FPS g_origin = g.pre(2 * d); // \u5F8C\u3005\u4F7F\u3044\
+    \u305F\u3044\u306E\u3067\u4FDD\u5B58\u3057\u3066\u304A\u304F\n\n    CooleyTukeyNTT998244353(f_2d._vec,\
+    \ false);\n    CooleyTukeyNTT998244353(g_d._vec, false);\n    assert(2 * d ==\
+    \ (int)g_d.size() && f_2d.size() == g_d.size());\n    FPS h_2d(2 * d);\n    for\
+    \ (int i = 0; i < 2 * d; i++) h_2d[i] = f_2d[i] * g_d[i];\n    CooleyTukeyNTT998244353(h_2d._vec,\
+    \ true);\n\n    // \u3053\u3046\u3059\u308B\u3053\u3068\u3067\u3001h_2d\u306F\
+    \ f_2d * g_d\u306E 2d\u6B21\u672A\u6E80\u306E\u9805\u306B\u4E00\u81F4\u3059\u308B\
+    \u3002\n    // h_2d\u306Ff_2d\u3068g_d\u306E\u30B5\u30A4\u30BA2d\u306E\u5DE1\u56DE\
+    \u7573\u307F\u8FBC\u307F\u3067\u3042\u308B\u304B\u3089\u3001 h_2d\u306E\u9805\u306F\
+    \u4E0B\u56F3\u306E\u3088\u3046\u306B\u306A\u3063\u3066\u3044\u308B\u3002\n   \
+    \ // \u3053\u3053\u3067\u3001h_2d\u306E\u3046\u3061\u307B\u3057\u3044\u90E8\u5206\
+    \u306F\u5DE6\u4E0A\u3068\u3001\u53F3\u4E0A\u306E\u90E8\u5206\u306E\u307F\u3002\
+    (f_2d*g_d\u306E2d\u6B21\u672A\u6E80\u304C\u307B\u3057\u3044\u306E\u3067)\n   \
+    \ // \u5DE6\u4E0A\u306E\u90E8\u5206\u306F\u3001g_d\u306E\u6027\u8CEA\u304B\u3089\
+    \u3001 1, 0, 0, ... \u3068\u306A\u3063\u3066\u3044\u308B\u3053\u3068\u304C\u308F\
+    \u304B\u308B\u3002\n    // \u53F3\u4E0B\u306E\u90E8\u5206\u306F deg(f_2d) < 2d,\
+    \ deg(g_d) < d \u2192 deg(f_2d*g_d) < 3d \u3068\u306A\u3063\u3066\u30010\u3068\
+    \u306A\u3063\u3066\u3044\u308B\u3053\u3068\u304C\u308F\u304B\u308B\u3002\n   \
+    \ // \u3088\u3063\u3066\u3001h_2d\u306E[d,2d)\u306E\u90E8\u5206\u306Ff_2d*g_d\u306E\
+    [d,2d)\u306B\u4E00\u81F4\u3059\u308B\u306E\u3067\u4F55\u3082\u51E6\u7406\u3059\
+    \u308B\u5FC5\u8981\u304C\u306A\u304F\u3001\n    // h_2d\u306E[0,d)\u306E\u90E8\
+    \u5206\u306F\u4F59\u8A08\u306A\u8DB3\u3057\u7B97\u304C\u5165\u3063\u3066\u3057\
+    \u307E\u3063\u3066\u3044\u308B\u304C\u30011,0,0,...\u306B\u5909\u3048\u3066\u3057\
+    \u307E\u3048\u3070\u3088\u3044\u3002\n    //    [0, d)\u306E\u9805           \
+    \ [d, 2d)\u306E\u9805\n    //    f_2d*g_d\u306E[0,d)       f_2d*g_d\u306E[d, 2d)\n\
+    \    //    f_2d*g_d\u306E[2d, 3d)    f_2d*g_d\u306E[3d, 4d)\n\n    h_2d[0] = mint(0);\
+    \ // h_2d\u3092 (f_2d * g_d - 1)\u306B\u5909\u3048\u3061\u3083\u3046\u3002\n \
+    \   for (int i = 1; i < d; i++) h_2d[i] = 0;\n\n    CooleyTukeyNTT998244353(h_2d._vec,\
+    \ false);\n    for (int i = 0; i < 2 * d; i++) h_2d[i] = g_d[i] * h_2d[i];\n \
+    \   CooleyTukeyNTT998244353(h_2d._vec, true);\n    for (int i = 0; i < d; i++)\
+    \ h_2d[i] = mint(0);\n\n    // h_2d - 1 =: h'_2d\u3068\u304A\u304F\u3002\n   \
+    \ // g_2d = g_d - h'_2d * g_d \u3067\u3042\u308A\u3001\u3055\u3063\u304D\u3068\
+    \u540C\u3058\u3088\u3046\u306A\u56F3\u3092\u66F8\u304F\u3068, h_2d * g_d\u3092\
+    \u5DE1\u56DE\u7573\u307F\u8FBC\u307F\u3057\u305F\u3082\u306E\u306F\u3001\u4E0B\
+    \u56F3\u306E\u3088\u3046\u306B\u306A\u3063\u3066\u3044\u308B\u3002\n    // \u5DE6\
+    \u4E0A\u306Fall-zero(\u5B9A\u6570\u9805\u30820\u306B\u3057\u305F\u306E\u3067)\u3001\
+    \u53F3\u4E0B\u3082\u6B21\u6570\u306E\u95A2\u4FC2\u304B\u3089\u5168\u90E80\u306A\
+    \u306E\u3067\u3001h_2d * g_d\u306F\u3001\u5DE1\u56DE\u7573\u307F\u8FBC\u307F\u3092\
+    \u3057\u305F\u3082\u306E\u306E[0,d)\u306E\u9805\u30920\u306B\u3059\u308B\u3053\
+    \u3068\u3067\u5F97\u3089\u308C\u308B\u3002 \n    //    [0, d)\u306E\u9805    \
+    \        [d, 2d)\u306E\u9805\n    //    h'_2d*g_d\u306E[0,d)       h'_2d*g_d\u306E\
+    [d, 2d)\n    //    h'_2d*g_d\u306E[2d, 3d)    h'_2d*g_d\u306E[3d, 4d)\n\n    g\
+    \ = g_origin - h_2d;\n    g.resize(d * 2);\n\n  }\n\n  return g.pre(deg);\n}\n\
+    \n\n#line 7 \"test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp\"\n\n\
+    using mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
+    \ cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n  for(int\
+    \ i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.exp(N) << endl;\n\
+    \n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
+    \n\n#include \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include\
+    \ \"formal-power-series/formal-power-series.hpp\"\n#include \"formal-power-series/fps998.hpp\"\
     \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
     \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n\
-    \  for(int i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.inv_naive(N)\
-    \ << endl;\n\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
-    \n\n#include \"../../template/template.hpp\"\n#include \"../../math/modint.hpp\"\
-    \n#include \"../../formal-power-series/formal-power-series.hpp\"\n\nusing mint\
-    \ = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
-    \ cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n  for(int\
-    \ i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.inv_naive(N)\
+    \  for(int i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.exp(N)\
     \ << endl;\n\n}\n"
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
   - formal-power-series/formal-power-series.hpp
   - math/modint.hpp
-  isVerificationFile: false
-  path: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
+  - formal-power-series/fps998.hpp
+  isVerificationFile: true
+  path: test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
   requiredBy: []
-  timestamp: '2024-06-14 19:20:17+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2024-06-19 18:05:48+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
+documentation_of: test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
 layout: document
 redirect_from:
-- /library/test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
-- /library/test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp.html
-title: test/verify/yosupo-inv-of-formal-power-series-naive-test.cpp
+- /verify/test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
+- /verify/test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp.html
+title: test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
 ---
