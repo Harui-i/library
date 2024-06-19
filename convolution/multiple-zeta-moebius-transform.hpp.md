@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/unittest/unittest-divisor-moebius-transform.test.cpp
-    title: test/unittest/unittest-divisor-moebius-transform.test.cpp
+    path: test/unittest/unittest-multiple-moebius-transform.test.cpp
+    title: test/unittest/unittest-multiple-moebius-transform.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/convolution/yosupo-gcd-convolution.test.cpp
     title: test/verify/convolution/yosupo-gcd-convolution.test.cpp
@@ -81,12 +81,14 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/convolution/yosupo-gcd-convolution.test.cpp
-  - test/unittest/unittest-divisor-moebius-transform.test.cpp
+  - test/unittest/unittest-multiple-moebius-transform.test.cpp
 documentation_of: convolution/multiple-zeta-moebius-transform.hpp
 layout: document
 title: "\u500D\u6570\u306B\u3064\u3044\u3066\u306E\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\
   \u30D3\u30A6\u30B9\u5909\u63DB"
 ---
+
+TODO: `map`で渡すタイプのゼータ/メビウス変換について書く
 
 ## 概要
 

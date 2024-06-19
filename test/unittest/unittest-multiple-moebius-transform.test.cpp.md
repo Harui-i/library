@@ -21,7 +21,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/unittest/unittest-divisor-moebius-transform.test.cpp\"\
+  bundledCode: "#line 1 \"test/unittest/unittest-multiple-moebius-transform.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"template/template.hpp\"\
     \n#include <bits/stdc++.h>\nusing namespace std;\ntypedef long long ll;\ntypedef\
     \ unsigned int uint;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if\
@@ -59,8 +59,8 @@ data:
     \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
     \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
     \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\n\n#line\
-    \ 5 \"test/unittest/unittest-divisor-moebius-transform.test.cpp\"\n\n#line 1 \"\
-    convolution/multiple-zeta-moebius-transform.hpp\"\n\n\n\n#line 5 \"convolution/multiple-zeta-moebius-transform.hpp\"\
+    \ 5 \"test/unittest/unittest-multiple-moebius-transform.test.cpp\"\n\n#line 1\
+    \ \"convolution/multiple-zeta-moebius-transform.hpp\"\n\n\n\n#line 5 \"convolution/multiple-zeta-moebius-transform.hpp\"\
     \n\nnamespace multiple {\n\n  // \u500D\u6570\u306B\u3064\u3044\u3066\u306E\u30BC\
     \u30FC\u30BF\u5909\u63DB\u3002 g_n = \\Sigma_{n|m} f_m \u306A\u308B g \u3092\u6C42\
     \u3081\u308B\u3002\n  // n|m\u3068\u3044\u3046\u306E\u306F\u3001m%n==0\u3068\u3044\
@@ -88,7 +88,7 @@ data:
     \ p1itr != ret.rend(); p1itr++) {\n      for (auto p2itr = ret.rbegin(); p2itr\
     \ != p1itr; p2itr++) {\n        if ((*p2itr).first % (*p1itr).first == 0) (*p1itr).second\
     \ -= (*p2itr).second;\n      }\n    }\n\n    return ret;\n  }\n\n} // namespace\
-    \ multiple\n\n\n#line 7 \"test/unittest/unittest-divisor-moebius-transform.test.cpp\"\
+    \ multiple\n\n\n#line 7 \"test/unittest/unittest-multiple-moebius-transform.test.cpp\"\
     \n\nusing mint = modint998244353;\n\n// map\u3067\u500D\u6570\u306E\u30BC\u30FC\
     \u30BF\u5909\u63DB\u3068\u30E1\u30D3\u30A6\u30B9\u5909\u63DB\u3084\u308B\u3084\
     \u3064\u306E\u30C6\u30B9\u30C8\nvoid test() {\n  random_device seed_gen;\n  mt19937\
@@ -132,15 +132,15 @@ data:
   - math/modint.hpp
   - convolution/multiple-zeta-moebius-transform.hpp
   isVerificationFile: true
-  path: test/unittest/unittest-divisor-moebius-transform.test.cpp
+  path: test/unittest/unittest-multiple-moebius-transform.test.cpp
   requiredBy: []
-  timestamp: '2024-06-19 18:45:14+09:00'
+  timestamp: '2024-06-19 19:19:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/unittest/unittest-divisor-moebius-transform.test.cpp
+documentation_of: test/unittest/unittest-multiple-moebius-transform.test.cpp
 layout: document
 redirect_from:
-- /verify/test/unittest/unittest-divisor-moebius-transform.test.cpp
-- /verify/test/unittest/unittest-divisor-moebius-transform.test.cpp.html
-title: test/unittest/unittest-divisor-moebius-transform.test.cpp
+- /verify/test/unittest/unittest-multiple-moebius-transform.test.cpp
+- /verify/test/unittest/unittest-multiple-moebius-transform.test.cpp.html
+title: test/unittest/unittest-multiple-moebius-transform.test.cpp
 ---

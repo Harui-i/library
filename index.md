@@ -116,8 +116,8 @@ data:
   - name: test/unittest
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/unittest/unittest-divisor-moebius-transform.test.cpp
-      title: test/unittest/unittest-divisor-moebius-transform.test.cpp
+      path: test/unittest/unittest-multiple-moebius-transform.test.cpp
+      title: test/unittest/unittest-multiple-moebius-transform.test.cpp
   - name: test/verify
     pages:
     - icon: ':heavy_check_mark:'

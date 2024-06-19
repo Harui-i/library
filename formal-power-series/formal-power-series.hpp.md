@@ -15,6 +15,9 @@ data:
     path: formal-power-series/sparse-fps.hpp
     title: sparse-fps
   - icon: ':warning:'
+    path: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
+    title: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
+  - icon: ':warning:'
     path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
     title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   _extendedVerifiedWith:
@@ -234,6 +237,7 @@ data:
   path: formal-power-series/formal-power-series.hpp
   requiredBy:
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - formal-power-series/sparse-fps.hpp
   - formal-power-series/fiduccia.hpp
   - formal-power-series/fps998.hpp

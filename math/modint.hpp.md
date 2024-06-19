@@ -18,6 +18,12 @@ data:
     path: test/verify/atcoder-tdpc-s.cpp
     title: test/verify/atcoder-tdpc-s.cpp
   - icon: ':warning:'
+    path: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
+    title: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
+  - icon: ':warning:'
+    path: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
+    title: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
+  - icon: ':warning:'
     path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
     title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   - icon: ':warning:'
@@ -25,8 +31,8 @@ data:
     title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/unittest/unittest-divisor-moebius-transform.test.cpp
-    title: test/unittest/unittest-divisor-moebius-transform.test.cpp
+    path: test/unittest/unittest-multiple-moebius-transform.test.cpp
+    title: test/unittest/unittest-multiple-moebius-transform.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/convolution/yosupo-and-convolution.test.cpp
     title: test/verify/convolution/yosupo-and-convolution.test.cpp
@@ -162,6 +168,8 @@ data:
   - test/verify/atcoder-tdpc-s.cpp
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - formal-power-series/sparse-fps.hpp
   - formal-power-series/fiduccia.hpp
   - formal-power-series/fps998.hpp
@@ -189,7 +197,7 @@ data:
   - test/verify/convolution/yosupo-and-convolution.test.cpp
   - test/verify/convolution/yosupo-gcd-convolution.test.cpp
   - test/verify/convolution/yosupo-lcm-convolution.test.cpp
-  - test/unittest/unittest-divisor-moebius-transform.test.cpp
+  - test/unittest/unittest-multiple-moebius-transform.test.cpp
 documentation_of: math/modint.hpp
 layout: document
 title: modint
