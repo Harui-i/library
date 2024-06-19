@@ -81,20 +81,47 @@ title: "\u7D04\u6570\u306B\u3064\u3044\u3066\u306E\u30BC\u30FC\u30BF\u5909\u63DB
 計算量は $ O(N \log \log N) $ にできるけど、よくわからないので妥協。
 
 ### 約数についてのゼータ変換
-長さ$N$の数列$A$が与えられたときに、 $ A^{\prime}_{i} = \Sigma_{j \mid i} A_j $を求める。
+
+```
+vector<T> zeta_transform_naive(const vector<T>& A)
+```
+
+長さ$N$の数列$A$が与えられたときに、 $ B_{i} = \Sigma_{j \mid i} A_j $ なる数列 $B$ を求める。
 
 ### 計算量
 
 - $O(N \log N) $
 
 ### 約数についてのメビウス変換
-長さ$N$の数列$B$が与えられたときに、$B_i = \Sigma_{j \mid i} A_j $なる$A$を求める。
+長さ$N$の数列$B$が与えられたときに、$B_i = \Sigma_{j \mid i} A_j $ なる数列 $A$ を求める。
 
+```
+vector<T> moebius_transform_naive(const vector<T>& B)
+``` 
 
 ### 計算量
 
 - $O(N \log N) $
 
+
+
+## mapでやるやつ
+
+```
+map<I,T> zeta_transform(const map<I,T>& mp)
+```
+
+```
+map<I,T> moebius_transform(const map<I, T>& mp)
+```
+
+どちらもゼータ変換/メビウス変換を行うが、`vector`で変換する場合と違い、`map`のkeyだけを添え字として扱う。
+
+### 計算量
+
+`map`のサイズを$N$として
+
+- $O(N^2 \log N) $
 
 ## 何が嬉しいのか
 
