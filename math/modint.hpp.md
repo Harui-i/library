@@ -25,6 +25,9 @@ data:
     title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/unittest/unittest-divisor-moebius-transform.test.cpp
+    title: test/unittest/unittest-divisor-moebius-transform.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/convolution/yosupo-and-convolution.test.cpp
     title: test/verify/convolution/yosupo-and-convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -186,6 +189,7 @@ data:
   - test/verify/convolution/yosupo-and-convolution.test.cpp
   - test/verify/convolution/yosupo-gcd-convolution.test.cpp
   - test/verify/convolution/yosupo-lcm-convolution.test.cpp
+  - test/unittest/unittest-divisor-moebius-transform.test.cpp
 documentation_of: math/modint.hpp
 layout: document
 title: modint

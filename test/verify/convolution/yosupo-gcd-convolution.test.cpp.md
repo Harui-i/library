@@ -79,14 +79,14 @@ data:
     \ N; i >= 1; i--) {\n      for (int j = 2 * i; j <= N; j += i) {\n        g[i]\
     \ -= g[j];\n      }\n    }\n    return g;\n  }\n\n\n  template <typename I, typename\
     \ T>\n  std::map<I, T> zeta_transform(const std::map<I, T>& mp) {\n    std::map<I,\
-    \ T> ret = mp;\n    for (std::pair<I, T>& pit : ret) {\n      for (typename std::map<I,\
-    \ T>::iterator p2itr = ret.rbegin(); (*p2itr).first != pit.first; p2itr++) {\n\
-    \        if ((*p2itr).first % pit.first == 0) {\n          pit.second += (*p2itr).second;\n\
-    \        }\n      }\n    }\n\n    return ret;\n  }\n\n\n  template <typename I,\
-    \ typename T>\n  std::map<I, T> moebius_transform(const std::map<I, T>& mp) {\n\
-    \    std::map<I, T> ret = mp;\n    for (auto p1itr = ret.rbegin(); p1itr != ret.rend();\
-    \ p1itr++) {\n      for (auto p2itr = ret.rbegin(); p2itr != p1itr; p2itr++) {\n\
-    \        if ((*p2itr).first % (*p1itr).first == 0) (*p1itr).second -= (*p2itr).second;\n\
+    \ T> ret = mp;\n    for (std::pair<I, T> pit : ret) {\n      for (auto p2itr =\
+    \ ret.rbegin(); (*p2itr).first != pit.first; p2itr++) {\n        if ((*p2itr).first\
+    \ % pit.first == 0) {\n          ret[pit.first] += (*p2itr).second;\n        }\n\
+    \      }\n    }\n\n    return ret;\n  }\n\n\n  template <typename I, typename\
+    \ T>\n  std::map<I, T> moebius_transform(const std::map<I, T>& mp) {\n    std::map<I,\
+    \ T> ret = mp;\n    for (auto p1itr = ret.rbegin(); p1itr != ret.rend(); p1itr++)\
+    \ {\n      for (auto p2itr = ret.rbegin(); p2itr != p1itr; p2itr++) {\n      \
+    \  if ((*p2itr).first % (*p1itr).first == 0) (*p1itr).second -= (*p2itr).second;\n\
     \      }\n    }\n\n    return ret;\n  }\n\n} // namespace multiple\n\n\n#line\
     \ 6 \"test/verify/convolution/yosupo-gcd-convolution.test.cpp\"\n\nusing mint\
     \ = modint998244353;\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n\
@@ -112,7 +112,7 @@ data:
   isVerificationFile: true
   path: test/verify/convolution/yosupo-gcd-convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-06-19 18:06:38+09:00'
+  timestamp: '2024-06-19 18:45:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/convolution/yosupo-gcd-convolution.test.cpp

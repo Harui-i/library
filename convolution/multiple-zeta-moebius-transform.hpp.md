@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/unittest/unittest-divisor-moebius-transform.test.cpp
+    title: test/unittest/unittest-divisor-moebius-transform.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/convolution/yosupo-gcd-convolution.test.cpp
     title: test/verify/convolution/yosupo-gcd-convolution.test.cpp
   _isVerificationFailed: false
@@ -30,16 +33,16 @@ data:
     \    std::vector<T> g = f;\n    for (int i = N; i >= 1; i--) {\n      for (int\
     \ j = 2 * i; j <= N; j += i) {\n        g[i] -= g[j];\n      }\n    }\n    return\
     \ g;\n  }\n\n\n  template <typename I, typename T>\n  std::map<I, T> zeta_transform(const\
-    \ std::map<I, T>& mp) {\n    std::map<I, T> ret = mp;\n    for (std::pair<I, T>&\
-    \ pit : ret) {\n      for (typename std::map<I, T>::iterator p2itr = ret.rbegin();\
-    \ (*p2itr).first != pit.first; p2itr++) {\n        if ((*p2itr).first % pit.first\
-    \ == 0) {\n          pit.second += (*p2itr).second;\n        }\n      }\n    }\n\
-    \n    return ret;\n  }\n\n\n  template <typename I, typename T>\n  std::map<I,\
-    \ T> moebius_transform(const std::map<I, T>& mp) {\n    std::map<I, T> ret = mp;\n\
-    \    for (auto p1itr = ret.rbegin(); p1itr != ret.rend(); p1itr++) {\n      for\
-    \ (auto p2itr = ret.rbegin(); p2itr != p1itr; p2itr++) {\n        if ((*p2itr).first\
-    \ % (*p1itr).first == 0) (*p1itr).second -= (*p2itr).second;\n      }\n    }\n\
-    \n    return ret;\n  }\n\n} // namespace multiple\n\n\n"
+    \ std::map<I, T>& mp) {\n    std::map<I, T> ret = mp;\n    for (std::pair<I, T>\
+    \ pit : ret) {\n      for (auto p2itr = ret.rbegin(); (*p2itr).first != pit.first;\
+    \ p2itr++) {\n        if ((*p2itr).first % pit.first == 0) {\n          ret[pit.first]\
+    \ += (*p2itr).second;\n        }\n      }\n    }\n\n    return ret;\n  }\n\n\n\
+    \  template <typename I, typename T>\n  std::map<I, T> moebius_transform(const\
+    \ std::map<I, T>& mp) {\n    std::map<I, T> ret = mp;\n    for (auto p1itr = ret.rbegin();\
+    \ p1itr != ret.rend(); p1itr++) {\n      for (auto p2itr = ret.rbegin(); p2itr\
+    \ != p1itr; p2itr++) {\n        if ((*p2itr).first % (*p1itr).first == 0) (*p1itr).second\
+    \ -= (*p2itr).second;\n      }\n    }\n\n    return ret;\n  }\n\n} // namespace\
+    \ multiple\n\n\n"
   code: "#ifndef HARUILIB_CONVOLUTION_MULTIPLE_ZETA_MOEBIUS_TRANSFORM_HPP\n#define\
     \ HARUILIB_CONVOLUTION_MULTIPLE_ZETA_MOEBIUS_TRANSFORM_HPP\n\n#include <vector>\n\
     \nnamespace multiple {\n\n  // \u500D\u6570\u306B\u3064\u3044\u3066\u306E\u30BC\
@@ -60,11 +63,11 @@ data:
     \    for (int i = N; i >= 1; i--) {\n      for (int j = 2 * i; j <= N; j += i)\
     \ {\n        g[i] -= g[j];\n      }\n    }\n    return g;\n  }\n\n\n  template\
     \ <typename I, typename T>\n  std::map<I, T> zeta_transform(const std::map<I,\
-    \ T>& mp) {\n    std::map<I, T> ret = mp;\n    for (std::pair<I, T>& pit : ret)\
-    \ {\n      for (typename std::map<I, T>::iterator p2itr = ret.rbegin(); (*p2itr).first\
-    \ != pit.first; p2itr++) {\n        if ((*p2itr).first % pit.first == 0) {\n \
-    \         pit.second += (*p2itr).second;\n        }\n      }\n    }\n\n    return\
-    \ ret;\n  }\n\n\n  template <typename I, typename T>\n  std::map<I, T> moebius_transform(const\
+    \ T>& mp) {\n    std::map<I, T> ret = mp;\n    for (std::pair<I, T> pit : ret)\
+    \ {\n      for (auto p2itr = ret.rbegin(); (*p2itr).first != pit.first; p2itr++)\
+    \ {\n        if ((*p2itr).first % pit.first == 0) {\n          ret[pit.first]\
+    \ += (*p2itr).second;\n        }\n      }\n    }\n\n    return ret;\n  }\n\n\n\
+    \  template <typename I, typename T>\n  std::map<I, T> moebius_transform(const\
     \ std::map<I, T>& mp) {\n    std::map<I, T> ret = mp;\n    for (auto p1itr = ret.rbegin();\
     \ p1itr != ret.rend(); p1itr++) {\n      for (auto p2itr = ret.rbegin(); p2itr\
     \ != p1itr; p2itr++) {\n        if ((*p2itr).first % (*p1itr).first == 0) (*p1itr).second\
@@ -74,10 +77,11 @@ data:
   isVerificationFile: false
   path: convolution/multiple-zeta-moebius-transform.hpp
   requiredBy: []
-  timestamp: '2024-06-19 18:05:48+09:00'
+  timestamp: '2024-06-19 18:45:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/convolution/yosupo-gcd-convolution.test.cpp
+  - test/unittest/unittest-divisor-moebius-transform.test.cpp
 documentation_of: convolution/multiple-zeta-moebius-transform.hpp
 layout: document
 title: "\u500D\u6570\u306B\u3064\u3044\u3066\u306E\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\

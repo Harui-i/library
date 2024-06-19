@@ -89,6 +89,11 @@ data:
     - icon: ':question:'
       path: template/template.hpp
       title: template/template.hpp
+  - name: test/unittest
+    pages:
+    - icon: ':warning:'
+      path: test/unittest/unittest-template.cpp
+      title: test/unittest/unittest-template.cpp
   - name: test/verify
     pages:
     - icon: ':warning:'
@@ -108,6 +113,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: example.test.cpp
       title: example.test.cpp
+  - name: test/unittest
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/unittest/unittest-divisor-moebius-transform.test.cpp
+      title: test/unittest/unittest-divisor-moebius-transform.test.cpp
   - name: test/verify
     pages:
     - icon: ':heavy_check_mark:'

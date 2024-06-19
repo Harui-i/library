@@ -3,12 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: test/unittest/unittest-template.cpp
+    title: test/unittest/unittest-template.cpp
+  - icon: ':warning:'
     path: test/verify/atcoder-tdpc-s.cpp
     title: test/verify/atcoder-tdpc-s.cpp
   - icon: ':warning:'
     path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
     title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/unittest/unittest-divisor-moebius-transform.test.cpp
+    title: test/unittest/unittest-divisor-moebius-transform.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-0560.test.cpp
     title: test/verify/aoj-0560.test.cpp
@@ -137,6 +143,7 @@ data:
   requiredBy:
   - test/verify/atcoder-tdpc-s.cpp
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+  - test/unittest/unittest-template.cpp
   timestamp: '2024-05-14 18:24:32+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -159,6 +166,7 @@ data:
   - test/verify/convolution/yosupo-lcm-convolution.test.cpp
   - test/verify/yosupo-tree-diameter.test.cpp
   - test/verify/aoj-dpl3-c.test.cpp
+  - test/unittest/unittest-divisor-moebius-transform.test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
