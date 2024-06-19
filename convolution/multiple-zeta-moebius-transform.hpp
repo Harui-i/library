@@ -41,10 +41,10 @@ namespace multiple {
   template <typename I, typename T>
   std::map<I, T> zeta_transform(const std::map<I, T>& mp) {
     std::map<I, T> ret = mp;
-    for (std::pair<I, T>& pit : ret) {
-      for (typename std::map<I, T>::iterator p2itr = ret.rbegin(); (*p2itr).first != pit.first; p2itr++) {
+    for (std::pair<I, T> pit : ret) {
+      for (auto p2itr = ret.rbegin(); (*p2itr).first != pit.first; p2itr++) {
         if ((*p2itr).first % pit.first == 0) {
-          pit.second += (*p2itr).second;
+          ret[pit.first] += (*p2itr).second;
         }
       }
     }
