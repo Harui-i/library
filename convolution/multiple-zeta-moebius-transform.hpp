@@ -11,10 +11,10 @@ namespace multiple {
   // うまくやるとO(Nlog(log(N)))にできることがよく知られているが、難しいしlogは定数なので妥協する。
   template <typename T>
   std::vector<T> zeta_transform_naive(const std::vector<T>& f) {
-    int N = f.size()-1;
+    int N = f.size() - 1;
     std::vector<T> g = f;
-    for (int i=1; i<=N; i++) {
-      for (int j=2*i; j<=N; j+=i) {
+    for (int i = 1; i <= N; i++) {
+      for (int j = 2 * i; j <= N; j += i) {
         g[i] += f[j];
       }
     }
@@ -27,16 +27,44 @@ namespace multiple {
   // O(N log N) (調和級数)
   template <typename T>
   std::vector<T> moebius_transform_naive(const std::vector<T>& f) {
-    int N = f.size()-1;
+    int N = f.size() - 1;
     std::vector<T> g = f;
-    for (int i=N; i>=1; i--) {
-      for (int j=2*i; j<=N; j+=i) {
+    for (int i = N; i >= 1; i--) {
+      for (int j = 2 * i; j <= N; j += i) {
         g[i] -= g[j];
       }
     }
     return g;
   }
 
-}
+
+  template <typename I, typename T>
+  std::map<I, T> zeta_transform(const std::map<I, T>& mp) {
+    std::map<I, T> ret = mp;
+    for (std::pair<I, T>& pit : ret) {
+      for (typename std::map<I, T>::iterator p2itr = ret.rbegin(); (*p2itr).first != pit.first; p2itr++) {
+        if ((*p2itr).first % pit.first == 0) {
+          pit.second += (*p2itr).second;
+        }
+      }
+    }
+
+    return ret;
+  }
+
+
+  template <typename I, typename T>
+  std::map<I, T> moebius_transform(const std::map<I, T>& mp) {
+    std::map<I, T> ret = mp;
+    for (auto p1itr = ret.rbegin(); p1itr != ret.rend(); p1itr++) {
+      for (auto p2itr = ret.rbegin(); p2itr != p1itr; p2itr++) {
+        if ((*p2itr).first % (*p1itr).first == 0) (*p1itr).second -= (*p2itr).second;
+      }
+    }
+
+    return ret;
+  }
+
+} // namespace multiple
 
 #endif // HARUILIB_CONVOLUTION_MULTIPLE_ZETA_MOEBIUS_TRANSFORM_HPP
