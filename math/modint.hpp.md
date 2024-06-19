@@ -31,8 +31,8 @@ data:
     title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/unittest/unittest-multiple-moebius-transform.test.cpp
-    title: test/unittest/unittest-multiple-moebius-transform.test.cpp
+    path: test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
+    title: test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/convolution/yosupo-and-convolution.test.cpp
     title: test/verify/convolution/yosupo-and-convolution.test.cpp
@@ -165,39 +165,39 @@ data:
   isVerificationFile: false
   path: math/modint.hpp
   requiredBy:
-  - test/verify/atcoder-tdpc-s.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - formal-power-series/sparse-fps.hpp
-  - formal-power-series/fiduccia.hpp
   - formal-power-series/fps998.hpp
+  - formal-power-series/fiduccia.hpp
   - formal-power-series/formal-power-series.hpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
+  - test/verify/atcoder-tdpc-s.cpp
   timestamp: '2024-06-14 19:04:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yosupo-deque-operate-all-composite.test.cpp
-  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
-  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
-  - test/verify/math/matrix/yosupo-matrix-product.test.cpp
-  - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
-  - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
-  - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
+  - test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
   - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
-  - test/verify/convolution/yosupo-and-convolution.test.cpp
-  - test/verify/convolution/yosupo-gcd-convolution.test.cpp
+  - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-matrix-product.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
+  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
+  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
   - test/verify/convolution/yosupo-lcm-convolution.test.cpp
-  - test/unittest/unittest-multiple-moebius-transform.test.cpp
+  - test/verify/convolution/yosupo-gcd-convolution.test.cpp
+  - test/verify/convolution/yosupo-and-convolution.test.cpp
+  - test/verify/yosupo-deque-operate-all-composite.test.cpp
 documentation_of: math/modint.hpp
 layout: document
 title: modint

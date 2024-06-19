@@ -72,13 +72,23 @@ data:
     \ moebius_transform_naive(const std::vector<T>& f) {\n    int N = f.size() - 1;\n\
     \    std::vector<T> g = f;\n\n    for (int i=1; i<=N; i++) {\n      for (int j=i*2;\
     \ j<= N; j+=i) {\n        g[j] -= g[i];\n      }\n    }\n\n    return g;\n  }\n\
-    }\n\n\n\n#line 6 \"test/verify/convolution/yosupo-lcm-convolution.test.cpp\"\n\
-    \nusing mint = modint998244353;\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
-    \ cout.tie(0);\n  int N; cin >> N;\n  vector<mint>a(N+1); for(int i=0; i<N; i++)\
-    \ cin >> a[i+1];\n  vector<mint>b(N+1); for(int i=0; i<N; i++) cin >> b[i+1];\
-    \  \n\n  vector<mint> za = divisor::zeta_transform_naive(a);\n  vector<mint> zb\
-    \ = divisor::zeta_transform_naive(b);\n\n  vector<mint> zc(N+1); for(int i=0;\
-    \ i<N+1; i++) zc[i] = za[i] * zb[i];\n\n  vector<mint> c = divisor::moebius_transform_naive(zc);\n\
+    \n  template <typename I, typename T>\n  std::map<I, T> zeta_transform(const std::map<I,\
+    \ T>& mp) {\n    std::map<I, T> ret = mp;\n    for (auto p2itr = mp.rbegin();\
+    \ p2itr!=mp.rend(); p2itr++) {\n      for (auto p1itr = next(p2itr); p1itr !=\
+    \ mp.rend(); p1itr++) {\n        if ((*p2itr).first % (*p1itr).first == 0) ret[(*p2itr).first]\
+    \ += ret[(*p1itr).first];\n      }\n    }\n\n    return ret;\n  }\n\n\n  template\
+    \ <typename I, typename T>\n  std::map<I, T> moebius_transform(const std::map<I,\
+    \ T>& mp) {\n    std::map<I, T> ret = mp;\n\n    for (auto p1itr = ret.begin();\
+    \ p1itr != ret.end(); p1itr++) {\n      for (auto p2itr = next(p1itr); p2itr !=\
+    \ ret.end(); p2itr++) {\n        if ( (*p2itr).first % (*p1itr).first == 0) ret[(*p2itr).first]\
+    \ -= ret[(*p1itr).first];\n      }\n    }\n\n    return ret;\n  }\n} // namespace\
+    \ divisor\n\n\n#line 6 \"test/verify/convolution/yosupo-lcm-convolution.test.cpp\"\
+    \n\nusing mint = modint998244353;\n\nint main() {\n  ios::sync_with_stdio(0);\
+    \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  vector<mint>a(N+1); for(int\
+    \ i=0; i<N; i++) cin >> a[i+1];\n  vector<mint>b(N+1); for(int i=0; i<N; i++)\
+    \ cin >> b[i+1];  \n\n  vector<mint> za = divisor::zeta_transform_naive(a);\n\
+    \  vector<mint> zb = divisor::zeta_transform_naive(b);\n\n  vector<mint> zc(N+1);\
+    \ for(int i=0; i<N+1; i++) zc[i] = za[i] * zb[i];\n\n  vector<mint> c = divisor::moebius_transform_naive(zc);\n\
     \  for(int i=1; i<=N; i++) cout << c[i].val() << \" \\n\"[i==N];\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lcm_convolution\"\n\n#include\
     \ \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include \"convolution/divisor-zeta-moebius-transform.hpp\"\
@@ -96,7 +106,7 @@ data:
   isVerificationFile: true
   path: test/verify/convolution/yosupo-lcm-convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-06-19 18:06:38+09:00'
+  timestamp: '2024-06-19 23:53:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/convolution/yosupo-lcm-convolution.test.cpp

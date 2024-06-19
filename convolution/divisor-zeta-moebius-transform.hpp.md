@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
+    title: test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/convolution/yosupo-lcm-convolution.test.cpp
     title: test/verify/convolution/yosupo-lcm-convolution.test.cpp
   _isVerificationFailed: false
@@ -23,7 +26,17 @@ data:
     \n  template <typename T>\n  std::vector<T> moebius_transform_naive(const std::vector<T>&\
     \ f) {\n    int N = f.size() - 1;\n    std::vector<T> g = f;\n\n    for (int i=1;\
     \ i<=N; i++) {\n      for (int j=i*2; j<= N; j+=i) {\n        g[j] -= g[i];\n\
-    \      }\n    }\n\n    return g;\n  }\n}\n\n\n\n"
+    \      }\n    }\n\n    return g;\n  }\n\n  template <typename I, typename T>\n\
+    \  std::map<I, T> zeta_transform(const std::map<I, T>& mp) {\n    std::map<I,\
+    \ T> ret = mp;\n    for (auto p2itr = mp.rbegin(); p2itr!=mp.rend(); p2itr++)\
+    \ {\n      for (auto p1itr = next(p2itr); p1itr != mp.rend(); p1itr++) {\n   \
+    \     if ((*p2itr).first % (*p1itr).first == 0) ret[(*p2itr).first] += ret[(*p1itr).first];\n\
+    \      }\n    }\n\n    return ret;\n  }\n\n\n  template <typename I, typename\
+    \ T>\n  std::map<I, T> moebius_transform(const std::map<I, T>& mp) {\n    std::map<I,\
+    \ T> ret = mp;\n\n    for (auto p1itr = ret.begin(); p1itr != ret.end(); p1itr++)\
+    \ {\n      for (auto p2itr = next(p1itr); p2itr != ret.end(); p2itr++) {\n   \
+    \     if ( (*p2itr).first % (*p1itr).first == 0) ret[(*p2itr).first] -= ret[(*p1itr).first];\n\
+    \      }\n    }\n\n    return ret;\n  }\n} // namespace divisor\n\n\n"
   code: "#ifndef HARUILIB_CONVOLUTION_DIVISOR_ZETA_MOEBIUS_TRANSFORM_HPP\n#define\
     \ HARUILIB_CONVOLUTION_DIVISOR_ZETA_MOEBIUS_TRANSFORM_HPP\n\n#include <vector>\n\
     \nnamespace divisor {\n  // \u7D04\u6570\u306B\u3064\u3044\u3066\u306E\u30BC\u30FC\
@@ -37,14 +50,25 @@ data:
     \  std::vector<T> moebius_transform_naive(const std::vector<T>& f) {\n    int\
     \ N = f.size() - 1;\n    std::vector<T> g = f;\n\n    for (int i=1; i<=N; i++)\
     \ {\n      for (int j=i*2; j<= N; j+=i) {\n        g[j] -= g[i];\n      }\n  \
-    \  }\n\n    return g;\n  }\n}\n\n\n#endif // HARUILIB_CONVOLUTION_DIVISOR_ZETA_MOEBIUS_TRANSFORM_HPP"
+    \  }\n\n    return g;\n  }\n\n  template <typename I, typename T>\n  std::map<I,\
+    \ T> zeta_transform(const std::map<I, T>& mp) {\n    std::map<I, T> ret = mp;\n\
+    \    for (auto p2itr = mp.rbegin(); p2itr!=mp.rend(); p2itr++) {\n      for (auto\
+    \ p1itr = next(p2itr); p1itr != mp.rend(); p1itr++) {\n        if ((*p2itr).first\
+    \ % (*p1itr).first == 0) ret[(*p2itr).first] += ret[(*p1itr).first];\n      }\n\
+    \    }\n\n    return ret;\n  }\n\n\n  template <typename I, typename T>\n  std::map<I,\
+    \ T> moebius_transform(const std::map<I, T>& mp) {\n    std::map<I, T> ret = mp;\n\
+    \n    for (auto p1itr = ret.begin(); p1itr != ret.end(); p1itr++) {\n      for\
+    \ (auto p2itr = next(p1itr); p2itr != ret.end(); p2itr++) {\n        if ( (*p2itr).first\
+    \ % (*p1itr).first == 0) ret[(*p2itr).first] -= ret[(*p1itr).first];\n      }\n\
+    \    }\n\n    return ret;\n  }\n} // namespace divisor\n\n#endif // HARUILIB_CONVOLUTION_DIVISOR_ZETA_MOEBIUS_TRANSFORM_HPP"
   dependsOn: []
   isVerificationFile: false
   path: convolution/divisor-zeta-moebius-transform.hpp
   requiredBy: []
-  timestamp: '2024-06-18 23:58:45+09:00'
+  timestamp: '2024-06-19 23:53:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
   - test/verify/convolution/yosupo-lcm-convolution.test.cpp
 documentation_of: convolution/divisor-zeta-moebius-transform.hpp
 layout: document

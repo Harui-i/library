@@ -236,20 +236,20 @@ data:
   isVerificationFile: false
   path: formal-power-series/formal-power-series.hpp
   requiredBy:
+  - formal-power-series/sparse-fps.hpp
+  - formal-power-series/fps998.hpp
+  - formal-power-series/fiduccia.hpp
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
-  - formal-power-series/sparse-fps.hpp
-  - formal-power-series/fiduccia.hpp
-  - formal-power-series/fps998.hpp
   timestamp: '2024-06-14 19:20:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
+  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
   - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
 documentation_of: formal-power-series/formal-power-series.hpp
 layout: document
 title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
