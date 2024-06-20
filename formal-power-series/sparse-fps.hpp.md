@@ -5,6 +5,9 @@ data:
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
+    path: math/external_gcd.hpp
+    title: math/external_gcd.hpp
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
   _extendedRequiredBy: []
@@ -19,25 +22,35 @@ data:
     links: []
   bundledCode: "#line 1 \"formal-power-series/sparse-fps.hpp\"\n\n\n\n#include <vector>\n\
     using namespace std;\n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\
-    \n\n\n\n#line 1 \"math/modint.hpp\"\n\n\n\ntemplate<int MOD>\nstruct static_modint\
-    \ {\n    int value;\n\n    constexpr static_modint() : value(0) {}\n\n    constexpr\
-    \ static_modint(long long v) {\n        value = int(((v % MOD) + MOD) % MOD);\n\
-    \    }\n\n    constexpr static_modint& operator+=(const static_modint& other)\
-    \ {\n        if ((value += other.value) >= MOD) value -= MOD;\n        return\
-    \ *this;\n    }\n\n    constexpr static_modint& operator-=(const static_modint&\
-    \ other) {\n        if ((value -= other.value) < 0) value += MOD;\n        return\
-    \ *this;\n    }\n\n    constexpr static_modint& operator*=(const static_modint&\
-    \ other) {\n        value = int((long long)value * other.value % MOD);\n     \
-    \   return *this;\n    }\n\n    constexpr static_modint operator+(const static_modint&\
-    \ other) const {\n        return static_modint(*this) += other;\n    }\n\n   \
-    \ constexpr static_modint operator-(const static_modint& other) const {\n    \
-    \    return static_modint(*this) -= other;\n    }\n\n    constexpr static_modint\
-    \ operator*(const static_modint& other) const {\n        return static_modint(*this)\
-    \ *= other;\n    }\n\n    constexpr static_modint pow(long long exp) const {\n\
-    \        static_modint base = *this, res = 1;\n        while (exp > 0) {\n   \
-    \         if (exp & 1) res *= base;\n            base *= base;\n            exp\
-    \ >>= 1;\n        }\n        return res;\n    }\n\n    constexpr static_modint\
-    \ inv() const {\n        return pow(MOD - 2);\n    }\n\n    constexpr static_modint&\
+    \n\n\n\n#line 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\
+    \n\n\n#include <tuple>\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T,\
+    \ T, T> extendedGCD(T a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while\
+    \ (b != 0) {\n        T q = a / b;\n        T r = a % b;\n        a = b;\n   \
+    \     b = r;\n        \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n   \
+    \     x1 = xTemp;\n        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n\
+    \        y1 = yTemp;\n    }\n    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\
+    \n\ntemplate<int MOD>\nstruct static_modint {\n    int value;\n\n    constexpr\
+    \ static_modint() : value(0) {}\n\n    constexpr static_modint(long long v) {\n\
+    \        value = int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr static_modint&\
+    \ operator+=(const static_modint& other) {\n        if ((value += other.value)\
+    \ >= MOD) value -= MOD;\n        return *this;\n    }\n\n    constexpr static_modint&\
+    \ operator-=(const static_modint& other) {\n        if ((value -= other.value)\
+    \ < 0) value += MOD;\n        return *this;\n    }\n\n    constexpr static_modint&\
+    \ operator*=(const static_modint& other) {\n        value = int((long long)value\
+    \ * other.value % MOD);\n        return *this;\n    }\n\n    constexpr static_modint\
+    \ operator+(const static_modint& other) const {\n        return static_modint(*this)\
+    \ += other;\n    }\n\n    constexpr static_modint operator-(const static_modint&\
+    \ other) const {\n        return static_modint(*this) -= other;\n    }\n\n   \
+    \ constexpr static_modint operator*(const static_modint& other) const {\n    \
+    \    return static_modint(*this) *= other;\n    }\n\n    constexpr static_modint\
+    \ pow(long long exp) const {\n        static_modint base = *this, res = 1;\n \
+    \       while (exp > 0) {\n            if (exp & 1) res *= base;\n           \
+    \ base *= base;\n            exp >>= 1;\n        }\n        return res;\n    }\n\
+    \n    constexpr static_modint inv() const {\n        //return pow(MOD - 2);\n\
+    \        int g,x,y;\n        tie(g,x,y) = extendedGCD(value, MOD);\n        assert(g==1);\n\
+    \        if (x < 0) {\n            x += MOD;\n        }\n        //cerr << g <<\
+    \ \" \" << x << \" \" << y << \" \" << value << endl;\n        //assert((((long)x*value)%MOD\
+    \ + MOD)%MOD == 1);\n        return x;\n    }\n\n    constexpr static_modint&\
     \ operator/=(const static_modint& other) {\n        return *this *= other.inv();\n\
     \    }\n\n    constexpr static_modint operator/(const static_modint& other) const\
     \ {\n        return static_modint(*this) /= other;\n    }\n\n    constexpr bool\
@@ -173,10 +186,11 @@ data:
   dependsOn:
   - formal-power-series/formal-power-series.hpp
   - math/modint.hpp
+  - math/external_gcd.hpp
   isVerificationFile: false
   path: formal-power-series/sparse-fps.hpp
   requiredBy: []
-  timestamp: '2024-06-14 19:20:17+09:00'
+  timestamp: '2024-06-20 15:39:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp

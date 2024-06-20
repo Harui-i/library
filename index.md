@@ -63,6 +63,9 @@ data:
     - icon: ':warning:'
       path: math/count_by_remainder.hpp
       title: math/count_by_remainder.hpp
+    - icon: ':heavy_check_mark:'
+      path: math/external_gcd.hpp
+      title: math/external_gcd.hpp
     - icon: ':warning:'
       path: math/mod_pow.hpp
       title: math/mod_pow.hpp

@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: math/external_gcd.hpp
+    title: math/external_gcd.hpp
+  - icon: ':heavy_check_mark:'
     path: math/matrix/matrix.hpp
     title: "Matrix(\u884C\u5217)"
   - icon: ':heavy_check_mark:'
@@ -28,50 +31,61 @@ data:
     \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
     \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
     \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
-    \ 1 \"math/modint.hpp\"\n\n\n\ntemplate<int MOD>\nstruct static_modint {\n   \
-    \ int value;\n\n    constexpr static_modint() : value(0) {}\n\n    constexpr static_modint(long\
-    \ long v) {\n        value = int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr\
-    \ static_modint& operator+=(const static_modint& other) {\n        if ((value\
-    \ += other.value) >= MOD) value -= MOD;\n        return *this;\n    }\n\n    constexpr\
-    \ static_modint& operator-=(const static_modint& other) {\n        if ((value\
-    \ -= other.value) < 0) value += MOD;\n        return *this;\n    }\n\n    constexpr\
-    \ static_modint& operator*=(const static_modint& other) {\n        value = int((long\
-    \ long)value * other.value % MOD);\n        return *this;\n    }\n\n    constexpr\
-    \ static_modint operator+(const static_modint& other) const {\n        return\
-    \ static_modint(*this) += other;\n    }\n\n    constexpr static_modint operator-(const\
-    \ static_modint& other) const {\n        return static_modint(*this) -= other;\n\
-    \    }\n\n    constexpr static_modint operator*(const static_modint& other) const\
-    \ {\n        return static_modint(*this) *= other;\n    }\n\n    constexpr static_modint\
+    \ 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n#line\
+    \ 5 \"math/external_gcd.hpp\"\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T,\
+    \ T, T> extendedGCD(T a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while\
+    \ (b != 0) {\n        T q = a / b;\n        T r = a % b;\n        a = b;\n   \
+    \     b = r;\n        \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n   \
+    \     x1 = xTemp;\n        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n\
+    \        y1 = yTemp;\n    }\n    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\
+    \n\ntemplate<int MOD>\nstruct static_modint {\n    int value;\n\n    constexpr\
+    \ static_modint() : value(0) {}\n\n    constexpr static_modint(long long v) {\n\
+    \        value = int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr static_modint&\
+    \ operator+=(const static_modint& other) {\n        if ((value += other.value)\
+    \ >= MOD) value -= MOD;\n        return *this;\n    }\n\n    constexpr static_modint&\
+    \ operator-=(const static_modint& other) {\n        if ((value -= other.value)\
+    \ < 0) value += MOD;\n        return *this;\n    }\n\n    constexpr static_modint&\
+    \ operator*=(const static_modint& other) {\n        value = int((long long)value\
+    \ * other.value % MOD);\n        return *this;\n    }\n\n    constexpr static_modint\
+    \ operator+(const static_modint& other) const {\n        return static_modint(*this)\
+    \ += other;\n    }\n\n    constexpr static_modint operator-(const static_modint&\
+    \ other) const {\n        return static_modint(*this) -= other;\n    }\n\n   \
+    \ constexpr static_modint operator*(const static_modint& other) const {\n    \
+    \    return static_modint(*this) *= other;\n    }\n\n    constexpr static_modint\
     \ pow(long long exp) const {\n        static_modint base = *this, res = 1;\n \
     \       while (exp > 0) {\n            if (exp & 1) res *= base;\n           \
     \ base *= base;\n            exp >>= 1;\n        }\n        return res;\n    }\n\
-    \n    constexpr static_modint inv() const {\n        return pow(MOD - 2);\n  \
-    \  }\n\n    constexpr static_modint& operator/=(const static_modint& other) {\n\
-    \        return *this *= other.inv();\n    }\n\n    constexpr static_modint operator/(const\
-    \ static_modint& other) const {\n        return static_modint(*this) /= other;\n\
-    \    }\n\n    constexpr bool operator!=(const static_modint& other) const {\n\
-    \        return val() != other.val();\n    }\n\n    constexpr bool operator==(const\
-    \ static_modint& other) const {\n        return val() == other.val();\n    }\n\
-    \n    int val() const {\n      return this->value;\n    }\n\n    friend std::ostream&\
-    \ operator<<(std::ostream& os, const static_modint& mi) {\n        return os <<\
-    \ mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream& is, static_modint&\
-    \ mi) {\n        long long x;\n        is >> x;\n        mi = static_modint(x);\n\
-    \        return is;\n    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\n\
-    using modint998244353  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\
-    \n\n#line 1 \"math/matrix/matrix.hpp\"\n\n\n\ntemplate <class T>\nstruct Matrix{\n\
-    private: \n  vector<vector<T>>vec;\n  int N, M;\npublic:\n\n  Matrix(int _N, int\
-    \ _M) : N(_N), M(_M), vec(vector<vector<T>>(_N, vector<T>(_M))) {\n    assert(_N\
-    \ >= 0 && _M >= 0); // 0*0\u306E\u884C\u5217\u3092\u8FD4\u3057\u305F\u3044\u3068\
-    \u304D\u3082\u3042\u308B(\u9006\u884C\u5217\u306A\u304B\u3063\u305F\u3068\u304D\
-    \u3068\u304B)\n  }\n\n  Matrix<T> operator*(const Matrix<T>& rhs) const  {\n \
-    \   assert(M == rhs.N);\n    Matrix ret(N,rhs.M);\n    for (int i=0; i<N; i++)\
-    \ for (int k=0; k<M; k++) for(int j=0; j<rhs.M; j++) {\n      ret.vec[i][j] +=\
-    \ vec[i][k] * rhs.vec[k][j];\n    } \n\n    return ret;\n  }\n\n  Matrix<T> operator^(unsigned\
-    \ long long k) const {\n    assert(N == M);\n    Matrix<T> ret(N, N);\n    for(int\
-    \ i=0; i<N; i++) ret[i][i] = T(1);\n\n    Matrix<T> base = *this;\n\n    while\
-    \ (k > 0) {\n      if (k & 1) {\n        ret *= base;\n      }\n\n      base *=\
-    \ base;\n      k >>= 1; \n    }\n\n    return ret;\n  }\n\n  vector<T>& operator[](int\
-    \ i) {\n    assert(i < N);\n    return vec[i];\n  }\n\n  Matrix<T>& operator*=(const\
+    \n    constexpr static_modint inv() const {\n        //return pow(MOD - 2);\n\
+    \        int g,x,y;\n        tie(g,x,y) = extendedGCD(value, MOD);\n        assert(g==1);\n\
+    \        if (x < 0) {\n            x += MOD;\n        }\n        //cerr << g <<\
+    \ \" \" << x << \" \" << y << \" \" << value << endl;\n        //assert((((long)x*value)%MOD\
+    \ + MOD)%MOD == 1);\n        return x;\n    }\n\n    constexpr static_modint&\
+    \ operator/=(const static_modint& other) {\n        return *this *= other.inv();\n\
+    \    }\n\n    constexpr static_modint operator/(const static_modint& other) const\
+    \ {\n        return static_modint(*this) /= other;\n    }\n\n    constexpr bool\
+    \ operator!=(const static_modint& other) const {\n        return val() != other.val();\n\
+    \    }\n\n    constexpr bool operator==(const static_modint& other) const {\n\
+    \        return val() == other.val();\n    }\n\n    int val() const {\n      return\
+    \ this->value;\n    }\n\n    friend std::ostream& operator<<(std::ostream& os,\
+    \ const static_modint& mi) {\n        return os << mi.value;\n    }\n\n    friend\
+    \ std::istream& operator>>(std::istream& is, static_modint& mi) {\n        long\
+    \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
+    \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
+    \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\n\n#line\
+    \ 1 \"math/matrix/matrix.hpp\"\n\n\n\ntemplate <class T>\nstruct Matrix{\nprivate:\
+    \ \n  vector<vector<T>>vec;\n  int N, M;\npublic:\n\n  Matrix(int _N, int _M)\
+    \ : N(_N), M(_M), vec(vector<vector<T>>(_N, vector<T>(_M))) {\n    assert(_N >=\
+    \ 0 && _M >= 0); // 0*0\u306E\u884C\u5217\u3092\u8FD4\u3057\u305F\u3044\u3068\u304D\
+    \u3082\u3042\u308B(\u9006\u884C\u5217\u306A\u304B\u3063\u305F\u3068\u304D\u3068\
+    \u304B)\n  }\n\n  Matrix<T> operator*(const Matrix<T>& rhs) const  {\n    assert(M\
+    \ == rhs.N);\n    Matrix ret(N,rhs.M);\n    for (int i=0; i<N; i++) for (int k=0;\
+    \ k<M; k++) for(int j=0; j<rhs.M; j++) {\n      ret.vec[i][j] += vec[i][k] * rhs.vec[k][j];\n\
+    \    } \n\n    return ret;\n  }\n\n  Matrix<T> operator^(unsigned long long k)\
+    \ const {\n    assert(N == M);\n    Matrix<T> ret(N, N);\n    for(int i=0; i<N;\
+    \ i++) ret[i][i] = T(1);\n\n    Matrix<T> base = *this;\n\n    while (k > 0) {\n\
+    \      if (k & 1) {\n        ret *= base;\n      }\n\n      base *= base;\n  \
+    \    k >>= 1; \n    }\n\n    return ret;\n  }\n\n  vector<T>& operator[](int i)\
+    \ {\n    assert(i < N);\n    return vec[i];\n  }\n\n  Matrix<T>& operator*=(const\
     \ Matrix<T>& b) { return (*this) = (*this) * b; }\n  Matrix<T>& operator^=(const\
     \ unsigned long long k) { return (*this) = (*this) ^ k; }\n\n  // \u3055\u3059\
     \u304C\u306Brank\u3092\u77E5\u308B\u306E\u306B\u526F\u4F5C\u7528\u304C\u3042\u308B\
@@ -124,11 +138,12 @@ data:
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
+  - math/external_gcd.hpp
   - math/matrix/matrix.hpp
   isVerificationFile: true
   path: test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-06-19 18:05:48+09:00'
+  timestamp: '2024-06-20 15:39:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp

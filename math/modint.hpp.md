@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: math/external_gcd.hpp
+    title: math/external_gcd.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: formal-power-series/fiduccia.hpp
@@ -98,25 +101,35 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"math/modint.hpp\"\n\n\n\ntemplate<int MOD>\nstruct static_modint\
-    \ {\n    int value;\n\n    constexpr static_modint() : value(0) {}\n\n    constexpr\
-    \ static_modint(long long v) {\n        value = int(((v % MOD) + MOD) % MOD);\n\
-    \    }\n\n    constexpr static_modint& operator+=(const static_modint& other)\
-    \ {\n        if ((value += other.value) >= MOD) value -= MOD;\n        return\
-    \ *this;\n    }\n\n    constexpr static_modint& operator-=(const static_modint&\
-    \ other) {\n        if ((value -= other.value) < 0) value += MOD;\n        return\
-    \ *this;\n    }\n\n    constexpr static_modint& operator*=(const static_modint&\
-    \ other) {\n        value = int((long long)value * other.value % MOD);\n     \
-    \   return *this;\n    }\n\n    constexpr static_modint operator+(const static_modint&\
-    \ other) const {\n        return static_modint(*this) += other;\n    }\n\n   \
-    \ constexpr static_modint operator-(const static_modint& other) const {\n    \
-    \    return static_modint(*this) -= other;\n    }\n\n    constexpr static_modint\
-    \ operator*(const static_modint& other) const {\n        return static_modint(*this)\
-    \ *= other;\n    }\n\n    constexpr static_modint pow(long long exp) const {\n\
-    \        static_modint base = *this, res = 1;\n        while (exp > 0) {\n   \
-    \         if (exp & 1) res *= base;\n            base *= base;\n            exp\
-    \ >>= 1;\n        }\n        return res;\n    }\n\n    constexpr static_modint\
-    \ inv() const {\n        return pow(MOD - 2);\n    }\n\n    constexpr static_modint&\
+  bundledCode: "#line 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"math/external_gcd.hpp\"\
+    \n\n\n\n#include <tuple>\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T,\
+    \ T, T> extendedGCD(T a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while\
+    \ (b != 0) {\n        T q = a / b;\n        T r = a % b;\n        a = b;\n   \
+    \     b = r;\n        \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n   \
+    \     x1 = xTemp;\n        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n\
+    \        y1 = yTemp;\n    }\n    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\
+    \n\ntemplate<int MOD>\nstruct static_modint {\n    int value;\n\n    constexpr\
+    \ static_modint() : value(0) {}\n\n    constexpr static_modint(long long v) {\n\
+    \        value = int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr static_modint&\
+    \ operator+=(const static_modint& other) {\n        if ((value += other.value)\
+    \ >= MOD) value -= MOD;\n        return *this;\n    }\n\n    constexpr static_modint&\
+    \ operator-=(const static_modint& other) {\n        if ((value -= other.value)\
+    \ < 0) value += MOD;\n        return *this;\n    }\n\n    constexpr static_modint&\
+    \ operator*=(const static_modint& other) {\n        value = int((long long)value\
+    \ * other.value % MOD);\n        return *this;\n    }\n\n    constexpr static_modint\
+    \ operator+(const static_modint& other) const {\n        return static_modint(*this)\
+    \ += other;\n    }\n\n    constexpr static_modint operator-(const static_modint&\
+    \ other) const {\n        return static_modint(*this) -= other;\n    }\n\n   \
+    \ constexpr static_modint operator*(const static_modint& other) const {\n    \
+    \    return static_modint(*this) *= other;\n    }\n\n    constexpr static_modint\
+    \ pow(long long exp) const {\n        static_modint base = *this, res = 1;\n \
+    \       while (exp > 0) {\n            if (exp & 1) res *= base;\n           \
+    \ base *= base;\n            exp >>= 1;\n        }\n        return res;\n    }\n\
+    \n    constexpr static_modint inv() const {\n        //return pow(MOD - 2);\n\
+    \        int g,x,y;\n        tie(g,x,y) = extendedGCD(value, MOD);\n        assert(g==1);\n\
+    \        if (x < 0) {\n            x += MOD;\n        }\n        //cerr << g <<\
+    \ \" \" << x << \" \" << y << \" \" << value << endl;\n        //assert((((long)x*value)%MOD\
+    \ + MOD)%MOD == 1);\n        return x;\n    }\n\n    constexpr static_modint&\
     \ operator/=(const static_modint& other) {\n        return *this *= other.inv();\n\
     \    }\n\n    constexpr static_modint operator/(const static_modint& other) const\
     \ {\n        return static_modint(*this) /= other;\n    }\n\n    constexpr bool\
@@ -129,25 +142,29 @@ data:
     \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
     \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
     \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\n\n"
-  code: "#ifndef HARUILIB_MATH_MODINT_HPP\n#define HARUILIB_MATH_MODINT_HPP\n\ntemplate<int\
-    \ MOD>\nstruct static_modint {\n    int value;\n\n    constexpr static_modint()\
-    \ : value(0) {}\n\n    constexpr static_modint(long long v) {\n        value =\
-    \ int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr static_modint& operator+=(const\
-    \ static_modint& other) {\n        if ((value += other.value) >= MOD) value -=\
-    \ MOD;\n        return *this;\n    }\n\n    constexpr static_modint& operator-=(const\
-    \ static_modint& other) {\n        if ((value -= other.value) < 0) value += MOD;\n\
-    \        return *this;\n    }\n\n    constexpr static_modint& operator*=(const\
-    \ static_modint& other) {\n        value = int((long long)value * other.value\
-    \ % MOD);\n        return *this;\n    }\n\n    constexpr static_modint operator+(const\
-    \ static_modint& other) const {\n        return static_modint(*this) += other;\n\
-    \    }\n\n    constexpr static_modint operator-(const static_modint& other) const\
-    \ {\n        return static_modint(*this) -= other;\n    }\n\n    constexpr static_modint\
-    \ operator*(const static_modint& other) const {\n        return static_modint(*this)\
-    \ *= other;\n    }\n\n    constexpr static_modint pow(long long exp) const {\n\
-    \        static_modint base = *this, res = 1;\n        while (exp > 0) {\n   \
-    \         if (exp & 1) res *= base;\n            base *= base;\n            exp\
-    \ >>= 1;\n        }\n        return res;\n    }\n\n    constexpr static_modint\
-    \ inv() const {\n        return pow(MOD - 2);\n    }\n\n    constexpr static_modint&\
+  code: "#ifndef HARUILIB_MATH_MODINT_HPP\n#define HARUILIB_MATH_MODINT_HPP\n\n#include\
+    \ \"math/external_gcd.hpp\"\n\ntemplate<int MOD>\nstruct static_modint {\n   \
+    \ int value;\n\n    constexpr static_modint() : value(0) {}\n\n    constexpr static_modint(long\
+    \ long v) {\n        value = int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr\
+    \ static_modint& operator+=(const static_modint& other) {\n        if ((value\
+    \ += other.value) >= MOD) value -= MOD;\n        return *this;\n    }\n\n    constexpr\
+    \ static_modint& operator-=(const static_modint& other) {\n        if ((value\
+    \ -= other.value) < 0) value += MOD;\n        return *this;\n    }\n\n    constexpr\
+    \ static_modint& operator*=(const static_modint& other) {\n        value = int((long\
+    \ long)value * other.value % MOD);\n        return *this;\n    }\n\n    constexpr\
+    \ static_modint operator+(const static_modint& other) const {\n        return\
+    \ static_modint(*this) += other;\n    }\n\n    constexpr static_modint operator-(const\
+    \ static_modint& other) const {\n        return static_modint(*this) -= other;\n\
+    \    }\n\n    constexpr static_modint operator*(const static_modint& other) const\
+    \ {\n        return static_modint(*this) *= other;\n    }\n\n    constexpr static_modint\
+    \ pow(long long exp) const {\n        static_modint base = *this, res = 1;\n \
+    \       while (exp > 0) {\n            if (exp & 1) res *= base;\n           \
+    \ base *= base;\n            exp >>= 1;\n        }\n        return res;\n    }\n\
+    \n    constexpr static_modint inv() const {\n        //return pow(MOD - 2);\n\
+    \        int g,x,y;\n        tie(g,x,y) = extendedGCD(value, MOD);\n        assert(g==1);\n\
+    \        if (x < 0) {\n            x += MOD;\n        }\n        //cerr << g <<\
+    \ \" \" << x << \" \" << y << \" \" << value << endl;\n        //assert((((long)x*value)%MOD\
+    \ + MOD)%MOD == 1);\n        return x;\n    }\n\n    constexpr static_modint&\
     \ operator/=(const static_modint& other) {\n        return *this *= other.inv();\n\
     \    }\n\n    constexpr static_modint operator/(const static_modint& other) const\
     \ {\n        return static_modint(*this) /= other;\n    }\n\n    constexpr bool\
@@ -161,7 +178,8 @@ data:
     \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
     \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\n#endif\
     \ // HARUILIB_MATH_MODINT_HPP"
-  dependsOn: []
+  dependsOn:
+  - math/external_gcd.hpp
   isVerificationFile: false
   path: math/modint.hpp
   requiredBy:
@@ -174,7 +192,7 @@ data:
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - test/verify/atcoder-tdpc-s.cpp
-  timestamp: '2024-06-14 19:04:40+09:00'
+  timestamp: '2024-06-20 15:39:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
