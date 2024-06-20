@@ -54,7 +54,7 @@ title: "\u4E0A\u4F4D\u96C6\u5408\u306B\u3064\u3044\u3066\u306E\u9AD8\u901F\u30BC
 
 可換な二項演算(大抵の場合、数の和) $\oplus$ があるとき、
 サイズ$N$の集合 $S$について、$f(S)$が($2^N$の`vector`で)与えられたときに、
-$ g(S) = \bigoplus_{S \subseteq T} f(S) $ を求めたり(Zeta)、その逆変換を求めたり(Möbius)する。
+$ g(S) = \bigoplus_{S \subseteq T} f(T) $ を求めたり(Zeta)、その逆変換を求めたり(Möbius)する。
 
 添字AND畳み込みは、上位集合についてゼータ変換したあとに各点積を取ってメビウス変換すると求められたりする。
 
