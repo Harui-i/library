@@ -10,21 +10,41 @@ documentation_of: //convolution/divisor-zeta-moebius-transform.hpp
 ### 約数についてのゼータ変換
 
 ```
-vector<T> zeta_transform_naive(const vector<T>& A)
+vector<T> zeta_transform_naive<T, op>(const vector<T>& A)
 ```
 
-長さ$N$の数列$A$が与えられたときに、 $ B_{i} = \Sigma_{j \mid i} A_j $ なる数列 $B$ を求める。
+可換な二項演算(大抵の場合、数の和) $\oplus$ があるとき、
+長さ$N$の数列$A$が与えられたときに、 $ B_{i} = \bigoplus_{j \mid i} A_j$ なる数列 $B$ を求める。
 
+`op`は、例えば`T=int`で二項演算が和なら
+```
+int op(int a, int b){
+  return a + b;
+}
+```
+
+などとして定義された関数を渡す。
 ### 計算量
 
 - $O(N \log N) $
 
 ### 約数についてのメビウス変換
+
+可換な二項演算(大抵の場合、数の和) $\oplus$ に逆元があるとき、
 長さ$N$の数列$B$が与えられたときに、$B_i = \Sigma_{j \mid i} A_j $ なる数列 $A$ を求める。
 
 ```
-vector<T> moebius_transform_naive(const vector<T>& B)
+vector<T> moebius_transform_naive<T, invop>(const vector<T>& B)
 ``` 
+
+invopは、例えば`T=int`で、二項演算が和なら
+```
+int invop(int a, int b) {
+  return a - b;
+}
+```
+
+などとして定義された関数を渡す。
 
 ### 計算量
 
@@ -35,11 +55,11 @@ vector<T> moebius_transform_naive(const vector<T>& B)
 ## mapでやるやつ
 
 ```
-map<I,T> zeta_transform(const map<I,T>& mp)
+map<I,T> zeta_transform<I,T,op>(const map<I,T>& mp)
 ```
 
 ```
-map<I,T> moebius_transform(const map<I, T>& mp)
+map<I,T> moebius_transform<I,T,invop>(const map<I, T>& mp)
 ```
 
 どちらもゼータ変換/メビウス変換を行うが、`vector`で変換する場合と違い、`map`のkeyだけを添え字として扱う。

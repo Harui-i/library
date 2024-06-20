@@ -3,7 +3,7 @@
 
 #include <vector>
 
-template <typename T>
+template <class T, T (*op)(T, T) >
 std::vector<T> superset_zeta_transform(const std::vector<T>& f) {
 
   int n = 0; while ((1 << n) < (int)f.size()) n++;
@@ -13,14 +13,14 @@ std::vector<T> superset_zeta_transform(const std::vector<T>& f) {
   std::vector<T> F = f;
   for (int k = 0; k < n; k++) {
     for (int s = 0; s < 1 << n; s++) {
-      if (!((s >> k) & 1)) F[s] += F[s ^ (1 << k)];
+      if (!((s >> k) & 1)) F[s] = op(F[s], F[s ^ (1 << k)]);
     }
   }
   return F;
 }
 
 
-template <typename T>
+template <class T, T (*invop)(T, T) >
 std::vector<T> superset_moebius_transform(const std::vector<T>& f) {
   int n = 0; while ((1 << n) < (int)f.size()) n++;
   assert((int)f.size() == (1 << n)); // f.size() should be power of 2.
@@ -28,7 +28,7 @@ std::vector<T> superset_moebius_transform(const std::vector<T>& f) {
   std::vector<T> F = f;
   for (int k = 0; k < n; k++) {
     for (int s = 0; s < 1 << n; s++) {
-      if (!((s >> k) & 1)) F[s] -= F[s ^ (1 << k)];
+      if (!((s >> k) & 1)) F[s] = invop(F[s], F[s ^ (1 << k)]);
     }
   }
   return F;
