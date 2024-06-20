@@ -1,6 +1,8 @@
 #ifndef HARUILIB_MATH_MODINT_HPP
 #define HARUILIB_MATH_MODINT_HPP
 
+#include "math/external_gcd.hpp"
+
 template<int MOD>
 struct static_modint {
     int value;
@@ -49,7 +51,16 @@ struct static_modint {
     }
 
     constexpr static_modint inv() const {
-        return pow(MOD - 2);
+        //return pow(MOD - 2);
+        int g,x,y;
+        tie(g,x,y) = extendedGCD(value, MOD);
+        assert(g==1);
+        if (x < 0) {
+            x += MOD;
+        }
+        //cerr << g << " " << x << " " << y << " " << value << endl;
+        //assert((((long)x*value)%MOD + MOD)%MOD == 1);
+        return x;
     }
 
     constexpr static_modint& operator/=(const static_modint& other) {
