@@ -1,5 +1,5 @@
 ---
-title : 上位集合の高速ゼータ変換
+title : 上位集合についての高速ゼータ変換/メビウス変換
 documentation_of: //convolution/superset-zeta-moebius-transform.hpp
 ---
 
