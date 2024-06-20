@@ -31,7 +31,7 @@ int op(int a, int b){
 ### 約数についてのメビウス変換
 
 可換な二項演算(大抵の場合、数の和) $\oplus$ に逆元があるとき、
-長さ$N$の数列$B$が与えられたときに、$B_i = \Sigma_{j \mid i} A_j $ なる数列 $A$ を求める。
+長さ$N$の数列$B$が与えられたときに、$B_i = \bigoplus_{j \mid i} A_j $ なる数列 $A$ を求める。
 
 ```
 vector<T> moebius_transform_naive<T, invop>(const vector<T>& B)
