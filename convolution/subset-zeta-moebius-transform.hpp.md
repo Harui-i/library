@@ -41,8 +41,21 @@ data:
   verifiedWith: []
 documentation_of: convolution/subset-zeta-moebius-transform.hpp
 layout: document
-redirect_from:
-- /library/convolution/subset-zeta-moebius-transform.hpp
-- /library/convolution/subset-zeta-moebius-transform.hpp.html
-title: convolution/subset-zeta-moebius-transform.hpp
+title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u3064\u3044\u3066\u306E\u9AD8\u901F\u30BC\u30FC\
+  \u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
 ---
+
+## 概要
+
+可換な二項演算(大抵の場合、数の和) $\oplus$ があるとき、
+サイズ$N$の集合 $S$について、$f(S)$が($2^N$の`vector`で)与えられたときに、
+$ g(S) = \bigoplus_{T \subseteq S} f(S) $ を求めたり(Zeta)、その逆変換を求めたり(Möbius)する。
+
+添字OR畳み込みは、下位集合についてゼータ変換したあとに各点積を取ってメビウス変換すると求められたりする。
+
+Scrapboxを見るといっぱい資料がある。
+
+### 計算量
+ゼータもメビウスも
+
+- $O(N 2^N ) $
