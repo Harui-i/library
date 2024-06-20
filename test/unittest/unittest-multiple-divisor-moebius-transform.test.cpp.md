@@ -86,50 +86,92 @@ data:
     \u308B\u3068O(Nlog(log(N)))\u306B\u3067\u304D\u308B\u3053\u3068\u304C\u3088\u304F\
     \u77E5\u3089\u308C\u3066\u3044\u308B\u304C\u3001\u96E3\u3057\u3044\u3057log\u306F\
     \u5B9A\u6570\u306A\u306E\u3067\u59A5\u5354\u3059\u308B\u3002\n  template <typename\
-    \ T>\n  std::vector<T> zeta_transform_naive(const std::vector<T>& f) {\n    int\
-    \ N = f.size() - 1;\n    std::vector<T> g = f;\n    for (int i = 1; i <= N; i++)\
-    \ {\n      for (int j = 2 * i; j <= N; j += i) {\n        g[i] += f[j];\n    \
-    \  }\n    }\n\n    return g;\n  }\n\n  // \u500D\u6570\u306B\u3064\u3044\u3066\
-    \u306E\u30E1\u30D3\u30A6\u30B9\u5909\u63DB\n  // f_n = \\Sigma_{n|m} g_m \u306A\
-    \u308B g \u3092\u6C42\u3081\u308B\u3002\n  // O(N log N) (\u8ABF\u548C\u7D1A\u6570\
-    )\n  template <typename T>\n  std::vector<T> moebius_transform_naive(const std::vector<T>&\
+    \ T, T (*op)(T, T)>\n  std::vector<T> zeta_transform_naive(const std::vector<T>&\
     \ f) {\n    int N = f.size() - 1;\n    std::vector<T> g = f;\n    for (int i =\
-    \ N; i >= 1; i--) {\n      for (int j = 2 * i; j <= N; j += i) {\n        g[i]\
-    \ -= g[j];\n      }\n    }\n    return g;\n  }\n\n\n  template <typename I, typename\
-    \ T>\n  std::map<I, T> zeta_transform(const std::map<I, T>& mp) {\n    std::map<I,\
+    \ 1; i <= N; i++) {\n      for (int j = 2 * i; j <= N; j += i) {\n        g[i]\
+    \ = op(g[i], f[j]);\n      }\n    }\n\n    return g;\n  }\n\n  // \u500D\u6570\
+    \u306B\u3064\u3044\u3066\u306E\u30E1\u30D3\u30A6\u30B9\u5909\u63DB\n  // f_n =\
+    \ \\Sigma_{n|m} g_m \u306A\u308B g \u3092\u6C42\u3081\u308B\u3002\n  // O(N log\
+    \ N) (\u8ABF\u548C\u7D1A\u6570)\n  template <typename T, T(*invop)(T, T)>\n  std::vector<T>\
+    \ moebius_transform_naive(const std::vector<T>& f) {\n    int N = f.size() - 1;\n\
+    \    std::vector<T> g = f;\n    for (int i = N; i >= 1; i--) {\n      for (int\
+    \ j = 2 * i; j <= N; j += i) {\n        g[i] = invop(g[i], g[j]);\n      }\n \
+    \   }\n    return g;\n  }\n\n\n  template <typename I, typename T, T(*op)(T, T)>\n\
+    \  std::map<I, T> zeta_transform(const std::map<I, T>& mp) {\n    std::map<I,\
     \ T> ret = mp;\n    for (std::pair<I, T> pit : ret) {\n      for (auto p2itr =\
     \ ret.rbegin(); (*p2itr).first != pit.first; p2itr++) {\n        if ((*p2itr).first\
-    \ % pit.first == 0) {\n          ret[pit.first] += (*p2itr).second;\n        }\n\
-    \      }\n    }\n\n    return ret;\n  }\n\n\n  template <typename I, typename\
-    \ T>\n  std::map<I, T> moebius_transform(const std::map<I, T>& mp) {\n    std::map<I,\
-    \ T> ret = mp;\n    for (auto p1itr = ret.rbegin(); p1itr != ret.rend(); p1itr++)\
-    \ {\n      for (auto p2itr = ret.rbegin(); p2itr != p1itr; p2itr++) {\n      \
-    \  if ((*p2itr).first % (*p1itr).first == 0) (*p1itr).second -= (*p2itr).second;\n\
-    \      }\n    }\n\n    return ret;\n  }\n\n} // namespace multiple\n\n\n#line\
-    \ 1 \"convolution/divisor-zeta-moebius-transform.hpp\"\n\n\n\n#line 5 \"convolution/divisor-zeta-moebius-transform.hpp\"\
+    \ % pit.first == 0) {\n          ret[pit.first] = op(ret[pit.first], (*p2itr).second);\n\
+    \        }\n      }\n    }\n\n    return ret;\n  }\n\n\n  template <typename I,\
+    \ typename T, T (*invop)(T, T)>\n  std::map<I, T> moebius_transform(const std::map<I,\
+    \ T>& mp) {\n    std::map<I, T> ret = mp;\n    for (auto p1itr = ret.rbegin();\
+    \ p1itr != ret.rend(); p1itr++) {\n      for (auto p2itr = ret.rbegin(); p2itr\
+    \ != p1itr; p2itr++) {\n        if ((*p2itr).first % (*p1itr).first == 0) {\n\
+    \          (*p1itr).second = invop((*p1itr).second, (*p2itr).second);\n      \
+    \  }\n      }\n    }\n\n    return ret;\n  }\n\n} // namespace multiple\n\n\n\
+    #line 1 \"convolution/divisor-zeta-moebius-transform.hpp\"\n\n\n\n#line 5 \"convolution/divisor-zeta-moebius-transform.hpp\"\
     \n\nnamespace divisor {\n  // \u7D04\u6570\u306B\u3064\u3044\u3066\u306E\u30BC\
     \u30FC\u30BF\u5909\u63DB\u3002 g_n = \\Sigma_{m|n} f_m \u306A\u308B g \u3092\u6C42\
-    \u3081\u308B\u3002\n  template <typename T>\n  std::vector<T> zeta_transform_naive(const\
+    \u3081\u308B\u3002\n  template <typename T, T(*op)(T, T) >\n  std::vector<T> zeta_transform_naive(const\
     \ std::vector<T>& f) {\n    int N = f.size() - 1;\n    std::vector<T> g = f;\n\
-    \n    for(int i=1; i<=N; i++) {\n      for(int j=2*i; j<=N; j+=i) {\n        g[j]\
-    \ += f[i];\n      }\n    }\n\n    return g;\n  }\n\n  // \u7D04\u6570\u306B\u3064\
-    \u3044\u3066\u306E\u30E1\u30D3\u30A6\u30B9\u5909\u63DB\u3002 f_n = \\Sigma_{m|n}\
-    \ g_m \u306A\u308B g \u3092\u6C42\u3081\u308B\u3002\n  template <typename T>\n\
-    \  std::vector<T> moebius_transform_naive(const std::vector<T>& f) {\n    int\
-    \ N = f.size() - 1;\n    std::vector<T> g = f;\n\n    for (int i=1; i<=N; i++)\
-    \ {\n      for (int j=i*2; j<= N; j+=i) {\n        g[j] -= g[i];\n      }\n  \
-    \  }\n\n    return g;\n  }\n\n  template <typename I, typename T>\n  std::map<I,\
-    \ T> zeta_transform(const std::map<I, T>& mp) {\n    std::map<I, T> ret = mp;\n\
-    \    for (auto p2itr = mp.rbegin(); p2itr!=mp.rend(); p2itr++) {\n      for (auto\
-    \ p1itr = next(p2itr); p1itr != mp.rend(); p1itr++) {\n        if ((*p2itr).first\
-    \ % (*p1itr).first == 0) ret[(*p2itr).first] += ret[(*p1itr).first];\n      }\n\
-    \    }\n\n    return ret;\n  }\n\n\n  template <typename I, typename T>\n  std::map<I,\
-    \ T> moebius_transform(const std::map<I, T>& mp) {\n    std::map<I, T> ret = mp;\n\
-    \n    for (auto p1itr = ret.begin(); p1itr != ret.end(); p1itr++) {\n      for\
-    \ (auto p2itr = next(p1itr); p2itr != ret.end(); p2itr++) {\n        if ( (*p2itr).first\
-    \ % (*p1itr).first == 0) ret[(*p2itr).first] -= ret[(*p1itr).first];\n      }\n\
-    \    }\n\n    return ret;\n  }\n} // namespace divisor\n\n\n#line 8 \"test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp\"\
-    \n\nusing mint = modint998244353;\n\n// map\u3067\u500D\u6570\u306E\u30BC\u30FC\
+    \n    for (int i = 1; i <= N; i++) {\n      for (int j = 2 * i; j <= N; j += i)\
+    \ {\n        g[j] = op(g[j], f[i]);\n      }\n    }\n\n    return g;\n  }\n\n\
+    \  // \u7D04\u6570\u306B\u3064\u3044\u3066\u306E\u30E1\u30D3\u30A6\u30B9\u5909\
+    \u63DB\u3002 f_n = \\Sigma_{m|n} g_m \u306A\u308B g \u3092\u6C42\u3081\u308B\u3002\
+    \n  template <typename T, T(*invop)(T, T)>\n  std::vector<T> moebius_transform_naive(const\
+    \ std::vector<T>& f) {\n    int N = f.size() - 1;\n    std::vector<T> g = f;\n\
+    \n    for (int i = 1; i <= N; i++) {\n      for (int j = i * 2; j <= N; j += i)\
+    \ {\n        g[j] = invop(g[j], g[i]);\n      }\n    }\n\n    return g;\n  }\n\
+    \n  template <typename I, typename T, T(*op)(T, T)>\n  std::map<I, T> zeta_transform(const\
+    \ std::map<I, T>& mp) {\n    std::map<I, T> ret = mp;\n    for (auto p2itr = mp.rbegin();\
+    \ p2itr != mp.rend(); p2itr++) {\n      for (auto p1itr = next(p2itr); p1itr !=\
+    \ mp.rend(); p1itr++) {\n        if ((*p2itr).first % (*p1itr).first == 0) {\n\
+    \          ret[(*p2itr).first] = op(ret[(*p2itr).first], ret[(*p1itr).first]);\n\
+    \        }\n      }\n    }\n\n    return ret;\n  }\n\n\n  template <typename I,\
+    \ typename T, T(*op)(T, T)>\n  std::map<I, T> moebius_transform(const std::map<I,\
+    \ T>& mp) {\n    std::map<I, T> ret = mp;\n\n    for (auto p1itr = ret.begin();\
+    \ p1itr != ret.end(); p1itr++) {\n      for (auto p2itr = next(p1itr); p2itr !=\
+    \ ret.end(); p2itr++) {\n        if ((*p2itr).first % (*p1itr).first == 0) {\n\
+    \          ret[(*p2itr).first] = invop(ret[(*p2itr).first], ret[(*p1itr).first]);\n\
+    \        }\n      }\n    }\n\n    return ret;\n  }\n} // namespace divisor\n\n\
+    \n#line 8 \"test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp\"\
+    \n\nusing mint = modint998244353;\n\nmint op(mint a, mint b) {\n  return a + b;\n\
+    }\n\nmint invop(mint a, mint b) {\n  return a - b;\n}\n\n// map\u3067\u500D\u6570\
+    \u306E\u30BC\u30FC\u30BF\u5909\u63DB\u3068\u30E1\u30D3\u30A6\u30B9\u5909\u63DB\
+    \u3084\u308B\u3084\u3064\u306E\u30C6\u30B9\u30C8\nvoid test() {\n  random_device\
+    \ seed_gen;\n  mt19937 rng(seed_gen());\n\n\n  auto map_transform = [&rng](int\
+    \ N) {\n    map<ll, mint> multiple_map;\n    map<ll, mint> divisor_map;\n\n  \
+    \  vector<mint> multiple_vec(N + 1);\n    vector<mint> divisor_vec(N + 1);\n\n\
+    \    for (ll i = 1; i * i <= N; i++) {\n      if (N % i == 0) {\n        int r1\
+    \ = rng();\n        int r2 = rng();\n        multiple_map[i] = r1;\n        multiple_vec[i]\
+    \ = r1;\n\n        multiple_map[N / i] = r2;\n        multiple_vec[N / i] = r2;\n\
+    \      }\n    }\n\n    divisor_map = multiple_map;\n    divisor_vec = multiple_vec;\n\
+    \n    // multiple\n    {\n      map<ll, mint> multiple_map2 = multiple::zeta_transform<ll,mint,op>(multiple_map);\n\
+    \      vector<mint> multiple_vec2 = multiple::zeta_transform_naive<mint,op>(multiple_vec);\n\
+    \n      for (pair<ll, mint> plmi : multiple_map2) {\n        assert(multiple_vec2[plmi.first]\
+    \ == plmi.second);\n      }\n\n      map<ll, mint> multiple_map3 = multiple::moebius_transform<ll,mint,invop>(multiple_map2);\n\
+    \      vector<mint> multiple_vec3 = multiple::moebius_transform_naive<mint,invop>(multiple_vec2);\n\
+    \n      assert(multiple_map == multiple_map3 && \"multiple transform for map\"\
+    );\n      assert(multiple_vec == multiple_vec3 && \"multiple transform for vector\"\
+    );\n\n      for (pair<ll, mint> plmi : multiple_map3) {\n        assert(multiple_vec3[plmi.first]\
+    \ == plmi.second);\n      }\n    }\n\n    // divisor\n    {\n      map<ll, mint>\
+    \ divisor_map2 = divisor::zeta_transform<ll,mint,op>(divisor_map);\n      vector<mint>\
+    \ divisor_vec2 = divisor::zeta_transform_naive<mint,op>(divisor_vec);\n\n    \
+    \  for (pair<ll, mint> plmi : divisor_map2) {\n        assert(divisor_vec2[plmi.first]\
+    \ == plmi.second && \"divisor zeta transform\");\n      }\n\n      map<ll, mint>\
+    \ divisor_map3 = divisor::moebius_transform<ll,mint,invop>(divisor_map2);\n  \
+    \    vector<mint> divisor_vec3 = divisor::moebius_transform_naive<mint,invop>(divisor_vec2);\n\
+    \n      assert(divisor_map == divisor_map3 && \"multiple transform for map\");\n\
+    \      assert(divisor_vec == divisor_vec3 && \"multiple transform for vector\"\
+    );\n\n      for (pair<ll, mint> plmi : divisor_map3) {\n        assert(divisor_vec3[plmi.first]\
+    \ == plmi.second && \"divisor moebius transform\");\n      }\n    }\n\n    };\n\
+    \n  for (int i = 0; i < 1000; i++) {\n    map_transform(rng() % 10000 + 1);\n\
+    \  }\n  return;\n}\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n\
+    \  test();\n  int A, B; cin >> A >> B;\n  cout << A + B << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
+    template/template.hpp\"\n#include \"math/modint.hpp\"\n\n#include \"convolution/multiple-zeta-moebius-transform.hpp\"\
+    \n#include \"convolution/divisor-zeta-moebius-transform.hpp\"\n\nusing mint =\
+    \ modint998244353;\n\nmint op(mint a, mint b) {\n  return a + b;\n}\n\nmint invop(mint\
+    \ a, mint b) {\n  return a - b;\n}\n\n// map\u3067\u500D\u6570\u306E\u30BC\u30FC\
     \u30BF\u5909\u63DB\u3068\u30E1\u30D3\u30A6\u30B9\u5909\u63DB\u3084\u308B\u3084\
     \u3064\u306E\u30C6\u30B9\u30C8\nvoid test() {\n  random_device seed_gen;\n  mt19937\
     \ rng(seed_gen());\n\n\n  auto map_transform = [&rng](int N) {\n    map<ll, mint>\
@@ -139,63 +181,28 @@ data:
     \        multiple_map[i] = r1;\n        multiple_vec[i] = r1;\n\n        multiple_map[N\
     \ / i] = r2;\n        multiple_vec[N / i] = r2;\n      }\n    }\n\n    divisor_map\
     \ = multiple_map;\n    divisor_vec = multiple_vec;\n\n    // multiple\n    {\n\
-    \      map<ll, mint> multiple_map2 = multiple::zeta_transform(multiple_map);\n\
-    \      vector<mint> multiple_vec2 = multiple::zeta_transform_naive(multiple_vec);\n\
+    \      map<ll, mint> multiple_map2 = multiple::zeta_transform<ll,mint,op>(multiple_map);\n\
+    \      vector<mint> multiple_vec2 = multiple::zeta_transform_naive<mint,op>(multiple_vec);\n\
     \n      for (pair<ll, mint> plmi : multiple_map2) {\n        assert(multiple_vec2[plmi.first]\
-    \ == plmi.second);\n      }\n\n      map<ll, mint> multiple_map3 = multiple::moebius_transform(multiple_map2);\n\
-    \      vector<mint> multiple_vec3 = multiple::moebius_transform_naive(multiple_vec2);\n\
+    \ == plmi.second);\n      }\n\n      map<ll, mint> multiple_map3 = multiple::moebius_transform<ll,mint,invop>(multiple_map2);\n\
+    \      vector<mint> multiple_vec3 = multiple::moebius_transform_naive<mint,invop>(multiple_vec2);\n\
     \n      assert(multiple_map == multiple_map3 && \"multiple transform for map\"\
     );\n      assert(multiple_vec == multiple_vec3 && \"multiple transform for vector\"\
     );\n\n      for (pair<ll, mint> plmi : multiple_map3) {\n        assert(multiple_vec3[plmi.first]\
     \ == plmi.second);\n      }\n    }\n\n    // divisor\n    {\n      map<ll, mint>\
-    \ divisor_map2 = divisor::zeta_transform(divisor_map);\n      vector<mint> divisor_vec2\
-    \ = divisor::zeta_transform_naive(divisor_vec);\n\n      for (pair<ll, mint> plmi\
-    \ : divisor_map2) {\n        assert(divisor_vec2[plmi.first] == plmi.second &&\
-    \ \"divisor zeta transform\");\n      }\n\n      map<ll, mint> divisor_map3 =\
-    \ divisor::moebius_transform(divisor_map2);\n      vector<mint> divisor_vec3 =\
-    \ divisor::moebius_transform_naive(divisor_vec2);\n\n      assert(divisor_map\
-    \ == divisor_map3 && \"multiple transform for map\");\n      assert(divisor_vec\
-    \ == divisor_vec3 && \"multiple transform for vector\");\n\n      for (pair<ll,\
-    \ mint> plmi : divisor_map3) {\n        assert(divisor_vec3[plmi.first] == plmi.second\
-    \ && \"divisor moebius transform\");\n      }\n    }\n\n    };\n\n  for (int i\
-    \ = 0; i < 1000; i++) {\n    map_transform(rng() % 10000 + 1);\n  }\n  return;\n\
-    }\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  test();\n\
-    \  int A, B; cin >> A >> B;\n  cout << A + B << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    template/template.hpp\"\n#include \"math/modint.hpp\"\n\n#include \"convolution/multiple-zeta-moebius-transform.hpp\"\
-    \n#include \"convolution/divisor-zeta-moebius-transform.hpp\"\n\nusing mint =\
-    \ modint998244353;\n\n// map\u3067\u500D\u6570\u306E\u30BC\u30FC\u30BF\u5909\u63DB\
-    \u3068\u30E1\u30D3\u30A6\u30B9\u5909\u63DB\u3084\u308B\u3084\u3064\u306E\u30C6\
-    \u30B9\u30C8\nvoid test() {\n  random_device seed_gen;\n  mt19937 rng(seed_gen());\n\
-    \n\n  auto map_transform = [&rng](int N) {\n    map<ll, mint> multiple_map;\n\
-    \    map<ll, mint> divisor_map;\n\n    vector<mint> multiple_vec(N + 1);\n   \
-    \ vector<mint> divisor_vec(N + 1);\n\n    for (ll i = 1; i * i <= N; i++) {\n\
-    \      if (N % i == 0) {\n        int r1 = rng();\n        int r2 = rng();\n \
-    \       multiple_map[i] = r1;\n        multiple_vec[i] = r1;\n\n        multiple_map[N\
-    \ / i] = r2;\n        multiple_vec[N / i] = r2;\n      }\n    }\n\n    divisor_map\
-    \ = multiple_map;\n    divisor_vec = multiple_vec;\n\n    // multiple\n    {\n\
-    \      map<ll, mint> multiple_map2 = multiple::zeta_transform(multiple_map);\n\
-    \      vector<mint> multiple_vec2 = multiple::zeta_transform_naive(multiple_vec);\n\
-    \n      for (pair<ll, mint> plmi : multiple_map2) {\n        assert(multiple_vec2[plmi.first]\
-    \ == plmi.second);\n      }\n\n      map<ll, mint> multiple_map3 = multiple::moebius_transform(multiple_map2);\n\
-    \      vector<mint> multiple_vec3 = multiple::moebius_transform_naive(multiple_vec2);\n\
-    \n      assert(multiple_map == multiple_map3 && \"multiple transform for map\"\
-    );\n      assert(multiple_vec == multiple_vec3 && \"multiple transform for vector\"\
-    );\n\n      for (pair<ll, mint> plmi : multiple_map3) {\n        assert(multiple_vec3[plmi.first]\
-    \ == plmi.second);\n      }\n    }\n\n    // divisor\n    {\n      map<ll, mint>\
-    \ divisor_map2 = divisor::zeta_transform(divisor_map);\n      vector<mint> divisor_vec2\
-    \ = divisor::zeta_transform_naive(divisor_vec);\n\n      for (pair<ll, mint> plmi\
-    \ : divisor_map2) {\n        assert(divisor_vec2[plmi.first] == plmi.second &&\
-    \ \"divisor zeta transform\");\n      }\n\n      map<ll, mint> divisor_map3 =\
-    \ divisor::moebius_transform(divisor_map2);\n      vector<mint> divisor_vec3 =\
-    \ divisor::moebius_transform_naive(divisor_vec2);\n\n      assert(divisor_map\
-    \ == divisor_map3 && \"multiple transform for map\");\n      assert(divisor_vec\
-    \ == divisor_vec3 && \"multiple transform for vector\");\n\n      for (pair<ll,\
-    \ mint> plmi : divisor_map3) {\n        assert(divisor_vec3[plmi.first] == plmi.second\
-    \ && \"divisor moebius transform\");\n      }\n    }\n\n    };\n\n  for (int i\
-    \ = 0; i < 1000; i++) {\n    map_transform(rng() % 10000 + 1);\n  }\n  return;\n\
-    }\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  test();\n\
-    \  int A, B; cin >> A >> B;\n  cout << A + B << endl;\n}"
+    \ divisor_map2 = divisor::zeta_transform<ll,mint,op>(divisor_map);\n      vector<mint>\
+    \ divisor_vec2 = divisor::zeta_transform_naive<mint,op>(divisor_vec);\n\n    \
+    \  for (pair<ll, mint> plmi : divisor_map2) {\n        assert(divisor_vec2[plmi.first]\
+    \ == plmi.second && \"divisor zeta transform\");\n      }\n\n      map<ll, mint>\
+    \ divisor_map3 = divisor::moebius_transform<ll,mint,invop>(divisor_map2);\n  \
+    \    vector<mint> divisor_vec3 = divisor::moebius_transform_naive<mint,invop>(divisor_vec2);\n\
+    \n      assert(divisor_map == divisor_map3 && \"multiple transform for map\");\n\
+    \      assert(divisor_vec == divisor_vec3 && \"multiple transform for vector\"\
+    );\n\n      for (pair<ll, mint> plmi : divisor_map3) {\n        assert(divisor_vec3[plmi.first]\
+    \ == plmi.second && \"divisor moebius transform\");\n      }\n    }\n\n    };\n\
+    \n  for (int i = 0; i < 1000; i++) {\n    map_transform(rng() % 10000 + 1);\n\
+    \  }\n  return;\n}\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n\
+    \  test();\n  int A, B; cin >> A >> B;\n  cout << A + B << endl;\n}"
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
@@ -205,7 +212,7 @@ data:
   isVerificationFile: true
   path: test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
   requiredBy: []
-  timestamp: '2024-06-20 15:39:33+09:00'
+  timestamp: '2024-06-20 21:09:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
