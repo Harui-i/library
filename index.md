@@ -82,16 +82,20 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/matrix/matrix.hpp
       title: "Matrix(\u884C\u5217)"
+  - name: structure
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: structure/potentialized-union-find-tree.hpp
+      title: "Potentialized Union Find Tree (\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u3064\
+        \u304DUnionFind\u6728)"
+    - icon: ':heavy_check_mark:'
+      path: structure/slide-window-aggregation.hpp
+      title: Foldable Deque(Slide Window Aggregation)
   - name: structure/segment-tree
     pages:
     - icon: ':warning:'
       path: structure/segment-tree/segment-tree.hpp
       title: "Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - name: structure
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: structure/slide-window-aggregation.hpp
-      title: Foldable Deque(Slide Window Aggregation)
   - name: template
     pages:
     - icon: ':heavy_check_mark:'
@@ -194,6 +198,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
       title: test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
+  - name: test/verify/structure
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/verify/structure/aoj-dsl1-b.test.cpp
+      title: test/verify/structure/aoj-dsl1-b.test.cpp
   - name: unabstracted_libs/segment-tree
     pages:
     - icon: ':heavy_check_mark:'

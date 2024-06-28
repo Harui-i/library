@@ -16,6 +16,9 @@ data:
     title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: example.test.cpp
+    title: example.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
     title: test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,6 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
     title: test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/structure/aoj-dsl1-b.test.cpp
+    title: test/verify/structure/aoj-dsl1-b.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-deque-operate-all-composite.test.cpp
     title: test/verify/yosupo-deque-operate-all-composite.test.cpp
@@ -155,6 +161,7 @@ data:
   - unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
+  - example.test.cpp
   - test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
   - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
@@ -172,6 +179,7 @@ data:
   - test/verify/convolution/yosupo-gcd-convolution.test.cpp
   - test/verify/convolution/yosupo-and-convolution.test.cpp
   - test/verify/yosupo-tree-diameter.test.cpp
+  - test/verify/structure/aoj-dsl1-b.test.cpp
   - test/verify/aoj-0560.test.cpp
   - test/verify/aoj-dpl3-c.test.cpp
   - test/verify/yosupo-deque-operate-all-composite.test.cpp

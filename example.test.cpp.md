@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: template/template.hpp
+    title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -12,24 +15,29 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/4/ALDS1_4_B
   bundledCode: "#line 1 \"example.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/4/ALDS1_4_B\"\
-    \n#include <algorithm>\n#include <iostream>\n#include <vector>\n#define REP(i,\
-    \ n) for (int i = 0; (i) < (int)(n); ++ (i))\n#define ALL(x) std::begin(x), std::end(x)\n\
-    using namespace std;\n\nint main() {\n    int n; cin >> n;\n    vector<int> s(n);\n\
-    \    REP (i, n) {\n        cin >> s[i];\n    }\n    int q; cin >> q;\n    int\
-    \ cnt = 0;\n    while (q --) {\n        int t_i; cin >> t_i;\n        cnt += binary_search(ALL(s),\
-    \ t_i);\n    }\n    cout << cnt << endl;\n    return 0;\n}\n"
+    \n#line 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\ntypedef long long ll;\ntypedef unsigned int uint;\ntemplate<class T> inline\
+    \ bool chmax(T& a, const T& b) {if (a<b) {a=b; return true;} return false;}\n\
+    template<class T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;}\
+    \ return false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\n\
+    const ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n\
+    #line 3 \"example.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
+    \ cout.tie(0);\n  int n; cin >> n;\n  vector<int> s(n);\n  for (int i = 0; i <\
+    \ n; i++) {\n    cin >> s[i];\n  }\n  int q; cin >> q;\n  int cnt = 0;\n  while\
+    \ (q--) {\n    int t_i; cin >> t_i;\n    cnt += binary_search(s.begin(), s.end(),\
+    \ t_i);\n  }\n  cout << cnt << endl;\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/4/ALDS1_4_B\"\
-    \n#include <algorithm>\n#include <iostream>\n#include <vector>\n#define REP(i,\
-    \ n) for (int i = 0; (i) < (int)(n); ++ (i))\n#define ALL(x) std::begin(x), std::end(x)\n\
-    using namespace std;\n\nint main() {\n    int n; cin >> n;\n    vector<int> s(n);\n\
-    \    REP (i, n) {\n        cin >> s[i];\n    }\n    int q; cin >> q;\n    int\
-    \ cnt = 0;\n    while (q --) {\n        int t_i; cin >> t_i;\n        cnt += binary_search(ALL(s),\
-    \ t_i);\n    }\n    cout << cnt << endl;\n    return 0;\n}\n"
-  dependsOn: []
+    \n#include \"template/template.hpp\"\n\nint main() {\n  ios::sync_with_stdio(0);\
+    \ cin.tie(0); cout.tie(0);\n  int n; cin >> n;\n  vector<int> s(n);\n  for (int\
+    \ i = 0; i < n; i++) {\n    cin >> s[i];\n  }\n  int q; cin >> q;\n  int cnt =\
+    \ 0;\n  while (q--) {\n    int t_i; cin >> t_i;\n    cnt += binary_search(s.begin(),\
+    \ s.end(), t_i);\n  }\n  cout << cnt << endl;\n  return 0;\n}\n"
+  dependsOn:
+  - template/template.hpp
   isVerificationFile: true
   path: example.test.cpp
   requiredBy: []
-  timestamp: '2024-02-17 20:02:09+09:00'
+  timestamp: '2024-06-28 18:30:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: example.test.cpp
