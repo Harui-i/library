@@ -48,12 +48,12 @@ data:
     \ i = 0; i < n; ++i) {\n      if (leader(i) == root) {\n        ++size;\n    \
     \  }\n    }\n    return size;\n  }\n\n  T diff(int a, int b) {\n    assert(0 <=\
     \ a && a < n);\n    assert(0 <= b && b < n);\n    assert(same(a,b));\n    return\
-    \ invop(potential[b], potential[a]);\n  }\n};\n\n\n#line 5 \"test/verify/structure/aoj-dsl1-b.test.cpp\"\
+    \ invop(potential[a], potential[b]);\n  }\n};\n\n\n#line 5 \"test/verify/structure/aoj-dsl1-b.test.cpp\"\
     \n\nll op(ll a, ll b) {\n  return a + b;\n}\n\nll invop(ll a, ll b) {\n  return\
     \ a - b;\n}\n\nll e() {\n  return 0LL;\n}\n\nint main() {\n  ios::sync_with_stdio(0);\
     \ cin.tie(0); cout.tie(0);\n  int n, q; cin >> n >> q;\n\n  PotentializedUnionFindTree<ll,op,invop,e>\
     \ puf(n);\n  for(int i=0; i<q; i++) {\n    int t; cin >> t;\n    int x, y; cin\
-    \ >> x >> y;\n    if (t == 0) {\n      ll z; cin >> z;\n      puf.merge(x,y,z);\n\
+    \ >> x >> y;\n    if (t == 0) {\n      ll z; cin >> z;\n      puf.merge(x,y,-z);\n\
     \    }\n    else if (t == 1) {\n      if (puf.same(x,y)) {\n        ll diff =\
     \ puf.diff(y,x);\n        cout << diff << endl; \n      }\n      else cout <<\
     \ \"?\" <<  endl;\n    }\n  }\n  return 0;\n}\n"
@@ -63,7 +63,7 @@ data:
     \ a - b;\n}\n\nll e() {\n  return 0LL;\n}\n\nint main() {\n  ios::sync_with_stdio(0);\
     \ cin.tie(0); cout.tie(0);\n  int n, q; cin >> n >> q;\n\n  PotentializedUnionFindTree<ll,op,invop,e>\
     \ puf(n);\n  for(int i=0; i<q; i++) {\n    int t; cin >> t;\n    int x, y; cin\
-    \ >> x >> y;\n    if (t == 0) {\n      ll z; cin >> z;\n      puf.merge(x,y,z);\n\
+    \ >> x >> y;\n    if (t == 0) {\n      ll z; cin >> z;\n      puf.merge(x,y,-z);\n\
     \    }\n    else if (t == 1) {\n      if (puf.same(x,y)) {\n        ll diff =\
     \ puf.diff(y,x);\n        cout << diff << endl; \n      }\n      else cout <<\
     \ \"?\" <<  endl;\n    }\n  }\n  return 0;\n}\n"
@@ -73,7 +73,7 @@ data:
   isVerificationFile: true
   path: test/verify/structure/aoj-dsl1-b.test.cpp
   requiredBy: []
-  timestamp: '2024-06-28 18:59:56+09:00'
+  timestamp: '2024-06-28 19:20:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/structure/aoj-dsl1-b.test.cpp

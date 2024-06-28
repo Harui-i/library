@@ -33,7 +33,7 @@ data:
     \ i = 0; i < n; ++i) {\n      if (leader(i) == root) {\n        ++size;\n    \
     \  }\n    }\n    return size;\n  }\n\n  T diff(int a, int b) {\n    assert(0 <=\
     \ a && a < n);\n    assert(0 <= b && b < n);\n    assert(same(a,b));\n    return\
-    \ invop(potential[b], potential[a]);\n  }\n};\n\n\n"
+    \ invop(potential[a], potential[b]);\n  }\n};\n\n\n"
   code: "#ifndef HARUILIB_STRUCTURE_POTENTIALIZED_UNION_FIND_TREE_HPP\n#define HARUILIB_STRUCTURE_POTENTIALIZED_UNION_FIND_TREE_HPP\n\
     \n#include <vector>\n\ntemplate <typename T, T(*op)(T, T), T(*invop)(T, T), T(*e)()>\n\
     struct PotentializedUnionFindTree {\nprivate:\n  int n;\n  std::vector<int> parent;\n\
@@ -56,12 +56,12 @@ data:
     \ i = 0; i < n; ++i) {\n      if (leader(i) == root) {\n        ++size;\n    \
     \  }\n    }\n    return size;\n  }\n\n  T diff(int a, int b) {\n    assert(0 <=\
     \ a && a < n);\n    assert(0 <= b && b < n);\n    assert(same(a,b));\n    return\
-    \ invop(potential[b], potential[a]);\n  }\n};\n\n#endif // HARUILIB_STRUCTURE_POTENTIALIZED_UNION_FIND_TREE_HPP"
+    \ invop(potential[a], potential[b]);\n  }\n};\n\n#endif // HARUILIB_STRUCTURE_POTENTIALIZED_UNION_FIND_TREE_HPP"
   dependsOn: []
   isVerificationFile: false
   path: structure/potentialized-union-find-tree.hpp
   requiredBy: []
-  timestamp: '2024-06-28 18:59:56+09:00'
+  timestamp: '2024-06-28 19:20:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/structure/aoj-dsl1-b.test.cpp
@@ -94,7 +94,7 @@ aのポテンシャル - bのポテンシャルが`t`になるように併合す
 ```
 T diff(int a, int b)
 ```
-bのポテンシャル - aのポテンシャルを計算する。
+aのポテンシャル - bのポテンシャルを計算する。
 
 
 ### 計算量
