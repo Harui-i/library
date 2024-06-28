@@ -25,7 +25,7 @@ int main() {
     int x, y; cin >> x >> y;
     if (t == 0) {
       ll z; cin >> z;
-      puf.merge(x,y,z);
+      puf.merge(x,y,-z);
     }
     else if (t == 1) {
       if (puf.same(x,y)) {

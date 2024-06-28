@@ -75,7 +75,7 @@ public:
     assert(0 <= a && a < n);
     assert(0 <= b && b < n);
     assert(same(a,b));
-    return invop(potential[b], potential[a]);
+    return invop(potential[a], potential[b]);
   }
 };
 
