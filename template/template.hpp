@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-typedef unsigned int uint;
+using ll = long long;
 template<class T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b; return true;} return false;}
 template<class T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return false;}
 const int INTINF = 1000001000;

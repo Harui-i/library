@@ -1,14 +1,16 @@
 #ifndef HARUILIB_MATH_MATRIX_MATRIX_HPP
 #define HARUILIB_MATH_MATRIX_MATRIX_HPP
 
+#include <vector>
+
 template <class T>
 struct Matrix{
 private: 
-  vector<vector<T>>vec;
+  std::vector<std::vector<T>>vec;
   int N, M;
 public:
 
-  Matrix(int _N, int _M) : N(_N), M(_M), vec(vector<vector<T>>(_N, vector<T>(_M))) {
+  Matrix(int _N, int _M) : N(_N), M(_M), vec(std::vector<std::vector<T>>(_N, std::vector<T>(_M))) {
     assert(_N >= 0 && _M >= 0); // 0*0の行列を返したいときもある(逆行列なかったときとか)
   }
 
@@ -75,6 +77,46 @@ public:
     return ret;
   }  
 
+  // Solve Ax = b for H*W matrix A, longitudinal vector b, x.
+  // x using {W-rank(A) + 1} vectors, x = x_0 + c_1 * x_1 + .... + c_{W-rank(A)} * x_{W-rank(A)} (c is an arbitrary constant), so x_0, x_1, ... , x_{W-rank(A)} is returned. 
+  // if there is no solution, return an empty vector sequence.
+  // ref : https://nyaannyaan.github.io/library/matrix/linear-equation.hpp
+  std::vector<std::vector<T>> linear_equation() {
+    int rk = sweep(M-1);
+    int H = N;
+    int W = M-1;
+
+    for(int i=rk; i<N; i++) {
+      if (vec[i][W] != T(0)) return std::vector<std::vector<T>>(); 
+    }
+
+    std::vector<std::vector<T>> ret(1, std::vector<T>(W));
+    std::vector<int> pivot(W, -1);
+    for (int i=0, j=0; i<rk; i++) {
+      while (vec[i][j] == T(0)) {
+        j++;
+        assert(j < W);
+      }
+
+      ret[0][j] = vec[i][W];
+      pivot[j] = i;
+    }
+
+    for(int j=0; j<W; j++) {
+      if (pivot[j] == -1) {
+        std::vector<T> x(W);
+        x[j] = 1;
+        for(int k=0; k<j; k++) {
+          if (pivot[k] != -1) x[k] -= vec[pivot[k]][j];
+        }
+
+        ret.push_back(x);
+      }
+    }
+
+    return ret;
+  }
+
 private:
 // 0<= j < varなj列目について掃き出して、rankを返す
 
@@ -94,7 +136,7 @@ int sweep(int var) {
     }
 
     if (pivot == -1) continue;
-    swap(vec[pivot], vec[rank]);
+    swap(vec[pivot], vec[rank]); // 行swapによってpivotが0,1,2,...,rank-1行目にあるようにする
 
     T inv = T(1) / vec[rank][col];
     // pivotの行の先頭が1になるように行を定数倍して揃える
