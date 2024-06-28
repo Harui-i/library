@@ -28,7 +28,7 @@ public:
 
     T new_potential = invop(potential[a], op(d, potential[b]));
 
-    if (rank[rootA] < rank[rootB]) {
+    if (rank[rootA] < rank[rootB]) {  
       std::swap(rootA, rootB);
       new_potential = invop(e(), new_potential);
     }
@@ -74,6 +74,7 @@ public:
   T diff(int a, int b) {
     assert(0 <= a && a < n);
     assert(0 <= b && b < n);
+    assert(same(a,b));
     return invop(potential[b], potential[a]);
   }
 };
