@@ -58,6 +58,9 @@ data:
     path: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
     title: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/math/matrix/yosupo-linear-equation.test.cpp
+    title: test/verify/math/matrix/yosupo-linear-equation.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/math/matrix/yosupo-matrix-product.test.cpp
     title: test/verify/math/matrix/yosupo-matrix-product.test.cpp
   - icon: ':heavy_check_mark:'
@@ -112,6 +115,7 @@ data:
   - test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
   - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
+  - test/verify/math/matrix/yosupo-linear-equation.test.cpp
   - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp

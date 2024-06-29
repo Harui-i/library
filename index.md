@@ -82,6 +82,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/matrix/matrix.hpp
       title: "Matrix(\u884C\u5217)"
+    - icon: ':warning:'
+      path: math/matrix/system_of_linear_equation.hpp
+      title: math/matrix/system_of_linear_equation.hpp
   - name: structure
     pages:
     - icon: ':heavy_check_mark:'
@@ -189,6 +192,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
       title: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/math/matrix/yosupo-linear-equation.test.cpp
+      title: test/verify/math/matrix/yosupo-linear-equation.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/math/matrix/yosupo-matrix-product.test.cpp
       title: test/verify/math/matrix/yosupo-matrix-product.test.cpp

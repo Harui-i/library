@@ -20,58 +20,17 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/inverse_matrix
+    PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
     links:
-    - https://judge.yosupo.jp/problem/inverse_matrix
-  bundledCode: "#line 1 \"test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\n\n#line\
-    \ 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\
-    using ll = long long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if\
-    \ (a<b) {a=b; return true;} return false;}\ntemplate<class T> inline bool chmin(T&\
-    \ a, const T& b) {if (b<a) {a=b; return true;} return false;}\nconst int INTINF\
-    \ = 1000001000;\nconst int INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\n\
-    const ll LLINF = 1000000000000000000;\n#line 1 \"math/modint.hpp\"\n\n\n\n#line\
-    \ 1 \"math/external_gcd.hpp\"\n\n\n\n#line 5 \"math/external_gcd.hpp\"\n\n// g,x,y\n\
-    template<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T a, T b) {\n\
-    \    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n        T q = a\
-    \ / b;\n        T r = a % b;\n        a = b;\n        b = r;\n        \n     \
-    \   T xTemp = x0 - q * x1;\n        x0 = x1;\n        x1 = xTemp;\n        \n\
-    \        T yTemp = y0 - q * y1;\n        y0 = y1;\n        y1 = yTemp;\n    }\n\
-    \    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\n\ntemplate<int MOD>\n\
-    struct static_modint {\n    int value;\n\n    constexpr static_modint() : value(0)\
-    \ {}\n\n    constexpr static_modint(long long v) {\n        value = int(((v %\
-    \ MOD) + MOD) % MOD);\n    }\n\n    constexpr static_modint& operator+=(const\
-    \ static_modint& other) {\n        if ((value += other.value) >= MOD) value -=\
-    \ MOD;\n        return *this;\n    }\n\n    constexpr static_modint& operator-=(const\
-    \ static_modint& other) {\n        if ((value -= other.value) < 0) value += MOD;\n\
-    \        return *this;\n    }\n\n    constexpr static_modint& operator*=(const\
-    \ static_modint& other) {\n        value = int((long long)value * other.value\
-    \ % MOD);\n        return *this;\n    }\n\n    constexpr static_modint operator+(const\
-    \ static_modint& other) const {\n        return static_modint(*this) += other;\n\
-    \    }\n\n    constexpr static_modint operator-(const static_modint& other) const\
-    \ {\n        return static_modint(*this) -= other;\n    }\n\n    constexpr static_modint\
-    \ operator*(const static_modint& other) const {\n        return static_modint(*this)\
-    \ *= other;\n    }\n\n    constexpr static_modint pow(long long exp) const {\n\
-    \        static_modint base = *this, res = 1;\n        while (exp > 0) {\n   \
-    \         if (exp & 1) res *= base;\n            base *= base;\n            exp\
-    \ >>= 1;\n        }\n        return res;\n    }\n\n    constexpr static_modint\
-    \ inv() const {\n        //return pow(MOD - 2);\n        int g,x,y;\n        tie(g,x,y)\
-    \ = extendedGCD(value, MOD);\n        assert(g==1);\n        if (x < 0) {\n  \
-    \          x += MOD;\n        }\n        //cerr << g << \" \" << x << \" \" <<\
-    \ y << \" \" << value << endl;\n        //assert((((long)x*value)%MOD + MOD)%MOD\
-    \ == 1);\n        return x;\n    }\n\n    constexpr static_modint& operator/=(const\
-    \ static_modint& other) {\n        return *this *= other.inv();\n    }\n\n   \
-    \ constexpr static_modint operator/(const static_modint& other) const {\n    \
-    \    return static_modint(*this) /= other;\n    }\n\n    constexpr bool operator!=(const\
-    \ static_modint& other) const {\n        return val() != other.val();\n    }\n\
-    \n    constexpr bool operator==(const static_modint& other) const {\n        return\
-    \ val() == other.val();\n    }\n\n    int val() const {\n      return this->value;\n\
-    \    }\n\n    friend std::ostream& operator<<(std::ostream& os, const static_modint&\
-    \ mi) {\n        return os << mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream&\
-    \ is, static_modint& mi) {\n        long long x;\n        is >> x;\n        mi\
-    \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
-    \ modint = static_modint<mod>;\nusing modint998244353  = modint<998244353>;\n\
-    using modint1000000007 = modint<1000000007>;\n\n\n#line 1 \"math/matrix/matrix.hpp\"\
+    - https://judge.yosupo.jp/problem/system_of_linear_equations
+  bundledCode: "#line 1 \"test/verify/math/matrix/yosupo-linear-equation.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
+    \n\n#line 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T& a, const\
+    \ T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class T> inline\
+    \ bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return false;}\n\
+    const int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst ll LLMAX\
+    \ = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line 1 \"math/matrix/matrix.hpp\"\
     \n\n\n\n#line 5 \"math/matrix/matrix.hpp\"\n\ntemplate <class T>\nstruct Matrix{\n\
     private: \n  std::vector<std::vector<T>>vec;\n  int N, M;\npublic:\n\n  Matrix(int\
     \ _N, int _M) : N(_N), M(_M), vec(std::vector<std::vector<T>>(_N, std::vector<T>(_M)))\
@@ -138,38 +97,82 @@ data:
     \u304D\u306E\u307F\u3053\u306E\u64CD\u4F5C\u3092\u3059\u308B\n      if (row !=\
     \ rank) {\n        T fac = vec[row][col];\n        for(int col2=0; col2<M; col2++)\
     \ {\n          vec[row][col2] -= vec[rank][col2] * fac;\n        }\n      }\n\
-    \    }\n    rank++;\n  }\n\n  return rank;\n}\n\n\n};\n\n\n#line 6 \"test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp\"\
-    \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
-    \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n\n  Matrix<mint>A(N,N);\n\n  for(int\
-    \ i=0; i<N; i++) for(int j=0; j<N; j++) cin >> A[i][j];\n  Matrix<mint> inv =\
-    \ A.inverse();\n  if (inv.size().first == 0) {\n    cout << -1 << endl;\n  }\n\
-    \  else {\n    for(int i=0; i<N; i++) {\n      for(int j=0; j<N; j++) {\n    \
-    \    cout << inv[i][j].val();\n        if (j != N-1) cout << \" \";\n        else\
-    \ cout << endl;\n      }\n    }\n  }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\n\n#include\
-    \ \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include \"math/matrix/matrix.hpp\"\
-    \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
-    \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n\n  Matrix<mint>A(N,N);\n\n  for(int\
-    \ i=0; i<N; i++) for(int j=0; j<N; j++) cin >> A[i][j];\n  Matrix<mint> inv =\
-    \ A.inverse();\n  if (inv.size().first == 0) {\n    cout << -1 << endl;\n  }\n\
-    \  else {\n    for(int i=0; i<N; i++) {\n      for(int j=0; j<N; j++) {\n    \
-    \    cout << inv[i][j].val();\n        if (j != N-1) cout << \" \";\n        else\
-    \ cout << endl;\n      }\n    }\n  }\n}\n"
+    \    }\n    rank++;\n  }\n\n  return rank;\n}\n\n\n};\n\n\n#line 1 \"math/modint.hpp\"\
+    \n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n#line 5 \"math/external_gcd.hpp\"\
+    \n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T\
+    \ a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n   \
+    \     T q = a / b;\n        T r = a % b;\n        a = b;\n        b = r;\n   \
+    \     \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n        x1 = xTemp;\n\
+    \        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n        y1 = yTemp;\n\
+    \    }\n    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\n\ntemplate<int\
+    \ MOD>\nstruct static_modint {\n    int value;\n\n    constexpr static_modint()\
+    \ : value(0) {}\n\n    constexpr static_modint(long long v) {\n        value =\
+    \ int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr static_modint& operator+=(const\
+    \ static_modint& other) {\n        if ((value += other.value) >= MOD) value -=\
+    \ MOD;\n        return *this;\n    }\n\n    constexpr static_modint& operator-=(const\
+    \ static_modint& other) {\n        if ((value -= other.value) < 0) value += MOD;\n\
+    \        return *this;\n    }\n\n    constexpr static_modint& operator*=(const\
+    \ static_modint& other) {\n        value = int((long long)value * other.value\
+    \ % MOD);\n        return *this;\n    }\n\n    constexpr static_modint operator+(const\
+    \ static_modint& other) const {\n        return static_modint(*this) += other;\n\
+    \    }\n\n    constexpr static_modint operator-(const static_modint& other) const\
+    \ {\n        return static_modint(*this) -= other;\n    }\n\n    constexpr static_modint\
+    \ operator*(const static_modint& other) const {\n        return static_modint(*this)\
+    \ *= other;\n    }\n\n    constexpr static_modint pow(long long exp) const {\n\
+    \        static_modint base = *this, res = 1;\n        while (exp > 0) {\n   \
+    \         if (exp & 1) res *= base;\n            base *= base;\n            exp\
+    \ >>= 1;\n        }\n        return res;\n    }\n\n    constexpr static_modint\
+    \ inv() const {\n        //return pow(MOD - 2);\n        int g,x,y;\n        tie(g,x,y)\
+    \ = extendedGCD(value, MOD);\n        assert(g==1);\n        if (x < 0) {\n  \
+    \          x += MOD;\n        }\n        //cerr << g << \" \" << x << \" \" <<\
+    \ y << \" \" << value << endl;\n        //assert((((long)x*value)%MOD + MOD)%MOD\
+    \ == 1);\n        return x;\n    }\n\n    constexpr static_modint& operator/=(const\
+    \ static_modint& other) {\n        return *this *= other.inv();\n    }\n\n   \
+    \ constexpr static_modint operator/(const static_modint& other) const {\n    \
+    \    return static_modint(*this) /= other;\n    }\n\n    constexpr bool operator!=(const\
+    \ static_modint& other) const {\n        return val() != other.val();\n    }\n\
+    \n    constexpr bool operator==(const static_modint& other) const {\n        return\
+    \ val() == other.val();\n    }\n\n    int val() const {\n      return this->value;\n\
+    \    }\n\n    friend std::ostream& operator<<(std::ostream& os, const static_modint&\
+    \ mi) {\n        return os << mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream&\
+    \ is, static_modint& mi) {\n        long long x;\n        is >> x;\n        mi\
+    \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
+    \ modint = static_modint<mod>;\nusing modint998244353  = modint<998244353>;\n\
+    using modint1000000007 = modint<1000000007>;\n\n\n#line 6 \"test/verify/math/matrix/yosupo-linear-equation.test.cpp\"\
+    \nusing mint = modint998244353;\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
+    \ cout.tie(0);\n  int N, M; cin >> N >> M;\n\n  Matrix<mint> A(N,M+1); for(int\
+    \ i=0; i<N; i++) for(int j=0; j<M; j++) cin >> A[i][j];\n\n  for(int i=0; i<N;\
+    \ i++) cin >> A[i][M];\n\n  vector<vector<mint>> ans = A.linear_equation();\n\n\
+    \  if (ans.size() == 0) {\n    cout << -1 << endl;\n    return 0;\n  }\n  else\
+    \ {\n    cout << ans.size() - 1 << endl;\n    for (vector<mint>& vec : ans) {\n\
+    \      for(int i=0; i<(int)vec.size(); i++) {\n        cout << vec[i].val() <<\
+    \ \" \\n\"[i == (int)vec.size() - 1];\n      }\n    }\n  }\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
+    \n\n#include \"template/template.hpp\"\n#include \"math/matrix/matrix.hpp\"\n\
+    #include \"math/modint.hpp\"\nusing mint = modint998244353;\n\nint main() {\n\
+    \  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int N, M; cin >> N >>\
+    \ M;\n\n  Matrix<mint> A(N,M+1); for(int i=0; i<N; i++) for(int j=0; j<M; j++)\
+    \ cin >> A[i][j];\n\n  for(int i=0; i<N; i++) cin >> A[i][M];\n\n  vector<vector<mint>>\
+    \ ans = A.linear_equation();\n\n  if (ans.size() == 0) {\n    cout << -1 << endl;\n\
+    \    return 0;\n  }\n  else {\n    cout << ans.size() - 1 << endl;\n    for (vector<mint>&\
+    \ vec : ans) {\n      for(int i=0; i<(int)vec.size(); i++) {\n        cout <<\
+    \ vec[i].val() << \" \\n\"[i == (int)vec.size() - 1];\n      }\n    }\n  }\n \
+    \ return 0;\n}\n"
   dependsOn:
   - template/template.hpp
+  - math/matrix/matrix.hpp
   - math/modint.hpp
   - math/external_gcd.hpp
-  - math/matrix/matrix.hpp
   isVerificationFile: true
-  path: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+  path: test/verify/math/matrix/yosupo-linear-equation.test.cpp
   requiredBy: []
   timestamp: '2024-06-29 08:51:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+documentation_of: test/verify/math/matrix/yosupo-linear-equation.test.cpp
 layout: document
 redirect_from:
-- /verify/test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
-- /verify/test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp.html
-title: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+- /verify/test/verify/math/matrix/yosupo-linear-equation.test.cpp
+- /verify/test/verify/math/matrix/yosupo-linear-equation.test.cpp.html
+title: test/verify/math/matrix/yosupo-linear-equation.test.cpp
 ---

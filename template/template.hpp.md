@@ -55,6 +55,9 @@ data:
     path: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
     title: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/math/matrix/yosupo-linear-equation.test.cpp
+    title: test/verify/math/matrix/yosupo-linear-equation.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/math/matrix/yosupo-matrix-product.test.cpp
     title: test/verify/math/matrix/yosupo-matrix-product.test.cpp
   - icon: ':heavy_check_mark:'
@@ -104,9 +107,7 @@ data:
 
     using namespace std;
 
-    typedef long long ll;
-
-    typedef unsigned int uint;
+    using ll = long long;
 
     template<class T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b; return true;}
     return false;}
@@ -127,9 +128,7 @@ data:
 
     using namespace std;
 
-    typedef long long ll;
-
-    typedef unsigned int uint;
+    using ll = long long;
 
     template<class T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b; return true;}
     return false;}
@@ -154,7 +153,7 @@ data:
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - test/verify/atcoder-tdpc-s.cpp
-  timestamp: '2024-05-14 18:24:32+09:00'
+  timestamp: '2024-06-29 08:51:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
@@ -166,6 +165,7 @@ data:
   - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
   - test/verify/yosupo-shortest-path.test.cpp
+  - test/verify/math/matrix/yosupo-linear-equation.test.cpp
   - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
