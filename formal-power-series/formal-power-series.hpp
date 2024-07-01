@@ -14,7 +14,7 @@ struct FPS {
 
   constexpr int lg2(int N) const {
     int ret = 0;
-    if ( N > 0) ret = 31 - __builtin_clz(N);
+    if (N > 0) ret = 31 - __builtin_clz(N);
     if ((1LL << ret) < N) ret++;
     return ret;
   }
@@ -26,12 +26,12 @@ struct FPS {
     FPS g(1);
     g._vec[0] = mint(_vec[0]).inv();
     // g_{n+1} = 2 * g_n - f * (g_n)^2
-    for (int d=1; d < deg; d <<= 1) {
+    for (int d = 1; d < deg; d <<= 1) {
       FPS g_twice = g * mint(2);
-      FPS fgg = (*this).pre(d*2) * g * g;
-     
+      FPS fgg = (*this).pre(d * 2) * g * g;
+
       g = g_twice - fgg;
-      g.resize(d*2);
+      g.resize(d * 2);
     }
 
     return g.pre(deg);
@@ -39,48 +39,80 @@ struct FPS {
 
   //*/
 
-  FPS log(int deg=-1) const {
+  FPS log(int deg = -1) const {
     assert(_vec[0] == mint(1));
 
     if (deg == -1) deg = size();
     FPS df = this->diff();
     FPS iv = this->inv(deg);
-    FPS ret = (df * iv).pre(deg-1).integral();
+    FPS ret = (df * iv).pre(deg - 1).integral();
 
     return ret;
   }
 
-  FPS exp(int deg=-1) const {
+  FPS exp(int deg = -1) const {
     assert(_vec[0] == mint(0));
 
     if (deg == -1) deg = size();
     FPS g(1);
     g[0] = 1;
-    for (int d=1; d<deg; d <<= 1) {
+    for (int d = 1; d < deg; d <<= 1) {
       // g_2d = g_d * (f(x) + 1 - log(g_d))
-      FPS fpl1 = (*this + mint(1)).pre(2*d);
-      FPS logg = g.log(2*d);
+      FPS fpl1 = (*this + mint(1)).pre(2 * d);
+      FPS logg = g.log(2 * d);
       FPS right = (fpl1 - logg);
 
-      g = (g * right).pre(2*d);
+      g = (g * right).pre(2 * d);
     }
 
     return g.pre(deg);
   }
 
+  // f^k を返す
+  FPS pow(long long k, int deg = -1) const {
+    mint lowest_coeff;
+    if (deg == -1) deg = size();
+    int lowest_deg = -1;
+
+    if (k == 0) {
+      FPS ret = { mint(1) };
+      ret.resize(deg);
+      return ret;
+    }
+
+    for (int i = 0; i < size(); i++) {
+      if (i * k > deg) {
+        return FPS(deg);
+      }
+      if (_vec[i] != mint(0)) {
+        lowest_deg = i;
+        lowest_coeff = _vec[i];
+        
+        int deg3 = deg - k*lowest_deg;
+
+        FPS f2 = (*this / lowest_coeff) >> lowest_deg;
+        FPS ret = (lowest_coeff.pow(k) * (f2.log(deg3) * mint(k)).exp(deg3) << (lowest_deg * k)).pre(deg);
+        ret.resize(deg);
+
+        return ret;
+      }
+    }
+    assert(false);
+  }
+
   FPS integral() const {
     const int N = size();
-    FPS ret(N+1);
+    FPS ret(N + 1);
 
-    for(int i=0; i<N; i++) ret[i+1] = _vec[i] * mint(i+1).inv();
+    for (int i = 0; i < N; i++) ret[i + 1] = _vec[i] * mint(i + 1).inv();
 
     return ret;
   }
 
   FPS diff() const {
     const int N = size();
-    FPS ret(max(0, N-1));
-    for(int i=1; i<N; i++) ret[i-1] = mint(i) * _vec[i];
+    FPS ret(max(0, N - 1));
+    for (int i = 1; i < N; i++) ret[i - 1] = mint(i) * _vec[i];
 
     return ret;
   }
@@ -119,24 +151,24 @@ struct FPS {
   // Nyaan先生のライブラリを大写経....
   FPS& operator/=(const FPS& rhs) {
     if (size() < rhs.size()) {
-      return *this =  FPS(0);
+      return *this = FPS(0);
     }
     int sz = size() - rhs.size() + 1;
-//
-//    FPS left = (*this).rev().pre(sz);
-//    FPS right = rhs.rev();
-//    right = right.inv(sz);
-//    FPS mp = left*right;
-//    mp = mp.pre(sz);
-//    mp = mp.rev();
-//    return *this = mp;
-//    return *this = (left * right).pre(sz).rev();
-    return *this =  ((*this).rev().pre(sz) * rhs.rev().inv(sz)).pre(sz).rev();
+    //
+    //    FPS left = (*this).rev().pre(sz);
+    //    FPS right = rhs.rev();
+    //    right = right.inv(sz);
+    //    FPS mp = left*right;
+    //    mp = mp.pre(sz);
+    //    mp = mp.rev();
+    //    return *this = mp;
+    //    return *this = (left * right).pre(sz).rev();
+    return *this = ((*this).rev().pre(sz) * rhs.rev().inv(sz)).pre(sz).rev();
   }
 
-  FPS& operator%=(const FPS &rhs) {
+  FPS& operator%=(const FPS& rhs) {
     *this -= *this / rhs * rhs;
-    shrink(); 
+    shrink();
     return *this;
   }
 
@@ -151,15 +183,17 @@ struct FPS {
   }
 
   FPS& operator*=(const mint& rhs) {
-    for(int i=0; i<size(); i++) _vec[i] *= rhs;
+    for (int i = 0; i < size(); i++) _vec[i] *= rhs;
     return *this;
   }
 
+  // 多項式全体を定数除算する
   FPS& operator/=(const mint& rhs) {
-    for(int i=0; i<size(); i++) _vec[i] *= rhs.inv();
+    for (int i = 0; i < size(); i++) _vec[i] *= rhs.inv();
     return *this;
   }
 
+  // f /= x^sz
   FPS operator>>(int sz) const {
     if ((int)this->size() <= sz) return {};
     FPS ret(*this);
@@ -167,6 +201,7 @@ struct FPS {
     return ret;
   }
 
+  // f *= x^sz
   FPS operator<<(int sz) const {
     FPS ret(*this);
     ret._vec.insert(ret._vec.begin(), sz, mint(0));
@@ -178,16 +213,20 @@ struct FPS {
   friend FPS operator-(FPS a, const FPS& b) { return a -= b; }
   friend FPS operator*(FPS a, const FPS& b) { return a *= b; }
   friend FPS operator/(FPS a, const FPS& b) { return a /= b; }
-  friend FPS operator%(FPS a, const FPS& b) {return a %= b; }
+  friend FPS operator%(FPS a, const FPS& b) { return a %= b; }
 
-  friend FPS operator+(FPS a, const mint& b) {return a += b; }
-  friend FPS operator-(FPS a, const mint& b) {return a -= b; }
-  friend FPS operator*(FPS a, const mint& b) {return a *= b; }
-  friend FPS operator/(FPS a, const mint& b) {return a /= b; }
-  
+  friend FPS operator+(FPS a, const mint& b) { return a += b; }
+  friend FPS operator-(FPS a, const mint& b) { return a -= b; }
+
+  friend FPS operator*(FPS a, const mint& b) { return a *= b; }
+  friend FPS operator*(const mint& b, FPS a) { return a *= b; }
+
+  friend FPS operator/(FPS a, const mint& b) { return a /= b; }
+  friend FPS operator/(const mint& b, FPS a) { return a /= b; }
+
   // sz次未満の項を取ってくる
   FPS pre(int sz) const {
-    FPS ret = *this; 
+    FPS ret = *this;
     ret._vec.resize(sz);
 
     return ret;
@@ -196,7 +235,7 @@ struct FPS {
   FPS rev() const {
     FPS ret = *this;
     reverse(ret._vec.begin(), ret._vec.end());
-    
+
     return ret;
   }
 
@@ -208,7 +247,7 @@ struct FPS {
     return _vec[i];
   }
 
-  void resize(int sz)  {
+  void resize(int sz) {
     this->_vec.resize(sz);
   }
 
@@ -225,10 +264,10 @@ struct FPS {
   }
 
   // 仮想関数ってやつ。mod 998244353なのか、他のNTT-friendlyなmodで考えるのか、それともGarnerで復元するのか、それとも畳み込みを$O(N^2)$で妥協するのかなどによって異なる
-  virtual FPS inv(int deg=-1) const;
-  virtual void CooleyTukeyNTT998244353(vector<mint>&a, bool is_reverse) const;
-//  virtual FPS exp(int deg=-1) const;
+  virtual FPS inv(int deg = -1) const;
+  virtual void CooleyTukeyNTT998244353(vector<mint>& a, bool is_reverse) const;
+  //  virtual FPS exp(int deg=-1) const;
   virtual vector<mint> multiply(const vector<mint>& a, const vector<mint>& b);
-  };
+};
 
 #endif // HARUILIB_FORMAL_POWER_SERIES_FORMAL_POWER_SERIES_HPP
