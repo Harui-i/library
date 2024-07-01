@@ -55,6 +55,9 @@ data:
     path: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
     title: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
+    title: test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
     title: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -120,6 +123,7 @@ data:
   - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-matrix-product.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
   - test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp

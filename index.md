@@ -82,9 +82,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/matrix/matrix.hpp
       title: "Matrix(\u884C\u5217)"
-    - icon: ':warning:'
-      path: math/matrix/system_of_linear_equation.hpp
-      title: math/matrix/system_of_linear_equation.hpp
   - name: structure
     pages:
     - icon: ':heavy_check_mark:'
@@ -187,6 +184,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
       title: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
+      title: test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
   - name: test/verify/math/matrix
     pages:
     - icon: ':heavy_check_mark:'

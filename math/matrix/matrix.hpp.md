@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: math/matrix/system_of_linear_equation.hpp
-    title: math/matrix/system_of_linear_equation.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
@@ -164,8 +161,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/matrix/matrix.hpp
-  requiredBy:
-  - math/matrix/system_of_linear_equation.hpp
+  requiredBy: []
   timestamp: '2024-06-29 08:51:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
