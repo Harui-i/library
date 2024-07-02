@@ -79,13 +79,18 @@ data:
     \ -1) deg = size();\n    FPS df = this->diff();\n    FPS iv = this->inv(deg);\n\
     \    FPS ret = (df * iv).pre(deg - 1).integral();\n\n    return ret;\n  }\n\n\
     \  FPS exp(int deg = -1) const {\n    assert(_vec[0] == mint(0));\n\n    if (deg\
-    \ == -1) deg = size();\n    FPS g(1);\n    g[0] = 1;\n    for (int d = 1; d <\
-    \ deg; d <<= 1) {\n      // g_2d = g_d * (f(x) + 1 - log(g_d))\n      FPS fpl1\
-    \ = (*this + mint(1)).pre(2 * d);\n      FPS logg = g.log(2 * d);\n      FPS right\
-    \ = (fpl1 - logg);\n\n      g = (g * right).pre(2 * d);\n    }\n\n    return g.pre(deg);\n\
-    \  }\n\n  // f^k \u3092\u8FD4\u3059\n  FPS pow(long long k, int deg = -1) const\
-    \ {\n    mint lowest_coeff;\n    if (deg == -1) deg = size();\n    int lowest_deg\
-    \ = -1;\n\n    if (k == 0) {\n      FPS ret = { mint(1) };\n      ret.resize(deg);\n\
+    \ == -1) deg = size();\n    FPS h = {1}; // h: exp(f)\n\n    // h_2d = h * (f\
+    \ + 1 - Integrate(h' * h.inv() ) )\n\n    for (int d = 1; d < deg; d <<= 1) {\n\
+    \      // h_2d = h_d * (f + 1 - log(h_d))\n      // = h_d * (f + 1  - Integral(h'\
+    \ * h.inv() ))\n      // \u3092\u5229\u7528\u3057\u3066\u3001h.inv\u3092\u6F38\
+    \u5316\u5F0F\u3067\u66F4\u65B0\u3057\u3066\u3044\u3051\u3070\u5B9A\u6570\u500D\
+    \u6539\u5584\u3067\u304D\u308B\u304B\u3068\u601D\u3063\u305F\u304C\u3001\u306A\
+    \u3093\u304B\u30D0\u30B0\u3063\u3066\u308B\u3002\n\n      FPS fpl1 = ((*this).pre(2*d)\
+    \ + mint(1));\n      FPS logh = h.log(2*d);\n      FPS right = (fpl1 - logh);\n\
+    \n      h = (h * right).pre(2 * d);\n    }\n\n    return h.pre(deg);\n  }\n\n\
+    \  // f^k \u3092\u8FD4\u3059\n  FPS pow(long long k, int deg = -1) const {\n \
+    \   mint lowest_coeff;\n    if (deg == -1) deg = size();\n    int lowest_deg =\
+    \ -1;\n\n    if (k == 0) {\n      FPS ret = { mint(1) };\n      ret.resize(deg);\n\
     \      return ret;\n    }\n\n    for (int i = 0; i < size(); i++) {\n      if\
     \ (i * k > deg) {\n        return FPS(deg);\n      }\n      if (_vec[i] != mint(0))\
     \ {\n        lowest_deg = i;\n        lowest_coeff = _vec[i];\n        \n    \
@@ -151,30 +156,31 @@ data:
     \u5FA9\u5143\u3059\u308B\u306E\u304B\u3001\u305D\u308C\u3068\u3082\u7573\u307F\
     \u8FBC\u307F\u3092$O(N^2)$\u3067\u59A5\u5354\u3059\u308B\u306E\u304B\u306A\u3069\
     \u306B\u3088\u3063\u3066\u7570\u306A\u308B\n  virtual FPS inv(int deg = -1) const;\n\
-    \  virtual void CooleyTukeyNTT998244353(vector<mint>& a, bool is_reverse) const;\n\
-    \  //  virtual FPS exp(int deg=-1) const;\n  virtual vector<mint> multiply(const\
-    \ vector<mint>& a, const vector<mint>& b);\n};\n\n\n#line 3 \"formal-power-series/fiduccia.hpp\"\
-    \n\n// BAGUTTERU!!! gomen!!!!\n// given linear recurrence sequence a_{n+K}= c_1\
-    \ a_{n+K-1} + c_2 a_{n+k-2} + \\dots + c_{K-1} a_{n+1} + c_K a_n\n// a_0, a_1,\
-    \ \\dots, a_{K-1} are given\n// calculate a_N (N-th term of linear recurrence\
-    \ sequence) time complexity is O(K log K log N) (when NNT is used), O(K^2 log\
-    \ N) (when naive convolution is used).\ntemplate <typename mint> \nmint Fiduccia(const\
-    \ vector<mint>& a, const vector<mint>& c, unsigned long long  N) {\n  if (N <\
-    \ a.size()) return a[N];\n  assert(a.size() == c.size());\n  int K = c.size();\n\
-    \n  FPS<mint> varphi(K+1); \n  varphi[K] = mint(1);\n  for(int i=0; i<K; i++)\
-    \ varphi[i] = mint(-1) * c[K-i-1];\n\n  // calculate x^N mod varphi, using square\
-    \ and multiply technique.\n  // Note that there is two way to implement the methodlogy.\
-    \ LSB-first algorithm(famous one ) and MSB-first alogirthm.\n int msb=0;\n  for\
-    \ (int i=0; 1ULL<< i <=N; i++) {\n    if (N & (1ULL << i)) msb = i;\n  }\n  FPS<mint>\
-    \ remainder(1); remainder[0] = mint(1);\n  for (int i=msb; i>=0; i--) {\n    if\
-    \ (N & (1ULL << i)) {\n      remainder = remainder << 1; // it is equal to remainder\
-    \ *= x.\n      if (remainder.size() >= varphi.size()) remainder %= varphi;\n \
-    \   }\n    if (i != 0) {\n      remainder *= remainder; // NTT\u306A\u3089\u3001\
-    NTT\u914D\u5217\u3092\u4F7F\u3044\u56DE\u3059\u3053\u3068\u3067\u5B9A\u6570\u500D\
-    \u304C\u826F\u304F\u306A\u308B\u306D\n      if (remainder.size() >= varphi.size())\
-    \ remainder %= varphi;\n    }\n  }\n\n  // remainder = x^N mod varphi \n  mint\
-    \ ret = 0;\n  assert(remainder.size() <= K);\n  for(int i=0; i<remainder.size();\
-    \ i++) {\n    ret += remainder[i] * a[i];\n  }\n\n  return ret;\n}\n"
+    \  virtual void next_inv(FPS& g_d) const; \n  virtual void CooleyTukeyNTT998244353(vector<mint>&\
+    \ a, bool is_reverse) const;\n  //  virtual FPS exp(int deg=-1) const;\n  virtual\
+    \ vector<mint> multiply(const vector<mint>& a, const vector<mint>& b);\n};\n\n\
+    \n#line 3 \"formal-power-series/fiduccia.hpp\"\n\n// BAGUTTERU!!! gomen!!!!\n\
+    // given linear recurrence sequence a_{n+K}= c_1 a_{n+K-1} + c_2 a_{n+k-2} + \\\
+    dots + c_{K-1} a_{n+1} + c_K a_n\n// a_0, a_1, \\dots, a_{K-1} are given\n// calculate\
+    \ a_N (N-th term of linear recurrence sequence) time complexity is O(K log K log\
+    \ N) (when NNT is used), O(K^2 log N) (when naive convolution is used).\ntemplate\
+    \ <typename mint> \nmint Fiduccia(const vector<mint>& a, const vector<mint>& c,\
+    \ unsigned long long  N) {\n  if (N < a.size()) return a[N];\n  assert(a.size()\
+    \ == c.size());\n  int K = c.size();\n\n  FPS<mint> varphi(K+1); \n  varphi[K]\
+    \ = mint(1);\n  for(int i=0; i<K; i++) varphi[i] = mint(-1) * c[K-i-1];\n\n  //\
+    \ calculate x^N mod varphi, using square and multiply technique.\n  // Note that\
+    \ there is two way to implement the methodlogy. LSB-first algorithm(famous one\
+    \ ) and MSB-first alogirthm.\n int msb=0;\n  for (int i=0; 1ULL<< i <=N; i++)\
+    \ {\n    if (N & (1ULL << i)) msb = i;\n  }\n  FPS<mint> remainder(1); remainder[0]\
+    \ = mint(1);\n  for (int i=msb; i>=0; i--) {\n    if (N & (1ULL << i)) {\n   \
+    \   remainder = remainder << 1; // it is equal to remainder *= x.\n      if (remainder.size()\
+    \ >= varphi.size()) remainder %= varphi;\n    }\n    if (i != 0) {\n      remainder\
+    \ *= remainder; // NTT\u306A\u3089\u3001NTT\u914D\u5217\u3092\u4F7F\u3044\u56DE\
+    \u3059\u3053\u3068\u3067\u5B9A\u6570\u500D\u304C\u826F\u304F\u306A\u308B\u306D\
+    \n      if (remainder.size() >= varphi.size()) remainder %= varphi;\n    }\n \
+    \ }\n\n  // remainder = x^N mod varphi \n  mint ret = 0;\n  assert(remainder.size()\
+    \ <= K);\n  for(int i=0; i<remainder.size(); i++) {\n    ret += remainder[i] *\
+    \ a[i];\n  }\n\n  return ret;\n}\n"
   code: "#include <vector>\n#include \"formal-power-series/formal-power-series.hpp\"\
     \n\n// BAGUTTERU!!! gomen!!!!\n// given linear recurrence sequence a_{n+K}= c_1\
     \ a_{n+K-1} + c_2 a_{n+k-2} + \\dots + c_{K-1} a_{n+1} + c_K a_n\n// a_0, a_1,\
@@ -205,7 +211,7 @@ data:
   path: formal-power-series/fiduccia.hpp
   requiredBy:
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
-  timestamp: '2024-07-01 19:53:25+09:00'
+  timestamp: '2024-07-02 18:34:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: formal-power-series/fiduccia.hpp
