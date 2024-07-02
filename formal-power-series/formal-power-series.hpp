@@ -56,6 +56,7 @@ struct FPS {
     if (deg == -1) deg = size();
     FPS g(1);
     g[0] = 1;
+
     for (int d = 1; d < deg; d <<= 1) {
       // g_2d = g_d * (f(x) + 1 - log(g_d))
       FPS fpl1 = (*this + mint(1)).pre(2 * d);
@@ -265,6 +266,7 @@ struct FPS {
 
   // 仮想関数ってやつ。mod 998244353なのか、他のNTT-friendlyなmodで考えるのか、それともGarnerで復元するのか、それとも畳み込みを$O(N^2)$で妥協するのかなどによって異なる
   virtual FPS inv(int deg = -1) const;
+  virtual void next_inv(FPS& g_d) const; 
   virtual void CooleyTukeyNTT998244353(vector<mint>& a, bool is_reverse) const;
   //  virtual FPS exp(int deg=-1) const;
   virtual vector<mint> multiply(const vector<mint>& a, const vector<mint>& b);

@@ -3,6 +3,7 @@
 
 
 #include "formal-power-series/formal-power-series.hpp"
+#include "formal-power-series.hpp"
 
 using mint = modint998244353;
 //ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};
@@ -29,35 +30,63 @@ void FPS<mint>::CooleyTukeyNTT998244353(vector<mint>& a, bool is_reverse) const 
   //for (int i = 0; 1 << i < N; i++) lgN++;
   assert(N == 1 << lgN);
 
-  for (int i = 0; i < N; i++) {
-    int j = 0;
-    for (int k = 0; k < lgN; k++) j |= (i >> k & 1) << (lgN - 1 - k);
-    if (i < j) swap(a[i], a[j]);
-  }
+  // https://37zigen.com/transpose-fft/
+  // https://tayu0110.hatenablog.com/entry/2023/05/06/023244
+  // 周波数間引き
+  if (is_reverse == false) {
+    int width = N;
+    int lgw = lgN;
+    int offset = width >> 1;
+    while (width > 1) {
+      mint w = ZETAS[lgw]; // 1のwidth乗根
+      for (int top=0; top<N; top += width) {
+        mint root = 1;
+        for (int i=top; i<top+offset; i++) {
+          mint c0 = a[i];
+          mint c1 = a[i+offset];
 
-  int lgb = -1;
-  for (int b = 1; b < N; b *= 2) {
-    lgb++;
-    mint mpzeta = ZETAS[lgb + 1];
-    if (is_reverse) mpzeta = mpzeta.inv();
-    mint zeta = 1;
-
-    for (int j = 0; j < b; j++) {
-      for (int k = 0; k < N; k += b * 2) {
-        mint s = a[j + k];
-        mint t = (a[j + k + b] * zeta);
-        a[j + k] = (s + t);
-        a[j + k + b] = (s - t);
+          a[i] = c0 + c1;
+          a[i+offset] = (c0 - c1) * root;
+          root *= w; 
+        }
       }
-      zeta *= mpzeta;
+
+      width >>= 1;
+      offset >>= 1;
+      lgw--;
     }
+    return;
   }
-  if (is_reverse) {
-    mint size_inv = mint(N).inv();
-    for (int i = 0; i < N; i++) {
-      a[i] *= size_inv;
+  
+  // https://37zigen.com/transpose-fft/
+  // 時間間引き
+  if (is_reverse == true) {
+    int width = 2;
+    int lgw = 1;
+    int offset = 1;
+    while (width <= N) {
+      mint w = ZETAS[lgw].inv(); // 1のwidth乗根のinv
+
+      for (int top=0; top<N; top += width) {
+        mint root = 1;
+        for (int i=top; i<top+offset; i++) {
+          mint c0 = a[i];
+          mint c1 = a[i+offset];
+          a[i] = c0 + c1 * root;
+          a[i+offset] = c0 - c1 * root;
+          root *= w;
+        }
+      }
+
+      width <<= 1;
+      offset <<= 1;
+      lgw++;
     }
+
+    for(int i=0; i<N; i++) a[i] *= mint(N).inv();
+    return;
   }
+
 }
 
 template <typename mint>
@@ -136,9 +165,17 @@ FPS<mint> FPS<mint>::inv(int deg) const {
   g._vec[0] = mint(_vec[0]).inv();
 
   for (int d = 1; d < deg; d <<= 1) {
+    next_inv(g);
+  }
+
+  return g.pre(deg);
+}
+
+template <typename mint>
+void FPS<mint>::next_inv(FPS<mint>& g) const {
     // g_2n = g_n - (f_n g_n - 1) g_n
     // e_n := f_n g_n - 1
-
+    int d = g.size();
     FPS f_2d = (*this).pre(2 * d);
     FPS g_d = g.pre(2 * d);
     FPS g_origin = g.pre(2 * d); // 後々使いたいので保存しておく
@@ -178,10 +215,6 @@ FPS<mint> FPS<mint>::inv(int deg) const {
 
     g = g_origin - h_2d;
     g.resize(d * 2);
-
-  }
-
-  return g.pre(deg);
 }
 
 #endif // HARUILIB_FORMAL_POWER_SERIES_FPS998_HPP
