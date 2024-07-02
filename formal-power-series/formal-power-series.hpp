@@ -54,19 +54,23 @@ struct FPS {
     assert(_vec[0] == mint(0));
 
     if (deg == -1) deg = size();
-    FPS g(1);
-    g[0] = 1;
+    FPS h = {1}; // h: exp(f)
+
+    // h_2d = h * (f + 1 - Integrate(h' * h.inv() ) )
 
     for (int d = 1; d < deg; d <<= 1) {
-      // g_2d = g_d * (f(x) + 1 - log(g_d))
-      FPS fpl1 = (*this + mint(1)).pre(2 * d);
-      FPS logg = g.log(2 * d);
-      FPS right = (fpl1 - logg);
+      // h_2d = h_d * (f + 1 - log(h_d))
+      // = h_d * (f + 1  - Integral(h' * h.inv() ))
+      // を利用して、h.invを漸化式で更新していけば定数倍改善できるかと思ったが、なんかバグってる。
 
-      g = (g * right).pre(2 * d);
+      FPS fpl1 = ((*this).pre(2*d) + mint(1));
+      FPS logh = h.log(2*d);
+      FPS right = (fpl1 - logh);
+
+      h = (h * right).pre(2 * d);
     }
 
-    return g.pre(deg);
+    return h.pre(deg);
   }
 
   // f^k を返す

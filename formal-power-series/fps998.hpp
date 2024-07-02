@@ -171,6 +171,7 @@ FPS<mint> FPS<mint>::inv(int deg) const {
   return g.pre(deg);
 }
 
+// thisの逆元のn項目までを受けとり、精度を倍にする
 template <typename mint>
 void FPS<mint>::next_inv(FPS<mint>& g) const {
     // g_2n = g_n - (f_n g_n - 1) g_n
