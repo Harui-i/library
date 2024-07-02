@@ -46,6 +46,12 @@ data:
     path: test/verify/convolution/yosupo-lcm-convolution.test.cpp
     title: test/verify/convolution/yosupo-lcm-convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/convolution/yosupo-normal-convolution.test.cpp
+    title: test/verify/convolution/yosupo-normal-convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/convolution/yosupo-normal-convolution.test.cpp
+    title: test/verify/convolution/yosupo-normal-convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-division-of-polynomials.test.cpp
     title: test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - icon: ':heavy_check_mark:'
@@ -225,6 +231,8 @@ data:
   - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
   - test/verify/convolution/yosupo-lcm-convolution.test.cpp
+  - test/verify/convolution/yosupo-normal-convolution.test.cpp
+  - test/verify/convolution/yosupo-normal-convolution.test.cpp
   - test/verify/convolution/yosupo-gcd-convolution.test.cpp
   - test/verify/convolution/yosupo-and-convolution.test.cpp
   - test/verify/yosupo-deque-operate-all-composite.test.cpp

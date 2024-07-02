@@ -167,6 +167,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/convolution/yosupo-lcm-convolution.test.cpp
       title: test/verify/convolution/yosupo-lcm-convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/convolution/yosupo-normal-convolution.test.cpp
+      title: test/verify/convolution/yosupo-normal-convolution.test.cpp
   - name: test/verify/fps
     pages:
     - icon: ':heavy_check_mark:'

@@ -31,6 +31,12 @@ data:
     title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/verify/convolution/yosupo-normal-convolution.test.cpp
+    title: test/verify/convolution/yosupo-normal-convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/convolution/yosupo-normal-convolution.test.cpp
+    title: test/verify/convolution/yosupo-normal-convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-division-of-polynomials.test.cpp
     title: test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - icon: ':heavy_check_mark:'
@@ -336,6 +342,8 @@ data:
   - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
+  - test/verify/convolution/yosupo-normal-convolution.test.cpp
+  - test/verify/convolution/yosupo-normal-convolution.test.cpp
 documentation_of: formal-power-series/formal-power-series.hpp
 layout: document
 title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
