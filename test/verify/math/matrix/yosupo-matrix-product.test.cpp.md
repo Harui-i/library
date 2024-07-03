@@ -74,10 +74,10 @@ data:
     using modint1000000007 = modint<1000000007>;\n\n\n#line 1 \"math/matrix/matrix.hpp\"\
     \n\n\n\n#line 5 \"math/matrix/matrix.hpp\"\n\ntemplate <class T>\nstruct Matrix{\n\
     private: \n  std::vector<std::vector<T>>vec;\n  int N, M;\npublic:\n\n  Matrix(int\
-    \ _N, int _M) : N(_N), M(_M), vec(std::vector<std::vector<T>>(_N, std::vector<T>(_M)))\
-    \ {\n    assert(_N >= 0 && _M >= 0); // 0*0\u306E\u884C\u5217\u3092\u8FD4\u3057\
-    \u305F\u3044\u3068\u304D\u3082\u3042\u308B(\u9006\u884C\u5217\u306A\u304B\u3063\
-    \u305F\u3068\u304D\u3068\u304B)\n  }\n\n  Matrix<T> operator*(const Matrix<T>&\
+    \ _N, int _M) : vec(std::vector<std::vector<T>>(_N, std::vector<T>(_M))), N(_N),\
+    \ M(_M)  {\n    assert(_N >= 0 && _M >= 0); // 0*0\u306E\u884C\u5217\u3092\u8FD4\
+    \u3057\u305F\u3044\u3068\u304D\u3082\u3042\u308B(\u9006\u884C\u5217\u306A\u304B\
+    \u3063\u305F\u3068\u304D\u3068\u304B)\n  }\n\n  Matrix<T> operator*(const Matrix<T>&\
     \ rhs) const  {\n    assert(M == rhs.N);\n    Matrix ret(N,rhs.M);\n    for (int\
     \ i=0; i<N; i++) for (int k=0; k<M; k++) for(int j=0; j<rhs.M; j++) {\n      ret.vec[i][j]\
     \ += vec[i][k] * rhs.vec[k][j];\n    } \n\n    return ret;\n  }\n\n  Matrix<T>\
@@ -163,7 +163,7 @@ data:
   isVerificationFile: true
   path: test/verify/math/matrix/yosupo-matrix-product.test.cpp
   requiredBy: []
-  timestamp: '2024-06-29 08:51:47+09:00'
+  timestamp: '2024-07-03 22:51:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/math/matrix/yosupo-matrix-product.test.cpp

@@ -26,21 +26,21 @@ data:
     - https://nyaannyaan.github.io/library/matrix/linear-equation.hpp
   bundledCode: "#line 1 \"math/matrix/matrix.hpp\"\n\n\n\n#include <vector>\n\ntemplate\
     \ <class T>\nstruct Matrix{\nprivate: \n  std::vector<std::vector<T>>vec;\n  int\
-    \ N, M;\npublic:\n\n  Matrix(int _N, int _M) : N(_N), M(_M), vec(std::vector<std::vector<T>>(_N,\
-    \ std::vector<T>(_M))) {\n    assert(_N >= 0 && _M >= 0); // 0*0\u306E\u884C\u5217\
-    \u3092\u8FD4\u3057\u305F\u3044\u3068\u304D\u3082\u3042\u308B(\u9006\u884C\u5217\
-    \u306A\u304B\u3063\u305F\u3068\u304D\u3068\u304B)\n  }\n\n  Matrix<T> operator*(const\
-    \ Matrix<T>& rhs) const  {\n    assert(M == rhs.N);\n    Matrix ret(N,rhs.M);\n\
-    \    for (int i=0; i<N; i++) for (int k=0; k<M; k++) for(int j=0; j<rhs.M; j++)\
-    \ {\n      ret.vec[i][j] += vec[i][k] * rhs.vec[k][j];\n    } \n\n    return ret;\n\
-    \  }\n\n  Matrix<T> operator^(unsigned long long k) const {\n    assert(N == M);\n\
-    \    Matrix<T> ret(N, N);\n    for(int i=0; i<N; i++) ret[i][i] = T(1);\n\n  \
-    \  Matrix<T> base = *this;\n\n    while (k > 0) {\n      if (k & 1) {\n      \
-    \  ret *= base;\n      }\n\n      base *= base;\n      k >>= 1; \n    }\n\n  \
-    \  return ret;\n  }\n\n  vector<T>& operator[](int i) {\n    assert(i < N);\n\
-    \    return vec[i];\n  }\n\n  Matrix<T>& operator*=(const Matrix<T>& b) { return\
-    \ (*this) = (*this) * b; }\n  Matrix<T>& operator^=(const unsigned long long k)\
-    \ { return (*this) = (*this) ^ k; }\n\n  // \u3055\u3059\u304C\u306Brank\u3092\
+    \ N, M;\npublic:\n\n  Matrix(int _N, int _M) : vec(std::vector<std::vector<T>>(_N,\
+    \ std::vector<T>(_M))), N(_N), M(_M)  {\n    assert(_N >= 0 && _M >= 0); // 0*0\u306E\
+    \u884C\u5217\u3092\u8FD4\u3057\u305F\u3044\u3068\u304D\u3082\u3042\u308B(\u9006\
+    \u884C\u5217\u306A\u304B\u3063\u305F\u3068\u304D\u3068\u304B)\n  }\n\n  Matrix<T>\
+    \ operator*(const Matrix<T>& rhs) const  {\n    assert(M == rhs.N);\n    Matrix\
+    \ ret(N,rhs.M);\n    for (int i=0; i<N; i++) for (int k=0; k<M; k++) for(int j=0;\
+    \ j<rhs.M; j++) {\n      ret.vec[i][j] += vec[i][k] * rhs.vec[k][j];\n    } \n\
+    \n    return ret;\n  }\n\n  Matrix<T> operator^(unsigned long long k) const {\n\
+    \    assert(N == M);\n    Matrix<T> ret(N, N);\n    for(int i=0; i<N; i++) ret[i][i]\
+    \ = T(1);\n\n    Matrix<T> base = *this;\n\n    while (k > 0) {\n      if (k &\
+    \ 1) {\n        ret *= base;\n      }\n\n      base *= base;\n      k >>= 1; \n\
+    \    }\n\n    return ret;\n  }\n\n  vector<T>& operator[](int i) {\n    assert(i\
+    \ < N);\n    return vec[i];\n  }\n\n  Matrix<T>& operator*=(const Matrix<T>& b)\
+    \ { return (*this) = (*this) * b; }\n  Matrix<T>& operator^=(const unsigned long\
+    \ long k) { return (*this) = (*this) ^ k; }\n\n  // \u3055\u3059\u304C\u306Brank\u3092\
     \u77E5\u308B\u306E\u306B\u526F\u4F5C\u7528\u304C\u3042\u308B\u306E\u306F\u30E4\
     \u30D0\u3044\u306E\u3067\n  int rank() const {\n    Matrix A = *this;\n    return\
     \ A.sweep(M);\n  }\n\n  // \u30B5\u30A4\u30BA\u3092\u8FD4\u3059\u3002N,M\u3092\
@@ -93,21 +93,21 @@ data:
     \    }\n    rank++;\n  }\n\n  return rank;\n}\n\n\n};\n\n\n"
   code: "#ifndef HARUILIB_MATH_MATRIX_MATRIX_HPP\n#define HARUILIB_MATH_MATRIX_MATRIX_HPP\n\
     \n#include <vector>\n\ntemplate <class T>\nstruct Matrix{\nprivate: \n  std::vector<std::vector<T>>vec;\n\
-    \  int N, M;\npublic:\n\n  Matrix(int _N, int _M) : N(_N), M(_M), vec(std::vector<std::vector<T>>(_N,\
-    \ std::vector<T>(_M))) {\n    assert(_N >= 0 && _M >= 0); // 0*0\u306E\u884C\u5217\
-    \u3092\u8FD4\u3057\u305F\u3044\u3068\u304D\u3082\u3042\u308B(\u9006\u884C\u5217\
-    \u306A\u304B\u3063\u305F\u3068\u304D\u3068\u304B)\n  }\n\n  Matrix<T> operator*(const\
-    \ Matrix<T>& rhs) const  {\n    assert(M == rhs.N);\n    Matrix ret(N,rhs.M);\n\
-    \    for (int i=0; i<N; i++) for (int k=0; k<M; k++) for(int j=0; j<rhs.M; j++)\
-    \ {\n      ret.vec[i][j] += vec[i][k] * rhs.vec[k][j];\n    } \n\n    return ret;\n\
-    \  }\n\n  Matrix<T> operator^(unsigned long long k) const {\n    assert(N == M);\n\
-    \    Matrix<T> ret(N, N);\n    for(int i=0; i<N; i++) ret[i][i] = T(1);\n\n  \
-    \  Matrix<T> base = *this;\n\n    while (k > 0) {\n      if (k & 1) {\n      \
-    \  ret *= base;\n      }\n\n      base *= base;\n      k >>= 1; \n    }\n\n  \
-    \  return ret;\n  }\n\n  vector<T>& operator[](int i) {\n    assert(i < N);\n\
-    \    return vec[i];\n  }\n\n  Matrix<T>& operator*=(const Matrix<T>& b) { return\
-    \ (*this) = (*this) * b; }\n  Matrix<T>& operator^=(const unsigned long long k)\
-    \ { return (*this) = (*this) ^ k; }\n\n  // \u3055\u3059\u304C\u306Brank\u3092\
+    \  int N, M;\npublic:\n\n  Matrix(int _N, int _M) : vec(std::vector<std::vector<T>>(_N,\
+    \ std::vector<T>(_M))), N(_N), M(_M)  {\n    assert(_N >= 0 && _M >= 0); // 0*0\u306E\
+    \u884C\u5217\u3092\u8FD4\u3057\u305F\u3044\u3068\u304D\u3082\u3042\u308B(\u9006\
+    \u884C\u5217\u306A\u304B\u3063\u305F\u3068\u304D\u3068\u304B)\n  }\n\n  Matrix<T>\
+    \ operator*(const Matrix<T>& rhs) const  {\n    assert(M == rhs.N);\n    Matrix\
+    \ ret(N,rhs.M);\n    for (int i=0; i<N; i++) for (int k=0; k<M; k++) for(int j=0;\
+    \ j<rhs.M; j++) {\n      ret.vec[i][j] += vec[i][k] * rhs.vec[k][j];\n    } \n\
+    \n    return ret;\n  }\n\n  Matrix<T> operator^(unsigned long long k) const {\n\
+    \    assert(N == M);\n    Matrix<T> ret(N, N);\n    for(int i=0; i<N; i++) ret[i][i]\
+    \ = T(1);\n\n    Matrix<T> base = *this;\n\n    while (k > 0) {\n      if (k &\
+    \ 1) {\n        ret *= base;\n      }\n\n      base *= base;\n      k >>= 1; \n\
+    \    }\n\n    return ret;\n  }\n\n  vector<T>& operator[](int i) {\n    assert(i\
+    \ < N);\n    return vec[i];\n  }\n\n  Matrix<T>& operator*=(const Matrix<T>& b)\
+    \ { return (*this) = (*this) * b; }\n  Matrix<T>& operator^=(const unsigned long\
+    \ long k) { return (*this) = (*this) ^ k; }\n\n  // \u3055\u3059\u304C\u306Brank\u3092\
     \u77E5\u308B\u306E\u306B\u526F\u4F5C\u7528\u304C\u3042\u308B\u306E\u306F\u30E4\
     \u30D0\u3044\u306E\u3067\n  int rank() const {\n    Matrix A = *this;\n    return\
     \ A.sweep(M);\n  }\n\n  // \u30B5\u30A4\u30BA\u3092\u8FD4\u3059\u3002N,M\u3092\
@@ -162,7 +162,7 @@ data:
   isVerificationFile: false
   path: math/matrix/matrix.hpp
   requiredBy: []
-  timestamp: '2024-06-29 08:51:47+09:00'
+  timestamp: '2024-07-03 22:51:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/math/matrix/yosupo-linear-equation.test.cpp
