@@ -10,7 +10,7 @@ private:
   int N, M;
 public:
 
-  Matrix(int _N, int _M) : N(_N), M(_M), vec(std::vector<std::vector<T>>(_N, std::vector<T>(_M))) {
+  Matrix(int _N, int _M) : vec(std::vector<std::vector<T>>(_N, std::vector<T>(_M))), N(_N), M(_M)  {
     assert(_N >= 0 && _M >= 0); // 0*0の行列を返したいときもある(逆行列なかったときとか)
   }
 
