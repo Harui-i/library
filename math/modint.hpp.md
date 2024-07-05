@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/fps998.hpp
     title: formal-power-series/fps998.hpp
+  - icon: ':warning:'
+    path: formal-power-series/naive-fps.hpp
+    title: formal-power-series/naive-fps.hpp
   - icon: ':heavy_check_mark:'
     path: formal-power-series/sparse-fps.hpp
     title: sparse-fps
@@ -202,6 +205,7 @@ data:
   - formal-power-series/fps998.hpp
   - formal-power-series/fiduccia.hpp
   - formal-power-series/formal-power-series.hpp
+  - formal-power-series/naive-fps.hpp
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp

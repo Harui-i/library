@@ -81,48 +81,48 @@ data:
     \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
     \ modint = static_modint<mod>;\nusing modint998244353  = modint<998244353>;\n\
     using modint1000000007 = modint<1000000007>;\n\n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\
-    \n\n\n\n#line 6 \"formal-power-series/formal-power-series.hpp\"\n\nusing namespace\
-    \ std;\n\n\n\ntemplate <typename mint>\nstruct FPS {\n  vector<mint> _vec;\n\n\
-    \  constexpr int lg2(int N) const {\n    int ret = 0;\n    if (N > 0) ret = 31\
-    \ - __builtin_clz(N);\n    if ((1LL << ret) < N) ret++;\n    return ret;\n  }\n\
-    \n  // \u30CA\u30A4\u30FC\u30D6\u306A\u30CB\u30E5\u30FC\u30C8\u30F3\u6CD5\u3067\
-    \u306E\u9006\u5143\u8A08\u7B97\n  FPS inv_naive(int deg) const {\n    assert(_vec[0]\
-    \ != mint(0)); // \u3055\u3042\u3089\u3056\u308C\u3070\u3001\u9006\u5143\u306E\
-    \u3066\u3072\u304E\u3044\u304D\u306B\u3053\u305D\u3042\u3089\u3056\u308C\u3002\
-    \n    if (deg == -1) deg = this->size();\n    FPS g(1);\n    g._vec[0] = mint(_vec[0]).inv();\n\
-    \    // g_{n+1} = 2 * g_n - f * (g_n)^2\n    for (int d = 1; d < deg; d <<= 1)\
-    \ {\n      FPS g_twice = g * mint(2);\n      FPS fgg = (*this).pre(d * 2) * g\
-    \ * g;\n\n      g = g_twice - fgg;\n      g.resize(d * 2);\n    }\n\n    return\
-    \ g.pre(deg);\n  }\n\n  //*/\n\n  FPS log(int deg = -1) const {\n    assert(_vec[0]\
-    \ == mint(1));\n\n    if (deg == -1) deg = size();\n    FPS df = this->diff();\n\
-    \    FPS iv = this->inv(deg);\n    FPS ret = (df * iv).pre(deg - 1).integral();\n\
-    \n    return ret;\n  }\n\n  FPS exp(int deg = -1) const {\n    assert(_vec[0]\
-    \ == mint(0));\n\n    if (deg == -1) deg = size();\n    FPS h = {1}; // h: exp(f)\n\
-    \n    // h_2d = h * (f + 1 - Integrate(h' * h.inv() ) )\n\n    for (int d = 1;\
-    \ d < deg; d <<= 1) {\n      // h_2d = h_d * (f + 1 - log(h_d))\n      // = h_d\
-    \ * (f + 1  - Integral(h' * h.inv() ))\n      // \u3092\u5229\u7528\u3057\u3066\
-    \u3001h.inv\u3092\u6F38\u5316\u5F0F\u3067\u66F4\u65B0\u3057\u3066\u3044\u3051\u3070\
-    \u5B9A\u6570\u500D\u6539\u5584\u3067\u304D\u308B\u304B\u3068\u601D\u3063\u305F\
-    \u304C\u3001\u306A\u3093\u304B\u30D0\u30B0\u3063\u3066\u308B\u3002\n\n      FPS\
-    \ fpl1 = ((*this).pre(2*d) + mint(1));\n      FPS logh = h.log(2*d);\n      FPS\
-    \ right = (fpl1 - logh);\n\n      h = (h * right).pre(2 * d);\n    }\n\n    return\
-    \ h.pre(deg);\n  }\n\n  // f^k \u3092\u8FD4\u3059\n  FPS pow(long long k, int\
-    \ deg = -1) const {\n    mint lowest_coeff;\n    if (deg == -1) deg = size();\n\
-    \    int lowest_deg = -1;\n\n    if (k == 0) {\n      FPS ret = { mint(1) };\n\
-    \      ret.resize(deg);\n      return ret;\n    }\n\n    for (int i = 0; i < size();\
-    \ i++) {\n      if (i * k > deg) {\n        return FPS(deg);\n      }\n      if\
-    \ (_vec[i] != mint(0)) {\n        lowest_deg = i;\n        lowest_coeff = _vec[i];\n\
-    \        \n        int deg3 = deg - k*lowest_deg;\n\n        FPS f2 = (*this /\
-    \ lowest_coeff) >> lowest_deg;\n        FPS ret = (lowest_coeff.pow(k) * (f2.log(deg3)\
-    \ * mint(k)).exp(deg3) << (lowest_deg * k)).pre(deg);\n        ret.resize(deg);\n\
-    \n        return ret;\n      }\n    }\n    assert(false);\n  }\n\n  FPS integral()\
-    \ const {\n    const int N = size();\n    FPS ret(N + 1);\n\n    for (int i =\
-    \ 0; i < N; i++) ret[i + 1] = _vec[i] * mint(i + 1).inv();\n\n    return ret;\n\
-    \  }\n\n  FPS diff() const {\n    const int N = size();\n    FPS ret(max(0, N\
-    \ - 1));\n    for (int i = 1; i < N; i++) ret[i - 1] = mint(i) * _vec[i];\n\n\
-    \    return ret;\n  }\n\n  FPS(vector<mint> vec) : _vec(vec) {\n  }\n\n  FPS(initializer_list<mint>\
+    \n\n\n\n#line 6 \"formal-power-series/formal-power-series.hpp\"\n\n\ntemplate\
+    \ <typename mint>\nstruct FPS {\n  std::vector<mint> _vec;\n\n  constexpr int\
+    \ lg2(int N) const {\n    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n\
+    \    if ((1LL << ret) < N) ret++;\n    return ret;\n  }\n\n  // \u30CA\u30A4\u30FC\
+    \u30D6\u306A\u30CB\u30E5\u30FC\u30C8\u30F3\u6CD5\u3067\u306E\u9006\u5143\u8A08\
+    \u7B97\n  FPS inv_naive(int deg) const {\n    assert(_vec[0] != mint(0)); // \u3055\
+    \u3042\u3089\u3056\u308C\u3070\u3001\u9006\u5143\u306E\u3066\u3072\u304E\u3044\
+    \u304D\u306B\u3053\u305D\u3042\u3089\u3056\u308C\u3002\n    if (deg == -1) deg\
+    \ = this->size();\n    FPS g(1);\n    g._vec[0] = mint(_vec[0]).inv();\n    //\
+    \ g_{n+1} = 2 * g_n - f * (g_n)^2\n    for (int d = 1; d < deg; d <<= 1) {\n \
+    \     FPS g_twice = g * mint(2);\n      FPS fgg = (*this).pre(d * 2) * g * g;\n\
+    \n      g = g_twice - fgg;\n      g.resize(d * 2);\n    }\n\n    return g.pre(deg);\n\
+    \  }\n\n  //*/\n\n  FPS log(int deg = -1) const {\n    assert(_vec[0] == mint(1));\n\
+    \n    if (deg == -1) deg = size();\n    FPS df = this->diff();\n    FPS iv = this->inv(deg);\n\
+    \    FPS ret = (df * iv).pre(deg - 1).integral();\n\n    return ret;\n  }\n\n\
+    \  FPS exp(int deg = -1) const {\n    assert(_vec[0] == mint(0));\n\n    if (deg\
+    \ == -1) deg = size();\n    FPS h = {1}; // h: exp(f)\n\n    // h_2d = h * (f\
+    \ + 1 - Integrate(h' * h.inv() ) )\n\n    for (int d = 1; d < deg; d <<= 1) {\n\
+    \      // h_2d = h_d * (f + 1 - log(h_d))\n      // = h_d * (f + 1  - Integral(h'\
+    \ * h.inv() ))\n      // \u3092\u5229\u7528\u3057\u3066\u3001h.inv\u3092\u6F38\
+    \u5316\u5F0F\u3067\u66F4\u65B0\u3057\u3066\u3044\u3051\u3070\u5B9A\u6570\u500D\
+    \u6539\u5584\u3067\u304D\u308B\u304B\u3068\u601D\u3063\u305F\u304C\u3001\u306A\
+    \u3093\u304B\u30D0\u30B0\u3063\u3066\u308B\u3002\n\n      FPS fpl1 = ((*this).pre(2*d)\
+    \ + mint(1));\n      FPS logh = h.log(2*d);\n      FPS right = (fpl1 - logh);\n\
+    \n      h = (h * right).pre(2 * d);\n    }\n\n    return h.pre(deg);\n  }\n\n\
+    \  // f^k \u3092\u8FD4\u3059\n  FPS pow(long long k, int deg = -1) const {\n \
+    \   mint lowest_coeff;\n    if (deg == -1) deg = size();\n    int lowest_deg =\
+    \ -1;\n\n    if (k == 0) {\n      FPS ret = { mint(1) };\n      ret.resize(deg);\n\
+    \      return ret;\n    }\n\n    for (int i = 0; i < size(); i++) {\n      if\
+    \ (i * k > deg) {\n        return FPS(deg);\n      }\n      if (_vec[i] != mint(0))\
+    \ {\n        lowest_deg = i;\n        lowest_coeff = _vec[i];\n        \n    \
+    \    int deg3 = deg - k*lowest_deg;\n\n        FPS f2 = (*this / lowest_coeff)\
+    \ >> lowest_deg;\n        FPS ret = (lowest_coeff.pow(k) * (f2.log(deg3) * mint(k)).exp(deg3)\
+    \ << (lowest_deg * k)).pre(deg);\n        ret.resize(deg);\n\n        return ret;\n\
+    \      }\n    }\n    assert(false);\n  }\n\n  FPS integral() const {\n    const\
+    \ int N = size();\n    FPS ret(N + 1);\n\n    for (int i = 0; i < N; i++) ret[i\
+    \ + 1] = _vec[i] * mint(i + 1).inv();\n\n    return ret;\n  }\n\n  FPS diff()\
+    \ const {\n    const int N = size();\n    FPS ret(max(0, N - 1));\n    for (int\
+    \ i = 1; i < N; i++) ret[i - 1] = mint(i) * _vec[i];\n\n    return ret;\n  }\n\
+    \n  FPS(std::vector<mint> vec) : _vec(vec) {\n  }\n\n  FPS(initializer_list<mint>\
     \ ilist) : _vec(ilist) {\n  }\n\n  // \u9805\u306E\u6570\u306B\u63C3\u3048\u305F\
-    \u307B\u3046\u304C\u3088\u3055\u305D\u3046\n  FPS(int sz) : _vec(vector<mint>(sz))\
+    \u307B\u3046\u304C\u3088\u3055\u305D\u3046\n  FPS(int sz) : _vec(std::vector<mint>(sz))\
     \ {\n  }\n\n  int size() const {\n    return _vec.size();\n  }\n\n  FPS& operator+=(const\
     \ FPS& rhs) {\n    if (rhs.size() > this->size()) _vec.resize(rhs.size());\n \
     \   for (int i = 0; i < (int)rhs.size(); ++i) _vec[i] += rhs._vec[i];\n    return\
@@ -154,30 +154,32 @@ data:
     \ a -= b; }\n  friend FPS operator*(FPS a, const FPS& b) { return a *= b; }\n\
     \  friend FPS operator/(FPS a, const FPS& b) { return a /= b; }\n  friend FPS\
     \ operator%(FPS a, const FPS& b) { return a %= b; }\n\n  friend FPS operator+(FPS\
-    \ a, const mint& b) { return a += b; }\n  friend FPS operator-(FPS a, const mint&\
-    \ b) { return a -= b; }\n\n  friend FPS operator*(FPS a, const mint& b) { return\
-    \ a *= b; }\n  friend FPS operator*(const mint& b, FPS a) { return a *= b; }\n\
-    \n  friend FPS operator/(FPS a, const mint& b) { return a /= b; }\n  friend FPS\
-    \ operator/(const mint& b, FPS a) { return a /= b; }\n\n  // sz\u6B21\u672A\u6E80\
-    \u306E\u9805\u3092\u53D6\u3063\u3066\u304F\u308B\n  FPS pre(int sz) const {\n\
-    \    FPS ret = *this;\n    ret._vec.resize(sz);\n\n    return ret;\n  }\n\n  FPS\
-    \ rev() const {\n    FPS ret = *this;\n    reverse(ret._vec.begin(), ret._vec.end());\n\
-    \n    return ret;\n  }\n\n  const mint& operator[](size_t i) const {\n    return\
-    \ _vec[i];\n  }\n\n  mint& operator[](size_t i) {\n    return _vec[i];\n  }\n\n\
-    \  void resize(int sz) {\n    this->_vec.resize(sz);\n  }\n\n  void shrink() {\n\
-    \    while (size() > 0 && _vec.back() == mint(0)) _vec.pop_back();\n  }\n\n  friend\
-    \ ostream& operator<<(ostream& os, const FPS& fps) {\n    for (int i = 0; i <\
-    \ fps.size(); ++i) {\n      if (i > 0) os << \" \";\n      os << fps._vec[i].val();\n\
-    \    }\n    return os;\n  }\n\n  // \u4EEE\u60F3\u95A2\u6570\u3063\u3066\u3084\
-    \u3064\u3002mod 998244353\u306A\u306E\u304B\u3001\u4ED6\u306ENTT-friendly\u306A\
-    mod\u3067\u8003\u3048\u308B\u306E\u304B\u3001\u305D\u308C\u3068\u3082Garner\u3067\
-    \u5FA9\u5143\u3059\u308B\u306E\u304B\u3001\u305D\u308C\u3068\u3082\u7573\u307F\
-    \u8FBC\u307F\u3092$O(N^2)$\u3067\u59A5\u5354\u3059\u308B\u306E\u304B\u306A\u3069\
-    \u306B\u3088\u3063\u3066\u7570\u306A\u308B\n  virtual FPS inv(int deg = -1) const;\n\
-    \  virtual void next_inv(FPS& g_d) const; \n  virtual void CooleyTukeyNTT998244353(vector<mint>&\
-    \ a, bool is_reverse) const;\n  //  virtual FPS exp(int deg=-1) const;\n  virtual\
-    \ vector<mint> multiply(const vector<mint>& a, const vector<mint>& b);\n};\n\n\
-    \n#line 1 \"formal-power-series/fps998.hpp\"\n\n\n\n\n#line 7 \"formal-power-series/fps998.hpp\"\
+    \ a, const mint& b) { return a += b; }\n  friend FPS operator+(const mint& b,\
+    \ FPS a) { return a += b; }\n  \n  friend FPS operator-(FPS a, const mint& b)\
+    \ { return a -= b; }\n  friend FPS operator-(const mint& b, FPS a) { return a\
+    \ -= b; }\n\n  friend FPS operator*(FPS a, const mint& b) { return a *= b; }\n\
+    \  friend FPS operator*(const mint& b, FPS a) { return a *= b; }\n\n  friend FPS\
+    \ operator/(FPS a, const mint& b) { return a /= b; }\n  friend FPS operator/(const\
+    \ mint& b, FPS a) { return a /= b; }\n\n  // sz\u6B21\u672A\u6E80\u306E\u9805\u3092\
+    \u53D6\u3063\u3066\u304F\u308B\n  FPS pre(int sz) const {\n    FPS ret = *this;\n\
+    \    ret._vec.resize(sz);\n\n    return ret;\n  }\n\n  FPS rev() const {\n   \
+    \ FPS ret = *this;\n    reverse(ret._vec.begin(), ret._vec.end());\n\n    return\
+    \ ret;\n  }\n\n  const mint& operator[](size_t i) const {\n    return _vec[i];\n\
+    \  }\n\n  mint& operator[](size_t i) {\n    return _vec[i];\n  }\n\n  void resize(int\
+    \ sz) {\n    this->_vec.resize(sz);\n  }\n\n  void shrink() {\n    while (size()\
+    \ > 0 && _vec.back() == mint(0)) _vec.pop_back();\n  }\n\n  friend ostream& operator<<(ostream&\
+    \ os, const FPS& fps) {\n    for (int i = 0; i < fps.size(); ++i) {\n      if\
+    \ (i > 0) os << \" \";\n      os << fps._vec[i].val();\n    }\n    return os;\n\
+    \  }\n\n  // \u4EEE\u60F3\u95A2\u6570\u3063\u3066\u3084\u3064\u3002mod 998244353\u306A\
+    \u306E\u304B\u3001\u4ED6\u306ENTT-friendly\u306Amod\u3067\u8003\u3048\u308B\u306E\
+    \u304B\u3001\u305D\u308C\u3068\u3082Garner\u3067\u5FA9\u5143\u3059\u308B\u306E\
+    \u304B\u3001\u305D\u308C\u3068\u3082\u7573\u307F\u8FBC\u307F\u3092$O(N^2)$\u3067\
+    \u59A5\u5354\u3059\u308B\u306E\u304B\u306A\u3069\u306B\u3088\u3063\u3066\u7570\
+    \u306A\u308B\n  virtual FPS inv(int deg = -1) const;\n  virtual void next_inv(FPS&\
+    \ g_d) const; \n  virtual void CooleyTukeyNTT998244353(std::vector<mint>& a, bool\
+    \ is_reverse) const;\n  //  virtual FPS exp(int deg=-1) const;\n  virtual std::vector<mint>\
+    \ multiply(const std::vector<mint>& a, const std::vector<mint>& b);\n};\n\n\n\
+    #line 1 \"formal-power-series/fps998.hpp\"\n\n\n\n\n#line 7 \"formal-power-series/fps998.hpp\"\
     \n\nusing mint = modint998244353;\n//ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
     // constexpr \u95A2\u6570\u5185\u3067 ZETAS \u914D\u5217\u3092\u8A2D\u5B9A\u3059\
     \u308B\u305F\u3081\u306E\u88DC\u52A9\u95A2\u6570\nconstexpr std::array<mint, 24>\
@@ -308,7 +310,7 @@ data:
   isVerificationFile: true
   path: test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
   requiredBy: []
-  timestamp: '2024-07-02 18:34:29+09:00'
+  timestamp: '2024-07-05 15:34:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp

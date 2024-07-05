@@ -49,6 +49,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: formal-power-series/fps998.hpp
       title: formal-power-series/fps998.hpp
+    - icon: ':warning:'
+      path: formal-power-series/naive-fps.hpp
+      title: formal-power-series/naive-fps.hpp
     - icon: ':heavy_check_mark:'
       path: formal-power-series/sparse-fps.hpp
       title: sparse-fps
