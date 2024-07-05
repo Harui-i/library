@@ -2,15 +2,12 @@
 #define HARUILIB_FORMAL_POWER_SERIES_FORMAL_POWER_SERIES_HPP
 
 #include "../math/modint.hpp"
-#include <bits/stdc++.h>
-
-using namespace std;
-
+#include <vector>
 
 
 template <typename mint>
 struct FPS {
-  vector<mint> _vec;
+  std::vector<mint> _vec;
 
   constexpr int lg2(int N) const {
     int ret = 0;
@@ -122,14 +119,14 @@ struct FPS {
     return ret;
   }
 
-  FPS(vector<mint> vec) : _vec(vec) {
+  FPS(std::vector<mint> vec) : _vec(vec) {
   }
 
   FPS(initializer_list<mint> ilist) : _vec(ilist) {
   }
 
   // 項の数に揃えたほうがよさそう
-  FPS(int sz) : _vec(vector<mint>(sz)) {
+  FPS(int sz) : _vec(std::vector<mint>(sz)) {
   }
 
   int size() const {
@@ -221,7 +218,10 @@ struct FPS {
   friend FPS operator%(FPS a, const FPS& b) { return a %= b; }
 
   friend FPS operator+(FPS a, const mint& b) { return a += b; }
+  friend FPS operator+(const mint& b, FPS a) { return a += b; }
+  
   friend FPS operator-(FPS a, const mint& b) { return a -= b; }
+  friend FPS operator-(const mint& b, FPS a) { return a -= b; }
 
   friend FPS operator*(FPS a, const mint& b) { return a *= b; }
   friend FPS operator*(const mint& b, FPS a) { return a *= b; }
@@ -271,9 +271,9 @@ struct FPS {
   // 仮想関数ってやつ。mod 998244353なのか、他のNTT-friendlyなmodで考えるのか、それともGarnerで復元するのか、それとも畳み込みを$O(N^2)$で妥協するのかなどによって異なる
   virtual FPS inv(int deg = -1) const;
   virtual void next_inv(FPS& g_d) const; 
-  virtual void CooleyTukeyNTT998244353(vector<mint>& a, bool is_reverse) const;
+  virtual void CooleyTukeyNTT998244353(std::vector<mint>& a, bool is_reverse) const;
   //  virtual FPS exp(int deg=-1) const;
-  virtual vector<mint> multiply(const vector<mint>& a, const vector<mint>& b);
+  virtual std::vector<mint> multiply(const std::vector<mint>& a, const std::vector<mint>& b);
 };
 
 #endif // HARUILIB_FORMAL_POWER_SERIES_FORMAL_POWER_SERIES_HPP
