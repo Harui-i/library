@@ -17,7 +17,7 @@ namespace mylib {
     int N = (int)graph.size();
 
     // first sweep
-    pair<T, int> farest1 = make_pair(T(-1), -1);
+    pair<T, int> farest1 = make_pair(T(0), 0);
     {
       vector<T> dist(N, T(-1));
       dist[0] = T(0);
@@ -39,9 +39,8 @@ namespace mylib {
       }
     }
 
-    assert(farest1.first != T(-1) && farest1.second != -1);
 
-    pair<T, int> farest2 = make_pair(T(-1), -1);
+    pair<T, int> farest2 = make_pair(T(0), 0);
     // second sweep
     vector<int> prev(N, -1);
     {

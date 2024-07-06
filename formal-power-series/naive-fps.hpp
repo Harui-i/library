@@ -1,5 +1,5 @@
-#ifndef HARUILIB_FORMAL_POWeR_SERIES_NAIVE_FPS_HPP
-#define HARUILIB_FORMAL_POWeR_SERIES_NAIVE_FPS_HPP
+#ifndef HARUILIB_FORMAL_POWER_SERIES_NAIVE_FPS_HPP
+#define HARUILIB_FORMAL_POWER_SERIES_NAIVE_FPS_HPP
 
 #include "formal-power-series/formal-power-series.hpp"
 
@@ -46,4 +46,4 @@ void FPS<mint>::CooleyTukeyNTT998244353([[maybe_unused]] std::vector<mint>& a, [
   assert(false);
   return;
 }
-#endif // HARUILIB_FORMAL_POWeR_SERIES_NAIVE_FPS_HPP
+#endif // HARUILIB_FORMAL_POWER_SERIES_NAIVE_FPS_HPP
