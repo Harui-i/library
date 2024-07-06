@@ -40,25 +40,25 @@ data:
     \ mylib {\n\n  using std::vector;\n  using std::pair;\n  using std::queue;\n\n\
     \  template <typename T>\n  pair<vector<int>, T> diameter_path(const Graph<T>&\
     \ graph) {\n    int N = (int)graph.size();\n\n    // first sweep\n    pair<T,\
-    \ int> farest1 = make_pair(T(-1), -1);\n    {\n      vector<T> dist(N, T(-1));\n\
+    \ int> farest1 = make_pair(T(0), 0);\n    {\n      vector<T> dist(N, T(-1));\n\
     \      dist[0] = T(0);\n\n      queue<int> que;\n      que.push(0);\n      while\
     \ (!que.empty()) {\n        int front = que.front(); que.pop();\n\n        for\
     \ (Edge e: graph[front]) {\n          if (dist[e.to] == T(-1)) {\n           \
     \ dist[e.to] = dist[front] + e.cost;\n            que.push(e.to);\n          \
     \  if (farest1.first == -1 || farest1.first < dist[e.to]) {\n              farest1\
     \ = make_pair(dist[e.to], e.to);\n            }\n          }\n        }\n    \
-    \  }\n    }\n\n    assert(farest1.first != T(-1) && farest1.second != -1);\n\n\
-    \    pair<T, int> farest2 = make_pair(T(-1), -1);\n    // second sweep\n    vector<int>\
-    \ prev(N, -1);\n    {\n      int start = farest1.second;\n      vector<T> dist(N,\
-    \ T(-1));\n      dist[start] = T(0);\n\n      queue<int> que;\n      que.push(start);\n\
-    \n      while (!que.empty()) {\n        int front = que.front(); que.pop();\n\n\
-    \        for (Edge e: graph[front]) {\n          if (dist[e.to] == T(-1)) {\n\
-    \            dist[e.to] = dist[front] + e.cost;\n            prev[e.to] = front;\n\
-    \            que.push(e.to);\n          }\n\n          if (farest2.second == -1\
-    \ || farest2.first < dist[e.to]) {\n            farest2 = make_pair(dist[e.to],\
-    \ e.to);\n          }\n        }\n      }\n    }\n\n    vector<int> diameter_path;\n\
-    \    {\n      int now = farest2.second;\n      while (now != -1) {\n        diameter_path.push_back(now);\n\
-    \        now = prev[now];\n      }\n\n      reverse(diameter_path.begin(), diameter_path.end());\n\
+    \  }\n    }\n\n\n    pair<T, int> farest2 = make_pair(T(0), 0);\n    // second\
+    \ sweep\n    vector<int> prev(N, -1);\n    {\n      int start = farest1.second;\n\
+    \      vector<T> dist(N, T(-1));\n      dist[start] = T(0);\n\n      queue<int>\
+    \ que;\n      que.push(start);\n\n      while (!que.empty()) {\n        int front\
+    \ = que.front(); que.pop();\n\n        for (Edge e: graph[front]) {\n        \
+    \  if (dist[e.to] == T(-1)) {\n            dist[e.to] = dist[front] + e.cost;\n\
+    \            prev[e.to] = front;\n            que.push(e.to);\n          }\n\n\
+    \          if (farest2.second == -1 || farest2.first < dist[e.to]) {\n       \
+    \     farest2 = make_pair(dist[e.to], e.to);\n          }\n        }\n      }\n\
+    \    }\n\n    vector<int> diameter_path;\n    {\n      int now = farest2.second;\n\
+    \      while (now != -1) {\n        diameter_path.push_back(now);\n        now\
+    \ = prev[now];\n      }\n\n      reverse(diameter_path.begin(), diameter_path.end());\n\
     \    }\n\n    return make_pair(diameter_path, farest2.first);\n  }\n\n} // namespace\
     \ mylib\n\n\n#line 6 \"test/verify/yosupo-tree-diameter.test.cpp\"\n\nint main()\
     \ {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n\n  int N; cin >> N;\n\
@@ -84,7 +84,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-tree-diameter.test.cpp
   requiredBy: []
-  timestamp: '2024-06-29 08:51:47+09:00'
+  timestamp: '2024-07-06 16:39:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-tree-diameter.test.cpp

@@ -175,7 +175,7 @@ data:
     }\n\ntemplate<typename mint> \nvoid FPS<mint>::CooleyTukeyNTT998244353([[maybe_unused]]\
     \ std::vector<mint>& a, [[maybe_unused]] bool is_reverse) const {\n  assert(false);\n\
     \  return;\n}\n\n"
-  code: "#ifndef HARUILIB_FORMAL_POWeR_SERIES_NAIVE_FPS_HPP\n#define HARUILIB_FORMAL_POWeR_SERIES_NAIVE_FPS_HPP\n\
+  code: "#ifndef HARUILIB_FORMAL_POWER_SERIES_NAIVE_FPS_HPP\n#define HARUILIB_FORMAL_POWER_SERIES_NAIVE_FPS_HPP\n\
     \n#include \"formal-power-series/formal-power-series.hpp\"\n\ntemplate<typename\
     \ mint>\nstd::vector<mint> FPS<mint>::multiply(const std::vector<mint>& a, const\
     \ std::vector<mint>& b) {\n  if (a.size() == 0 || b.size() == 0) return std::vector<mint>();\n\
@@ -193,7 +193,7 @@ data:
     \n  for (int d = 1; d < deg; d <<= 1) {\n    next_inv(g);\n  }\n\n  return g.pre(deg);\n\
     }\n\ntemplate<typename mint> \nvoid FPS<mint>::CooleyTukeyNTT998244353([[maybe_unused]]\
     \ std::vector<mint>& a, [[maybe_unused]] bool is_reverse) const {\n  assert(false);\n\
-    \  return;\n}\n#endif // HARUILIB_FORMAL_POWeR_SERIES_NAIVE_FPS_HPP"
+    \  return;\n}\n#endif // HARUILIB_FORMAL_POWER_SERIES_NAIVE_FPS_HPP"
   dependsOn:
   - formal-power-series/formal-power-series.hpp
   - math/modint.hpp
@@ -201,7 +201,7 @@ data:
   isVerificationFile: false
   path: formal-power-series/naive-fps.hpp
   requiredBy: []
-  timestamp: '2024-07-05 15:34:20+09:00'
+  timestamp: '2024-07-06 16:39:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: formal-power-series/naive-fps.hpp
