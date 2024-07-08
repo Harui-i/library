@@ -17,7 +17,6 @@ int main() {
   vector<mint>a(d); for(int i=0; i<d; i++) cin >> a[i];
   vector<mint>c(d); for(int i=0; i<d; i++) cin >> c[i];
 
-  reverse(c.begin(), c.end()); 
   mint ans = Fiduccia(a,c,K);
 
   cout << ans.val() << "\n";

@@ -3,7 +3,6 @@
 
 
 #include "formal-power-series/formal-power-series.hpp"
-#include "formal-power-series.hpp"
 
 using mint = modint998244353;
 //ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};
@@ -29,6 +28,7 @@ void FPS<mint>::CooleyTukeyNTT998244353(vector<mint>& a, bool is_reverse) const 
   int lgN = lg2(N);
   //for (int i = 0; 1 << i < N; i++) lgN++;
   assert(N == 1 << lgN);
+  assert(lgN <= 23 && "the length shoud be less than or equal to 2^23 " );
 
   // https://37zigen.com/transpose-fft/
   // https://tayu0110.hatenablog.com/entry/2023/05/06/023244

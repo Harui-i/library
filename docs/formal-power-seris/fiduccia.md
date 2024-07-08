@@ -3,7 +3,7 @@ titel: Fiducciaのアルゴリズム (きたまさ法?)
 documentation_of: //formal-power-series/fiduccia.hpp
 ---
 
-なんかLibrary Checkerは通らないが、Typical DP Contest Tのフィボナッチは(NaiveなFPSを使うことで)通った。
+~~ なんかLibrary Checkerは通らないが、Typical DP Contest Tのフィボナッチは(NaiveなFPSを使うことで)通った。~~ → 普通にLibrary Checkerも通りました。遅いけど。
 
 提出: [https://atcoder.jp/contests/tdpc/submissions/55372657]
 
@@ -78,6 +78,7 @@ $$
 であるとわかる。
 
 ---
+
 すると、先ほどの式を繰り返し適用すると、以下のような関係式が成り立つから、
 
 $$
