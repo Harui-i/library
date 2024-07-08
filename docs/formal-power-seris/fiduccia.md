@@ -1,6 +1,6 @@
 ---
-titel: Fidduciaのアルゴリズム (きたまさ法?)
-documentation_of: //formal-power-series/fidducia.hpp
+titel: Fiducciaのアルゴリズム (きたまさ法?)
+documentation_of: //formal-power-series/fiducia.hpp
 ---
 
 なんかLibrary Checkerは通らないが、Typical DP Contest Tのフィボナッチは(NaiveなFPSを使うことで)通った。
@@ -9,7 +9,7 @@ documentation_of: //formal-power-series/fidducia.hpp
 
 Fiducciaの論文はarchive.orgにあったきがする。ACMのだったはず。
 
-参考にしたもの: [https://qiita.com/ryuhe1/items/da5acbcce4ac1911f47a] のFidduciaのアルゴリズム ~ 二種類の繰り返し二乗法あたりまで。
+参考にしたもの: [https://qiita.com/ryuhe1/items/da5acbcce4ac1911f47a] のFiducciaのアルゴリズム ~ 二種類の繰り返し二乗法あたりまで。
 
 ## Fidducia
 
