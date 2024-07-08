@@ -1,6 +1,6 @@
 ---
 titel: Fiducciaのアルゴリズム (きたまさ法?)
-documentation_of: //formal-power-series/fiducia.hpp
+documentation_of: //formal-power-series/fiduccia.hpp
 ---
 
 なんかLibrary Checkerは通らないが、Typical DP Contest Tのフィボナッチは(NaiveなFPSを使うことで)通った。
