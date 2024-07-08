@@ -291,7 +291,8 @@ data:
     \        [d, 2d)\u306E\u9805\n    //    h'_2d*g_d\u306E[0,d)       h'_2d*g_d\u306E\
     [d, 2d)\n    //    h'_2d*g_d\u306E[2d, 3d)    h'_2d*g_d\u306E[3d, 4d)\n\n    g\
     \ = g_origin - h_2d;\n    g.resize(d * 2);\n}\n\n\n#line 7 \"test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp\"\
-    \n\n#line 3 \"formal-power-series/fiduccia.hpp\"\n\n// given linear recurrence\
+    \n\n#line 3 \"formal-power-series/fiduccia.hpp\"\n\n// AtCoder\u3067\u306Fverify\u3067\
+    \u304D\u305F\u304C\u3001LC\u3067\u306F\u3067\u304D\u305A\n// given linear recurrence\
     \ sequence a_{n+K}= c_1 a_{n+K-1} + c_2 a_{n+k-2} + \\dots + c_{K-1} a_{n+1} +\
     \ c_K a_n\n// a_0, a_1, \\dots, a_{K-1} are given\n// calculate a_N (N-th term\
     \ of linear recurrence sequence) time complexity is O(K log K log N) (when NNT\
@@ -339,7 +340,7 @@ data:
   isVerificationFile: false
   path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   requiredBy: []
-  timestamp: '2024-07-08 19:55:59+09:00'
+  timestamp: '2024-07-08 21:43:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
