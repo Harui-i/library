@@ -160,18 +160,39 @@ data:
     \ g_d) const; \n  virtual void CooleyTukeyNTT998244353(std::vector<mint>& a, bool\
     \ is_reverse) const;\n  //  virtual FPS exp(int deg=-1) const;\n  virtual std::vector<mint>\
     \ multiply(const std::vector<mint>& a, const std::vector<mint>& b);\n};\n\n\n\
-    #line 3 \"formal-power-series/fiduccia.hpp\"\n\n// BAGUTTERU!!! gomen!!!!\n//\
-    \ given linear recurrence sequence a_{n+K}= c_1 a_{n+K-1} + c_2 a_{n+k-2} + \\\
-    dots + c_{K-1} a_{n+1} + c_K a_n\n// a_0, a_1, \\dots, a_{K-1} are given\n// calculate\
-    \ a_N (N-th term of linear recurrence sequence) time complexity is O(K log K log\
-    \ N) (when NNT is used), O(K^2 log N) (when naive convolution is used).\ntemplate\
-    \ <typename mint> \nmint Fiduccia(const vector<mint>& a, const vector<mint>& c,\
-    \ unsigned long long  N) {\n  if (N < a.size()) return a[N];\n  assert(a.size()\
-    \ == c.size());\n  int K = c.size();\n\n  FPS<mint> varphi(K+1); \n  varphi[K]\
-    \ = mint(1);\n  for(int i=0; i<K; i++) varphi[i] = mint(-1) * c[K-i-1];\n\n  //\
-    \ calculate x^N mod varphi, using square and multiply technique.\n  // Note that\
-    \ there is two way to implement the methodlogy. LSB-first algorithm(famous one\
-    \ ) and MSB-first alogirthm.\n int msb=0;\n  for (int i=0; 1ULL<< i <=N; i++)\
+    #line 3 \"formal-power-series/fiduccia.hpp\"\n\n// given linear recurrence sequence\
+    \ a_{n+K}= c_1 a_{n+K-1} + c_2 a_{n+k-2} + \\dots + c_{K-1} a_{n+1} + c_K a_n\n\
+    // a_0, a_1, \\dots, a_{K-1} are given\n// calculate a_N (N-th term of linear\
+    \ recurrence sequence) time complexity is O(K log K log N) (when NNT is used),\
+    \ O(K^2 log N) (when naive convolution is used).\ntemplate <typename mint> \n\
+    mint Fiduccia(const vector<mint>& a, const vector<mint>& c, unsigned long long\
+    \  N) {\n  if (N < a.size()) return a[N];\n  assert(a.size() == c.size());\n \
+    \ int K = c.size();\n\n  FPS<mint> varphi(K+1); \n  varphi[K] = mint(1);\n  for(int\
+    \ i=0; i<K; i++) varphi[i] = mint(-1) * c[K-i-1];\n\n  // calculate x^N mod varphi,\
+    \ using square and multiply technique.\n  // Note that there is two way to implement\
+    \ the methodlogy. LSB-first algorithm(famous one ) and MSB-first alogirthm.\n\
+    \ int msb=0;\n  for (int i=0; 1ULL<< i <=N; i++) {\n    if (N & (1ULL << i)) msb\
+    \ = i;\n  }\n  FPS<mint> remainder(1); remainder[0] = mint(1);\n  for (int i=msb;\
+    \ i>=0; i--) {\n    if (N & (1ULL << i)) {\n      remainder = remainder << 1;\
+    \ // it is equal to remainder *= x.\n      if (remainder.size() >= varphi.size())\
+    \ remainder %= varphi;\n    }\n    if (i != 0) {\n      remainder *= remainder;\
+    \ // NTT\u306A\u3089\u3001NTT\u914D\u5217\u3092\u4F7F\u3044\u56DE\u3059\u3053\u3068\
+    \u3067\u5B9A\u6570\u500D\u304C\u826F\u304F\u306A\u308B\u306D\n      if (remainder.size()\
+    \ >= varphi.size()) remainder %= varphi;\n    }\n  }\n\n  // remainder = x^N mod\
+    \ varphi \n  mint ret = 0;\n  assert(remainder.size() <= K);\n  for(int i=0; i<remainder.size();\
+    \ i++) {\n    ret += remainder[i] * a[i];\n  }\n\n  return ret;\n}\n"
+  code: "#include <vector>\n#include \"formal-power-series/formal-power-series.hpp\"\
+    \n\n// given linear recurrence sequence a_{n+K}= c_1 a_{n+K-1} + c_2 a_{n+k-2}\
+    \ + \\dots + c_{K-1} a_{n+1} + c_K a_n\n// a_0, a_1, \\dots, a_{K-1} are given\n\
+    // calculate a_N (N-th term of linear recurrence sequence) time complexity is\
+    \ O(K log K log N) (when NNT is used), O(K^2 log N) (when naive convolution is\
+    \ used).\ntemplate <typename mint> \nmint Fiduccia(const vector<mint>& a, const\
+    \ vector<mint>& c, unsigned long long  N) {\n  if (N < a.size()) return a[N];\n\
+    \  assert(a.size() == c.size());\n  int K = c.size();\n\n  FPS<mint> varphi(K+1);\
+    \ \n  varphi[K] = mint(1);\n  for(int i=0; i<K; i++) varphi[i] = mint(-1) * c[K-i-1];\n\
+    \n  // calculate x^N mod varphi, using square and multiply technique.\n  // Note\
+    \ that there is two way to implement the methodlogy. LSB-first algorithm(famous\
+    \ one ) and MSB-first alogirthm.\n int msb=0;\n  for (int i=0; 1ULL<< i <=N; i++)\
     \ {\n    if (N & (1ULL << i)) msb = i;\n  }\n  FPS<mint> remainder(1); remainder[0]\
     \ = mint(1);\n  for (int i=msb; i>=0; i--) {\n    if (N & (1ULL << i)) {\n   \
     \   remainder = remainder << 1; // it is equal to remainder *= x.\n      if (remainder.size()\
@@ -182,28 +203,6 @@ data:
     \ }\n\n  // remainder = x^N mod varphi \n  mint ret = 0;\n  assert(remainder.size()\
     \ <= K);\n  for(int i=0; i<remainder.size(); i++) {\n    ret += remainder[i] *\
     \ a[i];\n  }\n\n  return ret;\n}\n"
-  code: "#include <vector>\n#include \"formal-power-series/formal-power-series.hpp\"\
-    \n\n// BAGUTTERU!!! gomen!!!!\n// given linear recurrence sequence a_{n+K}= c_1\
-    \ a_{n+K-1} + c_2 a_{n+k-2} + \\dots + c_{K-1} a_{n+1} + c_K a_n\n// a_0, a_1,\
-    \ \\dots, a_{K-1} are given\n// calculate a_N (N-th term of linear recurrence\
-    \ sequence) time complexity is O(K log K log N) (when NNT is used), O(K^2 log\
-    \ N) (when naive convolution is used).\ntemplate <typename mint> \nmint Fiduccia(const\
-    \ vector<mint>& a, const vector<mint>& c, unsigned long long  N) {\n  if (N <\
-    \ a.size()) return a[N];\n  assert(a.size() == c.size());\n  int K = c.size();\n\
-    \n  FPS<mint> varphi(K+1); \n  varphi[K] = mint(1);\n  for(int i=0; i<K; i++)\
-    \ varphi[i] = mint(-1) * c[K-i-1];\n\n  // calculate x^N mod varphi, using square\
-    \ and multiply technique.\n  // Note that there is two way to implement the methodlogy.\
-    \ LSB-first algorithm(famous one ) and MSB-first alogirthm.\n int msb=0;\n  for\
-    \ (int i=0; 1ULL<< i <=N; i++) {\n    if (N & (1ULL << i)) msb = i;\n  }\n  FPS<mint>\
-    \ remainder(1); remainder[0] = mint(1);\n  for (int i=msb; i>=0; i--) {\n    if\
-    \ (N & (1ULL << i)) {\n      remainder = remainder << 1; // it is equal to remainder\
-    \ *= x.\n      if (remainder.size() >= varphi.size()) remainder %= varphi;\n \
-    \   }\n    if (i != 0) {\n      remainder *= remainder; // NTT\u306A\u3089\u3001\
-    NTT\u914D\u5217\u3092\u4F7F\u3044\u56DE\u3059\u3053\u3068\u3067\u5B9A\u6570\u500D\
-    \u304C\u826F\u304F\u306A\u308B\u306D\n      if (remainder.size() >= varphi.size())\
-    \ remainder %= varphi;\n    }\n  }\n\n  // remainder = x^N mod varphi \n  mint\
-    \ ret = 0;\n  assert(remainder.size() <= K);\n  for(int i=0; i<remainder.size();\
-    \ i++) {\n    ret += remainder[i] * a[i];\n  }\n\n  return ret;\n}\n"
   dependsOn:
   - formal-power-series/formal-power-series.hpp
   - math/modint.hpp
@@ -212,7 +211,7 @@ data:
   path: formal-power-series/fiduccia.hpp
   requiredBy:
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
-  timestamp: '2024-07-05 15:34:20+09:00'
+  timestamp: '2024-07-08 19:55:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: formal-power-series/fiduccia.hpp

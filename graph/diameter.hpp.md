@@ -34,7 +34,7 @@ data:
     \ == T(-1)) {\n            dist[e.to] = dist[front] + e.cost;\n            que.push(e.to);\n\
     \            if (farest1.first == -1 || farest1.first < dist[e.to]) {\n      \
     \        farest1 = make_pair(dist[e.to], e.to);\n            }\n          }\n\
-    \        }\n      }\n    }\n\n\n    pair<T, int> farest2 = make_pair(T(0), 0);\n\
+    \        }\n      }\n    }\n\n\n    pair<T, int> farest2 = make_pair(T(0), farest1.second);\n\
     \    // second sweep\n    vector<int> prev(N, -1);\n    {\n      int start = farest1.second;\n\
     \      vector<T> dist(N, T(-1));\n      dist[start] = T(0);\n\n      queue<int>\
     \ que;\n      que.push(start);\n\n      while (!que.empty()) {\n        int front\
@@ -60,8 +60,8 @@ data:
     \ dist[e.to] = dist[front] + e.cost;\n            que.push(e.to);\n          \
     \  if (farest1.first == -1 || farest1.first < dist[e.to]) {\n              farest1\
     \ = make_pair(dist[e.to], e.to);\n            }\n          }\n        }\n    \
-    \  }\n    }\n\n\n    pair<T, int> farest2 = make_pair(T(0), 0);\n    // second\
-    \ sweep\n    vector<int> prev(N, -1);\n    {\n      int start = farest1.second;\n\
+    \  }\n    }\n\n\n    pair<T, int> farest2 = make_pair(T(0), farest1.second);\n\
+    \    // second sweep\n    vector<int> prev(N, -1);\n    {\n      int start = farest1.second;\n\
     \      vector<T> dist(N, T(-1));\n      dist[start] = T(0);\n\n      queue<int>\
     \ que;\n      que.push(start);\n\n      while (!que.empty()) {\n        int front\
     \ = que.front(); que.pop();\n\n        for (Edge e: graph[front]) {\n        \
@@ -79,7 +79,7 @@ data:
   isVerificationFile: false
   path: graph/diameter.hpp
   requiredBy: []
-  timestamp: '2024-07-06 16:39:14+09:00'
+  timestamp: '2024-07-08 19:55:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-tree-diameter.test.cpp
