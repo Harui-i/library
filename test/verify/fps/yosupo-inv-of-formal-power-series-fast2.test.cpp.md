@@ -5,9 +5,6 @@ data:
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
-    path: formal-power-series/formal-power-series.hpp
-    title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
     path: formal-power-series/fps998.hpp
     title: formal-power-series/fps998.hpp
   - icon: ':heavy_check_mark:'
@@ -179,7 +176,7 @@ data:
     \ g_d) const; \n  virtual void CooleyTukeyNTT998244353(std::vector<mint>& a, bool\
     \ is_reverse) const;\n  //  virtual FPS exp(int deg=-1) const;\n  virtual std::vector<mint>\
     \ multiply(const std::vector<mint>& a, const std::vector<mint>& b);\n};\n\n\n\
-    #line 1 \"formal-power-series/fps998.hpp\"\n\n\n\n\n#line 7 \"formal-power-series/fps998.hpp\"\
+    #line 1 \"formal-power-series/fps998.hpp\"\n\n\n\n\n#line 6 \"formal-power-series/fps998.hpp\"\
     \n\nusing mint = modint998244353;\n//ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
     // constexpr \u95A2\u6570\u5185\u3067 ZETAS \u914D\u5217\u3092\u8A2D\u5B9A\u3059\
     \u308B\u305F\u3081\u306E\u88DC\u52A9\u95A2\u6570\nconstexpr std::array<mint, 24>\
@@ -190,7 +187,8 @@ data:
     \n\n\n// \u53C2\u8003: https://www.creativ.xyz/fast-fourier-transform/\ntemplate\
     \ <typename mint>\nvoid FPS<mint>::CooleyTukeyNTT998244353(vector<mint>& a, bool\
     \ is_reverse) const {\n  int N = a.size();\n  int lgN = lg2(N);\n  //for (int\
-    \ i = 0; 1 << i < N; i++) lgN++;\n  assert(N == 1 << lgN);\n\n  // https://37zigen.com/transpose-fft/\n\
+    \ i = 0; 1 << i < N; i++) lgN++;\n  assert(N == 1 << lgN);\n  assert(lgN <= 23\
+    \ && \"the length shoud be less than or equal to 2^23 \" );\n\n  // https://37zigen.com/transpose-fft/\n\
     \  // https://tayu0110.hatenablog.com/entry/2023/05/06/023244\n  // \u5468\u6CE2\
     \u6570\u9593\u5F15\u304D\n  if (is_reverse == false) {\n    int width = N;\n \
     \   int lgw = lgN;\n    int offset = width >> 1;\n    while (width > 1) {\n  \
@@ -306,11 +304,10 @@ data:
   - formal-power-series/formal-power-series.hpp
   - math/modint.hpp
   - formal-power-series/fps998.hpp
-  - formal-power-series/formal-power-series.hpp
   isVerificationFile: true
   path: test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
   requiredBy: []
-  timestamp: '2024-07-05 15:34:20+09:00'
+  timestamp: '2024-07-09 00:18:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp

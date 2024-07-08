@@ -40,7 +40,7 @@ data:
         \u5F62"
   - name: formal-power-series
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: formal-power-series/fiduccia.hpp
       title: formal-power-series/fiduccia.hpp
     - icon: ':heavy_check_mark:'
@@ -119,9 +119,6 @@ data:
     - icon: ':warning:'
       path: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
       title: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
-    - icon: ':warning:'
-      path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
-      title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   verificationCategories:
   - name: .
     pages:
@@ -187,6 +184,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
       title: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
+      title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
       title: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp

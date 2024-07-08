@@ -8,12 +8,9 @@ data:
     path: math/modint.hpp
     title: modint
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: formal-power-series/fiduccia.hpp
     title: formal-power-series/fiduccia.hpp
-  - icon: ':heavy_check_mark:'
-    path: formal-power-series/fps998.hpp
-    title: formal-power-series/fps998.hpp
   - icon: ':heavy_check_mark:'
     path: formal-power-series/fps998.hpp
     title: formal-power-series/fps998.hpp
@@ -26,34 +23,16 @@ data:
   - icon: ':warning:'
     path: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
     title: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
-  - icon: ':warning:'
-    path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
-    title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
-  - icon: ':warning:'
-    path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
-    title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/verify/convolution/yosupo-normal-convolution.test.cpp
     title: test/verify/convolution/yosupo-normal-convolution.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/verify/convolution/yosupo-normal-convolution.test.cpp
-    title: test/verify/convolution/yosupo-normal-convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/verify/fps/yosupo-division-of-polynomials.test.cpp
-    title: test/verify/fps/yosupo-division-of-polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-division-of-polynomials.test.cpp
     title: test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
     title: test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
-    title: test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
-    title: test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
     title: test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
@@ -64,14 +43,11 @@ data:
     path: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
     title: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
-    title: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+    path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
+    title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
     title: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
-    title: test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
     title: test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
@@ -328,28 +304,20 @@ data:
   requiredBy:
   - formal-power-series/sparse-fps.hpp
   - formal-power-series/fps998.hpp
-  - formal-power-series/fps998.hpp
   - formal-power-series/fiduccia.hpp
   - formal-power-series/naive-fps.hpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   timestamp: '2024-07-05 15:34:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
-  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
   - test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
   - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
-  - test/verify/convolution/yosupo-normal-convolution.test.cpp
   - test/verify/convolution/yosupo-normal-convolution.test.cpp
 documentation_of: formal-power-series/formal-power-series.hpp
 layout: document

@@ -1,12 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: formal-power-series/fiduccia.hpp
     title: formal-power-series/fiduccia.hpp
-  - icon: ':heavy_check_mark:'
-    path: formal-power-series/formal-power-series.hpp
-    title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
@@ -29,11 +26,13 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
     links:
     - https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
-  bundledCode: "#line 1 \"test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp\"\
+  bundledCode: "#line 1 \"test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
     \n\n#line 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
     \ std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T& a, const\
@@ -180,7 +179,7 @@ data:
     \ g_d) const; \n  virtual void CooleyTukeyNTT998244353(std::vector<mint>& a, bool\
     \ is_reverse) const;\n  //  virtual FPS exp(int deg=-1) const;\n  virtual std::vector<mint>\
     \ multiply(const std::vector<mint>& a, const std::vector<mint>& b);\n};\n\n\n\
-    #line 1 \"formal-power-series/fps998.hpp\"\n\n\n\n\n#line 7 \"formal-power-series/fps998.hpp\"\
+    #line 1 \"formal-power-series/fps998.hpp\"\n\n\n\n\n#line 6 \"formal-power-series/fps998.hpp\"\
     \n\nusing mint = modint998244353;\n//ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
     // constexpr \u95A2\u6570\u5185\u3067 ZETAS \u914D\u5217\u3092\u8A2D\u5B9A\u3059\
     \u308B\u305F\u3081\u306E\u88DC\u52A9\u95A2\u6570\nconstexpr std::array<mint, 24>\
@@ -191,7 +190,8 @@ data:
     \n\n\n// \u53C2\u8003: https://www.creativ.xyz/fast-fourier-transform/\ntemplate\
     \ <typename mint>\nvoid FPS<mint>::CooleyTukeyNTT998244353(vector<mint>& a, bool\
     \ is_reverse) const {\n  int N = a.size();\n  int lgN = lg2(N);\n  //for (int\
-    \ i = 0; 1 << i < N; i++) lgN++;\n  assert(N == 1 << lgN);\n\n  // https://37zigen.com/transpose-fft/\n\
+    \ i = 0; 1 << i < N; i++) lgN++;\n  assert(N == 1 << lgN);\n  assert(lgN <= 23\
+    \ && \"the length shoud be less than or equal to 2^23 \" );\n\n  // https://37zigen.com/transpose-fft/\n\
     \  // https://tayu0110.hatenablog.com/entry/2023/05/06/023244\n  // \u5468\u6CE2\
     \u6570\u9593\u5F15\u304D\n  if (is_reverse == false) {\n    int width = N;\n \
     \   int lgw = lgN;\n    int offset = width >> 1;\n    while (width > 1) {\n  \
@@ -290,7 +290,7 @@ data:
     \u3068\u3067\u5F97\u3089\u308C\u308B\u3002 \n    //    [0, d)\u306E\u9805    \
     \        [d, 2d)\u306E\u9805\n    //    h'_2d*g_d\u306E[0,d)       h'_2d*g_d\u306E\
     [d, 2d)\n    //    h'_2d*g_d\u306E[2d, 3d)    h'_2d*g_d\u306E[3d, 4d)\n\n    g\
-    \ = g_origin - h_2d;\n    g.resize(d * 2);\n}\n\n\n#line 7 \"test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp\"\
+    \ = g_origin - h_2d;\n    g.resize(d * 2);\n}\n\n\n#line 7 \"test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp\"\
     \n\n#line 3 \"formal-power-series/fiduccia.hpp\"\n\n// AtCoder\u3067\u306Fverify\u3067\
     \u304D\u305F\u304C\u3001LC\u3067\u306F\u3067\u304D\u305A\n// given linear recurrence\
     \ sequence a_{n+K}= c_1 a_{n+K-1} + c_2 a_{n+k-2} + \\dots + c_{K-1} a_{n+1} +\
@@ -313,21 +313,20 @@ data:
     \ >= varphi.size()) remainder %= varphi;\n    }\n  }\n\n  // remainder = x^N mod\
     \ varphi \n  mint ret = 0;\n  assert(remainder.size() <= K);\n  for(int i=0; i<remainder.size();\
     \ i++) {\n    ret += remainder[i] * a[i];\n  }\n\n  return ret;\n}\n#line 9 \"\
-    test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp\"\n\n\
+    test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp\"\n\n\
     using mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
     \ cout.tie(0);\n  int d; cin >> d;\n  ll K; cin >> K;\n  vector<mint>a(d); for(int\
     \ i=0; i<d; i++) cin >> a[i];\n  vector<mint>c(d); for(int i=0; i<d; i++) cin\
-    \ >> c[i];\n\n  reverse(c.begin(), c.end()); \n  mint ans = Fiduccia(a,c,K);\n\
-    \n  cout << ans.val() << \"\\n\";\n\n\n}\n"
+    \ >> c[i];\n\n  mint ans = Fiduccia(a,c,K);\n\n  cout << ans.val() << \"\\n\"\
+    ;\n\n\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
     \n\n#include \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include\
     \ \"formal-power-series/formal-power-series.hpp\"\n#include \"formal-power-series/fps998.hpp\"\
     \n\n#include \"formal-power-series/fiduccia.hpp\"\n\nusing mint = modint998244353;\n\
     \n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int d;\
     \ cin >> d;\n  ll K; cin >> K;\n  vector<mint>a(d); for(int i=0; i<d; i++) cin\
-    \ >> a[i];\n  vector<mint>c(d); for(int i=0; i<d; i++) cin >> c[i];\n\n  reverse(c.begin(),\
-    \ c.end()); \n  mint ans = Fiduccia(a,c,K);\n\n  cout << ans.val() << \"\\n\"\
-    ;\n\n\n}\n"
+    \ >> a[i];\n  vector<mint>c(d); for(int i=0; i<d; i++) cin >> c[i];\n\n  mint\
+    \ ans = Fiduccia(a,c,K);\n\n  cout << ans.val() << \"\\n\";\n\n\n}\n"
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
@@ -335,18 +334,17 @@ data:
   - formal-power-series/formal-power-series.hpp
   - math/modint.hpp
   - formal-power-series/fps998.hpp
-  - formal-power-series/formal-power-series.hpp
   - formal-power-series/fiduccia.hpp
-  isVerificationFile: false
-  path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+  isVerificationFile: true
+  path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
   requiredBy: []
-  timestamp: '2024-07-08 21:43:05+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2024-07-09 00:18:19+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+documentation_of: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
 layout: document
 redirect_from:
-- /library/test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
-- /library/test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp.html
-title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+- /verify/test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
+- /verify/test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp.html
+title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
 ---

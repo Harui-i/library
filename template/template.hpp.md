@@ -11,9 +11,6 @@ data:
   - icon: ':warning:'
     path: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
     title: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
-  - icon: ':warning:'
-    path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
-    title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: example.test.cpp
@@ -51,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
     title: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
+    title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
     title: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
@@ -156,7 +156,6 @@ data:
   path: template/template.hpp
   requiredBy:
   - test/unittest/unittest-template.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - test/verify/atcoder-tdpc-s.cpp
   timestamp: '2024-06-29 08:51:47+09:00'
@@ -178,6 +177,7 @@ data:
   - test/verify/math/matrix/yosupo-matrix-product.test.cpp
   - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
   - test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
   - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp

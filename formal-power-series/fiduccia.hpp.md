@@ -10,14 +10,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
-    title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
+    title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"formal-power-series/fiduccia.hpp\"\n#include <vector>\n\
@@ -211,18 +211,18 @@ data:
   - math/external_gcd.hpp
   isVerificationFile: false
   path: formal-power-series/fiduccia.hpp
-  requiredBy:
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-test.cpp
+  requiredBy: []
   timestamp: '2024-07-08 21:43:05+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
 documentation_of: formal-power-series/fiduccia.hpp
 layout: document
 titel: "Fiduccia\u306E\u30A2\u30EB\u30B4\u30EA\u30BA\u30E0 (\u304D\u305F\u307E\u3055\
   \u6CD5?)"
 ---
 
-なんかLibrary Checkerは通らないが、Typical DP Contest Tのフィボナッチは(NaiveなFPSを使うことで)通った。
+~~ なんかLibrary Checkerは通らないが、Typical DP Contest Tのフィボナッチは(NaiveなFPSを使うことで)通った。~~ → 普通にLibrary Checkerも通りました。遅いけど。
 
 提出: [https://atcoder.jp/contests/tdpc/submissions/55372657]
 
@@ -297,6 +297,7 @@ $$
 であるとわかる。
 
 ---
+
 すると、先ほどの式を繰り返し適用すると、以下のような関係式が成り立つから、
 
 $$
