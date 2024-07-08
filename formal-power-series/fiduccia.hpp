@@ -1,7 +1,6 @@
 #include <vector>
 #include "formal-power-series/formal-power-series.hpp"
 
-// BAGUTTERU!!! gomen!!!!
 // given linear recurrence sequence a_{n+K}= c_1 a_{n+K-1} + c_2 a_{n+k-2} + \dots + c_{K-1} a_{n+1} + c_K a_n
 // a_0, a_1, \dots, a_{K-1} are given
 // calculate a_N (N-th term of linear recurrence sequence) time complexity is O(K log K log N) (when NNT is used), O(K^2 log N) (when naive convolution is used).

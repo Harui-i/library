@@ -40,7 +40,7 @@ namespace mylib {
     }
 
 
-    pair<T, int> farest2 = make_pair(T(0), 0);
+    pair<T, int> farest2 = make_pair(T(0), farest1.second);
     // second sweep
     vector<int> prev(N, -1);
     {
