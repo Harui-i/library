@@ -65,11 +65,19 @@ map<I,T> moebius_transform<I,T,invop>(const map<I, T>& mp)
 
 どちらもゼータ変換/メビウス変換を行うが、`vector`で変換する場合と違い、`map`のkeyだけを添え字として扱う。
 
+
+メビウス関数を使うと、
+
+$ g(n) = \bigoplus_{n \mid i} f(i) \Leftrightarrow f(n) = \bigoplus_{ n \mid i} \mu (\frac i n) g(i) $ と表せるらしい。
+
+
 ### 計算量
 
 `map`のサイズを$N$として
 
 - $O(N^2 \log N) $
+
+
 ### 何が嬉しいのか
 
 数列$A$と$B$が与えられたとして、倍数についてのゼータ変換をすることで
