@@ -84,8 +84,8 @@ data:
   timestamp: '2024-06-20 21:09:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
   - test/verify/convolution/yosupo-gcd-convolution.test.cpp
+  - test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
 documentation_of: convolution/multiple-zeta-moebius-transform.hpp
 layout: document
 title: "\u500D\u6570\u306B\u3064\u3044\u3066\u306E\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\
@@ -154,11 +154,19 @@ map<I,T> moebius_transform<I,T,invop>(const map<I, T>& mp)
 
 どちらもゼータ変換/メビウス変換を行うが、`vector`で変換する場合と違い、`map`のkeyだけを添え字として扱う。
 
+
+メビウス関数を使うと、
+
+$ g(n) = \bigoplus_{n \mid i} f(i) \Leftrightarrow f(n) = \bigoplus_{ n \mid i} \mu (\frac i n) g(i) $ と表せるらしい。
+
+
 ### 計算量
 
 `map`のサイズを$N$として
 
 - $O(N^2 \log N) $
+
+
 ### 何が嬉しいのか
 
 数列$A$と$B$が与えられたとして、倍数についてのゼータ変換をすることで

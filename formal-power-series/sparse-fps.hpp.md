@@ -171,18 +171,20 @@ data:
     \      else continue;\n    }\n    g[i+1] *= f0inv;\n  }\n\n  return g;\n}\n\n\
     template <typename mint>\nFPS<mint> inv_sparse(const FPS<mint>& f, int deg) {\n\
     \  vector<pair<int,mint>> vpim;\n  for(int i=0; i<f.size(); i++) if (f[i] != mint(0))\
-    \ vpim.emplace_back(i, f[i]);\n\n  return inv_sparse(vpim, deg);\n}\n\n\n/* tabun\
-    \ baggute masu. TODO\ntemplate<typename mint>\nFPS multiply_sparse(const FPS&\
-    \ f, const vector<pair<int,mint>>& g, int deg) {\n\n  \n\n  FPS ret(deg);\n  for\
+    \ vpim.emplace_back(i, f[i]);\n\n  return inv_sparse(vpim, deg);\n}\n\n\n//tabun\
+    \ baggute masu. TODO\ntemplate<typename mint>\nFPS<mint> multiply_sparse(const\
+    \ FPS<mint>& f, const vector<pair<int,mint>>& g, int deg = -1) {\n  if (deg ==\
+    \ -1) deg = f.size() - 1 + g.back().first + 1;\n\n  FPS<mint> ret(deg);\n  for\
     \ (pair<int,mint> pim : g) {\n    assert(pim.second != 0);\n    if (pim.second\
     \ == 0) continue;\n\n    for(int i=0; i<f.size(); i++) {\n      if (i+pim.first\
     \ >= ret.size()) continue;\n      if (f[i] != mint(0) && pim.second != mint(0))\
     \ ret[i+pim.first] += pim.second * f[i];\n    }\n  }\n\n  return ret;\n}\n\ntemplate\
-    \ <typename mint>\nFPS multiply_sparse(const FPS& f, const FPS& g) {\n  vector<pair<mint,int>>\
-    \ vpmi;\n\n  for(int i=0; i<g.size(); i++) if (g[i] != mint(0)) vpmi.emplace_back(i,\
-    \ g[i]);\n\n  return multiply_sparse(f, vpmi);\n}\n*/\n\n\n"
+    \ <typename mint>\nFPS<mint> multiply_sparse(const FPS<mint>& f, const FPS<mint>&\
+    \ g, int deg = -1) {\n  vector<pair<int,mint>> vpmi;\n\n  for(int i=0; i<g.size();\
+    \ i++) if (g[i] != mint(0)) vpmi.emplace_back(i, g[i]);\n\n  return multiply_sparse(f,\
+    \ vpmi, deg);\n}\n\n\n"
   code: "#ifndef HARUILIB_FORMAL_POWER_SERIES_SPARSE_FPS_HPP\n#define HARUILIB_FORMAL_POWER_SERIES_SPARSE_FPS_HPP\n\
-    \n#include <vector>\nusing namespace std;\n\n#include \"formal-power-series.hpp\"\
+    \n#include <vector>\nusing namespace std;\n\n#include \"formal-power-series/formal-power-series.hpp\"\
     \n\n// calculate inverse of f(sparse)\n// deg : -1 + ( maximum degree of g )\n\
     template <typename mint>\nFPS<mint> inv_sparse(const vector<pair<int,mint>>& f,\
     \ int deg) {\n  assert(deg >= 0);\n  for(int i=0; i<(int)f.size()-1; i++) assert(f[i].first\
@@ -193,16 +195,17 @@ data:
     \ }\n    g[i+1] *= f0inv;\n  }\n\n  return g;\n}\n\ntemplate <typename mint>\n\
     FPS<mint> inv_sparse(const FPS<mint>& f, int deg) {\n  vector<pair<int,mint>>\
     \ vpim;\n  for(int i=0; i<f.size(); i++) if (f[i] != mint(0)) vpim.emplace_back(i,\
-    \ f[i]);\n\n  return inv_sparse(vpim, deg);\n}\n\n\n/* tabun baggute masu. TODO\n\
-    template<typename mint>\nFPS multiply_sparse(const FPS& f, const vector<pair<int,mint>>&\
-    \ g, int deg) {\n\n  \n\n  FPS ret(deg);\n  for (pair<int,mint> pim : g) {\n \
-    \   assert(pim.second != 0);\n    if (pim.second == 0) continue;\n\n    for(int\
-    \ i=0; i<f.size(); i++) {\n      if (i+pim.first >= ret.size()) continue;\n  \
-    \    if (f[i] != mint(0) && pim.second != mint(0)) ret[i+pim.first] += pim.second\
-    \ * f[i];\n    }\n  }\n\n  return ret;\n}\n\ntemplate <typename mint>\nFPS multiply_sparse(const\
-    \ FPS& f, const FPS& g) {\n  vector<pair<mint,int>> vpmi;\n\n  for(int i=0; i<g.size();\
-    \ i++) if (g[i] != mint(0)) vpmi.emplace_back(i, g[i]);\n\n  return multiply_sparse(f,\
-    \ vpmi);\n}\n*/\n\n#endif // HARUILIB_FORMAL_POWER_SERIES_SPARSE_FPS_HPP"
+    \ f[i]);\n\n  return inv_sparse(vpim, deg);\n}\n\n\n//tabun baggute masu. TODO\n\
+    template<typename mint>\nFPS<mint> multiply_sparse(const FPS<mint>& f, const vector<pair<int,mint>>&\
+    \ g, int deg = -1) {\n  if (deg == -1) deg = f.size() - 1 + g.back().first + 1;\n\
+    \n  FPS<mint> ret(deg);\n  for (pair<int,mint> pim : g) {\n    assert(pim.second\
+    \ != 0);\n    if (pim.second == 0) continue;\n\n    for(int i=0; i<f.size(); i++)\
+    \ {\n      if (i+pim.first >= ret.size()) continue;\n      if (f[i] != mint(0)\
+    \ && pim.second != mint(0)) ret[i+pim.first] += pim.second * f[i];\n    }\n  }\n\
+    \n  return ret;\n}\n\ntemplate <typename mint>\nFPS<mint> multiply_sparse(const\
+    \ FPS<mint>& f, const FPS<mint>& g, int deg = -1) {\n  vector<pair<int,mint>>\
+    \ vpmi;\n\n  for(int i=0; i<g.size(); i++) if (g[i] != mint(0)) vpmi.emplace_back(i,\
+    \ g[i]);\n\n  return multiply_sparse(f, vpmi, deg);\n}\n\n#endif // HARUILIB_FORMAL_POWER_SERIES_SPARSE_FPS_HPP"
   dependsOn:
   - formal-power-series/formal-power-series.hpp
   - math/modint.hpp
@@ -210,7 +213,7 @@ data:
   isVerificationFile: false
   path: formal-power-series/sparse-fps.hpp
   requiredBy: []
-  timestamp: '2024-07-05 15:34:20+09:00'
+  timestamp: '2024-07-13 17:32:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
