@@ -4,7 +4,7 @@
 #include <vector>
 using namespace std;
 
-#include "formal-power-series.hpp"
+#include "formal-power-series/formal-power-series.hpp"
 
 // calculate inverse of f(sparse)
 // deg : -1 + ( maximum degree of g )
@@ -36,13 +36,12 @@ FPS<mint> inv_sparse(const FPS<mint>& f, int deg) {
 }
 
 
-/* tabun baggute masu. TODO
+//tabun baggute masu. TODO
 template<typename mint>
-FPS multiply_sparse(const FPS& f, const vector<pair<int,mint>>& g, int deg) {
+FPS<mint> multiply_sparse(const FPS<mint>& f, const vector<pair<int,mint>>& g, int deg = -1) {
+  if (deg == -1) deg = f.size() - 1 + g.back().first + 1;
 
-  
-
-  FPS ret(deg);
+  FPS<mint> ret(deg);
   for (pair<int,mint> pim : g) {
     assert(pim.second != 0);
     if (pim.second == 0) continue;
@@ -57,13 +56,12 @@ FPS multiply_sparse(const FPS& f, const vector<pair<int,mint>>& g, int deg) {
 }
 
 template <typename mint>
-FPS multiply_sparse(const FPS& f, const FPS& g) {
-  vector<pair<mint,int>> vpmi;
+FPS<mint> multiply_sparse(const FPS<mint>& f, const FPS<mint>& g, int deg = -1) {
+  vector<pair<int,mint>> vpmi;
 
   for(int i=0; i<g.size(); i++) if (g[i] != mint(0)) vpmi.emplace_back(i, g[i]);
 
-  return multiply_sparse(f, vpmi);
+  return multiply_sparse(f, vpmi, deg);
 }
-*/
 
 #endif // HARUILIB_FORMAL_POWER_SERIES_SPARSE_FPS_HPP
