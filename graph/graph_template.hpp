@@ -12,6 +12,10 @@ struct Edge {
   // unweighted
   Edge(int _from, int _to) : from(_from), to(_to), cost(T(1)) {}
 
+  bool operator==(const Edge& rhs) {
+    return from == rhs.from && to == rhs.to && cost == rhs.cost;
+  }
+
 };
 
 
