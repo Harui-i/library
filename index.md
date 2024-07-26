@@ -74,6 +74,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/external_gcd.hpp
       title: math/external_gcd.hpp
+    - icon: ':heavy_check_mark:'
+      path: math/linear_function.hpp
+      title: math/linear_function.hpp
     - icon: ':warning:'
       path: math/mod_pow.hpp
       title: math/mod_pow.hpp

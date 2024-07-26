@@ -47,13 +47,13 @@ data:
   isVerificationFile: false
   path: graph/graph_template.hpp
   requiredBy:
-  - graph/dijkstra.hpp
   - graph/diameter.hpp
+  - graph/dijkstra.hpp
   timestamp: '2024-07-23 22:48:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yosupo-shortest-path.test.cpp
   - test/verify/yosupo-tree-diameter.test.cpp
+  - test/verify/yosupo-shortest-path.test.cpp
 documentation_of: graph/graph_template.hpp
 layout: document
 redirect_from:

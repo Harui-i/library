@@ -53,8 +53,8 @@ data:
   isVerificationFile: false
   path: dp/automaton/automaton.hpp
   requiredBy:
-  - test/verify/atcoder-tdpc-s.cpp
   - dp/automaton/remainder.hpp
+  - test/verify/atcoder-tdpc-s.cpp
   timestamp: '2024-05-28 20:18:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

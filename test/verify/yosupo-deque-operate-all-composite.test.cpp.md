@@ -5,6 +5,9 @@ data:
     path: math/external_gcd.hpp
     title: math/external_gcd.hpp
   - icon: ':heavy_check_mark:'
+    path: math/linear_function.hpp
+    title: math/linear_function.hpp
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
   - icon: ':heavy_check_mark:'
@@ -95,42 +98,48 @@ data:
     \   }  \n  }\n\n  void pop_back() {\n    assert(size() > 0);\n    if (back.empty())\
     \ rebalance();\n    back.pop_back();\n  }\n\n  void pop_front() {\n    assert(size()\
     \ > 0);\n    if (front.empty()) rebalance();\n    front.pop_back();\n  }\n};\n\
-    #line 6 \"test/verify/yosupo-deque-operate-all-composite.test.cpp\"\n\nusing mint\
-    \ = modint998244353;\nusing mpp = pair<mint,mint>;\n\nmpp op(mpp lf, mpp rf) {\n\
-    \  return {rf.first * lf.first, rf.first * lf.second + rf.second};\n}\n\nmpp e()\
-    \ {\n  return {mint(1), mint(0)};\n}\n\nint main() {\n  ios::sync_with_stdio(0);\
-    \ cin.tie(0); cout.tie(0);\n  FoldableDeque<mpp,op,e> fdq;\n\n  int Q; cin >>\
-    \ Q;\n\n  for(int i=0; i<Q; i++) {\n    int op; cin >> op;\n    if (op == 0) {\n\
-    \      int a,b; cin >> a >> b;\n      fdq.push_front({mint(a), mint(b)});\n  \
-    \  }\n\n    else if (op == 1) {\n      int a, b; cin >> a >> b;\n      fdq.push_back({mint(a),\
-    \ mint(b)});\n    }\n    else if (op == 2) {\n      fdq.pop_front();\n    }\n\
-    \    else if (op == 3) {\n      fdq.pop_back();\n    }\n    else if (op == 4)\
-    \ {\n      int x; cin >> x;\n      mpp all_prod = fdq.all_prod();\n      cout\
-    \ << mint(x) * all_prod.first + all_prod.second << endl;;\n    }\n  }\n  return\
-    \ 0;\n}\n"
+    #line 1 \"math/linear_function.hpp\"\n\n\n\ntemplate <typename T>\nstruct LinearFunction\
+    \ {\n  T a, b;\n\n  LinearFunction() : a{0}, b(0) {}\n  LinearFunction(T _a, T\
+    \ _b) : a(_a), b(_b) {}\n\n  static LinearFunction Add_Identity() {\n    return\
+    \ LinearFunction(T(0), T(0));\n  }\n\n  static LinearFunction Mul_Identity(){\n\
+    \    return LinearFunction(T(1), T(0));\n  }\n\n  // f(g())\n  LinearFunction\
+    \ composite(LinearFunction& g) const {\n    return LinearFunction(a * g.a, a *\
+    \ g.b + b);\n  }\n\n  LinearFunction operator+(const LinearFunction& rhs) const\
+    \ {\n    return LinearFunction(a + rhs.a, b + rhs.b);\n  }\n\n  T operator()(T\
+    \ x) const {\n    return a * x + b;\n  }\n\n};\n\n\n\n#line 7 \"test/verify/yosupo-deque-operate-all-composite.test.cpp\"\
+    \n\nusing mint = modint998244353;\nusing LF = LinearFunction<mint>;\n\n\n// f_r(f_l)\n\
+    LF op(LF lf, LF rf) {\n  return rf.composite(lf);\n}\n\nLF e() {\n  return LF::Mul_Identity();\n\
+    }\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  FoldableDeque<LF,op,e>\
+    \ fdq;\n\n  int Q; cin >> Q;\n\n  for(int i=0; i<Q; i++) {\n    int op; cin >>\
+    \ op;\n    if (op == 0) {\n      int a,b; cin >> a >> b;\n      fdq.push_front(LF(mint(a),\
+    \ mint(b)));\n    }\n\n    else if (op == 1) {\n      int a, b; cin >> a >> b;\n\
+    \      fdq.push_back(LF(mint(a), mint(b)));\n    }\n    else if (op == 2) {\n\
+    \      fdq.pop_front();\n    }\n    else if (op == 3) {\n      fdq.pop_back();\n\
+    \    }\n    else if (op == 4) {\n      int x; cin >> x;\n      LF all_prod = fdq.all_prod();\n\
+    \      cout << all_prod(x).val() << endl;\n    }\n  }\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/deque_operate_all_composite\"\
-    \n\n#include \"../../template/template.hpp\"\n#include \"../../math/modint.hpp\"\
-    \n#include \"../../structure/slide-window-aggregation.hpp\"\n\nusing mint = modint998244353;\n\
-    using mpp = pair<mint,mint>;\n\nmpp op(mpp lf, mpp rf) {\n  return {rf.first *\
-    \ lf.first, rf.first * lf.second + rf.second};\n}\n\nmpp e() {\n  return {mint(1),\
-    \ mint(0)};\n}\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n\
-    \  FoldableDeque<mpp,op,e> fdq;\n\n  int Q; cin >> Q;\n\n  for(int i=0; i<Q; i++)\
-    \ {\n    int op; cin >> op;\n    if (op == 0) {\n      int a,b; cin >> a >> b;\n\
-    \      fdq.push_front({mint(a), mint(b)});\n    }\n\n    else if (op == 1) {\n\
-    \      int a, b; cin >> a >> b;\n      fdq.push_back({mint(a), mint(b)});\n  \
-    \  }\n    else if (op == 2) {\n      fdq.pop_front();\n    }\n    else if (op\
-    \ == 3) {\n      fdq.pop_back();\n    }\n    else if (op == 4) {\n      int x;\
-    \ cin >> x;\n      mpp all_prod = fdq.all_prod();\n      cout << mint(x) * all_prod.first\
-    \ + all_prod.second << endl;;\n    }\n  }\n  return 0;\n}"
+    \n\n#include \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include\
+    \ \"structure/slide-window-aggregation.hpp\"\n#include \"math/linear_function.hpp\"\
+    \n\nusing mint = modint998244353;\nusing LF = LinearFunction<mint>;\n\n\n// f_r(f_l)\n\
+    LF op(LF lf, LF rf) {\n  return rf.composite(lf);\n}\n\nLF e() {\n  return LF::Mul_Identity();\n\
+    }\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  FoldableDeque<LF,op,e>\
+    \ fdq;\n\n  int Q; cin >> Q;\n\n  for(int i=0; i<Q; i++) {\n    int op; cin >>\
+    \ op;\n    if (op == 0) {\n      int a,b; cin >> a >> b;\n      fdq.push_front(LF(mint(a),\
+    \ mint(b)));\n    }\n\n    else if (op == 1) {\n      int a, b; cin >> a >> b;\n\
+    \      fdq.push_back(LF(mint(a), mint(b)));\n    }\n    else if (op == 2) {\n\
+    \      fdq.pop_front();\n    }\n    else if (op == 3) {\n      fdq.pop_back();\n\
+    \    }\n    else if (op == 4) {\n      int x; cin >> x;\n      LF all_prod = fdq.all_prod();\n\
+    \      cout << all_prod(x).val() << endl;\n    }\n  }\n  return 0;\n}"
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
   - math/external_gcd.hpp
   - structure/slide-window-aggregation.hpp
+  - math/linear_function.hpp
   isVerificationFile: true
   path: test/verify/yosupo-deque-operate-all-composite.test.cpp
   requiredBy: []
-  timestamp: '2024-06-29 08:51:47+09:00'
+  timestamp: '2024-07-26 21:23:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-deque-operate-all-composite.test.cpp
