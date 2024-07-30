@@ -2,6 +2,7 @@
 #define HARUILIB_GRAPH_TEMPLATE_HPP
 
 #include <vector>
+
 template <typename T>
 struct Edge {
   int from; int to;

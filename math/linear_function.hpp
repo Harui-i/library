@@ -25,6 +25,12 @@ struct LinearFunction {
     return LinearFunction(a + rhs.a, b + rhs.b);
   }
 
+  // rhs(f())
+  LinearFunction operator*(const LinearFunction& rhs) const {
+    LinearFunction f = *this;
+    return rhs.composite(f);
+  }
+
   T operator()(T x) const {
     return a * x + b;
   }
