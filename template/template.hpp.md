@@ -88,6 +88,15 @@ data:
     path: test/verify/yosupo-tree-diameter.test.cpp
     title: test/verify/yosupo-tree-diameter.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-vertex-add-path-sum.test.cpp
+    title: test/verify/yosupo-vertex-add-path-sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
+    title: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-vertex-set-path-composite.test.cpp
+    title: test/verify/yosupo-vertex-set-path-composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
   - icon: ':heavy_check_mark:'
@@ -166,10 +175,13 @@ data:
   - unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
   - example.test.cpp
+  - test/verify/yosupo-vertex-set-path-composite.test.cpp
+  - test/verify/yosupo-vertex-add-subtree-sum.test.cpp
   - test/verify/aoj-dpl3-c.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
   - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/yosupo-tree-diameter.test.cpp
+  - test/verify/yosupo-vertex-add-path-sum.test.cpp
   - test/verify/math/matrix/yosupo-linear-equation.test.cpp
   - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp

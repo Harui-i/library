@@ -15,8 +15,8 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/dijkstra.hpp\"\n\n\n\n#line 1 \"graph/graph_template.hpp\"\
-    \n\n\n\n#include <vector>\ntemplate <typename T>\nstruct Edge {\n  int from; int\
-    \ to;\n  T cost;\n\n  Edge(int _from, int _to, T _cost) : from(_from), to(_to),\
+    \n\n\n\n#include <vector>\n\ntemplate <typename T>\nstruct Edge {\n  int from;\
+    \ int to;\n  T cost;\n\n  Edge(int _from, int _to, T _cost) : from(_from), to(_to),\
     \ cost(_cost) {}\n\n  // unweighted\n  Edge(int _from, int _to) : from(_from),\
     \ to(_to), cost(T(1)) {}\n\n  bool operator==(const Edge& rhs) {\n    return from\
     \ == rhs.from && to == rhs.to && cost == rhs.cost;\n  }\n\n};\n\n\ntemplate <typename\
@@ -68,7 +68,7 @@ data:
   isVerificationFile: false
   path: graph/dijkstra.hpp
   requiredBy: []
-  timestamp: '2024-07-23 22:48:51+09:00'
+  timestamp: '2024-07-30 23:24:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-shortest-path.test.cpp

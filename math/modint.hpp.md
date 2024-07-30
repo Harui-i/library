@@ -112,6 +112,9 @@ data:
     path: test/verify/yosupo-queue-operate-all-composite.test.cpp
     title: test/verify/yosupo-queue-operate-all-composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-vertex-set-path-composite.test.cpp
+    title: test/verify/yosupo-vertex-set-path-composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
   _isVerificationFailed: false
@@ -212,6 +215,7 @@ data:
   timestamp: '2024-06-20 15:39:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/verify/yosupo-vertex-set-path-composite.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
   - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/math/matrix/yosupo-linear-equation.test.cpp

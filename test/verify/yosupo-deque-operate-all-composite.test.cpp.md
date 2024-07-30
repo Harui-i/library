@@ -105,8 +105,10 @@ data:
     \    return LinearFunction(T(1), T(0));\n  }\n\n  // f(g())\n  LinearFunction\
     \ composite(LinearFunction& g) const {\n    return LinearFunction(a * g.a, a *\
     \ g.b + b);\n  }\n\n  LinearFunction operator+(const LinearFunction& rhs) const\
-    \ {\n    return LinearFunction(a + rhs.a, b + rhs.b);\n  }\n\n  T operator()(T\
-    \ x) const {\n    return a * x + b;\n  }\n\n};\n\n\n\n#line 7 \"test/verify/yosupo-deque-operate-all-composite.test.cpp\"\
+    \ {\n    return LinearFunction(a + rhs.a, b + rhs.b);\n  }\n\n  // rhs(f())\n\
+    \  LinearFunction operator*(const LinearFunction& rhs) const {\n    LinearFunction\
+    \ f = *this;\n    return rhs.composite(f);\n  }\n\n  T operator()(T x) const {\n\
+    \    return a * x + b;\n  }\n\n};\n\n\n\n#line 7 \"test/verify/yosupo-deque-operate-all-composite.test.cpp\"\
     \n\nusing mint = modint998244353;\nusing LF = LinearFunction<mint>;\n\n\n// f_r(f_l)\n\
     LF op(LF lf, LF rf) {\n  return rf.composite(lf);\n}\n\nLF e() {\n  return LF::Mul_Identity();\n\
     }\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  FoldableDeque<LF,op,e>\
@@ -139,7 +141,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-deque-operate-all-composite.test.cpp
   requiredBy: []
-  timestamp: '2024-07-26 21:23:36+09:00'
+  timestamp: '2024-07-30 23:24:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-deque-operate-all-composite.test.cpp

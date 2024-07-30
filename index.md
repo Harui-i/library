@@ -66,6 +66,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/graph_template.hpp
       title: graph/graph_template.hpp
+  - name: graph/tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: graph/tree/heavy_light_decomposition.hpp
+      title: graph/tree/heavy_light_decomposition.hpp
   - name: math
     pages:
     - icon: ':warning:'
@@ -153,6 +158,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-tree-diameter.test.cpp
       title: test/verify/yosupo-tree-diameter.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-vertex-add-path-sum.test.cpp
+      title: test/verify/yosupo-vertex-add-path-sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
+      title: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-vertex-set-path-composite.test.cpp
+      title: test/verify/yosupo-vertex-set-path-composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yuki-372-itsautomatic.test.cpp
       title: test/verify/yuki-372-itsautomatic.test.cpp
