@@ -18,7 +18,7 @@ struct Interval {
   bool last;
   bool reverse;
 
-  Interval(int _top_id, int _bottom_id, bool _last, bool _reverse) : top_id(_top_id), bottom_id(_j), last(_last), reverse(_reverse) {
+  Interval(int _top_id, int _bottom_id, bool _last, bool _reverse) : top_id(_top_id), bottom_id(bottom_id), last(_last), reverse(_reverse) {
 
   }
 };
