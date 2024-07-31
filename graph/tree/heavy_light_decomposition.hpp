@@ -10,15 +10,15 @@
 
 // cf : https://ngtkana.hatenablog.com/entry/2024/06/24/200138
 struct Interval {
-  // i : interval のもっとも根に近い頂点のid
-  // j : interval のもっとも葉に近い頂点のid
+  // top_id : interval のもっとも根に近い頂点のid
+  // bottom_id : interval のもっとも葉に近い頂点のid
   // last : LCAを含む interval であるかどうか
-  // reverse : from → to と i → jが逆向きかどうか
+  // reverse : from → to と top → bottomが逆向きかどうか
   int top_id, bottom_id;
   bool last;
   bool reverse;
 
-  Interval(int _top_id, int _bottom_id, bool _last, bool _reverse) : top_id(_top_id), bottom_id(bottom_id), last(_last), reverse(_reverse) {
+  Interval(int _top_id, int _bottom_id, bool _last, bool _reverse) : top_id(_top_id), bottom_id(_bottom_id), last(_last), reverse(_reverse) {
 
   }
 };
