@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/sparse-fps.hpp
     title: sparse-fps
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
   - icon: ':warning:'
@@ -84,15 +84,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-queue-operate-all-composite.test.cpp
     title: test/verify/yosupo-queue-operate-all-composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-vertex-set-path-composite.test.cpp
     title: test/verify/yosupo-vertex-set-path-composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/external_gcd.hpp\"\n\n\n\n#include <tuple>\n\n// g,x,y\n\
@@ -122,7 +122,7 @@ data:
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - test/verify/atcoder-tdpc-s.cpp
   timestamp: '2024-06-20 15:39:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/verify/yosupo-vertex-set-path-composite.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp

@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/diameter.hpp
     title: graph/diameter.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/graph_template.hpp
     title: graph/graph_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -33,7 +33,7 @@ data:
     \  // unweighted\n  Edge(int _from, int _to) : from(_from), to(_to), cost(T(1))\
     \ {}\n\n  bool operator==(const Edge& rhs) {\n    return from == rhs.from && to\
     \ == rhs.to && cost == rhs.cost;\n  }\n\n};\n\n\ntemplate <typename T>\nstruct\
-    \ Graph : vector<vector<Edge<T>>> {\n\n  using vector<vector<Edge<T>>>::vector;\
+    \ Graph : std::vector<std::vector<Edge<T>>> {\n\n  using std::vector<std::vector<Edge<T>>>::vector;\
     \ // inherit constructors\n\n  void add_edge(int i, Edge<T> e) {\n    (*this)[i].push_back(e);\n\
     \  }\n\n  // weighted\n  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
@@ -86,7 +86,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-tree-diameter.test.cpp
   requiredBy: []
-  timestamp: '2024-07-30 23:24:22+09:00'
+  timestamp: '2024-07-31 19:55:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-tree-diameter.test.cpp

@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-queue-operate-all-composite.test.cpp
     title: test/verify/yosupo-queue-operate-all-composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-vertex-set-path-composite.test.cpp
     title: test/verify/yosupo-vertex-set-path-composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/linear_function.hpp\"\n\n\n\ntemplate <typename T>\n\
@@ -44,7 +44,7 @@ data:
   path: math/linear_function.hpp
   requiredBy: []
   timestamp: '2024-07-30 23:24:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/verify/yosupo-vertex-set-path-composite.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp

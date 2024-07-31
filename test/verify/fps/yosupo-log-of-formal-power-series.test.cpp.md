@@ -7,16 +7,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/fps998.hpp
     title: formal-power-series/fps998.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/external_gcd.hpp
     title: math/external_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

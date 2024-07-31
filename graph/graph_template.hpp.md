@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dijkstra.hpp
     title: graph/dijkstra.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/heavy_light_decomposition.hpp
     title: graph/tree/heavy_light_decomposition.hpp
   _extendedVerifiedWith:
@@ -18,18 +18,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-tree-diameter.test.cpp
     title: test/verify/yosupo-tree-diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-vertex-add-path-sum.test.cpp
     title: test/verify/yosupo-vertex-add-path-sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
     title: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-vertex-set-path-composite.test.cpp
     title: test/verify/yosupo-vertex-set-path-composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/graph_template.hpp\"\n\n\n\n#include <vector>\n\n\
@@ -37,10 +37,10 @@ data:
     \ _from, int _to, T _cost) : from(_from), to(_to), cost(_cost) {}\n\n  // unweighted\n\
     \  Edge(int _from, int _to) : from(_from), to(_to), cost(T(1)) {}\n\n  bool operator==(const\
     \ Edge& rhs) {\n    return from == rhs.from && to == rhs.to && cost == rhs.cost;\n\
-    \  }\n\n};\n\n\ntemplate <typename T>\nstruct Graph : vector<vector<Edge<T>>>\
-    \ {\n\n  using vector<vector<Edge<T>>>::vector; // inherit constructors\n\n  void\
-    \ add_edge(int i, Edge<T> e) {\n    (*this)[i].push_back(e);\n  }\n\n  // weighted\n\
-    \  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
+    \  }\n\n};\n\n\ntemplate <typename T>\nstruct Graph : std::vector<std::vector<Edge<T>>>\
+    \ {\n\n  using std::vector<std::vector<Edge<T>>>::vector; // inherit constructors\n\
+    \n  void add_edge(int i, Edge<T> e) {\n    (*this)[i].push_back(e);\n  }\n\n \
+    \ // weighted\n  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
     \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n"
   code: "#ifndef HARUILIB_GRAPH_TEMPLATE_HPP\n#define HARUILIB_GRAPH_TEMPLATE_HPP\n\
@@ -49,7 +49,7 @@ data:
     \ {}\n\n  // unweighted\n  Edge(int _from, int _to) : from(_from), to(_to), cost(T(1))\
     \ {}\n\n  bool operator==(const Edge& rhs) {\n    return from == rhs.from && to\
     \ == rhs.to && cost == rhs.cost;\n  }\n\n};\n\n\ntemplate <typename T>\nstruct\
-    \ Graph : vector<vector<Edge<T>>> {\n\n  using vector<vector<Edge<T>>>::vector;\
+    \ Graph : std::vector<std::vector<Edge<T>>> {\n\n  using std::vector<std::vector<Edge<T>>>::vector;\
     \ // inherit constructors\n\n  void add_edge(int i, Edge<T> e) {\n    (*this)[i].push_back(e);\n\
     \  }\n\n  // weighted\n  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
@@ -62,8 +62,8 @@ data:
   - graph/diameter.hpp
   - graph/dijkstra.hpp
   - graph/tree/heavy_light_decomposition.hpp
-  timestamp: '2024-07-30 23:24:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-07-31 19:55:29+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/verify/yosupo-vertex-set-path-composite.test.cpp
   - test/verify/yosupo-vertex-add-subtree-sum.test.cpp
