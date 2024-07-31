@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/graph_template.hpp
     title: graph/graph_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree/heavy_light_decomposition.hpp
     title: graph/tree/heavy_light_decomposition.hpp
   - icon: ':question:'
@@ -155,7 +155,7 @@ data:
     \ interval \u3067\u3042\u308B\u304B\u3069\u3046\u304B\n  // reverse : from \u2192\
     \ to \u3068 i \u2192 j\u304C\u9006\u5411\u304D\u304B\u3069\u3046\u304B\n  int\
     \ top_id, bottom_id;\n  bool last;\n  bool reverse;\n\n  Interval(int _top_id,\
-    \ int _bottom_id, bool _last, bool _reverse) : top_id(_top_id), bottom_id(_j),\
+    \ int _bottom_id, bool _last, bool _reverse) : top_id(_top_id), bottom_id(bottom_id),\
     \ last(_last), reverse(_reverse) {\n\n  }\n};\n\nusing Path = std::vector<Interval>;\n\
     \nstruct HLD {\n\n  //vector<vector<int>>children;\n  std::vector<int>parent;\n\
     \  std::vector<int> id;\n  std::vector<int> id2;\n  std::vector<int> head;\n \
@@ -297,7 +297,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-vertex-set-path-composite.test.cpp
   requiredBy: []
-  timestamp: '2024-07-31 19:55:29+09:00'
+  timestamp: '2024-07-31 19:58:43+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/verify/yosupo-vertex-set-path-composite.test.cpp

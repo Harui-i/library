@@ -9,7 +9,7 @@ data:
   - icon: ':x:'
     path: test/verify/yosupo-vertex-add-path-sum.test.cpp
     title: test/verify/yosupo-vertex-add-path-sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
     title: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/verify/yosupo-vertex-set-path-composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://ngtkana.hatenablog.com/entry/2024/06/24/200138
@@ -41,7 +41,7 @@ data:
     \ interval \u3067\u3042\u308B\u304B\u3069\u3046\u304B\n  // reverse : from \u2192\
     \ to \u3068 i \u2192 j\u304C\u9006\u5411\u304D\u304B\u3069\u3046\u304B\n  int\
     \ top_id, bottom_id;\n  bool last;\n  bool reverse;\n\n  Interval(int _top_id,\
-    \ int _bottom_id, bool _last, bool _reverse) : top_id(_top_id), bottom_id(_j),\
+    \ int _bottom_id, bool _last, bool _reverse) : top_id(_top_id), bottom_id(bottom_id),\
     \ last(_last), reverse(_reverse) {\n\n  }\n};\n\nusing Path = std::vector<Interval>;\n\
     \nstruct HLD {\n\n  //vector<vector<int>>children;\n  std::vector<int>parent;\n\
     \  std::vector<int> id;\n  std::vector<int> id2;\n  std::vector<int> head;\n \
@@ -93,7 +93,7 @@ data:
     \ interval \u3067\u3042\u308B\u304B\u3069\u3046\u304B\n  // reverse : from \u2192\
     \ to \u3068 i \u2192 j\u304C\u9006\u5411\u304D\u304B\u3069\u3046\u304B\n  int\
     \ top_id, bottom_id;\n  bool last;\n  bool reverse;\n\n  Interval(int _top_id,\
-    \ int _bottom_id, bool _last, bool _reverse) : top_id(_top_id), bottom_id(_j),\
+    \ int _bottom_id, bool _last, bool _reverse) : top_id(_top_id), bottom_id(bottom_id),\
     \ last(_last), reverse(_reverse) {\n\n  }\n};\n\nusing Path = std::vector<Interval>;\n\
     \nstruct HLD {\n\n  //vector<vector<int>>children;\n  std::vector<int>parent;\n\
     \  std::vector<int> id;\n  std::vector<int> id2;\n  std::vector<int> head;\n \
@@ -141,8 +141,8 @@ data:
   isVerificationFile: false
   path: graph/tree/heavy_light_decomposition.hpp
   requiredBy: []
-  timestamp: '2024-07-31 19:55:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-07-31 19:58:43+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/verify/yosupo-vertex-set-path-composite.test.cpp
   - test/verify/yosupo-vertex-add-subtree-sum.test.cpp
