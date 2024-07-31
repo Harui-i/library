@@ -63,12 +63,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
       title: graph/dijkstra.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/graph_template.hpp
       title: graph/graph_template.hpp
   - name: graph/tree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/heavy_light_decomposition.hpp
       title: graph/tree/heavy_light_decomposition.hpp
   - name: math
@@ -76,16 +76,16 @@ data:
     - icon: ':warning:'
       path: math/count_by_remainder.hpp
       title: math/count_by_remainder.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/external_gcd.hpp
       title: math/external_gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/linear_function.hpp
       title: math/linear_function.hpp
     - icon: ':warning:'
       path: math/mod_pow.hpp
       title: math/mod_pow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: modint
   - name: math/matrix
@@ -109,7 +109,7 @@ data:
       title: "Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
   - name: test/unittest
@@ -158,13 +158,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-tree-diameter.test.cpp
       title: test/verify/yosupo-tree-diameter.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-vertex-add-path-sum.test.cpp
       title: test/verify/yosupo-vertex-add-path-sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
       title: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-vertex-set-path-composite.test.cpp
       title: test/verify/yosupo-vertex-set-path-composite.test.cpp
     - icon: ':heavy_check_mark:'

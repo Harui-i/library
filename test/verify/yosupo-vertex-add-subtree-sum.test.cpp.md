@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/graph_template.hpp
     title: graph/graph_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/heavy_light_decomposition.hpp
     title: graph/tree/heavy_light_decomposition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -95,13 +95,13 @@ data:
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
     \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 10\
     \ \"graph/tree/heavy_light_decomposition.hpp\"\n\n// cf : https://ngtkana.hatenablog.com/entry/2024/06/24/200138\n\
-    struct Interval {\n  // i : interval \u306E\u3082\u3063\u3068\u3082\u6839\u306B\
-    \u8FD1\u3044\u9802\u70B9\u306Eid\n  // j : interval \u306E\u3082\u3063\u3068\u3082\
-    \u8449\u306B\u8FD1\u3044\u9802\u70B9\u306Eid\n  // last : LCA\u3092\u542B\u3080\
-    \ interval \u3067\u3042\u308B\u304B\u3069\u3046\u304B\n  // reverse : from \u2192\
-    \ to \u3068 i \u2192 j\u304C\u9006\u5411\u304D\u304B\u3069\u3046\u304B\n  int\
-    \ top_id, bottom_id;\n  bool last;\n  bool reverse;\n\n  Interval(int _top_id,\
-    \ int _bottom_id, bool _last, bool _reverse) : top_id(_top_id), bottom_id(bottom_id),\
+    struct Interval {\n  // top_id : interval \u306E\u3082\u3063\u3068\u3082\u6839\
+    \u306B\u8FD1\u3044\u9802\u70B9\u306Eid\n  // bottom_id : interval \u306E\u3082\
+    \u3063\u3068\u3082\u8449\u306B\u8FD1\u3044\u9802\u70B9\u306Eid\n  // last : LCA\u3092\
+    \u542B\u3080 interval \u3067\u3042\u308B\u304B\u3069\u3046\u304B\n  // reverse\
+    \ : from \u2192 to \u3068 top \u2192 bottom\u304C\u9006\u5411\u304D\u304B\u3069\
+    \u3046\u304B\n  int top_id, bottom_id;\n  bool last;\n  bool reverse;\n\n  Interval(int\
+    \ _top_id, int _bottom_id, bool _last, bool _reverse) : top_id(_top_id), bottom_id(_bottom_id),\
     \ last(_last), reverse(_reverse) {\n\n  }\n};\n\nusing Path = std::vector<Interval>;\n\
     \nstruct HLD {\n\n  //vector<vector<int>>children;\n  std::vector<int>parent;\n\
     \  std::vector<int> id;\n  std::vector<int> id2;\n  std::vector<int> head;\n \
@@ -224,7 +224,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
   requiredBy: []
-  timestamp: '2024-07-31 19:58:43+09:00'
+  timestamp: '2024-07-31 20:07:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
