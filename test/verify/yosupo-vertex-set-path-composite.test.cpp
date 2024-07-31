@@ -209,10 +209,10 @@ int main() {
       Path path = hld.get_path(u,v);
       for (Interval interval : path) {
         if (interval.reverse == true) {
-          ret = ret * revseg.prod(interval.i, interval.j + 1);
+          ret = ret * revseg.prod(interval.top_id, interval.bottom_id + 1);
         }
         else {
-          ret = ret * seg.prod(interval.i, interval.j + 1);
+          ret = ret * seg.prod(interval.top_id, interval.bottom_id + 1);
         }
       }
 

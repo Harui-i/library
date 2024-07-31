@@ -21,9 +21,9 @@ struct Edge {
 
 
 template <typename T>
-struct Graph : vector<vector<Edge<T>>> {
+struct Graph : std::vector<std::vector<Edge<T>>> {
 
-  using vector<vector<Edge<T>>>::vector; // inherit constructors
+  using std::vector<std::vector<Edge<T>>>::vector; // inherit constructors
 
   void add_edge(int i, Edge<T> e) {
     (*this)[i].push_back(e);

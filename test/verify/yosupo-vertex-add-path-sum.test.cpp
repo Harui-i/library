@@ -166,7 +166,7 @@ int main() {
       ll ret = 0;
 
       for (Interval interval : hld.get_path(u, v)) {
-        ret += fw.sum(interval.i, interval.j + 1);
+        ret += fw.sum(interval.top_id, interval.bottom_id + 1);
       }
 
       cout << ret << endl;

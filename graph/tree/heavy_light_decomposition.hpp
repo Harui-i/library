@@ -2,6 +2,7 @@
 #define HARUILIB_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP
 
 #include <vector>
+#include <algorithm>
 #include <cassert>
 #include <utility>
 
@@ -13,11 +14,11 @@ struct Interval {
   // j : interval のもっとも葉に近い頂点のid
   // last : LCAを含む interval であるかどうか
   // reverse : from → to と i → jが逆向きかどうか
-  int i, j;
+  int top_id, bottom_id;
   bool last;
   bool reverse;
 
-  Interval(int _i, int _j, bool _last, bool _reverse) : i(_i), j(_j), last(_last), reverse(_reverse) {
+  Interval(int _top_id, int _bottom_id, bool _last, bool _reverse) : top_id(_top_id), bottom_id(_j), last(_last), reverse(_reverse) {
 
   }
 };
@@ -157,7 +158,7 @@ struct HLD {
       upath.emplace_back(id[v], id[u], true, true);
     }
     Path retpath = upath;
-    reverse(vpath.begin(), vpath.end());
+    std::reverse(vpath.begin(), vpath.end());
     for (Interval path : vpath) retpath.push_back(path);
 
     return retpath;
@@ -165,7 +166,7 @@ struct HLD {
 
   std::pair<int,int> subtree_query(int r) {
     assert(r < int(id.size()));
-    return make_pair(id[r], id2[r]);
+    return std::make_pair(id[r], id2[r]);
   }
 
 };
