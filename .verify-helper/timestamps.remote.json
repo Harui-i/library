@@ -24,6 +24,7 @@
 "test/verify/yosupo-queue-operate-all-composite.test.cpp": "2024-07-30 23:24:22 +0900",
 "test/verify/yosupo-shortest-path.test.cpp": "2024-07-31 19:55:29 +0900",
 "test/verify/yosupo-tree-diameter.test.cpp": "2024-07-31 19:55:29 +0900",
+"test/verify/yosupo-vertex-add-subtree-sum.test.cpp": "2024-07-31 19:58:43 +0900",
 "test/verify/yuki-372-itsautomatic.test.cpp": "2024-06-29 08:51:47 +0900",
 "test/verify/yuki-9000.test.cpp": "2024-05-29 18:27:54 +0900",
 "unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp": "2024-06-29 08:51:47 +0900",
