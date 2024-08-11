@@ -59,17 +59,17 @@ data:
   isVerificationFile: false
   path: graph/graph_template.hpp
   requiredBy:
-  - graph/diameter.hpp
-  - graph/dijkstra.hpp
   - graph/tree/heavy_light_decomposition.hpp
+  - graph/dijkstra.hpp
+  - graph/diameter.hpp
   timestamp: '2024-07-31 19:55:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yosupo-vertex-set-path-composite.test.cpp
+  - test/verify/yosupo-shortest-path.test.cpp
   - test/verify/yosupo-vertex-add-subtree-sum.test.cpp
   - test/verify/yosupo-tree-diameter.test.cpp
   - test/verify/yosupo-vertex-add-path-sum.test.cpp
-  - test/verify/yosupo-shortest-path.test.cpp
+  - test/verify/yosupo-vertex-set-path-composite.test.cpp
 documentation_of: graph/graph_template.hpp
 layout: document
 redirect_from:

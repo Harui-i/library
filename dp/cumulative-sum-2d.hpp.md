@@ -10,29 +10,44 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"dp/cumulative-sum-2d.hpp\"\n\ntemplate<class T>\nstruct\
-    \ CumulativeSum2D {\n  vector<vector<T>> data;\n  CumulativeSum2D(int H, int W)\
-    \  {\n    data.resize(H+1, vector<T>(W+1));\n  }\n\n  void add (int i, int j,\
-    \ T x) {\n    assert(0 <= i && i < data.size() && 0 <= j && j < data[0].size()\
-    \ );\n    data[i+1][j+1] += x;\n  }\n\n  void build() {\n    for(int i=0; i<data.size()-1;\
-    \ i++) {\n      for(int j=0; j<data[0].size()-1; j++) {\n        data[i+1][j+1]\
-    \ += data[i][j+1] + data[i+1][j] - data[i][j];\n      }\n    }\n  }\n\n  T query(int\
-    \ si, int sj, int gi, int gj) {\n    return data[gi][gj] - data[si][gj] - data[gi][sj]\
-    \ + data[si][sj];\n  }\n};\n"
-  code: "\ntemplate<class T>\nstruct CumulativeSum2D {\n  vector<vector<T>> data;\n\
-    \  CumulativeSum2D(int H, int W)  {\n    data.resize(H+1, vector<T>(W+1));\n \
-    \ }\n\n  void add (int i, int j, T x) {\n    assert(0 <= i && i < data.size()\
-    \ && 0 <= j && j < data[0].size() );\n    data[i+1][j+1] += x;\n  }\n\n  void\
-    \ build() {\n    for(int i=0; i<data.size()-1; i++) {\n      for(int j=0; j<data[0].size()-1;\
-    \ j++) {\n        data[i+1][j+1] += data[i][j+1] + data[i+1][j] - data[i][j];\n\
-    \      }\n    }\n  }\n\n  T query(int si, int sj, int gi, int gj) {\n    return\
-    \ data[gi][gj] - data[si][gj] - data[gi][sj] + data[si][sj];\n  }\n};"
+    links:
+    - https://ngtkana.hatenablog.com/entry/2023/12/04/194327
+  bundledCode: "#line 1 \"dp/cumulative-sum-2d.hpp\"\n\n\n\n#include <cassert>\n#include\
+    \ <vector>\n\ntemplate<class T>\nstruct CumulativeSum2D {\n  bool has_built =\
+    \ false;\n  int H, W;\n  std::vector<std::vector<T>> data;\n\n  CumulativeSum2D(int\
+    \ _H, int _W)  : H(_H), W(_W), data(std::vector<std::vector<T>>(H+1, std::vector<T>(W+1)))\
+    \ {\n  }\n\n  void add (int i, int j, T x) {\n    assert(0 <= i && i < H && 0\
+    \ <= j && j < W && !has_built);\n    data[i+1][j+1] += x;\n  }\n\n  // https://ngtkana.hatenablog.com/entry/2023/12/04/194327\n\
+    \  // 1B\n  void build() {\n    assert(!has_built);\n    for (int i=1; i<=H; i++)\
+    \ {\n      for (int j=1; j<=W; j++) {\n        data[i][j] += data[i-1][j];\n \
+    \     }\n    }\n\n    for (int i=1; i<=H; i++) {\n      for (int j=1; j<=W; j++)\
+    \ {\n        data[i][j] += data[i][j-1];\n      }\n    }\n\n\n    has_built =\
+    \ true;\n  }\n\n  // [si, gi) * [sj, gj)\n  T query(int si, int sj, int gi, int\
+    \ gj) {\n    assert(has_built);\n    assert(0 <= si && si < H && 0 <= sj && sj\
+    \ < W);\n    assert(0 <= gi && gi <= H && 0 <= gj && gj <= W);\n    assert(si\
+    \ <= gi && sj <= gj);\n    return data[gi][gj] - data[si][gj] - data[gi][sj] +\
+    \ data[si][sj];\n  }\n};\n\n"
+  code: "#ifndef HARUILIB_DP_CUMULATIVE_SUM_2D_HPP\n#define HARUILIB_DP_CUMULATIVE_SUM_2D_HPP\n\
+    \n#include <cassert>\n#include <vector>\n\ntemplate<class T>\nstruct CumulativeSum2D\
+    \ {\n  bool has_built = false;\n  int H, W;\n  std::vector<std::vector<T>> data;\n\
+    \n  CumulativeSum2D(int _H, int _W)  : H(_H), W(_W), data(std::vector<std::vector<T>>(H+1,\
+    \ std::vector<T>(W+1))) {\n  }\n\n  void add (int i, int j, T x) {\n    assert(0\
+    \ <= i && i < H && 0 <= j && j < W && !has_built);\n    data[i+1][j+1] += x;\n\
+    \  }\n\n  // https://ngtkana.hatenablog.com/entry/2023/12/04/194327\n  // 1B\n\
+    \  void build() {\n    assert(!has_built);\n    for (int i=1; i<=H; i++) {\n \
+    \     for (int j=1; j<=W; j++) {\n        data[i][j] += data[i-1][j];\n      }\n\
+    \    }\n\n    for (int i=1; i<=H; i++) {\n      for (int j=1; j<=W; j++) {\n \
+    \       data[i][j] += data[i][j-1];\n      }\n    }\n\n\n    has_built = true;\n\
+    \  }\n\n  // [si, gi) * [sj, gj)\n  T query(int si, int sj, int gi, int gj) {\n\
+    \    assert(has_built);\n    assert(0 <= si && si < H && 0 <= sj && sj < W);\n\
+    \    assert(0 <= gi && gi <= H && 0 <= gj && gj <= W);\n    assert(si <= gi &&\
+    \ sj <= gj);\n    return data[gi][gj] - data[si][gj] - data[gi][sj] + data[si][sj];\n\
+    \  }\n};\n#endif //HARUILIB_DP_CUMULATIVE_SUM_2D_HPP"
   dependsOn: []
   isVerificationFile: false
   path: dp/cumulative-sum-2d.hpp
   requiredBy: []
-  timestamp: '2024-04-10 18:06:46+09:00'
+  timestamp: '2024-08-11 15:34:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/aoj-0560.test.cpp
