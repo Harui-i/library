@@ -13,8 +13,16 @@ struct Edge {
   // unweighted
   Edge(int _from, int _to) : from(_from), to(_to), cost(T(1)) {}
 
-  bool operator==(const Edge& rhs) {
+  bool operator==(const Edge& rhs) const {
     return from == rhs.from && to == rhs.to && cost == rhs.cost;
+  }
+
+  bool operator<(const Edge& rhs) const {
+    return cost < rhs.cost;
+  }
+  
+  bool operator>(const Edge& rhs) const {
+    return cost > rhs.cost;
   }
 
 };
@@ -27,6 +35,10 @@ struct Graph : std::vector<std::vector<Edge<T>>> {
 
   void add_edge(int i, Edge<T> e) {
     (*this)[i].push_back(e);
+  }
+
+  void add_edge(Edge<T> e) {
+    (*this)[e.from].push_back(e);
   }
 
   // weighted
