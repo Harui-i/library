@@ -210,3 +210,16 @@ struct Interval {
 ``` 
 として定義されている。
 
+## subtree_query
+
+```
+std::pair<int,int> subtree_query(int r)
+```
+   
+頂点rの部分木(rも含む)の頂点列を表すid上の区間 $[id[r], id2[r])$ を返す。
+
+### 計算量
+
+- $O(1)$
+
+
