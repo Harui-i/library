@@ -6,9 +6,9 @@ data:
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D
@@ -61,7 +61,7 @@ data:
   path: unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
   requiredBy: []
   timestamp: '2024-08-21 21:41:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
 layout: document

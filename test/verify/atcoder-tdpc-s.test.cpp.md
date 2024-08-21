@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: dp/automaton/automaton.hpp
     title: "\u6C7A\u5B9A\u6027\u6709\u9650\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3(DFA,\
       \ Deterministic Finite Automaton)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/external_gcd.hpp
     title: math/external_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
   - icon: ':question:'
@@ -16,14 +16,17 @@ data:
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    IGNORE: ''
+    IGNORE_IF_GCC: ''
     links:
     - https://atcoder.jp/contests/dp/tasks/dp_s
-  bundledCode: "#line 1 \"test/verify/atcoder-tdpc-s.cpp\"\n//#de   fi  n e PRO  LE\
-    \  M \"https://atcoder.jp/contests/dp/tasks/dp_s\"\n\n#line 1 \"template/template.hpp\"\
+  bundledCode: "#line 1 \"test/verify/atcoder-tdpc-s.test.cpp\"\n#define IGNORE\n\
+    #define PROBLEM \"https://atcoder.jp/contests/dp/tasks/dp_s\"\n\n#line 1 \"template/template.hpp\"\
     \n#include <iostream>\n#include <cassert>\nusing namespace std;\nusing ll = long\
     \ long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b;\
     \ return true;} return false;}\ntemplate<class T> inline bool chmin(T& a, const\
@@ -85,24 +88,25 @@ data:
     \u72B6\u614B\u304B\u3069\u3046\u304B\n  virtual bool unsuccessful([[maybe_unused]]\
     \ State s) const { return false; } // \u3069\u3046\u3044\u3046\u3075\u3046\u306B\
     next\u3057\u3066\u3044\u3053\u3046\u304C\u3001\u7D76\u5BFE\u306Baccpet\u3055\u308C\
-    \u306A\u3044\u72B6\u614B\u304B\u3069\u3046\u304B\n};\n#line 6 \"test/verify/atcoder-tdpc-s.cpp\"\
-    \n\nusing mint = modint100000007;\n\nstruct dpState {\n  int cmp_state; // -1:\
-    \ less than K, 0: equal to K, 1: greater than K\n  int digsum_remainder; // digit\
-    \ sum % D\n\n  dpState(int _cmp_state, int _digsum_remainder) : cmp_state(_cmp_state),\
-    \ digsum_remainder(_digsum_remainder) {}\n\n  bool operator<(const dpState& other)\
-    \ const {\n    return make_pair(cmp_state, digsum_remainder) < make_pair(other.cmp_state,\
-    \ other.digsum_remainder);\n  }\n};\n\n// K\u4EE5\u4E0B\u306E\u3001\u6841\u548C\
-    \u304CD\u306E\u500D\u6570\u306E\u6570\u306E\u307F\u3092\u53D7\u7406\u3059\u308B\
-    \u30AA\u30FC\u30C8\u30DE\u30C8\u30F3\nclass Automaton : public Dfa<char, dpState>\
-    \ { \n  const vector<char> K_vec;\n  const int D; \n  \npublic:\n  using State\
-    \ = dpState;\n\n  Automaton (const vector<char> _K_vec, int _d) : K_vec(_K_vec),\
-    \ D(_d) {}\n\n  State init() const override {\n    return State(0, 0);\n  }\n\n\
-    \  State next(State s, char c, int i) const {\n    State ret = s;\n    if (s.cmp_state\
-    \ == 0) {\n      if (c > K_vec[i]) ret.cmp_state = 1;\n      if (c < K_vec[i])\
-    \ ret.cmp_state = -1;\n    }\n\n    ret.digsum_remainder += c - '0';\n    ret.digsum_remainder\
-    \ %= D;\n\n    return ret;\n  }\n\n  bool accept(State s) const override {\n \
-    \   return s.cmp_state != 1 && s.digsum_remainder % D == 0;\n  }\n\n  bool unsuccessful(State\
-    \ s) const override {\n    return s.cmp_state == 1;\n  }\n\n  bool successful([[maybe_unused]]\
+    \u306A\u3044\u72B6\u614B\u304B\u3069\u3046\u304B\n};\n#line 7 \"test/verify/atcoder-tdpc-s.test.cpp\"\
+    \n#include <vector>\n#include <map>\n\nusing mint = modint1000000007;\n\nstruct\
+    \ dpState {\n  int cmp_state; // -1: less than K, 0: equal to K, 1: greater than\
+    \ K\n  int digsum_remainder; // digit sum % D\n\n  dpState(int _cmp_state, int\
+    \ _digsum_remainder) : cmp_state(_cmp_state), digsum_remainder(_digsum_remainder)\
+    \ {}\n\n  bool operator<(const dpState& other) const {\n    return make_pair(cmp_state,\
+    \ digsum_remainder) < make_pair(other.cmp_state, other.digsum_remainder);\n  }\n\
+    };\n\n// K\u4EE5\u4E0B\u306E\u3001\u6841\u548C\u304CD\u306E\u500D\u6570\u306E\u6570\
+    \u306E\u307F\u3092\u53D7\u7406\u3059\u308B\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3\
+    \nclass Automaton : public Dfa<char, dpState> { \n  const vector<char> K_vec;\n\
+    \  const int D; \n  \npublic:\n  using State = dpState;\n\n  Automaton (const\
+    \ vector<char> _K_vec, int _d) : K_vec(_K_vec), D(_d) {}\n\n  State init() const\
+    \ override {\n    return State(0, 0);\n  }\n\n  State next(State s, char c, int\
+    \ i) const {\n    State ret = s;\n    if (s.cmp_state == 0) {\n      if (c > K_vec[i])\
+    \ ret.cmp_state = 1;\n      if (c < K_vec[i]) ret.cmp_state = -1;\n    }\n\n \
+    \   ret.digsum_remainder += c - '0';\n    ret.digsum_remainder %= D;\n\n    return\
+    \ ret;\n  }\n\n  bool accept(State s) const override {\n    return s.cmp_state\
+    \ != 1 && s.digsum_remainder % D == 0;\n  }\n\n  bool unsuccessful(State s) const\
+    \ override {\n    return s.cmp_state == 1;\n  }\n\n  bool successful([[maybe_unused]]\
     \ State s) const override {\n    return false;\n  }\n\n};\n\nint main() {\n  ios::sync_with_stdio(0);\
     \ cin.tie(0); cout.tie(0);\n  string K_str; cin >> K_str;\n  vector<char> K_vec(K_str.begin(),\
     \ K_str.end());\n\n  int D; cin >> D; \n  \n  Automaton atm(K_vec, D);\n\n  vector<char>\
@@ -118,12 +122,12 @@ data:
     \u30C8\u3057\u3066\u3057\u307E\u3063\u3066\u3044\u308B\u304C\u3001\u30BC\u30ED\
     \u306F\u6B63\u6574\u6570\u3067\u306F\u306A\u3044\u306E\u3067\u7B54\u3048\u304B\
     \u30891\u5F15\u304F\n  cout << ans.val() << endl; \n  return 0;\n}\n"
-  code: "//#de   fi  n e PRO  LE  M \"https://atcoder.jp/contests/dp/tasks/dp_s\"\n\
-    \n#include \"../../template/template.hpp\"\n#include \"../../math/modint.hpp\"\
-    \n#include \"../../dp/automaton/automaton.hpp\"\n\nusing mint = modint100000007;\n\
-    \nstruct dpState {\n  int cmp_state; // -1: less than K, 0: equal to K, 1: greater\
-    \ than K\n  int digsum_remainder; // digit sum % D\n\n  dpState(int _cmp_state,\
-    \ int _digsum_remainder) : cmp_state(_cmp_state), digsum_remainder(_digsum_remainder)\
+  code: "#define IGNORE\n#define PROBLEM \"https://atcoder.jp/contests/dp/tasks/dp_s\"\
+    \n\n#include \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include\
+    \ \"dp/automaton/automaton.hpp\"\n#include <vector>\n#include <map>\n\nusing mint\
+    \ = modint1000000007;\n\nstruct dpState {\n  int cmp_state; // -1: less than K,\
+    \ 0: equal to K, 1: greater than K\n  int digsum_remainder; // digit sum % D\n\
+    \n  dpState(int _cmp_state, int _digsum_remainder) : cmp_state(_cmp_state), digsum_remainder(_digsum_remainder)\
     \ {}\n\n  bool operator<(const dpState& other) const {\n    return make_pair(cmp_state,\
     \ digsum_remainder) < make_pair(other.cmp_state, other.digsum_remainder);\n  }\n\
     };\n\n// K\u4EE5\u4E0B\u306E\u3001\u6841\u548C\u304CD\u306E\u500D\u6570\u306E\u6570\
@@ -158,16 +162,16 @@ data:
   - math/modint.hpp
   - math/external_gcd.hpp
   - dp/automaton/automaton.hpp
-  isVerificationFile: false
-  path: test/verify/atcoder-tdpc-s.cpp
+  isVerificationFile: true
+  path: test/verify/atcoder-tdpc-s.test.cpp
   requiredBy: []
-  timestamp: '2024-08-21 21:41:37+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2024-08-21 23:33:09+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/verify/atcoder-tdpc-s.cpp
+documentation_of: test/verify/atcoder-tdpc-s.test.cpp
 layout: document
 redirect_from:
-- /library/test/verify/atcoder-tdpc-s.cpp
-- /library/test/verify/atcoder-tdpc-s.cpp.html
-title: test/verify/atcoder-tdpc-s.cpp
+- /verify/test/verify/atcoder-tdpc-s.test.cpp
+- /verify/test/verify/atcoder-tdpc-s.test.cpp.html
+title: test/verify/atcoder-tdpc-s.test.cpp
 ---

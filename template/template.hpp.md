@@ -6,9 +6,6 @@ data:
     path: test/unittest/unittest-template.cpp
     title: test/unittest/unittest-template.cpp
   - icon: ':warning:'
-    path: test/verify/atcoder-tdpc-s.cpp
-    title: test/verify/atcoder-tdpc-s.cpp
-  - icon: ':warning:'
     path: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
     title: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   _extendedVerifiedWith:
@@ -24,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-dpl3-c.test.cpp
     title: test/verify/aoj-dpl3-c.test.cpp
+  - icon: ':x:'
+    path: test/verify/atcoder-tdpc-s.test.cpp
+    title: test/verify/atcoder-tdpc-s.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/convolution/yosupo-and-convolution.test.cpp
     title: test/verify/convolution/yosupo-and-convolution.test.cpp
@@ -99,16 +99,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
   _isVerificationFailed: true
@@ -168,7 +168,6 @@ data:
   isVerificationFile: false
   path: template/template.hpp
   requiredBy:
-  - test/verify/atcoder-tdpc-s.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - test/unittest/unittest-template.cpp
   timestamp: '2024-08-21 21:41:37+09:00'
@@ -191,6 +190,7 @@ data:
   - test/verify/math/matrix/yosupo-linear-equation.test.cpp
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
+  - test/verify/atcoder-tdpc-s.test.cpp
   - test/verify/structure/aoj-dsl1-b.test.cpp
   - test/verify/yosupo-vertex-set-path-composite.test.cpp
   - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp

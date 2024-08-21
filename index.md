@@ -21,7 +21,7 @@ data:
         \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
   - name: dp/automaton
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: dp/automaton/automaton.hpp
       title: "\u6C7A\u5B9A\u6027\u6709\u9650\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3(DFA,\
         \ Deterministic Finite Automaton)"
@@ -37,6 +37,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: dp/largest-rectangle-in-a-histogram.hpp
       title: dp/largest-rectangle-in-a-histogram.hpp
+  - name: .
+    pages:
+    - icon: ':warning:'
+      path: dropbox_refresh.py
+      title: dropbox_refresh.py
   - name: formal-power-series
     pages:
     - icon: ':heavy_check_mark:'
@@ -75,7 +80,7 @@ data:
     - icon: ':warning:'
       path: math/count_by_remainder.hpp
       title: math/count_by_remainder.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/external_gcd.hpp
       title: math/external_gcd.hpp
     - icon: ':heavy_check_mark:'
@@ -84,7 +89,7 @@ data:
     - icon: ':warning:'
       path: math/mod_pow.hpp
       title: math/mod_pow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.hpp
       title: modint
   - name: math/matrix
@@ -116,11 +121,6 @@ data:
     - icon: ':warning:'
       path: test/unittest/unittest-template.cpp
       title: test/unittest/unittest-template.cpp
-  - name: test/verify
-    pages:
-    - icon: ':warning:'
-      path: test/verify/atcoder-tdpc-s.cpp
-      title: test/verify/atcoder-tdpc-s.cpp
   - name: test/verify/fps
     pages:
     - icon: ':warning:'
@@ -145,6 +145,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/aoj-dpl3-c.test.cpp
       title: test/verify/aoj-dpl3-c.test.cpp
+    - icon: ':x:'
+      path: test/verify/atcoder-tdpc-s.test.cpp
+      title: test/verify/atcoder-tdpc-s.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-deque-operate-all-composite.test.cpp
       title: test/verify/yosupo-deque-operate-all-composite.test.cpp
@@ -233,16 +236,16 @@ data:
       title: test/verify/structure/aoj-dsl1-b.test.cpp
   - name: unabstracted_libs/segment-tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
       title: unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
       title: unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
       title: unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
       title: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
 layout: toppage

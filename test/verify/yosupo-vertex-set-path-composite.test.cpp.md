@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/heavy_light_decomposition.hpp
     title: graph/tree/heavy_light_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/external_gcd.hpp
     title: math/external_gcd.hpp
   - icon: ':heavy_check_mark:'
     path: math/linear_function.hpp
     title: math/linear_function.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
   - icon: ':question:'

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/external_gcd.hpp
     title: math/external_gcd.hpp
   _extendedRequiredBy:
@@ -21,9 +21,6 @@ data:
     path: formal-power-series/sparse-fps.hpp
     title: sparse-fps
   - icon: ':warning:'
-    path: test/verify/atcoder-tdpc-s.cpp
-    title: test/verify/atcoder-tdpc-s.cpp
-  - icon: ':warning:'
     path: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
     title: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - icon: ':warning:'
@@ -33,6 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
     title: test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
+  - icon: ':x:'
+    path: test/verify/atcoder-tdpc-s.test.cpp
+    title: test/verify/atcoder-tdpc-s.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/convolution/yosupo-and-convolution.test.cpp
     title: test/verify/convolution/yosupo-and-convolution.test.cpp
@@ -117,9 +117,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"math/external_gcd.hpp\"\
@@ -209,11 +209,10 @@ data:
   - formal-power-series/formal-power-series.hpp
   - formal-power-series/fiduccia.hpp
   - formal-power-series/naive-fps.hpp
-  - test/verify/atcoder-tdpc-s.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   timestamp: '2024-06-20 15:39:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/verify/convolution/yosupo-normal-convolution.test.cpp
   - test/verify/convolution/yosupo-normal-convolution.test.cpp
@@ -228,6 +227,7 @@ data:
   - test/verify/math/matrix/yosupo-linear-equation.test.cpp
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
+  - test/verify/atcoder-tdpc-s.test.cpp
   - test/verify/yosupo-vertex-set-path-composite.test.cpp
   - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
