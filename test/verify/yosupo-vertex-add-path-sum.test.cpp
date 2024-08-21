@@ -2,6 +2,7 @@
 #include "template/template.hpp"
 
 #include <type_traits>
+#include <vector>
 
 namespace atcoder {
 

@@ -1,13 +1,17 @@
+#ifndef HARUILIB_DP_LARGEST_RECTANGLE_IN_A_HISTOGRAM_HPP
+#define HARUILIB_DP_LARGEST_RECTANGLE_IN_A_HISTOGRAM_HPP
+#include <stack>
+#include <vector>
 
 template <typename T>
-ll largest_reactangle_in_a_histogram(vector<T>& vec) {
+long long  largest_reactangle_in_a_histogram(std::vector<T>& vec) {
   int N = vec.size();
-  stack<T> st; // 最弱番長(をindexで表した)待機列のイメージ。卒業による引退がないため、dequeの右側しか使わず、stackで十分。
+  std::stack<T> st; // 最弱番長(をindexで表した)待機列のイメージ。卒業による引退がないため、dequeの右側しか使わず、stackで十分。
   // stackに対応するvecの値は、下から上にかけて狭義(!!)単調増加になっている。
-  vector<int> ridx(N); // ridx[i] := i < j であって、vec[i] > vec[j] となるような jのうち最も小さいもの
+  std::vector<int> ridx(N); // ridx[i] := i < j であって、vec[i] > vec[j] となるような jのうち最も小さいもの
   // そんなjが存在しない場合、Nにしている
 
-  vector<int> lidx(N, -1); // lidx[i] := j<iであって vec[j] < vec[i]となるようなjのうち最も大きいもの 
+  std::vector<int> lidx(N, -1); // lidx[i] := j<iであって vec[j] < vec[i]となるようなjのうち最も大きいもの 
   // そんなjが存在しない場合、-1とする
   // つまり、自分より弱い先輩のうち、一番年が近い人、みたいな
 
@@ -42,3 +46,4 @@ ll largest_reactangle_in_a_histogram(vector<T>& vec) {
   }
   return ans; 
 }
+#endif //HARUILIB_DP_LARGEST_RECTANGLE_IN_A_HISTOGRAM_HPP

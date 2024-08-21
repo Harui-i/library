@@ -2,6 +2,7 @@
 #define HARUILIB_CONVOLUTION_DIVISOR_ZETA_MOEBIUS_TRANSFORM_HPP
 
 #include <vector>
+#include <map>
 
 namespace divisor {
   // 約数についてのゼータ変換。 g_n = \Sigma_{m|n} f_m なる g を求める。

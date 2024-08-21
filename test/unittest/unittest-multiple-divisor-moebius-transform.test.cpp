@@ -2,6 +2,7 @@
 
 #include "template/template.hpp"
 #include "math/modint.hpp"
+#include <random>
 
 #include "convolution/multiple-zeta-moebius-transform.hpp"
 #include "convolution/divisor-zeta-moebius-transform.hpp"

@@ -3,6 +3,7 @@
 #include "template/template.hpp"
 #include "math/modint.hpp"
 #include "dp/automaton/remainder.hpp"
+#include <vector>
 
 using mint = modint1000000007;
 

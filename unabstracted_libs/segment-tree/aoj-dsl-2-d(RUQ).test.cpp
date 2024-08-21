@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D"
 
-#include "../../template/template.hpp"
+#include "template/template.hpp"
+#include <vector>
 
 vector<pair<int,int>>dat;
 int sz;

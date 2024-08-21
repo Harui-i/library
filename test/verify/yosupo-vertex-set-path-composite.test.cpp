@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_set_path_composite"
 #include "template/template.hpp"
+#include <vector>
 
 #ifdef _MSC_VER
 #include <intrin.h>

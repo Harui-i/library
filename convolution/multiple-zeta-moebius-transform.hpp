@@ -2,6 +2,7 @@
 #define HARUILIB_CONVOLUTION_MULTIPLE_ZETA_MOEBIUS_TRANSFORM_HPP
 
 #include <vector>
+#include <map>
 
 namespace multiple {
 

@@ -1,15 +1,19 @@
 #ifndef HARUILIB_GRAPH_DIJKSTRA_HPP
 #define HARUILIB_GRAPH_DIJKSTRA_HPP
 
+#include <queue>
+#include <vector>
+#include <utility>
+
 #include "graph/graph_template.hpp"
 
 template <typename T>
 std::vector<T> dijkstra(const Graph<T>& graph, int start) {
   int N = (int)graph.size();
-  vector<T>dist(N, T(-1));
-  using P = pair<T, int>;
+  std::vector<T>dist(N, T(-1));
+  using P = std::pair<T, int>;
 
-  priority_queue<P, vector<P>, greater<P>>que;
+  std::priority_queue<P, std::vector<P>, std::greater<P>>que;
 
   que.push(make_pair(T(0), start));
   dist[start] = T(0);
@@ -32,14 +36,14 @@ std::vector<T> dijkstra(const Graph<T>& graph, int start) {
 }
 
 template <typename T>
-pair<vector<T>, vector<int>> dijkstra_path(const Graph<T>& graph, int start) {
+std::pair<std::vector<T>, std::vector<int>> dijkstra_path(const Graph<T>& graph, int start) {
   int N = (int)graph.size();
 
-  using P = pair<T, int>;
-  vector<T>dist(N, T(-1));
-  vector<int>prev(N, -1);
+  using P = std::pair<T, int>;
+  std::vector<T>dist(N, T(-1));
+  std::vector<int>prev(N, -1);
 
-  priority_queue<P, vector<P>, greater<P>>que;
+  std::priority_queue<P, std::vector<P>, std::greater<P>>que;
   que.push(make_pair(T(0), start));
   dist[start] = T(0);
 

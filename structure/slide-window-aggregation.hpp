@@ -1,3 +1,9 @@
+#ifndef HARUILIB_LIBRARY_STRUCTURE_SLIDE_WINDOW_AGGREGATION_HPP
+#define HARUILIB_LIBRARY_STRUCTURE_SLIDE_WINDOW_AGGREGATION_HPP
+
+#include <vector>
+#include <algorithm>
+
 template <class S, S (*op)(S, S), S (*e)()>
 struct FoldableDeque {
   struct Node {
@@ -5,7 +11,7 @@ struct FoldableDeque {
     S prod;
   };
 
-  vector<Node> front, back;
+  std::vector<Node> front, back;
 
   FoldableDeque() : front(), back() {}
   size_t size() const { return front.size() + back.size(); }
@@ -19,8 +25,8 @@ struct FoldableDeque {
     // frontにs0個
     // backにN - s0個入れる
     vector<Node> a{front};
-    reverse(begin(a), end(a));
-    copy(begin(back), end(back), back_inserter(a));
+    std::reverse(begin(a), end(a));
+    std::copy(begin(back), end(back), back_inserter(a));
     front.clear(), back.clear();
     for (int i = s0 - 1; i >= 0; i--) push_front(a[i].val);
     for (int i = s0; i < n; i++) push_back(a[i].val);
@@ -72,3 +78,4 @@ struct FoldableDeque {
     front.pop_back();
   }
 };
+#endif // HARUILIB_LIBRARY_STRUCTURE_SLIDE_WINDOW_AGGREGATION_HPP
