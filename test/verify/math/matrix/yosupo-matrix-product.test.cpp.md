@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -25,22 +25,22 @@ data:
     - https://judge.yosupo.jp/problem/matrix_product
   bundledCode: "#line 1 \"test/verify/math/matrix/yosupo-matrix-product.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#line\
-    \ 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\
-    using ll = long long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if\
-    \ (a<b) {a=b; return true;} return false;}\ntemplate<class T> inline bool chmin(T&\
-    \ a, const T& b) {if (b<a) {a=b; return true;} return false;}\nconst int INTINF\
-    \ = 1000001000;\nconst int INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\n\
-    const ll LLINF = 1000000000000000000;\n#line 1 \"math/modint.hpp\"\n\n\n\n#line\
-    \ 1 \"math/external_gcd.hpp\"\n\n\n\n#line 5 \"math/external_gcd.hpp\"\n\n// g,x,y\n\
-    template<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T a, T b) {\n\
-    \    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n        T q = a\
-    \ / b;\n        T r = a % b;\n        a = b;\n        b = r;\n        \n     \
-    \   T xTemp = x0 - q * x1;\n        x0 = x1;\n        x1 = xTemp;\n        \n\
-    \        T yTemp = y0 - q * y1;\n        y0 = y1;\n        y1 = yTemp;\n    }\n\
-    \    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\n\ntemplate<int MOD>\n\
-    struct static_modint {\n    int value;\n\n    constexpr static_modint() : value(0)\
-    \ {}\n\n    constexpr static_modint(long long v) {\n        value = int(((v %\
-    \ MOD) + MOD) % MOD);\n    }\n\n    constexpr static_modint& operator+=(const\
+    \ 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\nusing\
+    \ namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
+    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
+    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
+    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
+    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
+    \ 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n#include\
+    \ <tuple>\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T\
+    \ a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n   \
+    \     T q = a / b;\n        T r = a % b;\n        a = b;\n        b = r;\n   \
+    \     \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n        x1 = xTemp;\n\
+    \        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n        y1 = yTemp;\n\
+    \    }\n    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\n\ntemplate<int\
+    \ MOD>\nstruct static_modint {\n    int value;\n\n    constexpr static_modint()\
+    \ : value(0) {}\n\n    constexpr static_modint(long long v) {\n        value =\
+    \ int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr static_modint& operator+=(const\
     \ static_modint& other) {\n        if ((value += other.value) >= MOD) value -=\
     \ MOD;\n        return *this;\n    }\n\n    constexpr static_modint& operator-=(const\
     \ static_modint& other) {\n        if ((value -= other.value) < 0) value += MOD;\n\
@@ -72,12 +72,12 @@ data:
     \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
     \ modint = static_modint<mod>;\nusing modint998244353  = modint<998244353>;\n\
     using modint1000000007 = modint<1000000007>;\n\n\n#line 1 \"math/matrix/matrix.hpp\"\
-    \n\n\n\n#line 5 \"math/matrix/matrix.hpp\"\n\ntemplate <class T>\nstruct Matrix{\n\
-    private: \n  std::vector<std::vector<T>>vec;\n  int N, M;\npublic:\n\n  Matrix(int\
-    \ _N, int _M) : vec(std::vector<std::vector<T>>(_N, std::vector<T>(_M))), N(_N),\
-    \ M(_M)  {\n    assert(_N >= 0 && _M >= 0); // 0*0\u306E\u884C\u5217\u3092\u8FD4\
-    \u3057\u305F\u3044\u3068\u304D\u3082\u3042\u308B(\u9006\u884C\u5217\u306A\u304B\
-    \u3063\u305F\u3068\u304D\u3068\u304B)\n  }\n\n  Matrix<T> operator*(const Matrix<T>&\
+    \n\n\n\n#include <vector>\n\ntemplate <class T>\nstruct Matrix{\nprivate: \n \
+    \ std::vector<std::vector<T>>vec;\n  int N, M;\npublic:\n\n  Matrix(int _N, int\
+    \ _M) : vec(std::vector<std::vector<T>>(_N, std::vector<T>(_M))), N(_N), M(_M)\
+    \  {\n    assert(_N >= 0 && _M >= 0); // 0*0\u306E\u884C\u5217\u3092\u8FD4\u3057\
+    \u305F\u3044\u3068\u304D\u3082\u3042\u308B(\u9006\u884C\u5217\u306A\u304B\u3063\
+    \u305F\u3068\u304D\u3068\u304B)\n  }\n\n  Matrix<T> operator*(const Matrix<T>&\
     \ rhs) const  {\n    assert(M == rhs.N);\n    Matrix ret(N,rhs.M);\n    for (int\
     \ i=0; i<N; i++) for (int k=0; k<M; k++) for(int j=0; j<rhs.M; j++) {\n      ret.vec[i][j]\
     \ += vec[i][k] * rhs.vec[k][j];\n    } \n\n    return ret;\n  }\n\n  Matrix<T>\
@@ -163,7 +163,7 @@ data:
   isVerificationFile: true
   path: test/verify/math/matrix/yosupo-matrix-product.test.cpp
   requiredBy: []
-  timestamp: '2024-07-03 22:51:47+09:00'
+  timestamp: '2024-08-21 21:41:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/math/matrix/yosupo-matrix-product.test.cpp

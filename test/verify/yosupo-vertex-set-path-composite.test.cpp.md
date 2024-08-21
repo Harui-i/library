@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -31,13 +31,14 @@ data:
     - https://judge.yosupo.jp/problem/vertex_set_path_composite
   bundledCode: "#line 1 \"test/verify/yosupo-vertex-set-path-composite.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\n\
-    #line 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\
-    using ll = long long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if\
-    \ (a<b) {a=b; return true;} return false;}\ntemplate<class T> inline bool chmin(T&\
-    \ a, const T& b) {if (b<a) {a=b; return true;} return false;}\nconst int INTINF\
-    \ = 1000001000;\nconst int INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\n\
-    const ll LLINF = 1000000000000000000;\n#line 3 \"test/verify/yosupo-vertex-set-path-composite.test.cpp\"\
-    \n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\nnamespace atcoder {\n\nnamespace\
+    #line 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\nusing\
+    \ namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
+    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
+    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
+    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
+    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
+    \ 3 \"test/verify/yosupo-vertex-set-path-composite.test.cpp\"\n#include <vector>\n\
+    \n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\nnamespace atcoder {\n\nnamespace\
     \ internal {\n\n// @param n `0 <= n`\n// @return minimum non-negative `x` s.t.\
     \ `n <= 2**x`\nint ceil_pow2(int n) {\n    int x = 0;\n    while ((1U << x) <\
     \ (unsigned int)(n)) x++;\n    return x;\n}\n\n// @param n `1 <= n`\n// @return\
@@ -95,16 +96,16 @@ data:
     \  }\n\n  // rhs(f())\n  LinearFunction operator*(const LinearFunction& rhs) const\
     \ {\n    LinearFunction f = *this;\n    return rhs.composite(f);\n  }\n\n  T operator()(T\
     \ x) const {\n    return a * x + b;\n  }\n\n};\n\n\n\n#line 1 \"math/modint.hpp\"\
-    \n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n#line 5 \"math/external_gcd.hpp\"\
-    \n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T\
-    \ a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n   \
-    \     T q = a / b;\n        T r = a % b;\n        a = b;\n        b = r;\n   \
-    \     \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n        x1 = xTemp;\n\
-    \        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n        y1 = yTemp;\n\
-    \    }\n    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\n\ntemplate<int\
-    \ MOD>\nstruct static_modint {\n    int value;\n\n    constexpr static_modint()\
-    \ : value(0) {}\n\n    constexpr static_modint(long long v) {\n        value =\
-    \ int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr static_modint& operator+=(const\
+    \n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n#include <tuple>\n\n// g,x,y\n\
+    template<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T a, T b) {\n\
+    \    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n        T q = a\
+    \ / b;\n        T r = a % b;\n        a = b;\n        b = r;\n        \n     \
+    \   T xTemp = x0 - q * x1;\n        x0 = x1;\n        x1 = xTemp;\n        \n\
+    \        T yTemp = y0 - q * y1;\n        y0 = y1;\n        y1 = yTemp;\n    }\n\
+    \    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\n\ntemplate<int MOD>\n\
+    struct static_modint {\n    int value;\n\n    constexpr static_modint() : value(0)\
+    \ {}\n\n    constexpr static_modint(long long v) {\n        value = int(((v %\
+    \ MOD) + MOD) % MOD);\n    }\n\n    constexpr static_modint& operator+=(const\
     \ static_modint& other) {\n        if ((value += other.value) >= MOD) value -=\
     \ MOD;\n        return *this;\n    }\n\n    constexpr static_modint& operator-=(const\
     \ static_modint& other) {\n        if ((value -= other.value) < 0) value += MOD;\n\
@@ -136,12 +137,13 @@ data:
     \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
     \ modint = static_modint<mod>;\nusing modint998244353  = modint<998244353>;\n\
     using modint1000000007 = modint<1000000007>;\n\n\n#line 1 \"graph/tree/heavy_light_decomposition.hpp\"\
-    \n\n\n\n#line 8 \"graph/tree/heavy_light_decomposition.hpp\"\n\n#line 1 \"graph/graph_template.hpp\"\
-    \n\n\n\n#line 5 \"graph/graph_template.hpp\"\n\ntemplate <typename T>\nstruct\
-    \ Edge {\n  int from; int to;\n  T cost;\n\n  Edge(int _from, int _to, T _cost)\
-    \ : from(_from), to(_to), cost(_cost) {}\n\n  // unweighted\n  Edge(int _from,\
-    \ int _to) : from(_from), to(_to), cost(T(1)) {}\n\n  bool operator==(const Edge&\
-    \ rhs) const {\n    return from == rhs.from && to == rhs.to && cost == rhs.cost;\n\
+    \n\n\n\n#line 5 \"graph/tree/heavy_light_decomposition.hpp\"\n#include <algorithm>\n\
+    #line 7 \"graph/tree/heavy_light_decomposition.hpp\"\n#include <utility>\n\n#line\
+    \ 1 \"graph/graph_template.hpp\"\n\n\n\n#line 5 \"graph/graph_template.hpp\"\n\
+    \ntemplate <typename T>\nstruct Edge {\n  int from; int to;\n  T cost;\n\n  Edge(int\
+    \ _from, int _to, T _cost) : from(_from), to(_to), cost(_cost) {}\n\n  // unweighted\n\
+    \  Edge(int _from, int _to) : from(_from), to(_to), cost(T(1)) {}\n\n  bool operator==(const\
+    \ Edge& rhs) const {\n    return from == rhs.from && to == rhs.to && cost == rhs.cost;\n\
     \  }\n\n  bool operator<(const Edge& rhs) const {\n    return cost < rhs.cost;\n\
     \  }\n  \n  bool operator>(const Edge& rhs) const {\n    return cost > rhs.cost;\n\
     \  }\n\n};\n\n\ntemplate <typename T>\nstruct Graph : std::vector<std::vector<Edge<T>>>\
@@ -200,7 +202,7 @@ data:
     \ vpath.end());\n    for (Interval path : vpath) retpath.push_back(path);\n\n\
     \    return retpath;\n  }\n\n  std::pair<int,int> subtree_query(int r) {\n   \
     \ assert(r < int(id.size()));\n    return std::make_pair(id[r], id2[r]);\n  }\n\
-    \n};\n\n\n#line 155 \"test/verify/yosupo-vertex-set-path-composite.test.cpp\"\n\
+    \n};\n\n\n#line 156 \"test/verify/yosupo-vertex-set-path-composite.test.cpp\"\n\
     \nusing mint = modint998244353;\nusing LF = LinearFunction<mint>;\n\nLF op(LF\
     \ l, LF r) {\n  return l * r;\n}\n\nLF revop(LF l, LF r) {\n  return r * l;\n\
     }\n\nLF e() {\n  return LF::Mul_Identity();\n}\n\nint main() {\n  ios::sync_with_stdio(0);\
@@ -221,14 +223,14 @@ data:
     \ + 1);\n        }\n      }\n\n      mint ans = ret(x);\n      cout << ans.val()\
     \ << endl;\n    }\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\
-    \n#include \"template/template.hpp\"\n\n#ifdef _MSC_VER\n#include <intrin.h>\n\
-    #endif\n\nnamespace atcoder {\n\nnamespace internal {\n\n// @param n `0 <= n`\n\
-    // @return minimum non-negative `x` s.t. `n <= 2**x`\nint ceil_pow2(int n) {\n\
-    \    int x = 0;\n    while ((1U << x) < (unsigned int)(n)) x++;\n    return x;\n\
-    }\n\n// @param n `1 <= n`\n// @return minimum non-negative `x` s.t. `(n & (1 <<\
-    \ x)) != 0`\nconstexpr int bsf_constexpr(unsigned int n) {\n    int x = 0;\n \
-    \   while (!(n & (1 << x))) x++;\n    return x;\n}\n\n// @param n `1 <= n`\n//\
-    \ @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`\nint bsf(unsigned\
+    \n#include \"template/template.hpp\"\n#include <vector>\n\n#ifdef _MSC_VER\n#include\
+    \ <intrin.h>\n#endif\n\nnamespace atcoder {\n\nnamespace internal {\n\n// @param\
+    \ n `0 <= n`\n// @return minimum non-negative `x` s.t. `n <= 2**x`\nint ceil_pow2(int\
+    \ n) {\n    int x = 0;\n    while ((1U << x) < (unsigned int)(n)) x++;\n    return\
+    \ x;\n}\n\n// @param n `1 <= n`\n// @return minimum non-negative `x` s.t. `(n\
+    \ & (1 << x)) != 0`\nconstexpr int bsf_constexpr(unsigned int n) {\n    int x\
+    \ = 0;\n    while (!(n & (1 << x))) x++;\n    return x;\n}\n\n// @param n `1 <=\
+    \ n`\n// @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`\nint bsf(unsigned\
     \ int n) {\n#ifdef _MSC_VER\n    unsigned long index;\n    _BitScanForward(&index,\
     \ n);\n    return index;\n#else\n    return __builtin_ctz(n);\n#endif\n}\n\n}\
     \  // namespace internal\n\n}  // namespace atcoder\n\nnamespace atcoder {\n\n\
@@ -300,7 +302,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-vertex-set-path-composite.test.cpp
   requiredBy: []
-  timestamp: '2024-08-15 16:38:21+09:00'
+  timestamp: '2024-08-21 21:41:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-vertex-set-path-composite.test.cpp

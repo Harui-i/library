@@ -99,26 +99,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: '#line 1 "template/template.hpp"
 
-    #include <bits/stdc++.h>
+    #include <iostream>
+
+    #include <cassert>
 
     using namespace std;
 
@@ -139,7 +141,9 @@ data:
     const ll LLINF = 1000000000000000000;
 
     '
-  code: '#include <bits/stdc++.h>
+  code: '#include <iostream>
+
+    #include <cassert>
 
     using namespace std;
 
@@ -167,8 +171,8 @@ data:
   - test/verify/atcoder-tdpc-s.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - test/unittest/unittest-template.cpp
-  timestamp: '2024-06-29 08:51:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-08-21 21:41:37+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/verify/convolution/yosupo-normal-convolution.test.cpp
   - test/verify/convolution/yosupo-gcd-convolution.test.cpp

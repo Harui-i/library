@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -26,14 +26,14 @@ data:
     - https://judge.yosupo.jp/problem/inv_of_formal_power_series
   bundledCode: "#line 1 \"test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\
-    \n\n#line 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T& a, const\
-    \ T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class T> inline\
-    \ bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return false;}\n\
-    const int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst ll LLMAX\
-    \ = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line 1 \"math/modint.hpp\"\
-    \n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n#line 5 \"math/external_gcd.hpp\"\
-    \n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T\
+    \n\n#line 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\n\
+    using namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
+    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
+    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
+    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
+    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
+    \ 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n#include\
+    \ <tuple>\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T\
     \ a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n   \
     \     T q = a / b;\n        T r = a % b;\n        a = b;\n        b = r;\n   \
     \     \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n        x1 = xTemp;\n\
@@ -73,9 +73,9 @@ data:
     \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
     \ modint = static_modint<mod>;\nusing modint998244353  = modint<998244353>;\n\
     using modint1000000007 = modint<1000000007>;\n\n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\
-    \n\n\n\n#line 6 \"formal-power-series/formal-power-series.hpp\"\n\n\ntemplate\
-    \ <typename mint>\nstruct FPS {\n  std::vector<mint> _vec;\n\n  constexpr int\
-    \ lg2(int N) const {\n    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n\
+    \n\n\n\n#line 5 \"formal-power-series/formal-power-series.hpp\"\n#include <vector>\n\
+    \n\ntemplate <typename mint>\nstruct FPS {\n  std::vector<mint> _vec;\n\n  constexpr\
+    \ int lg2(int N) const {\n    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n\
     \    if ((1LL << ret) < N) ret++;\n    return ret;\n  }\n\n  // \u30CA\u30A4\u30FC\
     \u30D6\u306A\u30CB\u30E5\u30FC\u30C8\u30F3\u6CD5\u3067\u306E\u9006\u5143\u8A08\
     \u7B97\n  FPS inv_naive(int deg) const {\n    assert(_vec[0] != mint(0)); // \u3055\
@@ -191,7 +191,7 @@ data:
   isVerificationFile: false
   path: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   requiredBy: []
-  timestamp: '2024-07-05 15:34:20+09:00'
+  timestamp: '2024-08-21 21:41:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp

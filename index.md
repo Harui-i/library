@@ -35,9 +35,8 @@ data:
       path: dp/cumulative-sum-2d.hpp
       title: "Cumulative Sum 2D (\u4E8C\u6B21\u5143\u7D2F\u7A4D\u548C)"
     - icon: ':heavy_check_mark:'
-      path: dp/largest-reactangle-in-a-histogram.hpp
-      title: "\u30D2\u30B9\u30C8\u30B0\u30E9\u30E0\u5185\u306E\u6700\u5927\u9577\u65B9\
-        \u5F62"
+      path: dp/largest-rectangle-in-a-histogram.hpp
+      title: dp/largest-rectangle-in-a-histogram.hpp
   - name: formal-power-series
     pages:
     - icon: ':heavy_check_mark:'
@@ -109,7 +108,7 @@ data:
       title: "Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/template.hpp
       title: template/template.hpp
   - name: test/unittest
@@ -234,16 +233,16 @@ data:
       title: test/verify/structure/aoj-dsl1-b.test.cpp
   - name: unabstracted_libs/segment-tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
       title: unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
       title: unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
       title: unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
       title: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
 layout: toppage

@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: structure/slide-window-aggregation.hpp
     title: Foldable Deque(Slide Window Aggregation)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -28,14 +28,14 @@ data:
     - https://judge.yosupo.jp/problem/queue_operate_all_composite
   bundledCode: "#line 1 \"test/verify/yosupo-queue-operate-all-composite.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\
-    \n\n#line 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T& a, const\
-    \ T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class T> inline\
-    \ bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return false;}\n\
-    const int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst ll LLMAX\
-    \ = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line 1 \"math/modint.hpp\"\
-    \n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n#line 5 \"math/external_gcd.hpp\"\
-    \n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T\
+    \n\n#line 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\n\
+    using namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
+    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
+    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
+    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
+    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
+    \ 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n#include\
+    \ <tuple>\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T\
     \ a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n   \
     \     T q = a / b;\n        T r = a % b;\n        a = b;\n        b = r;\n   \
     \     \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n        x1 = xTemp;\n\
@@ -75,40 +75,40 @@ data:
     \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
     \ modint = static_modint<mod>;\nusing modint998244353  = modint<998244353>;\n\
     using modint1000000007 = modint<1000000007>;\n\n\n#line 1 \"structure/slide-window-aggregation.hpp\"\
-    \ntemplate <class S, S (*op)(S, S), S (*e)()>\nstruct FoldableDeque {\n  struct\
-    \ Node {\n    S val;\n    S prod;\n  };\n\n  vector<Node> front, back;\n\n  FoldableDeque()\
-    \ : front(), back() {}\n  size_t size() const { return front.size() + back.size();\
-    \ }\n  bool empty() const { return front.size() + back.size() == 0; }\n\n\n  //\
-    \ nyaan\u3055\u3093\u306E\u3092\u30D1\u30AF\u3063\u3066\u304A\u308A\n  void rebalance()\
-    \ {\n    int n = front.size() + back.size();\n    int s0 = n / 2 + (front.empty()\
-    \ ? n % 2 : 0);\n    // front\u306Bs0\u500B\n    // back\u306BN - s0\u500B\u5165\
-    \u308C\u308B\n    vector<Node> a{front};\n    reverse(begin(a), end(a));\n   \
-    \ copy(begin(back), end(back), back_inserter(a));\n    front.clear(), back.clear();\n\
-    \    for (int i = s0 - 1; i >= 0; i--) push_front(a[i].val);\n    for (int i =\
-    \ s0; i < n; i++) push_back(a[i].val);\n    return;\n  }\n\n  S all_prod() const\
-    \ {\n    if (front.empty() && back.empty() ) return e();\n\n    if (front.empty())\
-    \ {\n      return back.back().prod;\n    }\n    else if (back.empty()) {\n   \
-    \   return front.back().prod;\n    }\n\n    else return op(front.back().prod,\
-    \ back.back().prod) ;\n  }\n\n  void push_back(const S& x) {\n    if (back.empty())\
-    \ {\n      back.push_back({x, x});\n    }\n    else {\n      // \u9806\u5E8F\u602A\
-    \u3057\u3044\u304B\u3082\n      back.push_back({x, op(back.back().prod, x) });\n\
-    \    }\n  }\n\n  void push_front(const S& x) {\n    if (front.empty()) {\n   \
-    \   front.push_back({x, x});\n    }\n    else {\n      // \u9806\u5E8F\u602A\u3057\
-    \u3044\u304B\u3082\n      front.push_back({x, op(x, front.back().prod) });\n \
-    \   }  \n  }\n\n  void pop_back() {\n    assert(size() > 0);\n    if (back.empty())\
-    \ rebalance();\n    back.pop_back();\n  }\n\n  void pop_front() {\n    assert(size()\
-    \ > 0);\n    if (front.empty()) rebalance();\n    front.pop_back();\n  }\n};\n\
-    #line 1 \"math/linear_function.hpp\"\n\n\n\ntemplate <typename T>\nstruct LinearFunction\
-    \ {\n  T a, b;\n\n  LinearFunction() : a{0}, b(0) {}\n  LinearFunction(T _a, T\
-    \ _b) : a(_a), b(_b) {}\n\n  static LinearFunction Add_Identity() {\n    return\
-    \ LinearFunction(T(0), T(0));\n  }\n\n  static LinearFunction Mul_Identity(){\n\
-    \    return LinearFunction(T(1), T(0));\n  }\n\n  // f(g())\n  LinearFunction\
-    \ composite(LinearFunction& g) const {\n    return LinearFunction(a * g.a, a *\
-    \ g.b + b);\n  }\n\n  LinearFunction operator+(const LinearFunction& rhs) const\
-    \ {\n    return LinearFunction(a + rhs.a, b + rhs.b);\n  }\n\n  // rhs(f())\n\
-    \  LinearFunction operator*(const LinearFunction& rhs) const {\n    LinearFunction\
-    \ f = *this;\n    return rhs.composite(f);\n  }\n\n  T operator()(T x) const {\n\
-    \    return a * x + b;\n  }\n\n};\n\n\n\n#line 7 \"test/verify/yosupo-queue-operate-all-composite.test.cpp\"\
+    \n\n\n\n#include <vector>\n#include <algorithm>\n\ntemplate <class S, S (*op)(S,\
+    \ S), S (*e)()>\nstruct FoldableDeque {\n  struct Node {\n    S val;\n    S prod;\n\
+    \  };\n\n  std::vector<Node> front, back;\n\n  FoldableDeque() : front(), back()\
+    \ {}\n  size_t size() const { return front.size() + back.size(); }\n  bool empty()\
+    \ const { return front.size() + back.size() == 0; }\n\n\n  // nyaan\u3055\u3093\
+    \u306E\u3092\u30D1\u30AF\u3063\u3066\u304A\u308A\n  void rebalance() {\n    int\
+    \ n = front.size() + back.size();\n    int s0 = n / 2 + (front.empty() ? n % 2\
+    \ : 0);\n    // front\u306Bs0\u500B\n    // back\u306BN - s0\u500B\u5165\u308C\
+    \u308B\n    vector<Node> a{front};\n    std::reverse(begin(a), end(a));\n    std::copy(begin(back),\
+    \ end(back), back_inserter(a));\n    front.clear(), back.clear();\n    for (int\
+    \ i = s0 - 1; i >= 0; i--) push_front(a[i].val);\n    for (int i = s0; i < n;\
+    \ i++) push_back(a[i].val);\n    return;\n  }\n\n  S all_prod() const {\n    if\
+    \ (front.empty() && back.empty() ) return e();\n\n    if (front.empty()) {\n \
+    \     return back.back().prod;\n    }\n    else if (back.empty()) {\n      return\
+    \ front.back().prod;\n    }\n\n    else return op(front.back().prod, back.back().prod)\
+    \ ;\n  }\n\n  void push_back(const S& x) {\n    if (back.empty()) {\n      back.push_back({x,\
+    \ x});\n    }\n    else {\n      // \u9806\u5E8F\u602A\u3057\u3044\u304B\u3082\
+    \n      back.push_back({x, op(back.back().prod, x) });\n    }\n  }\n\n  void push_front(const\
+    \ S& x) {\n    if (front.empty()) {\n      front.push_back({x, x});\n    }\n \
+    \   else {\n      // \u9806\u5E8F\u602A\u3057\u3044\u304B\u3082\n      front.push_back({x,\
+    \ op(x, front.back().prod) });\n    }  \n  }\n\n  void pop_back() {\n    assert(size()\
+    \ > 0);\n    if (back.empty()) rebalance();\n    back.pop_back();\n  }\n\n  void\
+    \ pop_front() {\n    assert(size() > 0);\n    if (front.empty()) rebalance();\n\
+    \    front.pop_back();\n  }\n};\n\n#line 1 \"math/linear_function.hpp\"\n\n\n\n\
+    template <typename T>\nstruct LinearFunction {\n  T a, b;\n\n  LinearFunction()\
+    \ : a{0}, b(0) {}\n  LinearFunction(T _a, T _b) : a(_a), b(_b) {}\n\n  static\
+    \ LinearFunction Add_Identity() {\n    return LinearFunction(T(0), T(0));\n  }\n\
+    \n  static LinearFunction Mul_Identity(){\n    return LinearFunction(T(1), T(0));\n\
+    \  }\n\n  // f(g())\n  LinearFunction composite(LinearFunction& g) const {\n \
+    \   return LinearFunction(a * g.a, a * g.b + b);\n  }\n\n  LinearFunction operator+(const\
+    \ LinearFunction& rhs) const {\n    return LinearFunction(a + rhs.a, b + rhs.b);\n\
+    \  }\n\n  // rhs(f())\n  LinearFunction operator*(const LinearFunction& rhs) const\
+    \ {\n    LinearFunction f = *this;\n    return rhs.composite(f);\n  }\n\n  T operator()(T\
+    \ x) const {\n    return a * x + b;\n  }\n\n};\n\n\n\n#line 7 \"test/verify/yosupo-queue-operate-all-composite.test.cpp\"\
     \n\nusing mint = modint998244353;\nusing LF = LinearFunction<mint>;\n\n// f_r(f_l)\n\
     LF op(LF lf, LF rf) {\n  return rf.composite(lf);\n}\n\nLF e() {\n  return LF::Mul_Identity();\n\
     }\n\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  FoldableDeque<LF,op,e>\
@@ -137,7 +137,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-queue-operate-all-composite.test.cpp
   requiredBy: []
-  timestamp: '2024-07-30 23:24:22+09:00'
+  timestamp: '2024-08-21 21:41:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-queue-operate-all-composite.test.cpp

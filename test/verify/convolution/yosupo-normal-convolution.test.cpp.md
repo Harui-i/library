@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -31,22 +31,22 @@ data:
     - https://judge.yosupo.jp/problem/convolution_mod
   bundledCode: "#line 1 \"test/verify/convolution/yosupo-normal-convolution.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\n\n#line\
-    \ 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\
-    using ll = long long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if\
-    \ (a<b) {a=b; return true;} return false;}\ntemplate<class T> inline bool chmin(T&\
-    \ a, const T& b) {if (b<a) {a=b; return true;} return false;}\nconst int INTINF\
-    \ = 1000001000;\nconst int INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\n\
-    const ll LLINF = 1000000000000000000;\n#line 1 \"math/modint.hpp\"\n\n\n\n#line\
-    \ 1 \"math/external_gcd.hpp\"\n\n\n\n#line 5 \"math/external_gcd.hpp\"\n\n// g,x,y\n\
-    template<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T a, T b) {\n\
-    \    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n        T q = a\
-    \ / b;\n        T r = a % b;\n        a = b;\n        b = r;\n        \n     \
-    \   T xTemp = x0 - q * x1;\n        x0 = x1;\n        x1 = xTemp;\n        \n\
-    \        T yTemp = y0 - q * y1;\n        y0 = y1;\n        y1 = yTemp;\n    }\n\
-    \    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\n\ntemplate<int MOD>\n\
-    struct static_modint {\n    int value;\n\n    constexpr static_modint() : value(0)\
-    \ {}\n\n    constexpr static_modint(long long v) {\n        value = int(((v %\
-    \ MOD) + MOD) % MOD);\n    }\n\n    constexpr static_modint& operator+=(const\
+    \ 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\nusing\
+    \ namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
+    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
+    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
+    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
+    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
+    \ 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n#include\
+    \ <tuple>\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T\
+    \ a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n   \
+    \     T q = a / b;\n        T r = a % b;\n        a = b;\n        b = r;\n   \
+    \     \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n        x1 = xTemp;\n\
+    \        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n        y1 = yTemp;\n\
+    \    }\n    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\n\ntemplate<int\
+    \ MOD>\nstruct static_modint {\n    int value;\n\n    constexpr static_modint()\
+    \ : value(0) {}\n\n    constexpr static_modint(long long v) {\n        value =\
+    \ int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr static_modint& operator+=(const\
     \ static_modint& other) {\n        if ((value += other.value) >= MOD) value -=\
     \ MOD;\n        return *this;\n    }\n\n    constexpr static_modint& operator-=(const\
     \ static_modint& other) {\n        if ((value -= other.value) < 0) value += MOD;\n\
@@ -79,20 +79,20 @@ data:
     \ modint = static_modint<mod>;\nusing modint998244353  = modint<998244353>;\n\
     using modint1000000007 = modint<1000000007>;\n\n\n#line 1 \"formal-power-series/fps998.hpp\"\
     \n\n\n\n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\n\n\n\n#line\
-    \ 6 \"formal-power-series/formal-power-series.hpp\"\n\n\ntemplate <typename mint>\n\
-    struct FPS {\n  std::vector<mint> _vec;\n\n  constexpr int lg2(int N) const {\n\
-    \    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n    if ((1LL <<\
-    \ ret) < N) ret++;\n    return ret;\n  }\n\n  // \u30CA\u30A4\u30FC\u30D6\u306A\
-    \u30CB\u30E5\u30FC\u30C8\u30F3\u6CD5\u3067\u306E\u9006\u5143\u8A08\u7B97\n  FPS\
-    \ inv_naive(int deg) const {\n    assert(_vec[0] != mint(0)); // \u3055\u3042\u3089\
-    \u3056\u308C\u3070\u3001\u9006\u5143\u306E\u3066\u3072\u304E\u3044\u304D\u306B\
-    \u3053\u305D\u3042\u3089\u3056\u308C\u3002\n    if (deg == -1) deg = this->size();\n\
-    \    FPS g(1);\n    g._vec[0] = mint(_vec[0]).inv();\n    // g_{n+1} = 2 * g_n\
-    \ - f * (g_n)^2\n    for (int d = 1; d < deg; d <<= 1) {\n      FPS g_twice =\
-    \ g * mint(2);\n      FPS fgg = (*this).pre(d * 2) * g * g;\n\n      g = g_twice\
-    \ - fgg;\n      g.resize(d * 2);\n    }\n\n    return g.pre(deg);\n  }\n\n  //*/\n\
-    \n  FPS log(int deg = -1) const {\n    assert(_vec[0] == mint(1));\n\n    if (deg\
-    \ == -1) deg = size();\n    FPS df = this->diff();\n    FPS iv = this->inv(deg);\n\
+    \ 5 \"formal-power-series/formal-power-series.hpp\"\n#include <vector>\n\n\ntemplate\
+    \ <typename mint>\nstruct FPS {\n  std::vector<mint> _vec;\n\n  constexpr int\
+    \ lg2(int N) const {\n    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n\
+    \    if ((1LL << ret) < N) ret++;\n    return ret;\n  }\n\n  // \u30CA\u30A4\u30FC\
+    \u30D6\u306A\u30CB\u30E5\u30FC\u30C8\u30F3\u6CD5\u3067\u306E\u9006\u5143\u8A08\
+    \u7B97\n  FPS inv_naive(int deg) const {\n    assert(_vec[0] != mint(0)); // \u3055\
+    \u3042\u3089\u3056\u308C\u3070\u3001\u9006\u5143\u306E\u3066\u3072\u304E\u3044\
+    \u304D\u306B\u3053\u305D\u3042\u3089\u3056\u308C\u3002\n    if (deg == -1) deg\
+    \ = this->size();\n    FPS g(1);\n    g._vec[0] = mint(_vec[0]).inv();\n    //\
+    \ g_{n+1} = 2 * g_n - f * (g_n)^2\n    for (int d = 1; d < deg; d <<= 1) {\n \
+    \     FPS g_twice = g * mint(2);\n      FPS fgg = (*this).pre(d * 2) * g * g;\n\
+    \n      g = g_twice - fgg;\n      g.resize(d * 2);\n    }\n\n    return g.pre(deg);\n\
+    \  }\n\n  //*/\n\n  FPS log(int deg = -1) const {\n    assert(_vec[0] == mint(1));\n\
+    \n    if (deg == -1) deg = size();\n    FPS df = this->diff();\n    FPS iv = this->inv(deg);\n\
     \    FPS ret = (df * iv).pre(deg - 1).integral();\n\n    return ret;\n  }\n\n\
     \  FPS exp(int deg = -1) const {\n    assert(_vec[0] == mint(0));\n\n    if (deg\
     \ == -1) deg = size();\n    FPS h = {1}; // h: exp(f)\n\n    // h_2d = h * (f\
@@ -311,7 +311,7 @@ data:
   isVerificationFile: true
   path: test/verify/convolution/yosupo-normal-convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-07-09 00:18:19+09:00'
+  timestamp: '2024-08-21 21:41:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/convolution/yosupo-normal-convolution.test.cpp

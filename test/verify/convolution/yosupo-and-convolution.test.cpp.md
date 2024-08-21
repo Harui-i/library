@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -26,14 +26,14 @@ data:
     - https://judge.yosupo.jp/problem/bitwise_and_convolution
   bundledCode: "#line 1 \"test/verify/convolution/yosupo-and-convolution.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\n\
-    \n#line 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T& a, const\
-    \ T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class T> inline\
-    \ bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return false;}\n\
-    const int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst ll LLMAX\
-    \ = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line 1 \"math/modint.hpp\"\
-    \n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n#line 5 \"math/external_gcd.hpp\"\
-    \n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T\
+    \n#line 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\n\
+    using namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
+    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
+    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
+    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
+    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
+    \ 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n#include\
+    \ <tuple>\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T\
     \ a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n   \
     \     T q = a / b;\n        T r = a % b;\n        a = b;\n        b = r;\n   \
     \     \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n        x1 = xTemp;\n\
@@ -73,18 +73,18 @@ data:
     \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
     \ modint = static_modint<mod>;\nusing modint998244353  = modint<998244353>;\n\
     using modint1000000007 = modint<1000000007>;\n\n\n#line 1 \"convolution/superset-zeta-moebius-transform.hpp\"\
-    \n\n\n\n#line 5 \"convolution/superset-zeta-moebius-transform.hpp\"\n\ntemplate\
-    \ <class T, T (*op)(T, T) >\nstd::vector<T> superset_zeta_transform(const std::vector<T>&\
-    \ f) {\n\n  int n = 0; while ((1 << n) < (int)f.size()) n++;\n  assert((int)f.size()\
-    \ == (1 << n)); // f.size() should be power of 2.\n\n\n  std::vector<T> F = f;\n\
+    \n\n\n\n#include <vector>\n\ntemplate <class T, T (*op)(T, T) >\nstd::vector<T>\
+    \ superset_zeta_transform(const std::vector<T>& f) {\n\n  int n = 0; while ((1\
+    \ << n) < (int)f.size()) n++;\n  assert((int)f.size() == (1 << n)); // f.size()\
+    \ should be power of 2.\n\n\n  std::vector<T> F = f;\n  for (int k = 0; k < n;\
+    \ k++) {\n    for (int s = 0; s < 1 << n; s++) {\n      if (!((s >> k) & 1)) F[s]\
+    \ = op(F[s], F[s ^ (1 << k)]);\n    }\n  }\n  return F;\n}\n\n\ntemplate <class\
+    \ T, T (*invop)(T, T) >\nstd::vector<T> superset_moebius_transform(const std::vector<T>&\
+    \ f) {\n  int n = 0; while ((1 << n) < (int)f.size()) n++;\n  assert((int)f.size()\
+    \ == (1 << n)); // f.size() should be power of 2.\n\n  std::vector<T> F = f;\n\
     \  for (int k = 0; k < n; k++) {\n    for (int s = 0; s < 1 << n; s++) {\n   \
-    \   if (!((s >> k) & 1)) F[s] = op(F[s], F[s ^ (1 << k)]);\n    }\n  }\n  return\
-    \ F;\n}\n\n\ntemplate <class T, T (*invop)(T, T) >\nstd::vector<T> superset_moebius_transform(const\
-    \ std::vector<T>& f) {\n  int n = 0; while ((1 << n) < (int)f.size()) n++;\n \
-    \ assert((int)f.size() == (1 << n)); // f.size() should be power of 2.\n\n  std::vector<T>\
-    \ F = f;\n  for (int k = 0; k < n; k++) {\n    for (int s = 0; s < 1 << n; s++)\
-    \ {\n      if (!((s >> k) & 1)) F[s] = invop(F[s], F[s ^ (1 << k)]);\n    }\n\
-    \  }\n  return F;\n}\n\n\n#line 6 \"test/verify/convolution/yosupo-and-convolution.test.cpp\"\
+    \   if (!((s >> k) & 1)) F[s] = invop(F[s], F[s ^ (1 << k)]);\n    }\n  }\n  return\
+    \ F;\n}\n\n\n#line 6 \"test/verify/convolution/yosupo-and-convolution.test.cpp\"\
     \n\nusing mint = modint998244353;\n\nmint op(mint a, mint b) {\n  return a + b;\n\
     }\n\nmint invop(mint a, mint b) {\n  return a - b;\n}\n\nint main() {\n  ios::sync_with_stdio(0);\
     \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  vector<mint> A(1 << N); for\
@@ -124,7 +124,7 @@ data:
   isVerificationFile: true
   path: test/verify/convolution/yosupo-and-convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-06-29 08:51:47+09:00'
+  timestamp: '2024-08-21 21:41:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/convolution/yosupo-and-convolution.test.cpp

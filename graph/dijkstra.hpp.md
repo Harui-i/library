@@ -14,64 +14,66 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"graph/dijkstra.hpp\"\n\n\n\n#line 1 \"graph/graph_template.hpp\"\
-    \n\n\n\n#include <vector>\n\ntemplate <typename T>\nstruct Edge {\n  int from;\
-    \ int to;\n  T cost;\n\n  Edge(int _from, int _to, T _cost) : from(_from), to(_to),\
-    \ cost(_cost) {}\n\n  // unweighted\n  Edge(int _from, int _to) : from(_from),\
-    \ to(_to), cost(T(1)) {}\n\n  bool operator==(const Edge& rhs) const {\n    return\
-    \ from == rhs.from && to == rhs.to && cost == rhs.cost;\n  }\n\n  bool operator<(const\
-    \ Edge& rhs) const {\n    return cost < rhs.cost;\n  }\n  \n  bool operator>(const\
-    \ Edge& rhs) const {\n    return cost > rhs.cost;\n  }\n\n};\n\n\ntemplate <typename\
+  bundledCode: "#line 1 \"graph/dijkstra.hpp\"\n\n\n\n#include <queue>\n#include <vector>\n\
+    #include <utility>\n\n#line 1 \"graph/graph_template.hpp\"\n\n\n\n#line 5 \"graph/graph_template.hpp\"\
+    \n\ntemplate <typename T>\nstruct Edge {\n  int from; int to;\n  T cost;\n\n \
+    \ Edge(int _from, int _to, T _cost) : from(_from), to(_to), cost(_cost) {}\n\n\
+    \  // unweighted\n  Edge(int _from, int _to) : from(_from), to(_to), cost(T(1))\
+    \ {}\n\n  bool operator==(const Edge& rhs) const {\n    return from == rhs.from\
+    \ && to == rhs.to && cost == rhs.cost;\n  }\n\n  bool operator<(const Edge& rhs)\
+    \ const {\n    return cost < rhs.cost;\n  }\n  \n  bool operator>(const Edge&\
+    \ rhs) const {\n    return cost > rhs.cost;\n  }\n\n};\n\n\ntemplate <typename\
     \ T>\nstruct Graph : std::vector<std::vector<Edge<T>>> {\n\n  using std::vector<std::vector<Edge<T>>>::vector;\
     \ // inherit constructors\n\n  void add_edge(int i, Edge<T> e) {\n    (*this)[i].push_back(e);\n\
     \  }\n\n  void add_edge(Edge<T> e) {\n    (*this)[e.from].push_back(e);\n  }\n\
     \n  // weighted\n  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
-    \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 5\
+    \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 9\
     \ \"graph/dijkstra.hpp\"\n\ntemplate <typename T>\nstd::vector<T> dijkstra(const\
-    \ Graph<T>& graph, int start) {\n  int N = (int)graph.size();\n  vector<T>dist(N,\
-    \ T(-1));\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>>que;\n\
-    \n  que.push(make_pair(T(0), start));\n  dist[start] = T(0);\n\n  while (!que.empty())\
-    \ {\n    P front = que.top(); que.pop();\n\n    if (dist[front.second] < front.first)\
-    \ continue;\n\n    for (Edge ed : graph[front.second]) {\n\n      if (dist[ed.to]\
-    \ == T(-1) || dist[ed.to] > front.first + ed.cost) {\n        dist[ed.to] = front.first\
-    \ + ed.cost;\n        que.emplace(dist[ed.to], ed.to);\n      }\n    }\n  }\n\n\
-    \  return dist;\n}\n\ntemplate <typename T>\npair<vector<T>, vector<int>> dijkstra_path(const\
-    \ Graph<T>& graph, int start) {\n  int N = (int)graph.size();\n\n  using P = pair<T,\
-    \ int>;\n  vector<T>dist(N, T(-1));\n  vector<int>prev(N, -1);\n\n  priority_queue<P,\
-    \ vector<P>, greater<P>>que;\n  que.push(make_pair(T(0), start));\n  dist[start]\
-    \ = T(0);\n\n  while (!que.empty()) {\n    P front = que.top(); que.pop();\n\n\
-    \    if (dist[front.second] < front.first) continue;\n\n    for (Edge ed : graph[front.second])\
+    \ Graph<T>& graph, int start) {\n  int N = (int)graph.size();\n  std::vector<T>dist(N,\
+    \ T(-1));\n  using P = std::pair<T, int>;\n\n  std::priority_queue<P, std::vector<P>,\
+    \ std::greater<P>>que;\n\n  que.push(make_pair(T(0), start));\n  dist[start] =\
+    \ T(0);\n\n  while (!que.empty()) {\n    P front = que.top(); que.pop();\n\n \
+    \   if (dist[front.second] < front.first) continue;\n\n    for (Edge ed : graph[front.second])\
+    \ {\n\n      if (dist[ed.to] == T(-1) || dist[ed.to] > front.first + ed.cost)\
+    \ {\n        dist[ed.to] = front.first + ed.cost;\n        que.emplace(dist[ed.to],\
+    \ ed.to);\n      }\n    }\n  }\n\n  return dist;\n}\n\ntemplate <typename T>\n\
+    std::pair<std::vector<T>, std::vector<int>> dijkstra_path(const Graph<T>& graph,\
+    \ int start) {\n  int N = (int)graph.size();\n\n  using P = std::pair<T, int>;\n\
+    \  std::vector<T>dist(N, T(-1));\n  std::vector<int>prev(N, -1);\n\n  std::priority_queue<P,\
+    \ std::vector<P>, std::greater<P>>que;\n  que.push(make_pair(T(0), start));\n\
+    \  dist[start] = T(0);\n\n  while (!que.empty()) {\n    P front = que.top(); que.pop();\n\
+    \n    if (dist[front.second] < front.first) continue;\n\n    for (Edge ed : graph[front.second])\
     \ {\n      if (dist[ed.to] == T(-1) || dist[ed.to] > front.first + ed.cost) {\n\
     \        dist[ed.to] = front.first + ed.cost;\n        prev[ed.to] = front.second;\n\
     \        que.emplace(dist[ed.to], ed.to);\n      }\n    }\n  }\n\n  return make_pair(dist,\
     \ prev);\n}\n\n\n"
   code: "#ifndef HARUILIB_GRAPH_DIJKSTRA_HPP\n#define HARUILIB_GRAPH_DIJKSTRA_HPP\n\
-    \n#include \"graph/graph_template.hpp\"\n\ntemplate <typename T>\nstd::vector<T>\
-    \ dijkstra(const Graph<T>& graph, int start) {\n  int N = (int)graph.size();\n\
-    \  vector<T>dist(N, T(-1));\n  using P = pair<T, int>;\n\n  priority_queue<P,\
-    \ vector<P>, greater<P>>que;\n\n  que.push(make_pair(T(0), start));\n  dist[start]\
-    \ = T(0);\n\n  while (!que.empty()) {\n    P front = que.top(); que.pop();\n\n\
-    \    if (dist[front.second] < front.first) continue;\n\n    for (Edge ed : graph[front.second])\
-    \ {\n\n      if (dist[ed.to] == T(-1) || dist[ed.to] > front.first + ed.cost)\
-    \ {\n        dist[ed.to] = front.first + ed.cost;\n        que.emplace(dist[ed.to],\
-    \ ed.to);\n      }\n    }\n  }\n\n  return dist;\n}\n\ntemplate <typename T>\n\
-    pair<vector<T>, vector<int>> dijkstra_path(const Graph<T>& graph, int start) {\n\
-    \  int N = (int)graph.size();\n\n  using P = pair<T, int>;\n  vector<T>dist(N,\
-    \ T(-1));\n  vector<int>prev(N, -1);\n\n  priority_queue<P, vector<P>, greater<P>>que;\n\
-    \  que.push(make_pair(T(0), start));\n  dist[start] = T(0);\n\n  while (!que.empty())\
+    \n#include <queue>\n#include <vector>\n#include <utility>\n\n#include \"graph/graph_template.hpp\"\
+    \n\ntemplate <typename T>\nstd::vector<T> dijkstra(const Graph<T>& graph, int\
+    \ start) {\n  int N = (int)graph.size();\n  std::vector<T>dist(N, T(-1));\n  using\
+    \ P = std::pair<T, int>;\n\n  std::priority_queue<P, std::vector<P>, std::greater<P>>que;\n\
+    \n  que.push(make_pair(T(0), start));\n  dist[start] = T(0);\n\n  while (!que.empty())\
     \ {\n    P front = que.top(); que.pop();\n\n    if (dist[front.second] < front.first)\
-    \ continue;\n\n    for (Edge ed : graph[front.second]) {\n      if (dist[ed.to]\
+    \ continue;\n\n    for (Edge ed : graph[front.second]) {\n\n      if (dist[ed.to]\
     \ == T(-1) || dist[ed.to] > front.first + ed.cost) {\n        dist[ed.to] = front.first\
-    \ + ed.cost;\n        prev[ed.to] = front.second;\n        que.emplace(dist[ed.to],\
-    \ ed.to);\n      }\n    }\n  }\n\n  return make_pair(dist, prev);\n}\n\n#endif\
-    \ // HARUILIB_GRAPH_DIJKSTRA_HPP"
+    \ + ed.cost;\n        que.emplace(dist[ed.to], ed.to);\n      }\n    }\n  }\n\n\
+    \  return dist;\n}\n\ntemplate <typename T>\nstd::pair<std::vector<T>, std::vector<int>>\
+    \ dijkstra_path(const Graph<T>& graph, int start) {\n  int N = (int)graph.size();\n\
+    \n  using P = std::pair<T, int>;\n  std::vector<T>dist(N, T(-1));\n  std::vector<int>prev(N,\
+    \ -1);\n\n  std::priority_queue<P, std::vector<P>, std::greater<P>>que;\n  que.push(make_pair(T(0),\
+    \ start));\n  dist[start] = T(0);\n\n  while (!que.empty()) {\n    P front = que.top();\
+    \ que.pop();\n\n    if (dist[front.second] < front.first) continue;\n\n    for\
+    \ (Edge ed : graph[front.second]) {\n      if (dist[ed.to] == T(-1) || dist[ed.to]\
+    \ > front.first + ed.cost) {\n        dist[ed.to] = front.first + ed.cost;\n \
+    \       prev[ed.to] = front.second;\n        que.emplace(dist[ed.to], ed.to);\n\
+    \      }\n    }\n  }\n\n  return make_pair(dist, prev);\n}\n\n#endif // HARUILIB_GRAPH_DIJKSTRA_HPP"
   dependsOn:
   - graph/graph_template.hpp
   isVerificationFile: false
   path: graph/dijkstra.hpp
   requiredBy: []
-  timestamp: '2024-08-15 16:38:21+09:00'
+  timestamp: '2024-08-21 21:41:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-shortest-path.test.cpp

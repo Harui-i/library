@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -30,53 +30,54 @@ data:
     - https://yukicoder.me/problems/no/372
   bundledCode: "#line 1 \"test/verify/yuki-372-itsautomatic.test.cpp\"\n#define PROBLEM\
     \ \"https://yukicoder.me/problems/no/372\"\n\n#line 1 \"template/template.hpp\"\
-    \n#include <bits/stdc++.h>\nusing namespace std;\nusing ll = long long;\ntemplate<class\
-    \ T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b; return true;} return\
-    \ false;}\ntemplate<class T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b;\
-    \ return true;} return false;}\nconst int INTINF = 1000001000;\nconst int INTMAX\
-    \ = 2147483647;\nconst ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n\
-    #line 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n#line\
-    \ 5 \"math/external_gcd.hpp\"\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T,\
-    \ T, T> extendedGCD(T a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while\
-    \ (b != 0) {\n        T q = a / b;\n        T r = a % b;\n        a = b;\n   \
-    \     b = r;\n        \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n   \
-    \     x1 = xTemp;\n        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n\
-    \        y1 = yTemp;\n    }\n    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\
-    \n\ntemplate<int MOD>\nstruct static_modint {\n    int value;\n\n    constexpr\
-    \ static_modint() : value(0) {}\n\n    constexpr static_modint(long long v) {\n\
-    \        value = int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr static_modint&\
-    \ operator+=(const static_modint& other) {\n        if ((value += other.value)\
-    \ >= MOD) value -= MOD;\n        return *this;\n    }\n\n    constexpr static_modint&\
-    \ operator-=(const static_modint& other) {\n        if ((value -= other.value)\
-    \ < 0) value += MOD;\n        return *this;\n    }\n\n    constexpr static_modint&\
-    \ operator*=(const static_modint& other) {\n        value = int((long long)value\
-    \ * other.value % MOD);\n        return *this;\n    }\n\n    constexpr static_modint\
-    \ operator+(const static_modint& other) const {\n        return static_modint(*this)\
-    \ += other;\n    }\n\n    constexpr static_modint operator-(const static_modint&\
-    \ other) const {\n        return static_modint(*this) -= other;\n    }\n\n   \
-    \ constexpr static_modint operator*(const static_modint& other) const {\n    \
-    \    return static_modint(*this) *= other;\n    }\n\n    constexpr static_modint\
-    \ pow(long long exp) const {\n        static_modint base = *this, res = 1;\n \
-    \       while (exp > 0) {\n            if (exp & 1) res *= base;\n           \
-    \ base *= base;\n            exp >>= 1;\n        }\n        return res;\n    }\n\
-    \n    constexpr static_modint inv() const {\n        //return pow(MOD - 2);\n\
-    \        int g,x,y;\n        tie(g,x,y) = extendedGCD(value, MOD);\n        assert(g==1);\n\
-    \        if (x < 0) {\n            x += MOD;\n        }\n        //cerr << g <<\
-    \ \" \" << x << \" \" << y << \" \" << value << endl;\n        //assert((((long)x*value)%MOD\
-    \ + MOD)%MOD == 1);\n        return x;\n    }\n\n    constexpr static_modint&\
-    \ operator/=(const static_modint& other) {\n        return *this *= other.inv();\n\
-    \    }\n\n    constexpr static_modint operator/(const static_modint& other) const\
-    \ {\n        return static_modint(*this) /= other;\n    }\n\n    constexpr bool\
-    \ operator!=(const static_modint& other) const {\n        return val() != other.val();\n\
-    \    }\n\n    constexpr bool operator==(const static_modint& other) const {\n\
-    \        return val() == other.val();\n    }\n\n    int val() const {\n      return\
-    \ this->value;\n    }\n\n    friend std::ostream& operator<<(std::ostream& os,\
-    \ const static_modint& mi) {\n        return os << mi.value;\n    }\n\n    friend\
-    \ std::istream& operator>>(std::istream& is, static_modint& mi) {\n        long\
-    \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
-    \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
-    \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\n\n#line\
-    \ 1 \"dp/automaton/automaton.hpp\"\n// https://shino16.github.io/blog/post/algo/%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3/\n\
+    \n#include <iostream>\n#include <cassert>\nusing namespace std;\nusing ll = long\
+    \ long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b;\
+    \ return true;} return false;}\ntemplate<class T> inline bool chmin(T& a, const\
+    \ T& b) {if (b<a) {a=b; return true;} return false;}\nconst int INTINF = 1000001000;\n\
+    const int INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\nconst ll\
+    \ LLINF = 1000000000000000000;\n#line 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"\
+    math/external_gcd.hpp\"\n\n\n\n#include <tuple>\n\n// g,x,y\ntemplate<typename\
+    \ T>\nconstexpr std::tuple<T, T, T> extendedGCD(T a, T b) {\n    T x0 = 1, y0\
+    \ = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n        T q = a / b;\n        T\
+    \ r = a % b;\n        a = b;\n        b = r;\n        \n        T xTemp = x0 -\
+    \ q * x1;\n        x0 = x1;\n        x1 = xTemp;\n        \n        T yTemp =\
+    \ y0 - q * y1;\n        y0 = y1;\n        y1 = yTemp;\n    }\n    return {a, x0,\
+    \ y0};\n}\n\n#line 5 \"math/modint.hpp\"\n\ntemplate<int MOD>\nstruct static_modint\
+    \ {\n    int value;\n\n    constexpr static_modint() : value(0) {}\n\n    constexpr\
+    \ static_modint(long long v) {\n        value = int(((v % MOD) + MOD) % MOD);\n\
+    \    }\n\n    constexpr static_modint& operator+=(const static_modint& other)\
+    \ {\n        if ((value += other.value) >= MOD) value -= MOD;\n        return\
+    \ *this;\n    }\n\n    constexpr static_modint& operator-=(const static_modint&\
+    \ other) {\n        if ((value -= other.value) < 0) value += MOD;\n        return\
+    \ *this;\n    }\n\n    constexpr static_modint& operator*=(const static_modint&\
+    \ other) {\n        value = int((long long)value * other.value % MOD);\n     \
+    \   return *this;\n    }\n\n    constexpr static_modint operator+(const static_modint&\
+    \ other) const {\n        return static_modint(*this) += other;\n    }\n\n   \
+    \ constexpr static_modint operator-(const static_modint& other) const {\n    \
+    \    return static_modint(*this) -= other;\n    }\n\n    constexpr static_modint\
+    \ operator*(const static_modint& other) const {\n        return static_modint(*this)\
+    \ *= other;\n    }\n\n    constexpr static_modint pow(long long exp) const {\n\
+    \        static_modint base = *this, res = 1;\n        while (exp > 0) {\n   \
+    \         if (exp & 1) res *= base;\n            base *= base;\n            exp\
+    \ >>= 1;\n        }\n        return res;\n    }\n\n    constexpr static_modint\
+    \ inv() const {\n        //return pow(MOD - 2);\n        int g,x,y;\n        tie(g,x,y)\
+    \ = extendedGCD(value, MOD);\n        assert(g==1);\n        if (x < 0) {\n  \
+    \          x += MOD;\n        }\n        //cerr << g << \" \" << x << \" \" <<\
+    \ y << \" \" << value << endl;\n        //assert((((long)x*value)%MOD + MOD)%MOD\
+    \ == 1);\n        return x;\n    }\n\n    constexpr static_modint& operator/=(const\
+    \ static_modint& other) {\n        return *this *= other.inv();\n    }\n\n   \
+    \ constexpr static_modint operator/(const static_modint& other) const {\n    \
+    \    return static_modint(*this) /= other;\n    }\n\n    constexpr bool operator!=(const\
+    \ static_modint& other) const {\n        return val() != other.val();\n    }\n\
+    \n    constexpr bool operator==(const static_modint& other) const {\n        return\
+    \ val() == other.val();\n    }\n\n    int val() const {\n      return this->value;\n\
+    \    }\n\n    friend std::ostream& operator<<(std::ostream& os, const static_modint&\
+    \ mi) {\n        return os << mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream&\
+    \ is, static_modint& mi) {\n        long long x;\n        is >> x;\n        mi\
+    \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
+    \ modint = static_modint<mod>;\nusing modint998244353  = modint<998244353>;\n\
+    using modint1000000007 = modint<1000000007>;\n\n\n#line 1 \"dp/automaton/automaton.hpp\"\
+    \n// https://shino16.github.io/blog/post/algo/%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3/\n\
     // Dfa\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\ntemplate <typename Alphabet,\
     \ typename State>\nclass Dfa {\npublic:\n  virtual State init() const = 0; //\
     \ \u521D\u671F\u72B6\u614B\u3092\u8FD4\u3059\n  virtual State next([[maybe_unused]]\
@@ -107,32 +108,32 @@ data:
     \  bool accept(State s) const override {\n    return s == 0;\n  }\n\n  bool successful\
     \ ([[maybe_unused]] State  s) const override {\n    return false;\n  }\n\n  bool\
     \ unsuccessful([[maybe_unused]] State s) const override {\n    return false;\n\
-    \  }\n  \n};\n#line 6 \"test/verify/yuki-372-itsautomatic.test.cpp\"\n\nusing\
-    \ mint = modint1000000007;\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
-    \ cout.tie(0);\n\n  string S; cin >> S;\n  vector<char> svec(S.begin(), S.end());\n\
-    \n  int M; cin >> M;\n\n  vector<char> alphabet = { '0', '1', '2', '3', '4', '5',\
-    \ '6', '7', '8', '9' };\n\n  RemainderAutomaton<char> ra(S.size(), M);\n\n\n \
-    \ mint ans = 0;\n  vector<mint>dp1(M), dp2(M);\n\n\n  for (int i = 0; i < (int)\
-    \ S.size(); i++) {\n    if (S[i] == '0') ans += 1;\n    else {\n      dp2[(S[i]\
-    \ - '0') % M] += 1; // only one word substring, 'S[i]' .\n    }\n    for (int\
-    \ j = 0; j < M; j++) {\n\n      dp2[j] += dp1[j]; // the case when S[i] is not\
-    \ choosed\n\n      dp2[(j * 10 + S[i] - '0') % M] += dp1[j]; // the case when\
-    \ S[i] is choosen and added into past substrings\n\n    }\n\n    swap(dp1, dp2);\n\
-    \    dp2.assign(M, 0);\n  }\n  for(int i=0; i<M; i++) {\n    if (ra.accept(i))\
+    \  }\n  \n};\n#line 6 \"test/verify/yuki-372-itsautomatic.test.cpp\"\n#include\
+    \ <vector>\n\nusing mint = modint1000000007;\n\nint main() {\n  ios::sync_with_stdio(0);\
+    \ cin.tie(0); cout.tie(0);\n\n  string S; cin >> S;\n  vector<char> svec(S.begin(),\
+    \ S.end());\n\n  int M; cin >> M;\n\n  vector<char> alphabet = { '0', '1', '2',\
+    \ '3', '4', '5', '6', '7', '8', '9' };\n\n  RemainderAutomaton<char> ra(S.size(),\
+    \ M);\n\n\n  mint ans = 0;\n  vector<mint>dp1(M), dp2(M);\n\n\n  for (int i =\
+    \ 0; i < (int) S.size(); i++) {\n    if (S[i] == '0') ans += 1;\n    else {\n\
+    \      dp2[(S[i] - '0') % M] += 1; // only one word substring, 'S[i]' .\n    }\n\
+    \    for (int j = 0; j < M; j++) {\n\n      dp2[j] += dp1[j]; // the case when\
+    \ S[i] is not choosed\n\n      dp2[(j * 10 + S[i] - '0') % M] += dp1[j]; // the\
+    \ case when S[i] is choosen and added into past substrings\n\n    }\n\n    swap(dp1,\
+    \ dp2);\n    dp2.assign(M, 0);\n  }\n  for(int i=0; i<M; i++) {\n    if (ra.accept(i))\
     \ ans += dp1[i];\n  }\n  cout << ans.val() << endl;\n\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/372\"\n\n#include \"template/template.hpp\"\
-    \n#include \"math/modint.hpp\"\n#include \"dp/automaton/remainder.hpp\"\n\nusing\
-    \ mint = modint1000000007;\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
-    \ cout.tie(0);\n\n  string S; cin >> S;\n  vector<char> svec(S.begin(), S.end());\n\
-    \n  int M; cin >> M;\n\n  vector<char> alphabet = { '0', '1', '2', '3', '4', '5',\
-    \ '6', '7', '8', '9' };\n\n  RemainderAutomaton<char> ra(S.size(), M);\n\n\n \
-    \ mint ans = 0;\n  vector<mint>dp1(M), dp2(M);\n\n\n  for (int i = 0; i < (int)\
-    \ S.size(); i++) {\n    if (S[i] == '0') ans += 1;\n    else {\n      dp2[(S[i]\
-    \ - '0') % M] += 1; // only one word substring, 'S[i]' .\n    }\n    for (int\
-    \ j = 0; j < M; j++) {\n\n      dp2[j] += dp1[j]; // the case when S[i] is not\
-    \ choosed\n\n      dp2[(j * 10 + S[i] - '0') % M] += dp1[j]; // the case when\
-    \ S[i] is choosen and added into past substrings\n\n    }\n\n    swap(dp1, dp2);\n\
-    \    dp2.assign(M, 0);\n  }\n  for(int i=0; i<M; i++) {\n    if (ra.accept(i))\
+    \n#include \"math/modint.hpp\"\n#include \"dp/automaton/remainder.hpp\"\n#include\
+    \ <vector>\n\nusing mint = modint1000000007;\n\nint main() {\n  ios::sync_with_stdio(0);\
+    \ cin.tie(0); cout.tie(0);\n\n  string S; cin >> S;\n  vector<char> svec(S.begin(),\
+    \ S.end());\n\n  int M; cin >> M;\n\n  vector<char> alphabet = { '0', '1', '2',\
+    \ '3', '4', '5', '6', '7', '8', '9' };\n\n  RemainderAutomaton<char> ra(S.size(),\
+    \ M);\n\n\n  mint ans = 0;\n  vector<mint>dp1(M), dp2(M);\n\n\n  for (int i =\
+    \ 0; i < (int) S.size(); i++) {\n    if (S[i] == '0') ans += 1;\n    else {\n\
+    \      dp2[(S[i] - '0') % M] += 1; // only one word substring, 'S[i]' .\n    }\n\
+    \    for (int j = 0; j < M; j++) {\n\n      dp2[j] += dp1[j]; // the case when\
+    \ S[i] is not choosed\n\n      dp2[(j * 10 + S[i] - '0') % M] += dp1[j]; // the\
+    \ case when S[i] is choosen and added into past substrings\n\n    }\n\n    swap(dp1,\
+    \ dp2);\n    dp2.assign(M, 0);\n  }\n  for(int i=0; i<M; i++) {\n    if (ra.accept(i))\
     \ ans += dp1[i];\n  }\n  cout << ans.val() << endl;\n\n\n  return 0;\n}"
   dependsOn:
   - template/template.hpp
@@ -143,7 +144,7 @@ data:
   isVerificationFile: true
   path: test/verify/yuki-372-itsautomatic.test.cpp
   requiredBy: []
-  timestamp: '2024-06-29 08:51:47+09:00'
+  timestamp: '2024-08-21 21:41:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yuki-372-itsautomatic.test.cpp

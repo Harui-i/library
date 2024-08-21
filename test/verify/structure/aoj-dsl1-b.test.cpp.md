@@ -5,7 +5,7 @@ data:
     path: structure/potentialized-union-find-tree.hpp
     title: "Potentialized Union Find Tree (\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u3064\
       \u304DUnionFind\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -20,14 +20,14 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_1_B
   bundledCode: "#line 1 \"test/verify/structure/aoj-dsl1-b.test.cpp\"\n#define PROBLEM\
     \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_1_B\"\n\n#line\
-    \ 1 \"template/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\
-    using ll = long long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if\
-    \ (a<b) {a=b; return true;} return false;}\ntemplate<class T> inline bool chmin(T&\
-    \ a, const T& b) {if (b<a) {a=b; return true;} return false;}\nconst int INTINF\
-    \ = 1000001000;\nconst int INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\n\
-    const ll LLINF = 1000000000000000000;\n#line 1 \"structure/potentialized-union-find-tree.hpp\"\
-    \n\n\n\n#line 5 \"structure/potentialized-union-find-tree.hpp\"\n\ntemplate <typename\
-    \ T, T(*op)(T, T), T(*invop)(T, T), T(*e)()>\nstruct PotentializedUnionFindTree\
+    \ 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\nusing\
+    \ namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
+    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
+    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
+    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
+    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
+    \ 1 \"structure/potentialized-union-find-tree.hpp\"\n\n\n\n#include <vector>\n\
+    \ntemplate <typename T, T(*op)(T, T), T(*invop)(T, T), T(*e)()>\nstruct PotentializedUnionFindTree\
     \ {\nprivate:\n  int n;\n  std::vector<int> parent;\n  std::vector<int> rank;\n\
     \  std::vector<T> potential;\n\npublic:\n  explicit PotentializedUnionFindTree(int\
     \ _n) : n(_n), parent(_n), rank(_n, 0), potential(_n, e()) {\n    for (int i =\
@@ -73,7 +73,7 @@ data:
   isVerificationFile: true
   path: test/verify/structure/aoj-dsl1-b.test.cpp
   requiredBy: []
-  timestamp: '2024-06-29 08:51:47+09:00'
+  timestamp: '2024-08-21 21:41:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/structure/aoj-dsl1-b.test.cpp
