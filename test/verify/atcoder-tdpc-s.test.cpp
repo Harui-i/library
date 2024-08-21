@@ -1,10 +1,13 @@
-//#de   fi  n e PRO  LE  M "https://atcoder.jp/contests/dp/tasks/dp_s"
+#define IGNORE
+#define PROBLEM "https://atcoder.jp/contests/dp/tasks/dp_s"
 
-#include "../../template/template.hpp"
-#include "../../math/modint.hpp"
-#include "../../dp/automaton/automaton.hpp"
+#include "template/template.hpp"
+#include "math/modint.hpp"
+#include "dp/automaton/automaton.hpp"
+#include <vector>
+#include <map>
 
-using mint = modint100000007;
+using mint = modint1000000007;
 
 struct dpState {
   int cmp_state; // -1: less than K, 0: equal to K, 1: greater than K
