@@ -28,5 +28,9 @@
 "test/verify/yosupo-vertex-add-subtree-sum.test.cpp": "2024-08-21 21:41:37 +0900",
 "test/verify/yosupo-vertex-set-path-composite.test.cpp": "2024-08-21 21:41:37 +0900",
 "test/verify/yuki-372-itsautomatic.test.cpp": "2024-08-21 21:41:37 +0900",
-"test/verify/yuki-9000.test.cpp": "2024-05-29 18:27:54 +0900"
+"test/verify/yuki-9000.test.cpp": "2024-05-29 18:27:54 +0900",
+"unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp": "2024-08-21 21:41:37 +0900",
+"unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp": "2024-08-21 21:41:37 +0900",
+"unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp": "2024-08-21 21:41:37 +0900",
+"unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp": "2024-08-21 21:41:37 +0900"
 }
