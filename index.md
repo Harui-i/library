@@ -62,6 +62,9 @@ data:
   - name: graph
     pages:
     - icon: ':heavy_check_mark:'
+      path: graph/bellmanford.hpp
+      title: graph/bellmanford.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/diameter.hpp
       title: graph/diameter.hpp
     - icon: ':heavy_check_mark:'
@@ -145,6 +148,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/aoj-dpl3-c.test.cpp
       title: test/verify/aoj-dpl3-c.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/aoj-grl-1b.test.cpp
+      title: test/verify/aoj-grl-1b.test.cpp
     - icon: ':x:'
       path: test/verify/atcoder-tdpc-s.test.cpp
       title: test/verify/atcoder-tdpc-s.test.cpp

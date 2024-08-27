@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/bellmanford.hpp
+    title: graph/bellmanford.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/diameter.hpp
     title: graph/diameter.hpp
   - icon: ':heavy_check_mark:'
@@ -12,6 +15,9 @@ data:
     path: graph/tree/heavy_light_decomposition.hpp
     title: graph/tree/heavy_light_decomposition.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/verify/aoj-grl-1b.test.cpp
+    title: test/verify/aoj-grl-1b.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-shortest-path.test.cpp
     title: test/verify/yosupo-shortest-path.test.cpp
@@ -67,6 +73,7 @@ data:
   requiredBy:
   - graph/tree/heavy_light_decomposition.hpp
   - graph/dijkstra.hpp
+  - graph/bellmanford.hpp
   - graph/diameter.hpp
   timestamp: '2024-08-15 16:38:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -76,6 +83,7 @@ data:
   - test/verify/yosupo-tree-diameter.test.cpp
   - test/verify/yosupo-vertex-add-path-sum.test.cpp
   - test/verify/yosupo-vertex-set-path-composite.test.cpp
+  - test/verify/aoj-grl-1b.test.cpp
 documentation_of: graph/graph_template.hpp
 layout: document
 redirect_from:

@@ -21,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-dpl3-c.test.cpp
     title: test/verify/aoj-dpl3-c.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/aoj-grl-1b.test.cpp
+    title: test/verify/aoj-grl-1b.test.cpp
   - icon: ':x:'
     path: test/verify/atcoder-tdpc-s.test.cpp
     title: test/verify/atcoder-tdpc-s.test.cpp
@@ -193,6 +196,7 @@ data:
   - test/verify/atcoder-tdpc-s.test.cpp
   - test/verify/structure/aoj-dsl1-b.test.cpp
   - test/verify/yosupo-vertex-set-path-composite.test.cpp
+  - test/verify/aoj-grl-1b.test.cpp
   - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
   - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
