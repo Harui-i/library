@@ -42,31 +42,32 @@ data:
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
     \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 1\
     \ \"graph/dijkstra.hpp\"\n\n\n\n#include <queue>\n#line 6 \"graph/dijkstra.hpp\"\
-    \n#include <utility>\n\n#line 9 \"graph/dijkstra.hpp\"\n\ntemplate <typename T>\n\
-    std::vector<T> dijkstra(const Graph<T>& graph, int start) {\n  int N = (int)graph.size();\n\
-    \  std::vector<T>dist(N, T(-1));\n  using P = std::pair<T, int>;\n\n  std::priority_queue<P,\
+    \n#include <limits>\n#include <utility>\n\n#line 10 \"graph/dijkstra.hpp\"\n\n\
+    template <typename T>\nstd::vector<T> dijkstra(const Graph<T>& graph, int start)\
+    \ {\n  int N = (int)graph.size();\n  constexpr T INF = numeric_limits<T>::max();\n\
+    \  std::vector<T>dist(N, INF);\n  using P = std::pair<T, int>;\n\n  std::priority_queue<P,\
     \ std::vector<P>, std::greater<P>>que;\n\n  que.push(make_pair(T(0), start));\n\
     \  dist[start] = T(0);\n\n  while (!que.empty()) {\n    P front = que.top(); que.pop();\n\
     \n    if (dist[front.second] < front.first) continue;\n\n    for (Edge ed : graph[front.second])\
-    \ {\n\n      if (dist[ed.to] == T(-1) || dist[ed.to] > front.first + ed.cost)\
-    \ {\n        dist[ed.to] = front.first + ed.cost;\n        que.emplace(dist[ed.to],\
-    \ ed.to);\n      }\n    }\n  }\n\n  return dist;\n}\n\ntemplate <typename T>\n\
-    std::pair<std::vector<T>, std::vector<int>> dijkstra_path(const Graph<T>& graph,\
-    \ int start) {\n  int N = (int)graph.size();\n\n  using P = std::pair<T, int>;\n\
-    \  std::vector<T>dist(N, T(-1));\n  std::vector<int>prev(N, -1);\n\n  std::priority_queue<P,\
-    \ std::vector<P>, std::greater<P>>que;\n  que.push(make_pair(T(0), start));\n\
-    \  dist[start] = T(0);\n\n  while (!que.empty()) {\n    P front = que.top(); que.pop();\n\
-    \n    if (dist[front.second] < front.first) continue;\n\n    for (Edge ed : graph[front.second])\
-    \ {\n      if (dist[ed.to] == T(-1) || dist[ed.to] > front.first + ed.cost) {\n\
-    \        dist[ed.to] = front.first + ed.cost;\n        prev[ed.to] = front.second;\n\
+    \ {\n\n      if (dist[ed.to] > front.first + ed.cost) {\n        dist[ed.to] =\
+    \ front.first + ed.cost;\n        que.emplace(dist[ed.to], ed.to);\n      }\n\
+    \    }\n  }\n\n  return dist;\n}\n\ntemplate <typename T>\nstd::pair<std::vector<T>,\
+    \ std::vector<int>> dijkstra_path(const Graph<T>& graph, int start) {\n  int N\
+    \ = (int)graph.size();\n  constexpr T INF = numeric_limits<T>::max();\n\n  using\
+    \ P = std::pair<T, int>;\n  std::vector<T>dist(N, INF);\n  std::vector<int>prev(N,\
+    \ -1);\n\n  std::priority_queue<P, std::vector<P>, std::greater<P>>que;\n  que.push(make_pair(T(0),\
+    \ start));\n  dist[start] = T(0);\n\n  while (!que.empty()) {\n    P front = que.top();\
+    \ que.pop();\n\n    if (dist[front.second] < front.first) continue;\n\n    for\
+    \ (Edge ed : graph[front.second]) {\n      if (dist[ed.to] > front.first + ed.cost)\
+    \ {\n        dist[ed.to] = front.first + ed.cost;\n        prev[ed.to] = front.second;\n\
     \        que.emplace(dist[ed.to], ed.to);\n      }\n    }\n  }\n\n  return make_pair(dist,\
     \ prev);\n}\n\n\n#line 6 \"test/verify/yosupo-shortest-path.test.cpp\"\n\nint\
     \ main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int N, M, s,\
     \ t; cin >> N >> M >> s >> t;\n\n  Graph<ll> gr(N);\n  for(int i=0; i<M; i++)\
     \ {\n    ll a, b, c;\n    cin >> a >> b >> c;\n    gr.add_edge(a,b,c);\n  }\n\n\
     \  vector<ll>dist; vector<int>prev;\n\n   auto pr = dijkstra_path(gr, s);\n  \
-    \ dist = pr.first; prev = pr.second;\n\n  if (dist[t] == -1) {\n    cout << -1\
-    \ << \"\\n\";\n  }\n  else {\n    ll X = dist[t];\n    int Y;\n    vector<int>\
+    \ dist = pr.first; prev = pr.second;\n\n  if (dist[t] > LLINF) {\n    cout <<\
+    \ -1 << \"\\n\";\n  }\n  else {\n    ll X = dist[t];\n    int Y;\n    vector<int>\
     \ path;\n    {\n      int now = t;\n      while (now != -1) {\n        path.push_back(now);\n\
     \        now = prev[now];\n      }\n      Y = path.size();\n    }\n\n    reverse(path.begin(),\
     \ path.end());\n    cout << X << \" \" << Y - 1 << \"\\n\";\n    for(int i=0;\
@@ -78,7 +79,7 @@ data:
     \  int N, M, s, t; cin >> N >> M >> s >> t;\n\n  Graph<ll> gr(N);\n  for(int i=0;\
     \ i<M; i++) {\n    ll a, b, c;\n    cin >> a >> b >> c;\n    gr.add_edge(a,b,c);\n\
     \  }\n\n  vector<ll>dist; vector<int>prev;\n\n   auto pr = dijkstra_path(gr, s);\n\
-    \   dist = pr.first; prev = pr.second;\n\n  if (dist[t] == -1) {\n    cout <<\
+    \   dist = pr.first; prev = pr.second;\n\n  if (dist[t] > LLINF) {\n    cout <<\
     \ -1 << \"\\n\";\n  }\n  else {\n    ll X = dist[t];\n    int Y;\n    vector<int>\
     \ path;\n    {\n      int now = t;\n      while (now != -1) {\n        path.push_back(now);\n\
     \        now = prev[now];\n      }\n      Y = path.size();\n    }\n\n    reverse(path.begin(),\
@@ -92,7 +93,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-shortest-path.test.cpp
   requiredBy: []
-  timestamp: '2024-08-21 21:41:37+09:00'
+  timestamp: '2024-08-27 16:36:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-shortest-path.test.cpp
