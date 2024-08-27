@@ -152,7 +152,7 @@ data:
   - test/verify/yosupo-vertex-set-path-composite.test.cpp
 documentation_of: graph/tree/heavy_light_decomposition.hpp
 layout: document
-titel: "Heavy-Light Decomposition(HL\u5206\u89E3, HLD)"
+title: "Heavy-Light Decomposition(HL\u5206\u89E3, HLD)"
 ---
 
 木に関する部分木クエリ、パスクエリを処理するためのデータ構造。

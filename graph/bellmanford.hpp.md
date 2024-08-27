@@ -76,7 +76,7 @@ data:
   - test/verify/aoj-grl-1b.test.cpp
 documentation_of: graph/bellmanford.hpp
 layout: document
-titel: "Bellmanford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
+title: "Bellmanford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
 ---
 
 負辺のあるグラフでも最短距離を求められるアルゴリズム。

@@ -6,7 +6,8 @@ data:
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
     path: formal-power-series/fps998.hpp
-    title: formal-power-series/fps998.hpp
+    title: "mod 998244353\u3067\u306EFPS(Formal Power Series, \u5F62\u5F0F\u7684\u3079\
+      \u304D\u7D1A\u6570)"
   - icon: ':question:'
     path: math/external_gcd.hpp
     title: math/external_gcd.hpp

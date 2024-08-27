@@ -46,13 +46,15 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: formal-power-series/fiduccia.hpp
-      title: formal-power-series/fiduccia.hpp
+      title: "Fiduccia\u306E\u30A2\u30EB\u30B4\u30EA\u30BA\u30E0 (\u304D\u305F\u307E\
+        \u3055\u6CD5?)"
     - icon: ':heavy_check_mark:'
       path: formal-power-series/formal-power-series.hpp
       title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
     - icon: ':heavy_check_mark:'
       path: formal-power-series/fps998.hpp
-      title: formal-power-series/fps998.hpp
+      title: "mod 998244353\u3067\u306EFPS(Formal Power Series, \u5F62\u5F0F\u7684\
+        \u3079\u304D\u7D1A\u6570)"
     - icon: ':warning:'
       path: formal-power-series/naive-fps.hpp
       title: formal-power-series/naive-fps.hpp
@@ -63,13 +65,13 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: graph/bellmanford.hpp
-      title: graph/bellmanford.hpp
+      title: "Bellmanford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
     - icon: ':heavy_check_mark:'
       path: graph/diameter.hpp
-      title: graph/diameter.hpp
+      title: "Tree Diameter(\u6728\u306E\u76F4\u5F84)"
     - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
-      title: graph/dijkstra.hpp
+      title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
     - icon: ':heavy_check_mark:'
       path: graph/graph_template.hpp
       title: graph/graph_template.hpp
@@ -77,12 +79,12 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: graph/tree/heavy_light_decomposition.hpp
-      title: graph/tree/heavy_light_decomposition.hpp
+      title: "Heavy-Light Decomposition(HL\u5206\u89E3, HLD)"
   - name: math
     pages:
     - icon: ':warning:'
       path: math/count_by_remainder.hpp
-      title: math/count_by_remainder.hpp
+      title: count by remainder
     - icon: ':question:'
       path: math/external_gcd.hpp
       title: math/external_gcd.hpp

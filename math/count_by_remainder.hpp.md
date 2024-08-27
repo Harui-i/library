@@ -35,7 +35,7 @@ data:
   verifiedWith: []
 documentation_of: math/count_by_remainder.hpp
 layout: document
-titel: count by remainder
+title: count by remainder
 ---
 
 $L$ 以上 $R$未満であって、$M$で割った余りが$b$である整数の個数を求める。

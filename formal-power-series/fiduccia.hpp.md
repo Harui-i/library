@@ -218,7 +218,7 @@ data:
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
 documentation_of: formal-power-series/fiduccia.hpp
 layout: document
-titel: "Fiduccia\u306E\u30A2\u30EB\u30B4\u30EA\u30BA\u30E0 (\u304D\u305F\u307E\u3055\
+title: "Fiduccia\u306E\u30A2\u30EB\u30B4\u30EA\u30BA\u30E0 (\u304D\u305F\u307E\u3055\
   \u6CD5?)"
 ---
 

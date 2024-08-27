@@ -90,7 +90,7 @@ data:
   - test/verify/yosupo-tree-diameter.test.cpp
 documentation_of: graph/diameter.hpp
 layout: document
-titel: "Tree Diameter(\u6728\u306E\u76F4\u5F84)"
+title: "Tree Diameter(\u6728\u306E\u76F4\u5F84)"
 ---
 
 木の直径を求める。

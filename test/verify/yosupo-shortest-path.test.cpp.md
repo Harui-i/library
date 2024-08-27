@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: graph/dijkstra.hpp
-    title: graph/dijkstra.hpp
+    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
   - icon: ':heavy_check_mark:'
     path: graph/graph_template.hpp
     title: graph/graph_template.hpp
