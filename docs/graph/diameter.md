@@ -1,5 +1,5 @@
 ---
-titel : Tree Diameter(木の直径)
+title : Tree Diameter(木の直径)
 documentation_of: //graph/diameter.hpp
 ---
 

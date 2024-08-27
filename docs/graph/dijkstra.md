@@ -1,5 +1,5 @@
 ---
-titel: Dijkstra(ダイクストラ法)
+title: Dijkstra(ダイクストラ法)
 documentation_of: //graph/dijkstra.hpp
 ---
 

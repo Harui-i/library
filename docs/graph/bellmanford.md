@@ -1,5 +1,5 @@
 ---
-titel: Bellmanford(ベルマンフォード法)
+title: Bellmanford(ベルマンフォード法)
 documentation_of: //graph/bellmanford.hpp
 ---
 

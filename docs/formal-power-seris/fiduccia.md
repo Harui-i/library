@@ -1,5 +1,5 @@
 ---
-titel: Fiducciaのアルゴリズム (きたまさ法?)
+title: Fiducciaのアルゴリズム (きたまさ法?)
 documentation_of: //formal-power-series/fiduccia.hpp
 ---
 

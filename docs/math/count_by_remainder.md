@@ -1,5 +1,5 @@
 ---
-titel: count by remainder
+title: count by remainder
 documentation_of: //math/count_by_remainder.hpp
 ---
 

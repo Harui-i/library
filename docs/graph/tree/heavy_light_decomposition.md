@@ -1,5 +1,5 @@
 ---
-titel : Heavy-Light Decomposition(HL分解, HLD)
+title : Heavy-Light Decomposition(HL分解, HLD)
 documentation_of: //graph/tree/heavy_light_decomposition.hpp
 ---
 
