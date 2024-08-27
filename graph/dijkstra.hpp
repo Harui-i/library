@@ -3,6 +3,7 @@
 
 #include <queue>
 #include <vector>
+#include <limits>
 #include <utility>
 
 #include "graph/graph_template.hpp"
@@ -10,7 +11,8 @@
 template <typename T>
 std::vector<T> dijkstra(const Graph<T>& graph, int start) {
   int N = (int)graph.size();
-  std::vector<T>dist(N, T(-1));
+  constexpr T INF = numeric_limits<T>::max();
+  std::vector<T>dist(N, INF);
   using P = std::pair<T, int>;
 
   std::priority_queue<P, std::vector<P>, std::greater<P>>que;
@@ -25,7 +27,7 @@ std::vector<T> dijkstra(const Graph<T>& graph, int start) {
 
     for (Edge ed : graph[front.second]) {
 
-      if (dist[ed.to] == T(-1) || dist[ed.to] > front.first + ed.cost) {
+      if (dist[ed.to] > front.first + ed.cost) {
         dist[ed.to] = front.first + ed.cost;
         que.emplace(dist[ed.to], ed.to);
       }
@@ -38,9 +40,10 @@ std::vector<T> dijkstra(const Graph<T>& graph, int start) {
 template <typename T>
 std::pair<std::vector<T>, std::vector<int>> dijkstra_path(const Graph<T>& graph, int start) {
   int N = (int)graph.size();
+  constexpr T INF = numeric_limits<T>::max();
 
   using P = std::pair<T, int>;
-  std::vector<T>dist(N, T(-1));
+  std::vector<T>dist(N, INF);
   std::vector<int>prev(N, -1);
 
   std::priority_queue<P, std::vector<P>, std::greater<P>>que;
@@ -53,7 +56,7 @@ std::pair<std::vector<T>, std::vector<int>> dijkstra_path(const Graph<T>& graph,
     if (dist[front.second] < front.first) continue;
 
     for (Edge ed : graph[front.second]) {
-      if (dist[ed.to] == T(-1) || dist[ed.to] > front.first + ed.cost) {
+      if (dist[ed.to] > front.first + ed.cost) {
         dist[ed.to] = front.first + ed.cost;
         prev[ed.to] = front.second;
         que.emplace(dist[ed.to], ed.to);

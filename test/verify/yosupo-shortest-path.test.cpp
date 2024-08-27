@@ -20,7 +20,7 @@ int main() {
    auto pr = dijkstra_path(gr, s);
    dist = pr.first; prev = pr.second;
 
-  if (dist[t] == -1) {
+  if (dist[t] > LLINF) {
     cout << -1 << "\n";
   }
   else {
