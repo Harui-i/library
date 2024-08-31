@@ -45,7 +45,7 @@ data:
     \     \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n        x1 = xTemp;\n\
     \        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n        y1 = yTemp;\n\
     \    }\n    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\n\ntemplate<int\
-    \ MOD>\nstruct static_modint {\n    int value;\n\n    constexpr static_modint()\
+    \ MOD>\nstruct static_modint {\n    int value;\n\n    constexpr explicit static_modint()\
     \ : value(0) {}\n\n    constexpr static_modint(long long v) {\n        value =\
     \ int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr static_modint& operator+=(const\
     \ static_modint& other) {\n        if ((value += other.value) >= MOD) value -=\
@@ -59,30 +59,30 @@ data:
     \ {\n        return static_modint(*this) -= other;\n    }\n\n    constexpr static_modint\
     \ operator*(const static_modint& other) const {\n        return static_modint(*this)\
     \ *= other;\n    }\n\n    constexpr static_modint pow(long long exp) const {\n\
-    \        static_modint base = *this, res = 1;\n        while (exp > 0) {\n   \
-    \         if (exp & 1) res *= base;\n            base *= base;\n            exp\
-    \ >>= 1;\n        }\n        return res;\n    }\n\n    constexpr static_modint\
-    \ inv() const {\n        //return pow(MOD - 2);\n        int g,x,y;\n        tie(g,x,y)\
-    \ = extendedGCD(value, MOD);\n        assert(g==1);\n        if (x < 0) {\n  \
-    \          x += MOD;\n        }\n        //cerr << g << \" \" << x << \" \" <<\
-    \ y << \" \" << value << endl;\n        //assert((((long)x*value)%MOD + MOD)%MOD\
-    \ == 1);\n        return x;\n    }\n\n    constexpr static_modint& operator/=(const\
-    \ static_modint& other) {\n        return *this *= other.inv();\n    }\n\n   \
-    \ constexpr static_modint operator/(const static_modint& other) const {\n    \
-    \    return static_modint(*this) /= other;\n    }\n\n    constexpr bool operator!=(const\
-    \ static_modint& other) const {\n        return val() != other.val();\n    }\n\
-    \n    constexpr bool operator==(const static_modint& other) const {\n        return\
-    \ val() == other.val();\n    }\n\n    int val() const {\n      return this->value;\n\
-    \    }\n\n    friend std::ostream& operator<<(std::ostream& os, const static_modint&\
-    \ mi) {\n        return os << mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream&\
-    \ is, static_modint& mi) {\n        long long x;\n        is >> x;\n        mi\
-    \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
-    \ modint = static_modint<mod>;\nusing modint998244353  = modint<998244353>;\n\
-    using modint1000000007 = modint<1000000007>;\n\n\n#line 1 \"formal-power-series/fps998.hpp\"\
-    \n\n\n\n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\n\n\n\n#line\
-    \ 5 \"formal-power-series/formal-power-series.hpp\"\n#include <vector>\n\n\ntemplate\
-    \ <typename mint>\nstruct FPS {\n  std::vector<mint> _vec;\n\n  constexpr int\
-    \ lg2(int N) const {\n    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n\
+    \        static_modint base = *this, res = static_modint(1);\n        while (exp\
+    \ > 0) {\n            if (exp & 1) res *= base;\n            base *= base;\n \
+    \           exp >>= 1;\n        }\n        return res;\n    }\n\n    constexpr\
+    \ static_modint inv() const {\n        //return pow(MOD - 2);\n        int g,x,y;\n\
+    \        tie(g,x,y) = extendedGCD(value, MOD);\n        assert(g==1);\n      \
+    \  if (x < 0) {\n            x += MOD;\n        }\n        //cerr << g << \" \"\
+    \ << x << \" \" << y << \" \" << value << endl;\n        //assert((((long)x*value)%MOD\
+    \ + MOD)%MOD == 1);\n        return x;\n    }\n\n    constexpr static_modint&\
+    \ operator/=(const static_modint& other) {\n        return *this *= other.inv();\n\
+    \    }\n\n    constexpr static_modint operator/(const static_modint& other) const\
+    \ {\n        return static_modint(*this) /= other;\n    }\n\n    constexpr bool\
+    \ operator!=(const static_modint& other) const {\n        return val() != other.val();\n\
+    \    }\n\n    constexpr bool operator==(const static_modint& other) const {\n\
+    \        return val() == other.val();\n    }\n\n    int val() const {\n      return\
+    \ this->value;\n    }\n\n    friend std::ostream& operator<<(std::ostream& os,\
+    \ const static_modint& mi) {\n        return os << mi.value;\n    }\n\n    friend\
+    \ std::istream& operator>>(std::istream& is, static_modint& mi) {\n        long\
+    \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
+    \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
+    \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\n\n#line\
+    \ 1 \"formal-power-series/fps998.hpp\"\n\n\n\n#include <array>\n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\
+    \n\n\n\n#line 5 \"formal-power-series/formal-power-series.hpp\"\n#include <vector>\n\
+    \n\ntemplate <typename mint>\nstruct FPS {\n  std::vector<mint> _vec;\n\n  constexpr\
+    \ int lg2(int N) const {\n    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n\
     \    if ((1LL << ret) < N) ret++;\n    return ret;\n  }\n\n  // \u30CA\u30A4\u30FC\
     \u30D6\u306A\u30CB\u30E5\u30FC\u30C8\u30F3\u6CD5\u3067\u306E\u9006\u5143\u8A08\
     \u7B97\n  FPS inv_naive(int deg) const {\n    assert(_vec[0] != mint(0)); // \u3055\
@@ -178,7 +178,7 @@ data:
     \ g_d) const; \n  virtual void CooleyTukeyNTT998244353(std::vector<mint>& a, bool\
     \ is_reverse) const;\n  //  virtual FPS exp(int deg=-1) const;\n  virtual std::vector<mint>\
     \ multiply(const std::vector<mint>& a, const std::vector<mint>& b);\n};\n\n\n\
-    #line 6 \"formal-power-series/fps998.hpp\"\n\nusing mint = modint998244353;\n\
+    #line 7 \"formal-power-series/fps998.hpp\"\n\nusing mint = modint998244353;\n\
     //ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
     // constexpr \u95A2\u6570\u5185\u3067 ZETAS \u914D\u5217\u3092\u8A2D\u5B9A\u3059\
     \u308B\u305F\u3081\u306E\u88DC\u52A9\u95A2\u6570\nconstexpr std::array<mint, 24>\
@@ -312,7 +312,7 @@ data:
   isVerificationFile: true
   path: test/verify/convolution/yosupo-normal-convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-08-21 21:41:37+09:00'
+  timestamp: '2024-08-31 20:47:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/convolution/yosupo-normal-convolution.test.cpp
