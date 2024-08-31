@@ -1,6 +1,7 @@
 #ifndef HARUILIB_FORMAL_POWER_SERIES_FPS998_HPP
 #define HARUILIB_FORMAL_POWER_SERIES_FPS998_HPP
 
+#include <array>
 
 #include "formal-power-series/formal-power-series.hpp"
 

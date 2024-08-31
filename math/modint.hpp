@@ -7,7 +7,7 @@ template<int MOD>
 struct static_modint {
     int value;
 
-    constexpr static_modint() : value(0) {}
+    constexpr explicit static_modint() : value(0) {}
 
     constexpr static_modint(long long v) {
         value = int(((v % MOD) + MOD) % MOD);
@@ -41,7 +41,7 @@ struct static_modint {
     }
 
     constexpr static_modint pow(long long exp) const {
-        static_modint base = *this, res = 1;
+        static_modint base = *this, res = static_modint(1);
         while (exp > 0) {
             if (exp & 1) res *= base;
             base *= base;
