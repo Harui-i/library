@@ -8,6 +8,9 @@ struct Edge {
   int from; int to;
   T cost;
 
+  // default constructor
+  Edge () : from(-1), to(-1), cost(T(0)) {}
+
   Edge(int _from, int _to, T _cost) : from(_from), to(_to), cost(_cost) {}
 
   // unweighted
