@@ -72,8 +72,8 @@ data:
   timestamp: '2024-08-21 21:41:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
+  - test/verify/yosupo-deque-operate-all-composite.test.cpp
 documentation_of: structure/slide-window-aggregation.hpp
 layout: document
 title: Foldable Deque(Slide Window Aggregation)

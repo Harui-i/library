@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/graph_template.hpp
     title: graph/graph_template.hpp
   _extendedRequiredBy: []
@@ -24,7 +24,8 @@ data:
   bundledCode: "#line 1 \"graph/tree/heavy_light_decomposition.hpp\"\n\n\n\n#include\
     \ <vector>\n#include <algorithm>\n#include <cassert>\n#include <utility>\n\n#line\
     \ 1 \"graph/graph_template.hpp\"\n\n\n\n#line 5 \"graph/graph_template.hpp\"\n\
-    \ntemplate <typename T>\nstruct Edge {\n  int from; int to;\n  T cost;\n\n  Edge(int\
+    \ntemplate <typename T>\nstruct Edge {\n  int from; int to;\n  T cost;\n\n  //\
+    \ default constructor\n  Edge () : from(-1), to(-1), cost(T(0)) {}\n\n  Edge(int\
     \ _from, int _to, T _cost) : from(_from), to(_to), cost(_cost) {}\n\n  // unweighted\n\
     \  Edge(int _from, int _to) : from(_from), to(_to), cost(T(1)) {}\n\n  bool operator==(const\
     \ Edge& rhs) const {\n    return from == rhs.from && to == rhs.to && cost == rhs.cost;\n\
@@ -144,11 +145,11 @@ data:
   isVerificationFile: false
   path: graph/tree/heavy_light_decomposition.hpp
   requiredBy: []
-  timestamp: '2024-08-15 16:38:21+09:00'
+  timestamp: '2024-09-07 20:55:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yosupo-vertex-add-subtree-sum.test.cpp
   - test/verify/yosupo-vertex-add-path-sum.test.cpp
+  - test/verify/yosupo-vertex-add-subtree-sum.test.cpp
   - test/verify/yosupo-vertex-set-path-composite.test.cpp
 documentation_of: graph/tree/heavy_light_decomposition.hpp
 layout: document

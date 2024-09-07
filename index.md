@@ -63,7 +63,7 @@ data:
       title: sparse-fps
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/bellmanford.hpp
       title: "Bellmanford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
     - icon: ':heavy_check_mark:'
@@ -72,7 +72,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
       title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/graph_template.hpp
       title: graph/graph_template.hpp
   - name: graph/tree
@@ -150,7 +150,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/aoj-dpl3-c.test.cpp
       title: test/verify/aoj-dpl3-c.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/aoj-grl-1b.test.cpp
       title: test/verify/aoj-grl-1b.test.cpp
     - icon: ':x:'

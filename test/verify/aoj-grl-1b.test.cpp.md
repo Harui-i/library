@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bellmanford.hpp
     title: "Bellmanford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/graph_template.hpp
     title: graph/graph_template.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B
@@ -31,7 +31,8 @@ data:
     \n\n\n\n#line 5 \"graph/bellmanford.hpp\"\n#include <queue>\n#line 7 \"graph/bellmanford.hpp\"\
     \n#include <limits>\n\n#line 1 \"graph/graph_template.hpp\"\n\n\n\n#line 5 \"\
     graph/graph_template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int from;\
-    \ int to;\n  T cost;\n\n  Edge(int _from, int _to, T _cost) : from(_from), to(_to),\
+    \ int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1), to(-1),\
+    \ cost(T(0)) {}\n\n  Edge(int _from, int _to, T _cost) : from(_from), to(_to),\
     \ cost(_cost) {}\n\n  // unweighted\n  Edge(int _from, int _to) : from(_from),\
     \ to(_to), cost(T(1)) {}\n\n  bool operator==(const Edge& rhs) const {\n    return\
     \ from == rhs.from && to == rhs.to && cost == rhs.cost;\n  }\n\n  bool operator<(const\
@@ -82,8 +83,8 @@ data:
   isVerificationFile: true
   path: test/verify/aoj-grl-1b.test.cpp
   requiredBy: []
-  timestamp: '2024-08-27 17:23:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-07 20:55:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/verify/aoj-grl-1b.test.cpp
 layout: document
