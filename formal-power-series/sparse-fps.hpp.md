@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - icon: ':question:'
@@ -29,54 +29,63 @@ data:
     \     b = r;\n        \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n   \
     \     x1 = xTemp;\n        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n\
     \        y1 = yTemp;\n    }\n    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\
-    \n\ntemplate<int MOD>\nstruct static_modint {\n    int value;\n\n    constexpr\
-    \ explicit static_modint() : value(0) {}\n\n    constexpr static_modint(long long\
-    \ v) {\n        value = int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr\
-    \ static_modint& operator+=(const static_modint& other) {\n        if ((value\
-    \ += other.value) >= MOD) value -= MOD;\n        return *this;\n    }\n\n    constexpr\
-    \ static_modint& operator-=(const static_modint& other) {\n        if ((value\
-    \ -= other.value) < 0) value += MOD;\n        return *this;\n    }\n\n    constexpr\
-    \ static_modint& operator*=(const static_modint& other) {\n        value = int((long\
-    \ long)value * other.value % MOD);\n        return *this;\n    }\n\n    constexpr\
-    \ static_modint operator+(const static_modint& other) const {\n        return\
-    \ static_modint(*this) += other;\n    }\n\n    constexpr static_modint operator-(const\
-    \ static_modint& other) const {\n        return static_modint(*this) -= other;\n\
-    \    }\n\n    constexpr static_modint operator*(const static_modint& other) const\
-    \ {\n        return static_modint(*this) *= other;\n    }\n\n    constexpr static_modint\
+    \n#include <type_traits>\n#include <cassert>\n\ntemplate<int MOD, typename T =\
+    \ int>\nstruct static_modint {\n    T value;\n\n    constexpr explicit static_modint()\
+    \ : value(0) {}\n\n    constexpr static_modint(long long v) {\n        if constexpr\
+    \ (std::is_same<T, double>::value) {\n            value = static_cast<T>(v);\n\
+    \        }\n        else {\n            value = int(((v % MOD) + MOD) % MOD);\n\
+    \        }\n    }\n\n    constexpr static_modint& operator+=(const static_modint&\
+    \ other) {\n        if constexpr (std::is_same<T, double>::value) {\n        \
+    \    value += other.value;\n        }\n        else {\n            if ((value\
+    \ += other.value) >= MOD) value -= MOD;\n        }\n        return *this;\n  \
+    \  }\n\n    constexpr static_modint& operator-=(const static_modint& other) {\n\
+    \        if constexpr (std::is_same<T, double>::value) {\n            value -=\
+    \ other.value;\n        }\n        else {\n            if ((value -= other.value)\
+    \ < 0) value += MOD;\n        }\n        return *this;\n    }\n\n    constexpr\
+    \ static_modint& operator*=(const static_modint& other) {\n        if constexpr\
+    \ (std::is_same<T, double>::value) {\n            value *= other.value;\n    \
+    \    }\n        else {\n            value = int((long long)value * other.value\
+    \ % MOD);\n        }\n        return *this;\n    }\n\n    constexpr static_modint\
+    \ operator+(const static_modint& other) const {\n        return static_modint(*this)\
+    \ += other;\n    }\n\n    constexpr static_modint operator-(const static_modint&\
+    \ other) const {\n        return static_modint(*this) -= other;\n    }\n\n   \
+    \ constexpr static_modint operator*(const static_modint& other) const {\n    \
+    \    return static_modint(*this) *= other;\n    }\n\n    constexpr static_modint\
     \ pow(long long exp) const {\n        static_modint base = *this, res = static_modint(1);\n\
     \        while (exp > 0) {\n            if (exp & 1) res *= base;\n          \
     \  base *= base;\n            exp >>= 1;\n        }\n        return res;\n   \
-    \ }\n\n    constexpr static_modint inv() const {\n        //return pow(MOD - 2);\n\
-    \        int g,x,y;\n        tie(g,x,y) = extendedGCD(value, MOD);\n        assert(g==1);\n\
-    \        if (x < 0) {\n            x += MOD;\n        }\n        //cerr << g <<\
-    \ \" \" << x << \" \" << y << \" \" << value << endl;\n        //assert((((long)x*value)%MOD\
-    \ + MOD)%MOD == 1);\n        return x;\n    }\n\n    constexpr static_modint&\
-    \ operator/=(const static_modint& other) {\n        return *this *= other.inv();\n\
-    \    }\n\n    constexpr static_modint operator/(const static_modint& other) const\
-    \ {\n        return static_modint(*this) /= other;\n    }\n\n    constexpr bool\
-    \ operator!=(const static_modint& other) const {\n        return val() != other.val();\n\
-    \    }\n\n    constexpr bool operator==(const static_modint& other) const {\n\
-    \        return val() == other.val();\n    }\n\n    int val() const {\n      return\
-    \ this->value;\n    }\n\n    friend std::ostream& operator<<(std::ostream& os,\
-    \ const static_modint& mi) {\n        return os << mi.value;\n    }\n\n    friend\
-    \ std::istream& operator>>(std::istream& is, static_modint& mi) {\n        long\
-    \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
-    \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
-    \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\n\n#line\
-    \ 6 \"formal-power-series/formal-power-series.hpp\"\n\n\ntemplate <typename mint>\n\
-    struct FPS {\n  std::vector<mint> _vec;\n\n  constexpr int lg2(int N) const {\n\
-    \    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n    if ((1LL <<\
-    \ ret) < N) ret++;\n    return ret;\n  }\n\n  // \u30CA\u30A4\u30FC\u30D6\u306A\
-    \u30CB\u30E5\u30FC\u30C8\u30F3\u6CD5\u3067\u306E\u9006\u5143\u8A08\u7B97\n  FPS\
-    \ inv_naive(int deg) const {\n    assert(_vec[0] != mint(0)); // \u3055\u3042\u3089\
-    \u3056\u308C\u3070\u3001\u9006\u5143\u306E\u3066\u3072\u304E\u3044\u304D\u306B\
-    \u3053\u305D\u3042\u3089\u3056\u308C\u3002\n    if (deg == -1) deg = this->size();\n\
-    \    FPS g(1);\n    g._vec[0] = mint(_vec[0]).inv();\n    // g_{n+1} = 2 * g_n\
-    \ - f * (g_n)^2\n    for (int d = 1; d < deg; d <<= 1) {\n      FPS g_twice =\
-    \ g * mint(2);\n      FPS fgg = (*this).pre(d * 2) * g * g;\n\n      g = g_twice\
-    \ - fgg;\n      g.resize(d * 2);\n    }\n\n    return g.pre(deg);\n  }\n\n  //*/\n\
-    \n  FPS log(int deg = -1) const {\n    assert(_vec[0] == mint(1));\n\n    if (deg\
-    \ == -1) deg = size();\n    FPS df = this->diff();\n    FPS iv = this->inv(deg);\n\
+    \ }\n\n    constexpr auto inv() const {\n        if constexpr (std::is_same<T,\
+    \ double>::value) {\n            return double(1.0) / static_cast<double>(value);\n\
+    \        }\n        else {\n            int g, x, y;\n            std::tie(g,\
+    \ x, y) = extendedGCD(value, MOD);\n            assert(g == 1);\n            if\
+    \ (x < 0) x += MOD;\n            return x;\n        }\n    }\n\n    constexpr\
+    \ static_modint& operator/=(const static_modint& other) {\n        return *this\
+    \ *= other.inv();\n    }\n\n    constexpr static_modint operator/(const static_modint&\
+    \ other) const {\n        return static_modint(*this) /= other;\n    }\n\n   \
+    \ constexpr bool operator!=(const static_modint& other) const {\n        return\
+    \ val() != other.val();\n    }\n\n    constexpr bool operator==(const static_modint&\
+    \ other) const {\n        return val() == other.val();\n    }\n\n    T val() const\
+    \ {\n        if constexpr (std::is_same<T, double>::value) {\n            return\
+    \ static_cast<double>(value);\n        }\n        else return this->value;\n \
+    \   }\n\n    friend std::ostream& operator<<(std::ostream& os, const static_modint&\
+    \ mi) {\n        return os << mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream&\
+    \ is, static_modint& mi) {\n        long long x;\n        is >> x;\n        mi\
+    \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
+    \ modint = static_modint<mod>;\nusing modint998244353 = modint<998244353>;\nusing\
+    \ modint1000000007 = modint<1000000007>;\n\n\n#line 6 \"formal-power-series/formal-power-series.hpp\"\
+    \n\n\ntemplate <typename mint>\nstruct FPS {\n  std::vector<mint> _vec;\n\n  constexpr\
+    \ int lg2(int N) const {\n    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n\
+    \    if ((1LL << ret) < N) ret++;\n    return ret;\n  }\n\n  // \u30CA\u30A4\u30FC\
+    \u30D6\u306A\u30CB\u30E5\u30FC\u30C8\u30F3\u6CD5\u3067\u306E\u9006\u5143\u8A08\
+    \u7B97\n  FPS inv_naive(int deg) const {\n    assert(_vec[0] != mint(0)); // \u3055\
+    \u3042\u3089\u3056\u308C\u3070\u3001\u9006\u5143\u306E\u3066\u3072\u304E\u3044\
+    \u304D\u306B\u3053\u305D\u3042\u3089\u3056\u308C\u3002\n    if (deg == -1) deg\
+    \ = this->size();\n    FPS g(1);\n    g._vec[0] = mint(_vec[0]).inv();\n    //\
+    \ g_{n+1} = 2 * g_n - f * (g_n)^2\n    for (int d = 1; d < deg; d <<= 1) {\n \
+    \     FPS g_twice = g * mint(2);\n      FPS fgg = (*this).pre(d * 2) * g * g;\n\
+    \n      g = g_twice - fgg;\n      g.resize(d * 2);\n    }\n\n    return g.pre(deg);\n\
+    \  }\n\n  //*/\n\n  FPS log(int deg = -1) const {\n    assert(_vec[0] == mint(1));\n\
+    \n    if (deg == -1) deg = size();\n    FPS df = this->diff();\n    FPS iv = this->inv(deg);\n\
     \    FPS ret = (df * iv).pre(deg - 1).integral();\n\n    return ret;\n  }\n\n\
     \  FPS exp(int deg = -1) const {\n    assert(_vec[0] == mint(0));\n\n    if (deg\
     \ == -1) deg = size();\n    FPS h = {1}; // h: exp(f)\n\n    // h_2d = h * (f\
@@ -213,7 +222,7 @@ data:
   isVerificationFile: false
   path: formal-power-series/sparse-fps.hpp
   requiredBy: []
-  timestamp: '2024-08-31 20:47:44+09:00'
+  timestamp: '2025-02-28 00:34:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp

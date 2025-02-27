@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/diameter.hpp
     title: "Tree Diameter(\u6728\u306E\u76F4\u5F84)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/graph_template.hpp
     title: graph/graph_template.hpp
   - icon: ':question:'

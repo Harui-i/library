@@ -19,6 +19,14 @@ data:
       path: convolution/superset-zeta-moebius-transform.hpp
       title: "\u4E0A\u4F4D\u96C6\u5408\u306B\u3064\u3044\u3066\u306E\u9AD8\u901F\u30BC\
         \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
+  - name: .
+    pages:
+    - icon: ':warning:'
+      path: debug.hpp
+      title: debug.hpp
+    - icon: ':warning:'
+      path: dropbox_refresh.py
+      title: dropbox_refresh.py
   - name: dp/automaton
     pages:
     - icon: ':question:'
@@ -37,21 +45,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: dp/largest-rectangle-in-a-histogram.hpp
       title: dp/largest-rectangle-in-a-histogram.hpp
-  - name: .
-    pages:
-    - icon: ':warning:'
-      path: dropbox_refresh.py
-      title: dropbox_refresh.py
   - name: formal-power-series
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: formal-power-series/fiduccia.hpp
       title: "Fiduccia\u306E\u30A2\u30EB\u30B4\u30EA\u30BA\u30E0 (\u304D\u305F\u307E\
         \u3055\u6CD5?)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: formal-power-series/formal-power-series.hpp
       title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: formal-power-series/fps998.hpp
       title: "mod 998244353\u3067\u306EFPS(Formal Power Series, \u5F62\u5F0F\u7684\
         \u3079\u304D\u7D1A\u6570)"
@@ -63,7 +66,7 @@ data:
       title: sparse-fps
   - name: graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/bellmanford.hpp
       title: "Bellmanford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
     - icon: ':heavy_check_mark:'
@@ -72,7 +75,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
       title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/graph_template.hpp
       title: graph/graph_template.hpp
   - name: graph/tree
@@ -104,6 +107,9 @@ data:
       title: "Matrix(\u884C\u5217)"
   - name: structure
     pages:
+    - icon: ':warning:'
+      path: structure/dual-fenwick-tree.hpp
+      title: structure/dual-fenwick-tree.hpp
     - icon: ':heavy_check_mark:'
       path: structure/potentialized-union-find-tree.hpp
       title: "Potentialized Union Find Tree (\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u3064\
@@ -150,7 +156,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/aoj-dpl3-c.test.cpp
       title: test/verify/aoj-dpl3-c.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/aoj-grl-1b.test.cpp
       title: test/verify/aoj-grl-1b.test.cpp
     - icon: ':x:'
@@ -199,7 +205,7 @@ data:
       title: test/verify/convolution/yosupo-normal-convolution.test.cpp
   - name: test/verify/fps
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/fps/yosupo-division-of-polynomials.test.cpp
       title: test/verify/fps/yosupo-division-of-polynomials.test.cpp
     - icon: ':heavy_check_mark:'
@@ -211,7 +217,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
       title: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
       title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
     - icon: ':heavy_check_mark:'

@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: formal-power-series/fiduccia.hpp
     title: "Fiduccia\u306E\u30A2\u30EB\u30B4\u30EA\u30BA\u30E0 (\u304D\u305F\u307E\
       \u3055\u6CD5?)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: formal-power-series/fps998.hpp
     title: "mod 998244353\u3067\u306EFPS(Formal Power Series, \u5F62\u5F0F\u7684\u3079\
       \u304D\u7D1A\u6570)"
@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/convolution/yosupo-normal-convolution.test.cpp
     title: test/verify/convolution/yosupo-normal-convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/fps/yosupo-division-of-polynomials.test.cpp
     title: test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - icon: ':heavy_check_mark:'
@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
     title: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
     title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -115,38 +115,38 @@ data:
   isVerificationFile: false
   path: math/external_gcd.hpp
   requiredBy:
+  - math/modint.hpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
-  - formal-power-series/fps998.hpp
-  - formal-power-series/fiduccia.hpp
   - formal-power-series/naive-fps.hpp
+  - formal-power-series/fiduccia.hpp
   - formal-power-series/formal-power-series.hpp
   - formal-power-series/sparse-fps.hpp
-  - math/modint.hpp
+  - formal-power-series/fps998.hpp
   timestamp: '2024-06-20 15:39:33+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
+  - test/verify/yosupo-vertex-set-path-composite.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
-  - test/verify/math/matrix/yosupo-linear-equation.test.cpp
-  - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+  - test/verify/yuki-372-itsautomatic.test.cpp
+  - test/verify/convolution/yosupo-and-convolution.test.cpp
+  - test/verify/convolution/yosupo-gcd-convolution.test.cpp
+  - test/verify/convolution/yosupo-lcm-convolution.test.cpp
+  - test/verify/convolution/yosupo-normal-convolution.test.cpp
   - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-matrix-product.test.cpp
-  - test/verify/yuki-372-itsautomatic.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
-  - test/verify/convolution/yosupo-gcd-convolution.test.cpp
-  - test/verify/convolution/yosupo-normal-convolution.test.cpp
-  - test/verify/convolution/yosupo-lcm-convolution.test.cpp
-  - test/verify/convolution/yosupo-and-convolution.test.cpp
+  - test/verify/math/matrix/yosupo-linear-equation.test.cpp
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/atcoder-tdpc-s.test.cpp
-  - test/verify/yosupo-vertex-set-path-composite.test.cpp
-  - test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
+  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
 documentation_of: math/external_gcd.hpp
 layout: document
 redirect_from:

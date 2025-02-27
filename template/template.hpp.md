@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-dpl3-c.test.cpp
     title: test/verify/aoj-dpl3-c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/aoj-grl-1b.test.cpp
     title: test/verify/aoj-grl-1b.test.cpp
   - icon: ':x:'
@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/convolution/yosupo-normal-convolution.test.cpp
     title: test/verify/convolution/yosupo-normal-convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/fps/yosupo-division-of-polynomials.test.cpp
     title: test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
     title: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
     title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -171,46 +171,46 @@ data:
   isVerificationFile: false
   path: template/template.hpp
   requiredBy:
-  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - test/unittest/unittest-template.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   timestamp: '2024-08-21 21:41:37+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/verify/aoj-0560.test.cpp
-  - test/verify/structure/aoj-dsl1-b.test.cpp
-  - test/verify/yosupo-tree-diameter.test.cpp
-  - test/verify/yosupo-queue-operate-all-composite.test.cpp
-  - test/verify/yosupo-vertex-add-path-sum.test.cpp
-  - test/verify/aoj-dpl3-c.test.cpp
-  - test/verify/math/matrix/yosupo-linear-equation.test.cpp
-  - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
-  - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
-  - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
-  - test/verify/math/matrix/yosupo-matrix-product.test.cpp
-  - test/verify/yosupo-shortest-path.test.cpp
-  - test/verify/yuki-372-itsautomatic.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
-  - test/verify/convolution/yosupo-gcd-convolution.test.cpp
-  - test/verify/convolution/yosupo-normal-convolution.test.cpp
-  - test/verify/convolution/yosupo-lcm-convolution.test.cpp
-  - test/verify/convolution/yosupo-and-convolution.test.cpp
-  - test/verify/yosupo-deque-operate-all-composite.test.cpp
-  - test/verify/atcoder-tdpc-s.test.cpp
-  - test/verify/yosupo-vertex-add-subtree-sum.test.cpp
-  - test/verify/yosupo-vertex-set-path-composite.test.cpp
-  - test/verify/aoj-grl-1b.test.cpp
-  - test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
-  - example.test.cpp
-  - unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
+  - unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
-  - unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
+  - unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
+  - example.test.cpp
+  - test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
+  - test/verify/yosupo-vertex-add-subtree-sum.test.cpp
+  - test/verify/yosupo-vertex-set-path-composite.test.cpp
+  - test/verify/yosupo-queue-operate-all-composite.test.cpp
+  - test/verify/yosupo-vertex-add-path-sum.test.cpp
+  - test/verify/yuki-372-itsautomatic.test.cpp
+  - test/verify/convolution/yosupo-and-convolution.test.cpp
+  - test/verify/convolution/yosupo-gcd-convolution.test.cpp
+  - test/verify/convolution/yosupo-lcm-convolution.test.cpp
+  - test/verify/convolution/yosupo-normal-convolution.test.cpp
+  - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-matrix-product.test.cpp
+  - test/verify/math/matrix/yosupo-linear-equation.test.cpp
+  - test/verify/yosupo-deque-operate-all-composite.test.cpp
+  - test/verify/yosupo-tree-diameter.test.cpp
+  - test/verify/atcoder-tdpc-s.test.cpp
+  - test/verify/aoj-0560.test.cpp
+  - test/verify/structure/aoj-dsl1-b.test.cpp
+  - test/verify/yosupo-shortest-path.test.cpp
+  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
+  - test/verify/aoj-grl-1b.test.cpp
+  - test/verify/aoj-dpl3-c.test.cpp
 documentation_of: template/template.hpp
 layout: document
 redirect_from:

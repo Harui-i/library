@@ -38,43 +38,52 @@ data:
     \     T q = a / b;\n        T r = a % b;\n        a = b;\n        b = r;\n   \
     \     \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n        x1 = xTemp;\n\
     \        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n        y1 = yTemp;\n\
-    \    }\n    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\n\ntemplate<int\
-    \ MOD>\nstruct static_modint {\n    int value;\n\n    constexpr explicit static_modint()\
-    \ : value(0) {}\n\n    constexpr static_modint(long long v) {\n        value =\
-    \ int(((v % MOD) + MOD) % MOD);\n    }\n\n    constexpr static_modint& operator+=(const\
-    \ static_modint& other) {\n        if ((value += other.value) >= MOD) value -=\
-    \ MOD;\n        return *this;\n    }\n\n    constexpr static_modint& operator-=(const\
-    \ static_modint& other) {\n        if ((value -= other.value) < 0) value += MOD;\n\
-    \        return *this;\n    }\n\n    constexpr static_modint& operator*=(const\
-    \ static_modint& other) {\n        value = int((long long)value * other.value\
-    \ % MOD);\n        return *this;\n    }\n\n    constexpr static_modint operator+(const\
-    \ static_modint& other) const {\n        return static_modint(*this) += other;\n\
-    \    }\n\n    constexpr static_modint operator-(const static_modint& other) const\
-    \ {\n        return static_modint(*this) -= other;\n    }\n\n    constexpr static_modint\
+    \    }\n    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\n#include <type_traits>\n\
+    #line 7 \"math/modint.hpp\"\n\ntemplate<int MOD, typename T = int>\nstruct static_modint\
+    \ {\n    T value;\n\n    constexpr explicit static_modint() : value(0) {}\n\n\
+    \    constexpr static_modint(long long v) {\n        if constexpr (std::is_same<T,\
+    \ double>::value) {\n            value = static_cast<T>(v);\n        }\n     \
+    \   else {\n            value = int(((v % MOD) + MOD) % MOD);\n        }\n   \
+    \ }\n\n    constexpr static_modint& operator+=(const static_modint& other) {\n\
+    \        if constexpr (std::is_same<T, double>::value) {\n            value +=\
+    \ other.value;\n        }\n        else {\n            if ((value += other.value)\
+    \ >= MOD) value -= MOD;\n        }\n        return *this;\n    }\n\n    constexpr\
+    \ static_modint& operator-=(const static_modint& other) {\n        if constexpr\
+    \ (std::is_same<T, double>::value) {\n            value -= other.value;\n    \
+    \    }\n        else {\n            if ((value -= other.value) < 0) value += MOD;\n\
+    \        }\n        return *this;\n    }\n\n    constexpr static_modint& operator*=(const\
+    \ static_modint& other) {\n        if constexpr (std::is_same<T, double>::value)\
+    \ {\n            value *= other.value;\n        }\n        else {\n          \
+    \  value = int((long long)value * other.value % MOD);\n        }\n        return\
+    \ *this;\n    }\n\n    constexpr static_modint operator+(const static_modint&\
+    \ other) const {\n        return static_modint(*this) += other;\n    }\n\n   \
+    \ constexpr static_modint operator-(const static_modint& other) const {\n    \
+    \    return static_modint(*this) -= other;\n    }\n\n    constexpr static_modint\
     \ operator*(const static_modint& other) const {\n        return static_modint(*this)\
     \ *= other;\n    }\n\n    constexpr static_modint pow(long long exp) const {\n\
     \        static_modint base = *this, res = static_modint(1);\n        while (exp\
     \ > 0) {\n            if (exp & 1) res *= base;\n            base *= base;\n \
     \           exp >>= 1;\n        }\n        return res;\n    }\n\n    constexpr\
-    \ static_modint inv() const {\n        //return pow(MOD - 2);\n        int g,x,y;\n\
-    \        tie(g,x,y) = extendedGCD(value, MOD);\n        assert(g==1);\n      \
-    \  if (x < 0) {\n            x += MOD;\n        }\n        //cerr << g << \" \"\
-    \ << x << \" \" << y << \" \" << value << endl;\n        //assert((((long)x*value)%MOD\
-    \ + MOD)%MOD == 1);\n        return x;\n    }\n\n    constexpr static_modint&\
-    \ operator/=(const static_modint& other) {\n        return *this *= other.inv();\n\
-    \    }\n\n    constexpr static_modint operator/(const static_modint& other) const\
-    \ {\n        return static_modint(*this) /= other;\n    }\n\n    constexpr bool\
-    \ operator!=(const static_modint& other) const {\n        return val() != other.val();\n\
-    \    }\n\n    constexpr bool operator==(const static_modint& other) const {\n\
-    \        return val() == other.val();\n    }\n\n    int val() const {\n      return\
-    \ this->value;\n    }\n\n    friend std::ostream& operator<<(std::ostream& os,\
-    \ const static_modint& mi) {\n        return os << mi.value;\n    }\n\n    friend\
-    \ std::istream& operator>>(std::istream& is, static_modint& mi) {\n        long\
-    \ long x;\n        is >> x;\n        mi = static_modint(x);\n        return is;\n\
-    \    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\nusing modint998244353\
-    \  = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\n\n#line\
-    \ 1 \"convolution/superset-zeta-moebius-transform.hpp\"\n\n\n\n#include <vector>\n\
-    \ntemplate <class T, T (*op)(T, T) >\nstd::vector<T> superset_zeta_transform(const\
+    \ auto inv() const {\n        if constexpr (std::is_same<T, double>::value) {\n\
+    \            return double(1.0) / static_cast<double>(value);\n        }\n   \
+    \     else {\n            int g, x, y;\n            std::tie(g, x, y) = extendedGCD(value,\
+    \ MOD);\n            assert(g == 1);\n            if (x < 0) x += MOD;\n     \
+    \       return x;\n        }\n    }\n\n    constexpr static_modint& operator/=(const\
+    \ static_modint& other) {\n        return *this *= other.inv();\n    }\n\n   \
+    \ constexpr static_modint operator/(const static_modint& other) const {\n    \
+    \    return static_modint(*this) /= other;\n    }\n\n    constexpr bool operator!=(const\
+    \ static_modint& other) const {\n        return val() != other.val();\n    }\n\
+    \n    constexpr bool operator==(const static_modint& other) const {\n        return\
+    \ val() == other.val();\n    }\n\n    T val() const {\n        if constexpr (std::is_same<T,\
+    \ double>::value) {\n            return static_cast<double>(value);\n        }\n\
+    \        else return this->value;\n    }\n\n    friend std::ostream& operator<<(std::ostream&\
+    \ os, const static_modint& mi) {\n        return os << mi.value;\n    }\n\n  \
+    \  friend std::istream& operator>>(std::istream& is, static_modint& mi) {\n  \
+    \      long long x;\n        is >> x;\n        mi = static_modint(x);\n      \
+    \  return is;\n    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\n\
+    using modint998244353 = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\
+    \n\n#line 1 \"convolution/superset-zeta-moebius-transform.hpp\"\n\n\n\n#include\
+    \ <vector>\n\ntemplate <class T, T (*op)(T, T) >\nstd::vector<T> superset_zeta_transform(const\
     \ std::vector<T>& f) {\n\n  int n = 0; while ((1 << n) < (int)f.size()) n++;\n\
     \  assert((int)f.size() == (1 << n)); // f.size() should be power of 2.\n\n\n\
     \  std::vector<T> F = f;\n  for (int k = 0; k < n; k++) {\n    for (int s = 0;\
@@ -124,7 +133,7 @@ data:
   isVerificationFile: true
   path: test/verify/convolution/yosupo-and-convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-08-31 20:47:44+09:00'
+  timestamp: '2025-02-28 00:34:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/convolution/yosupo-and-convolution.test.cpp
