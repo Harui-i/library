@@ -2,29 +2,51 @@
 #define HARUILIB_MATH_MODINT_HPP
 
 #include "math/external_gcd.hpp"
+#include <type_traits>
+#include <cassert>
 
-template<int MOD>
+template<int MOD, typename T = int>
 struct static_modint {
-    int value;
+    T value;
 
     constexpr explicit static_modint() : value(0) {}
 
     constexpr static_modint(long long v) {
-        value = int(((v % MOD) + MOD) % MOD);
+        if constexpr (std::is_same<T, double>::value) {
+            value = static_cast<T>(v);
+        }
+        else {
+            value = int(((v % MOD) + MOD) % MOD);
+        }
     }
 
     constexpr static_modint& operator+=(const static_modint& other) {
-        if ((value += other.value) >= MOD) value -= MOD;
+        if constexpr (std::is_same<T, double>::value) {
+            value += other.value;
+        }
+        else {
+            if ((value += other.value) >= MOD) value -= MOD;
+        }
         return *this;
     }
 
     constexpr static_modint& operator-=(const static_modint& other) {
-        if ((value -= other.value) < 0) value += MOD;
+        if constexpr (std::is_same<T, double>::value) {
+            value -= other.value;
+        }
+        else {
+            if ((value -= other.value) < 0) value += MOD;
+        }
         return *this;
     }
 
     constexpr static_modint& operator*=(const static_modint& other) {
-        value = int((long long)value * other.value % MOD);
+        if constexpr (std::is_same<T, double>::value) {
+            value *= other.value;
+        }
+        else {
+            value = int((long long)value * other.value % MOD);
+        }
         return *this;
     }
 
@@ -50,17 +72,17 @@ struct static_modint {
         return res;
     }
 
-    constexpr static_modint inv() const {
-        //return pow(MOD - 2);
-        int g,x,y;
-        tie(g,x,y) = extendedGCD(value, MOD);
-        assert(g==1);
-        if (x < 0) {
-            x += MOD;
+    constexpr auto inv() const {
+        if constexpr (std::is_same<T, double>::value) {
+            return double(1.0) / static_cast<double>(value);
         }
-        //cerr << g << " " << x << " " << y << " " << value << endl;
-        //assert((((long)x*value)%MOD + MOD)%MOD == 1);
-        return x;
+        else {
+            int g, x, y;
+            std::tie(g, x, y) = extendedGCD(value, MOD);
+            assert(g == 1);
+            if (x < 0) x += MOD;
+            return x;
+        }
     }
 
     constexpr static_modint& operator/=(const static_modint& other) {
@@ -79,8 +101,11 @@ struct static_modint {
         return val() == other.val();
     }
 
-    int val() const {
-      return this->value;
+    T val() const {
+        if constexpr (std::is_same<T, double>::value) {
+            return static_cast<double>(value);
+        }
+        else return this->value;
     }
 
     friend std::ostream& operator<<(std::ostream& os, const static_modint& mi) {
@@ -97,7 +122,7 @@ struct static_modint {
 
 template <int mod>
 using modint = static_modint<mod>;
-using modint998244353  = modint<998244353>;
+using modint998244353 = modint<998244353>;
 using modint1000000007 = modint<1000000007>;
 
 #endif // HARUILIB_MATH_MODINT_HPP
