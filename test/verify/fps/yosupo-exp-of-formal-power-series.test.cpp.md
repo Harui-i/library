@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: formal-power-series/fps998.hpp
     title: "mod 998244353\u3067\u306EFPS(Formal Power Series, \u5F62\u5F0F\u7684\u3079\
       \u304D\u7D1A\u6570)"
@@ -89,9 +89,9 @@ data:
     \  return is;\n    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\n\
     using modint998244353 = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\
     \n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\n\n\n\n#line 5 \"\
-    formal-power-series/formal-power-series.hpp\"\n#include <vector>\n\n\ntemplate\
-    \ <typename mint>\nstruct FPS {\n  std::vector<mint> _vec;\n\n  constexpr int\
-    \ lg2(int N) const {\n    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n\
+    formal-power-series/formal-power-series.hpp\"\n#include <vector>\n#include <algorithm>\n\
+    \n\ntemplate <typename mint>\nstruct FPS {\n  std::vector<mint> _vec;\n\n  constexpr\
+    \ int lg2(int N) const {\n    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n\
     \    if ((1LL << ret) < N) ret++;\n    return ret;\n  }\n\n  // \u30CA\u30A4\u30FC\
     \u30D6\u306A\u30CB\u30E5\u30FC\u30C8\u30F3\u6CD5\u3067\u306E\u9006\u5143\u8A08\
     \u7B97\n  FPS inv_naive(int deg) const {\n    assert(_vec[0] != mint(0)); // \u3055\
@@ -171,25 +171,25 @@ data:
     \ mint& b, FPS a) { return a /= b; }\n\n  // sz\u6B21\u672A\u6E80\u306E\u9805\u3092\
     \u53D6\u3063\u3066\u304F\u308B\n  FPS pre(int sz) const {\n    FPS ret = *this;\n\
     \    ret._vec.resize(sz);\n\n    return ret;\n  }\n\n  FPS rev() const {\n   \
-    \ FPS ret = *this;\n    reverse(ret._vec.begin(), ret._vec.end());\n\n    return\
-    \ ret;\n  }\n\n  const mint& operator[](size_t i) const {\n    return _vec[i];\n\
-    \  }\n\n  mint& operator[](size_t i) {\n    return _vec[i];\n  }\n\n  void resize(int\
-    \ sz) {\n    this->_vec.resize(sz);\n  }\n\n  void shrink() {\n    while (size()\
-    \ > 0 && _vec.back() == mint(0)) _vec.pop_back();\n  }\n\n  friend ostream& operator<<(ostream&\
-    \ os, const FPS& fps) {\n    for (int i = 0; i < fps.size(); ++i) {\n      if\
-    \ (i > 0) os << \" \";\n      os << fps._vec[i].val();\n    }\n    return os;\n\
-    \  }\n\n  // \u4EEE\u60F3\u95A2\u6570\u3063\u3066\u3084\u3064\u3002mod 998244353\u306A\
-    \u306E\u304B\u3001\u4ED6\u306ENTT-friendly\u306Amod\u3067\u8003\u3048\u308B\u306E\
-    \u304B\u3001\u305D\u308C\u3068\u3082Garner\u3067\u5FA9\u5143\u3059\u308B\u306E\
-    \u304B\u3001\u305D\u308C\u3068\u3082\u7573\u307F\u8FBC\u307F\u3092$O(N^2)$\u3067\
-    \u59A5\u5354\u3059\u308B\u306E\u304B\u306A\u3069\u306B\u3088\u3063\u3066\u7570\
-    \u306A\u308B\n  virtual FPS inv(int deg = -1) const;\n  virtual void next_inv(FPS&\
-    \ g_d) const; \n  virtual void CooleyTukeyNTT998244353(std::vector<mint>& a, bool\
-    \ is_reverse) const;\n  //  virtual FPS exp(int deg=-1) const;\n  virtual std::vector<mint>\
-    \ multiply(const std::vector<mint>& a, const std::vector<mint>& b);\n};\n\n\n\
-    #line 1 \"formal-power-series/fps998.hpp\"\n\n\n\n#include <array>\n\n#line 7\
-    \ \"formal-power-series/fps998.hpp\"\n\nusing mint = modint998244353;\n//ZETAS\
-    \ = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
+    \ FPS ret = *this;\n    std::reverse(ret._vec.begin(), ret._vec.end());\n\n  \
+    \  return ret;\n  }\n\n  const mint& operator[](size_t i) const {\n    return\
+    \ _vec[i];\n  }\n\n  mint& operator[](size_t i) {\n    return _vec[i];\n  }\n\n\
+    \  void resize(int sz) {\n    this->_vec.resize(sz);\n  }\n\n  void shrink() {\n\
+    \    while (size() > 0 && _vec.back() == mint(0)) _vec.pop_back();\n  }\n\n  friend\
+    \ ostream& operator<<(ostream& os, const FPS& fps) {\n    for (int i = 0; i <\
+    \ fps.size(); ++i) {\n      if (i > 0) os << \" \";\n      os << fps._vec[i].val();\n\
+    \    }\n    return os;\n  }\n\n  // \u4EEE\u60F3\u95A2\u6570\u3063\u3066\u3084\
+    \u3064\u3002mod 998244353\u306A\u306E\u304B\u3001\u4ED6\u306ENTT-friendly\u306A\
+    mod\u3067\u8003\u3048\u308B\u306E\u304B\u3001\u305D\u308C\u3068\u3082Garner\u3067\
+    \u5FA9\u5143\u3059\u308B\u306E\u304B\u3001\u305D\u308C\u3068\u3082\u7573\u307F\
+    \u8FBC\u307F\u3092$O(N^2)$\u3067\u59A5\u5354\u3059\u308B\u306E\u304B\u306A\u3069\
+    \u306B\u3088\u3063\u3066\u7570\u306A\u308B\n  virtual FPS inv(int deg = -1) const;\n\
+    \  virtual void next_inv(FPS& g_d) const; \n  virtual void CooleyTukeyNTT998244353(std::vector<mint>&\
+    \ a, bool is_reverse) const;\n  //  virtual FPS exp(int deg=-1) const;\n  virtual\
+    \ std::vector<mint> multiply(const std::vector<mint>& a, const std::vector<mint>&\
+    \ b);\n};\n\n\n#line 1 \"formal-power-series/fps998.hpp\"\n\n\n\n#include <array>\n\
+    \n#line 7 \"formal-power-series/fps998.hpp\"\n\nusing mint = modint998244353;\n\
+    //ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
     // constexpr \u95A2\u6570\u5185\u3067 ZETAS \u914D\u5217\u3092\u8A2D\u5B9A\u3059\
     \u308B\u305F\u3081\u306E\u88DC\u52A9\u95A2\u6570\nconstexpr std::array<mint, 24>\
     \ setup_zetas() {\n  std::array<mint, 24> zetas;\n  zetas[23] = mint(3).pow(119);\n\
@@ -321,7 +321,7 @@ data:
   isVerificationFile: true
   path: test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
   requiredBy: []
-  timestamp: '2025-02-28 00:34:43+09:00'
+  timestamp: '2025-02-28 14:43:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp

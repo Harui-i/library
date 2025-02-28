@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - icon: ':question:'
@@ -12,12 +12,12 @@ data:
     title: modint
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
     title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"formal-power-series/fiduccia.hpp\"\n#include <vector>\n\
@@ -72,10 +72,10 @@ data:
     \      long long x;\n        is >> x;\n        mi = static_modint(x);\n      \
     \  return is;\n    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\n\
     using modint998244353 = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\
-    \n\n#line 6 \"formal-power-series/formal-power-series.hpp\"\n\n\ntemplate <typename\
-    \ mint>\nstruct FPS {\n  std::vector<mint> _vec;\n\n  constexpr int lg2(int N)\
-    \ const {\n    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n   \
-    \ if ((1LL << ret) < N) ret++;\n    return ret;\n  }\n\n  // \u30CA\u30A4\u30FC\
+    \n\n#line 6 \"formal-power-series/formal-power-series.hpp\"\n#include <algorithm>\n\
+    \n\ntemplate <typename mint>\nstruct FPS {\n  std::vector<mint> _vec;\n\n  constexpr\
+    \ int lg2(int N) const {\n    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n\
+    \    if ((1LL << ret) < N) ret++;\n    return ret;\n  }\n\n  // \u30CA\u30A4\u30FC\
     \u30D6\u306A\u30CB\u30E5\u30FC\u30C8\u30F3\u6CD5\u3067\u306E\u9006\u5143\u8A08\
     \u7B97\n  FPS inv_naive(int deg) const {\n    assert(_vec[0] != mint(0)); // \u3055\
     \u3042\u3089\u3056\u308C\u3070\u3001\u9006\u5143\u306E\u3066\u3072\u304E\u3044\
@@ -154,44 +154,45 @@ data:
     \ mint& b, FPS a) { return a /= b; }\n\n  // sz\u6B21\u672A\u6E80\u306E\u9805\u3092\
     \u53D6\u3063\u3066\u304F\u308B\n  FPS pre(int sz) const {\n    FPS ret = *this;\n\
     \    ret._vec.resize(sz);\n\n    return ret;\n  }\n\n  FPS rev() const {\n   \
-    \ FPS ret = *this;\n    reverse(ret._vec.begin(), ret._vec.end());\n\n    return\
-    \ ret;\n  }\n\n  const mint& operator[](size_t i) const {\n    return _vec[i];\n\
-    \  }\n\n  mint& operator[](size_t i) {\n    return _vec[i];\n  }\n\n  void resize(int\
-    \ sz) {\n    this->_vec.resize(sz);\n  }\n\n  void shrink() {\n    while (size()\
-    \ > 0 && _vec.back() == mint(0)) _vec.pop_back();\n  }\n\n  friend ostream& operator<<(ostream&\
-    \ os, const FPS& fps) {\n    for (int i = 0; i < fps.size(); ++i) {\n      if\
-    \ (i > 0) os << \" \";\n      os << fps._vec[i].val();\n    }\n    return os;\n\
-    \  }\n\n  // \u4EEE\u60F3\u95A2\u6570\u3063\u3066\u3084\u3064\u3002mod 998244353\u306A\
-    \u306E\u304B\u3001\u4ED6\u306ENTT-friendly\u306Amod\u3067\u8003\u3048\u308B\u306E\
-    \u304B\u3001\u305D\u308C\u3068\u3082Garner\u3067\u5FA9\u5143\u3059\u308B\u306E\
-    \u304B\u3001\u305D\u308C\u3068\u3082\u7573\u307F\u8FBC\u307F\u3092$O(N^2)$\u3067\
-    \u59A5\u5354\u3059\u308B\u306E\u304B\u306A\u3069\u306B\u3088\u3063\u3066\u7570\
-    \u306A\u308B\n  virtual FPS inv(int deg = -1) const;\n  virtual void next_inv(FPS&\
-    \ g_d) const; \n  virtual void CooleyTukeyNTT998244353(std::vector<mint>& a, bool\
-    \ is_reverse) const;\n  //  virtual FPS exp(int deg=-1) const;\n  virtual std::vector<mint>\
-    \ multiply(const std::vector<mint>& a, const std::vector<mint>& b);\n};\n\n\n\
-    #line 3 \"formal-power-series/fiduccia.hpp\"\n\n// AtCoder\u3067\u306Fverify\u3067\
-    \u304D\u305F\u304C\u3001LC\u3067\u306F\u3067\u304D\u305A\n// given linear recurrence\
-    \ sequence a_{n+K}= c_1 a_{n+K-1} + c_2 a_{n+k-2} + \\dots + c_{K-1} a_{n+1} +\
-    \ c_K a_n\n// a_0, a_1, \\dots, a_{K-1} are given\n// calculate a_N (N-th term\
-    \ of linear recurrence sequence) time complexity is O(K log K log N) (when NNT\
-    \ is used), O(K^2 log N) (when naive convolution is used).\ntemplate <typename\
-    \ mint> \nmint Fiduccia(const vector<mint>& a, const vector<mint>& c, unsigned\
-    \ long long  N) {\n  if (N < a.size()) return a[N];\n  assert(a.size() == c.size());\n\
-    \  int K = c.size();\n\n  FPS<mint> varphi(K+1); \n  varphi[K] = mint(1);\n  for(int\
-    \ i=0; i<K; i++) varphi[i] = mint(-1) * c[K-i-1];\n\n  // calculate x^N mod varphi,\
-    \ using square and multiply technique.\n  // Note that there is two way to implement\
-    \ the methodlogy. LSB-first algorithm(famous one ) and MSB-first alogirthm.\n\
-    \ int msb=0;\n  for (int i=0; 1ULL<< i <=N; i++) {\n    if (N & (1ULL << i)) msb\
-    \ = i;\n  }\n  FPS<mint> remainder(1); remainder[0] = mint(1);\n  for (int i=msb;\
-    \ i>=0; i--) {\n    if (N & (1ULL << i)) {\n      remainder = remainder << 1;\
-    \ // it is equal to remainder *= x.\n      if (remainder.size() >= varphi.size())\
-    \ remainder %= varphi;\n    }\n    if (i != 0) {\n      remainder *= remainder;\
-    \ // NTT\u306A\u3089\u3001NTT\u914D\u5217\u3092\u4F7F\u3044\u56DE\u3059\u3053\u3068\
-    \u3067\u5B9A\u6570\u500D\u304C\u826F\u304F\u306A\u308B\u306D\n      if (remainder.size()\
-    \ >= varphi.size()) remainder %= varphi;\n    }\n  }\n\n  // remainder = x^N mod\
-    \ varphi \n  mint ret = 0;\n  assert(remainder.size() <= K);\n  for(int i=0; i<remainder.size();\
-    \ i++) {\n    ret += remainder[i] * a[i];\n  }\n\n  return ret;\n}\n"
+    \ FPS ret = *this;\n    std::reverse(ret._vec.begin(), ret._vec.end());\n\n  \
+    \  return ret;\n  }\n\n  const mint& operator[](size_t i) const {\n    return\
+    \ _vec[i];\n  }\n\n  mint& operator[](size_t i) {\n    return _vec[i];\n  }\n\n\
+    \  void resize(int sz) {\n    this->_vec.resize(sz);\n  }\n\n  void shrink() {\n\
+    \    while (size() > 0 && _vec.back() == mint(0)) _vec.pop_back();\n  }\n\n  friend\
+    \ ostream& operator<<(ostream& os, const FPS& fps) {\n    for (int i = 0; i <\
+    \ fps.size(); ++i) {\n      if (i > 0) os << \" \";\n      os << fps._vec[i].val();\n\
+    \    }\n    return os;\n  }\n\n  // \u4EEE\u60F3\u95A2\u6570\u3063\u3066\u3084\
+    \u3064\u3002mod 998244353\u306A\u306E\u304B\u3001\u4ED6\u306ENTT-friendly\u306A\
+    mod\u3067\u8003\u3048\u308B\u306E\u304B\u3001\u305D\u308C\u3068\u3082Garner\u3067\
+    \u5FA9\u5143\u3059\u308B\u306E\u304B\u3001\u305D\u308C\u3068\u3082\u7573\u307F\
+    \u8FBC\u307F\u3092$O(N^2)$\u3067\u59A5\u5354\u3059\u308B\u306E\u304B\u306A\u3069\
+    \u306B\u3088\u3063\u3066\u7570\u306A\u308B\n  virtual FPS inv(int deg = -1) const;\n\
+    \  virtual void next_inv(FPS& g_d) const; \n  virtual void CooleyTukeyNTT998244353(std::vector<mint>&\
+    \ a, bool is_reverse) const;\n  //  virtual FPS exp(int deg=-1) const;\n  virtual\
+    \ std::vector<mint> multiply(const std::vector<mint>& a, const std::vector<mint>&\
+    \ b);\n};\n\n\n#line 3 \"formal-power-series/fiduccia.hpp\"\n\n// AtCoder\u3067\
+    \u306Fverify\u3067\u304D\u305F\u304C\u3001LC\u3067\u306F\u3067\u304D\u305A\n//\
+    \ given linear recurrence sequence a_{n+K}= c_1 a_{n+K-1} + c_2 a_{n+k-2} + \\\
+    dots + c_{K-1} a_{n+1} + c_K a_n\n// a_0, a_1, \\dots, a_{K-1} are given\n// calculate\
+    \ a_N (N-th term of linear recurrence sequence) time complexity is O(K log K log\
+    \ N) (when NNT is used), O(K^2 log N) (when naive convolution is used).\ntemplate\
+    \ <typename mint> \nmint Fiduccia(const vector<mint>& a, const vector<mint>& c,\
+    \ unsigned long long  N) {\n  if (N < a.size()) return a[N];\n  assert(a.size()\
+    \ == c.size());\n  int K = c.size();\n\n  FPS<mint> varphi(K+1); \n  varphi[K]\
+    \ = mint(1);\n  for(int i=0; i<K; i++) varphi[i] = mint(-1) * c[K-i-1];\n\n  //\
+    \ calculate x^N mod varphi, using square and multiply technique.\n  // Note that\
+    \ there is two way to implement the methodlogy. LSB-first algorithm(famous one\
+    \ ) and MSB-first alogirthm.\n int msb=0;\n  for (int i=0; 1ULL<< i <=N; i++)\
+    \ {\n    if (N & (1ULL << i)) msb = i;\n  }\n  FPS<mint> remainder(1); remainder[0]\
+    \ = mint(1);\n  for (int i=msb; i>=0; i--) {\n    if (N & (1ULL << i)) {\n   \
+    \   remainder = remainder << 1; // it is equal to remainder *= x.\n      if (remainder.size()\
+    \ >= varphi.size()) remainder %= varphi;\n    }\n    if (i != 0) {\n      remainder\
+    \ *= remainder; // NTT\u306A\u3089\u3001NTT\u914D\u5217\u3092\u4F7F\u3044\u56DE\
+    \u3059\u3053\u3068\u3067\u5B9A\u6570\u500D\u304C\u826F\u304F\u306A\u308B\u306D\
+    \n      if (remainder.size() >= varphi.size()) remainder %= varphi;\n    }\n \
+    \ }\n\n  // remainder = x^N mod varphi \n  mint ret = 0;\n  assert(remainder.size()\
+    \ <= K);\n  for(int i=0; i<remainder.size(); i++) {\n    ret += remainder[i] *\
+    \ a[i];\n  }\n\n  return ret;\n}\n"
   code: "#include <vector>\n#include \"formal-power-series/formal-power-series.hpp\"\
     \n\n// AtCoder\u3067\u306Fverify\u3067\u304D\u305F\u304C\u3001LC\u3067\u306F\u3067\
     \u304D\u305A\n// given linear recurrence sequence a_{n+K}= c_1 a_{n+K-1} + c_2\
@@ -222,8 +223,8 @@ data:
   isVerificationFile: false
   path: formal-power-series/fiduccia.hpp
   requiredBy: []
-  timestamp: '2025-02-28 00:34:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-02-28 14:43:36+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
 documentation_of: formal-power-series/fiduccia.hpp

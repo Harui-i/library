@@ -47,14 +47,14 @@ data:
       title: dp/largest-rectangle-in-a-histogram.hpp
   - name: formal-power-series
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: formal-power-series/fiduccia.hpp
       title: "Fiduccia\u306E\u30A2\u30EB\u30B4\u30EA\u30BA\u30E0 (\u304D\u305F\u307E\
         \u3055\u6CD5?)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: formal-power-series/formal-power-series.hpp
       title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: formal-power-series/fps998.hpp
       title: "mod 998244353\u3067\u306EFPS(Formal Power Series, \u5F62\u5F0F\u7684\
         \u3079\u304D\u7D1A\u6570)"
@@ -205,7 +205,7 @@ data:
       title: test/verify/convolution/yosupo-normal-convolution.test.cpp
   - name: test/verify/fps
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/fps/yosupo-division-of-polynomials.test.cpp
       title: test/verify/fps/yosupo-division-of-polynomials.test.cpp
     - icon: ':heavy_check_mark:'
@@ -217,7 +217,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
       title: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
       title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
     - icon: ':heavy_check_mark:'
