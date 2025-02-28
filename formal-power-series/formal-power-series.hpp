@@ -3,6 +3,7 @@
 
 #include "../math/modint.hpp"
 #include <vector>
+#include <algorithm>
 
 
 template <typename mint>
@@ -239,7 +240,7 @@ struct FPS {
 
   FPS rev() const {
     FPS ret = *this;
-    reverse(ret._vec.begin(), ret._vec.end());
+    std::reverse(ret._vec.begin(), ret._vec.end());
 
     return ret;
   }
