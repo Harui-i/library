@@ -5,6 +5,39 @@ documentation_of: //graph/tree/heavy_light_decomposition.hpp
 
 木に関する部分木クエリ、パスクエリを処理するためのデータ構造。
 
+## 使い方
+
+```
+HaruiLib::HLD hld(N);
+
+for (int i=0; i<N-1; i++) {
+  int u, v; cin >> u >> v;
+  hld.graph.add_edge(u,v);
+  hld.graph.add_edge(v,u);
+}
+
+hld.build();
+```
+
+みたいに構築したあと、
+```
+int a,b; cin >> a >> b;
+HaruiLib::Path path = hld.get_path(a,b);
+
+ll sum = 0;
+for(HaruiLib::Interval intv: path) {
+  sum += seg.prod(intv.top_id, intv.bottom_id + 1);
+}
+```
+のように、id上でセグ木などの列に対するアルゴリズムを使っていく流れが基本だと思われる。
+
+他にも、
+
+- 辺属性なら子側の頂点に持たせるほうがいい
+- 辺属性を考えるときはLCAの頂点に注意する
+
+みたいな色々考えておくことがある。
+
 ## コンストラクタ
 
 ```
