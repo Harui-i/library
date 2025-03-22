@@ -143,7 +143,7 @@ int main() {
   vector<int>a(N); 
   for(int i=0; i<N; i++) cin >> a[i];
 
-  HLD hld(N);
+  HaruiLib::HLD hld(N);
   for (int i=1; i<N; i++) {
     int p; cin >> p;
     hld.graph.add_edge(i,p);
