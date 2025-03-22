@@ -1,6 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/4/ALDS1_4_B"
 #include "template/template.hpp"
 #include <vector>
+#include <algorithm>
 
 int main() {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
