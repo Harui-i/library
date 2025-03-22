@@ -4,6 +4,8 @@
 #include "graph/graph_template.hpp"
 #include "graph/dijkstra.hpp"
 
+#include <algorithm>
+
 int main() {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
   int N, M, s, t; cin >> N >> M >> s >> t;

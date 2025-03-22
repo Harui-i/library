@@ -2,6 +2,7 @@
 #define HARUILIB_GRAPH_DIAMETER_HPP
 
 
+#include <algorithm>
 #include <vector>
 #include <queue>
 #include "graph/graph_template.hpp"
