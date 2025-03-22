@@ -38,114 +38,170 @@ data:
     \  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
     \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 10\
-    \ \"graph/tree/heavy_light_decomposition.hpp\"\n\n// cf : https://ngtkana.hatenablog.com/entry/2024/06/24/200138\n\
-    struct Interval {\n  // top_id : interval \u306E\u3082\u3063\u3068\u3082\u6839\
-    \u306B\u8FD1\u3044\u9802\u70B9\u306Eid\n  // bottom_id : interval \u306E\u3082\
-    \u3063\u3068\u3082\u8449\u306B\u8FD1\u3044\u9802\u70B9\u306Eid\n  // last : LCA\u3092\
-    \u542B\u3080 interval \u3067\u3042\u308B\u304B\u3069\u3046\u304B\n  // reverse\
-    \ : from \u2192 to \u3068 top \u2192 bottom\u304C\u9006\u5411\u304D\u304B\u3069\
-    \u3046\u304B\n  int top_id, bottom_id;\n  bool last;\n  bool reverse;\n\n  Interval(int\
-    \ _top_id, int _bottom_id, bool _last, bool _reverse) : top_id(_top_id), bottom_id(_bottom_id),\
-    \ last(_last), reverse(_reverse) {\n\n  }\n};\n\nusing Path = std::vector<Interval>;\n\
-    \nstruct HLD {\n\n  //vector<vector<int>>children;\n  std::vector<int>parent;\n\
-    \  std::vector<int> id;\n  std::vector<int> id2;\n  std::vector<int> head;\n \
-    \ std::vector<int>depth;\n  Graph<int>graph;\n\n  HLD (int N) : parent(std::vector<int>(N,\
-    \ -1)), id(std::vector<int>(N)), id2(std::vector<int>(N)), head(std::vector<int>(N)),\
-    \ depth(std::vector<int>(N)), graph(N) {}\n\n  void build(int root=0) {\n    dfs_sz(root);\n\
-    \    int k = 0; dfs_hld(root, k);\n  }\n\n  int dfs_sz(int v) {\n    int ret =\
-    \ 1, mx_sz = 0;\n    for (Edge<int>& nxt : graph[v]) {\n      if (nxt.to == parent[v])\
-    \ continue;\n\n      parent[nxt.to] = v;\n      depth[nxt.to] = depth[v] + 1;\n\
-    \      int sz = dfs_sz(nxt.to);\n      ret += sz;\n      if (mx_sz < sz) {\n \
-    \       mx_sz = sz;\n        std::swap(graph[v][0], nxt);\n      }\n    }\n\n\
-    \    return ret;\n  }\n\n  void dfs_hld(int v, int& k) {\n    id[v] = k; k++;\n\
-    \    for (Edge e : graph[v]) {\n      if (e.to == parent[v]) continue;\n\n   \
-    \   head[e.to] = (e == graph[v][0] ? head[v] : e.to);\n      dfs_hld(e.to, k);\n\
-    \    }\n    id2[v] = k;\n  }\n\n  int lca(int u, int v) {\n    while (true) {\n\
-    \      if (id[u] > id[v]) std::swap(u, v);\n      if (head[u] == head[v]) return\
-    \ u;\n\n      v = parent[head[v]];\n    }\n  }\n\n  Path get_path(int u, int v)\
-    \ {\n    Path upath, vpath;\n\n    while (head[u] != head[v]) {\n\n      // \u3061\
-    \u306A\u307F\u306Bu,v\u306Edepth\u306E\u5927\u5C0F\u95A2\u4FC2\u306F\u5909\u308F\
-    \u308A\u7D9A\u3051\u308B\u3053\u3068\u3082\u3042\u308B\u3002\n      // 10 \u2192\
-    \ 12\u306A\u3069\u3002\n\n      // v's head is deeper\n      if (depth[head[v]]\
-    \ >= depth[head[u]]) {\n        assert(depth[head[v]] >= depth[head[u]]);\n  \
-    \      /*\n          /   : heavy edge\n         .... : light edge\n\n        \
-    \    head[u]\n               /\n              /...\n             u  ...\n    \
-    \        /   head[v]\n           /       \\\n          /         \\\n        \
-    \ /           v\n        */\n\n        // u\u2192v \u306A\u306E\u3067reverse=false\n\
-    \        vpath.emplace_back(id[head[v]], id[v], false, false);\n        v = parent[head[v]];\n\
-    \      }\n\n      // u's head is deeper\n      else if (depth[head[v]] < depth[head[u]])\
-    \ {\n        /*\n          /   : heavy edge\n         .... : light edge\n\n  \
-    \          head[v]\n               /\n              /...\n             v  ...\n\
-    \            /   head[u]\n           /       \\\n          /         \\\n    \
-    \     /           u\n        */\n\n        //\n        upath.emplace_back(id[head[u]],\
-    \ id[u], false, true);\n        u = parent[head[u]];\n      }\n    }\n\n    //\
-    \ v is deeper\n    /*\n       u\n      /\n     /  \u2190\u2193\n    /\n   v\n\n\
-    \    */\n    if (depth[v] > depth[u]) {\n      upath.emplace_back(id[u], id[v],\
-    \ true, false);\n    }\n\n    // u is deeper\n    /*\n       v\n      /\n    \
-    \ /  \u2192\u2191\n    /\n   u\n\n    */\n    else {\n      upath.emplace_back(id[v],\
-    \ id[u], true, true);\n    }\n    Path retpath = upath;\n    std::reverse(vpath.begin(),\
-    \ vpath.end());\n    for (Interval path : vpath) retpath.push_back(path);\n\n\
-    \    return retpath;\n  }\n\n  std::pair<int,int> subtree_query(int r) {\n   \
-    \ assert(r < int(id.size()));\n    return std::make_pair(id[r], id2[r]);\n  }\n\
-    \n};\n\n\n"
+    \ \"graph/tree/heavy_light_decomposition.hpp\"\n\nnamespace HaruiLib {\n  // cf\
+    \ : https://ngtkana.hatenablog.com/entry/2024/06/24/200138\n  struct Interval\
+    \ {\n    // top_id : interval \u306E\u3082\u3063\u3068\u3082\u6839\u306B\u8FD1\
+    \u3044\u9802\u70B9\u306Eid\n    // bottom_id : interval \u306E\u3082\u3063\u3068\
+    \u3082\u8449\u306B\u8FD1\u3044\u9802\u70B9\u306Eid\n    // last : LCA\u3092\u542B\
+    \u3080 interval \u3067\u3042\u308B\u304B\u3069\u3046\u304B\n    // reverse : from\
+    \ \u2192 to \u3068 top \u2192 bottom\u304C\u9006\u5411\u304D\u304B\u3069\u3046\
+    \u304B\n    int top_id, bottom_id;\n    bool last;\n    bool reverse;\n  \n  \
+    \  Interval(int _top_id, int _bottom_id, bool _last, bool _reverse) : top_id(_top_id),\
+    \ bottom_id(_bottom_id), last(_last), reverse(_reverse) {\n  \n    }\n  };\n \
+    \ \n  using Path = std::vector<Interval>;\n  \n  /*\n  \u6728\u3092\u3044\u304F\
+    \u3064\u304B\u306E\u30D1\u30B9\u306B\u5206\u3051\u308B\u30A2\u30EB\u30B4\u30EA\
+    \u30BA\u30E0\u3002\n  \u3046\u307E\u304FDFS\u3057\u3066\u30D1\u30B9\u306B\u5206\
+    \u3051\u308B\u3068\u3001\u540C\u3058\u30D1\u30B9\u306E\u4E2D\u3067id\u304C\u9023\
+    \u7D9A\u3059\u308B\u306E\u3067\u3001\u4E00\u3064\u306E\u30D1\u30B9\u306E\u4E2D\
+    \u3067\u306F\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\u306A\u3069\u306E\u5217\u306B\
+    \u5BFE\u3057\u3066\u306E\u30A2\u30EB\u30B4\u30EA\u30BA\u30E0\u304C\u4F7F\u3048\
+    \u308B\u3088\u3046\u306B\u306A\u308B\u3002\n  \n  \u9802\u70B9\u5C5E\u6027\u306E\
+    \u554F\u984C\u306F\u304B\u3093\u305F\u3093\u3002\n  \u8FBA\u5C5E\u6027\u306E\u554F\
+    \u984C\u306F\u3001\u8FBA\u306E\u5B50\u5074\u306E\u9802\u70B9\u306B\u305D\u306E\
+    \u60C5\u5831\u3092\u3082\u305F\u305B\u3066\u7BA1\u7406\u3059\u308B\u3068\u3044\
+    \u3044\u3002 \u305D\u306E\u3068\u304D\u306FLCA\u306B\u6CE8\u610F\u3059\u308B\u3002\
+    \n  */\n  struct HLD {\n  private:\n    bool is_built = false;\n  public:\n  \
+    \  //vector<vector<int>>children;\n    std::vector<int> parent;\n    std::vector<int>\
+    \ id; // id[v] := \u9802\u70B9v\u304Cdfs\u9806\u3067\u4F55\u756A\u76EE\u306B\u3042\
+    \u308B\u304B\u3002 HLD\u3067\u5206\u5272\u3057\u305F\u30D1\u30B9\u306E\u4E2D\u3067\
+    \u306F\u3001\u6DF1\u3055\u304C\u6D45\u3044\u65B9\u304B\u3089\u6DF1\u3044\u65B9\
+    \u3078id\u304C\u9023\u7D9A\u3057\u3066\u5897\u3048\u3066\u3044\u304F\u3002\n \
+    \   std::vector<int> id2;\n    std::vector<int> head; // head[v] := \u9802\u70B9\
+    v\u304C\u6240\u5C5E\u3059\u308B\u5206\u5272\u3055\u308C\u305F\u30D1\u30B9\u306E\
+    \u3001\u4E00\u756A\u6839\u306B\u8FD1\u3044\u9802\u70B9\u3002\n    std::vector<int>\
+    \ depth; // depth[v] := \u9802\u70B9v\u306E\u6DF1\u3055\n    Graph<int> graph;\n\
+    \  \n    HLD (int N) : parent(std::vector<int>(N, -1)), id(std::vector<int>(N)),\
+    \ id2(std::vector<int>(N)), head(std::vector<int>(N)), depth(std::vector<int>(N)),\
+    \ graph(N) {}\n  \n    void build(int root=0) {\n      dfs_sz(root);\n      int\
+    \ k = 0; dfs_hld(root, k);\n      is_built = true;\n    }\n  \n    int dfs_sz(int\
+    \ v) {\n      int ret = 1, mx_sz = 0;\n      for (Edge<int>& nxt : graph[v]) {\n\
+    \        if (nxt.to == parent[v]) continue;\n  \n        parent[nxt.to] = v;\n\
+    \        depth[nxt.to] = depth[v] + 1;\n        int sz = dfs_sz(nxt.to);\n   \
+    \     ret += sz;\n        if (mx_sz < sz) {\n          mx_sz = sz;\n         \
+    \ std::swap(graph[v][0], nxt);\n        }\n      }\n  \n      return ret;\n  \
+    \  }\n  \n    void dfs_hld(int v, int& k) {\n      id[v] = k; k++;\n      for\
+    \ (Edge e : graph[v]) {\n        if (e.to == parent[v]) continue;\n  \n      \
+    \  // \u4ECA\u898B\u3066\u3044\u308B\u8FBA\u304C\u6700\u5927\u9023\u7D50\u6210\
+    \u5206\u65B9\u5411\u3078\u306E\u8FBA\u306A\u3089,head[e.to] = head[v]\n      \
+    \  // \u305D\u3046\u3067\u306A\u3044\u306A\u3089\u3001head[e.to] = e.to;\n   \
+    \     head[e.to] = (e == graph[v][0] ? head[v] : e.to);\n        dfs_hld(e.to,\
+    \ k);\n      }\n      id2[v] = k;\n    }\n  \n    int lca(int u, int v) {\n  \
+    \    assert(is_built);\n      while (true) {\n        if (id[u] > id[v]) std::swap(u,\
+    \ v);\n        if (head[u] == head[v]) return u;\n  \n        v = parent[head[v]];\n\
+    \      }\n    }\n  \n    Path get_path(int u, int v) {\n      assert(is_built);\n\
+    \      Path upath, vpath;\n  \n      while (head[u] != head[v]) {\n  \n      \
+    \  // \u3061\u306A\u307F\u306Bu,v\u306Edepth\u306E\u5927\u5C0F\u95A2\u4FC2\u306F\
+    \u5909\u308F\u308A\u7D9A\u3051\u308B\u3053\u3068\u3082\u3042\u308B\u3002\n   \
+    \     // 10 \u2192 12\u306A\u3069\u3002\n  \n        // v's head is deeper\n \
+    \       if (depth[head[v]] >= depth[head[u]]) {\n          assert(depth[head[v]]\
+    \ >= depth[head[u]]);\n          /*\n            /   : heavy edge\n          \
+    \ .... : light edge\n  \n              head[u]\n                 /\n         \
+    \       /...\n               u  ...\n              /   head[v]\n             /\
+    \       \\\n            /         \\\n           /           v\n          */\n\
+    \  \n          // u\u2192v \u306A\u306E\u3067reverse=false\n          vpath.emplace_back(id[head[v]],\
+    \ id[v], false, false);\n          v = parent[head[v]];\n        }\n  \n     \
+    \   // u's head is deeper\n        else if (depth[head[v]] < depth[head[u]]) {\n\
+    \          /*\n            /   : heavy edge\n           .... : light edge\n  \n\
+    \              head[v]\n                 /\n                /...\n           \
+    \    v  ...\n              /   head[u]\n             /       \\\n            /\
+    \         \\\n           /           u\n          */\n  \n          //\n     \
+    \     upath.emplace_back(id[head[u]], id[u], false, true);\n          u = parent[head[u]];\n\
+    \        }\n      }\n  \n      // v is deeper\n      /*\n         u\n        /\n\
+    \       /  \u2190\u2193\n      /\n     v\n  \n      */\n      if (depth[v] > depth[u])\
+    \ {\n        upath.emplace_back(id[u], id[v], true, false);\n      }\n  \n   \
+    \   // u is deeper\n      /*\n         v\n        /\n       /  \u2192\u2191\n\
+    \      /\n     u\n  \n      */\n      else {\n        upath.emplace_back(id[v],\
+    \ id[u], true, true);\n      }\n      Path retpath = upath;\n      std::reverse(vpath.begin(),\
+    \ vpath.end());\n      for (Interval path : vpath) retpath.push_back(path);\n\
+    \  \n      return retpath;\n    }\n  \n    std::pair<int,int> subtree_query(int\
+    \ r) {\n      assert(r < int(id.size()));\n      return std::make_pair(id[r],\
+    \ id2[r]);\n    }\n  \n  };\n\n}\n\n"
   code: "#ifndef HARUILIB_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n#define HARUILIB_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n\
     \n#include <vector>\n#include <algorithm>\n#include <cassert>\n#include <utility>\n\
-    \n#include \"graph/graph_template.hpp\"\n\n// cf : https://ngtkana.hatenablog.com/entry/2024/06/24/200138\n\
-    struct Interval {\n  // top_id : interval \u306E\u3082\u3063\u3068\u3082\u6839\
-    \u306B\u8FD1\u3044\u9802\u70B9\u306Eid\n  // bottom_id : interval \u306E\u3082\
-    \u3063\u3068\u3082\u8449\u306B\u8FD1\u3044\u9802\u70B9\u306Eid\n  // last : LCA\u3092\
-    \u542B\u3080 interval \u3067\u3042\u308B\u304B\u3069\u3046\u304B\n  // reverse\
-    \ : from \u2192 to \u3068 top \u2192 bottom\u304C\u9006\u5411\u304D\u304B\u3069\
-    \u3046\u304B\n  int top_id, bottom_id;\n  bool last;\n  bool reverse;\n\n  Interval(int\
-    \ _top_id, int _bottom_id, bool _last, bool _reverse) : top_id(_top_id), bottom_id(_bottom_id),\
-    \ last(_last), reverse(_reverse) {\n\n  }\n};\n\nusing Path = std::vector<Interval>;\n\
-    \nstruct HLD {\n\n  //vector<vector<int>>children;\n  std::vector<int>parent;\n\
-    \  std::vector<int> id;\n  std::vector<int> id2;\n  std::vector<int> head;\n \
-    \ std::vector<int>depth;\n  Graph<int>graph;\n\n  HLD (int N) : parent(std::vector<int>(N,\
-    \ -1)), id(std::vector<int>(N)), id2(std::vector<int>(N)), head(std::vector<int>(N)),\
-    \ depth(std::vector<int>(N)), graph(N) {}\n\n  void build(int root=0) {\n    dfs_sz(root);\n\
-    \    int k = 0; dfs_hld(root, k);\n  }\n\n  int dfs_sz(int v) {\n    int ret =\
-    \ 1, mx_sz = 0;\n    for (Edge<int>& nxt : graph[v]) {\n      if (nxt.to == parent[v])\
-    \ continue;\n\n      parent[nxt.to] = v;\n      depth[nxt.to] = depth[v] + 1;\n\
-    \      int sz = dfs_sz(nxt.to);\n      ret += sz;\n      if (mx_sz < sz) {\n \
-    \       mx_sz = sz;\n        std::swap(graph[v][0], nxt);\n      }\n    }\n\n\
-    \    return ret;\n  }\n\n  void dfs_hld(int v, int& k) {\n    id[v] = k; k++;\n\
-    \    for (Edge e : graph[v]) {\n      if (e.to == parent[v]) continue;\n\n   \
-    \   head[e.to] = (e == graph[v][0] ? head[v] : e.to);\n      dfs_hld(e.to, k);\n\
-    \    }\n    id2[v] = k;\n  }\n\n  int lca(int u, int v) {\n    while (true) {\n\
-    \      if (id[u] > id[v]) std::swap(u, v);\n      if (head[u] == head[v]) return\
-    \ u;\n\n      v = parent[head[v]];\n    }\n  }\n\n  Path get_path(int u, int v)\
-    \ {\n    Path upath, vpath;\n\n    while (head[u] != head[v]) {\n\n      // \u3061\
-    \u306A\u307F\u306Bu,v\u306Edepth\u306E\u5927\u5C0F\u95A2\u4FC2\u306F\u5909\u308F\
-    \u308A\u7D9A\u3051\u308B\u3053\u3068\u3082\u3042\u308B\u3002\n      // 10 \u2192\
-    \ 12\u306A\u3069\u3002\n\n      // v's head is deeper\n      if (depth[head[v]]\
-    \ >= depth[head[u]]) {\n        assert(depth[head[v]] >= depth[head[u]]);\n  \
-    \      /*\n          /   : heavy edge\n         .... : light edge\n\n        \
-    \    head[u]\n               /\n              /...\n             u  ...\n    \
-    \        /   head[v]\n           /       \\\n          /         \\\n        \
-    \ /           v\n        */\n\n        // u\u2192v \u306A\u306E\u3067reverse=false\n\
-    \        vpath.emplace_back(id[head[v]], id[v], false, false);\n        v = parent[head[v]];\n\
-    \      }\n\n      // u's head is deeper\n      else if (depth[head[v]] < depth[head[u]])\
-    \ {\n        /*\n          /   : heavy edge\n         .... : light edge\n\n  \
-    \          head[v]\n               /\n              /...\n             v  ...\n\
-    \            /   head[u]\n           /       \\\n          /         \\\n    \
-    \     /           u\n        */\n\n        //\n        upath.emplace_back(id[head[u]],\
-    \ id[u], false, true);\n        u = parent[head[u]];\n      }\n    }\n\n    //\
-    \ v is deeper\n    /*\n       u\n      /\n     /  \u2190\u2193\n    /\n   v\n\n\
-    \    */\n    if (depth[v] > depth[u]) {\n      upath.emplace_back(id[u], id[v],\
-    \ true, false);\n    }\n\n    // u is deeper\n    /*\n       v\n      /\n    \
-    \ /  \u2192\u2191\n    /\n   u\n\n    */\n    else {\n      upath.emplace_back(id[v],\
-    \ id[u], true, true);\n    }\n    Path retpath = upath;\n    std::reverse(vpath.begin(),\
-    \ vpath.end());\n    for (Interval path : vpath) retpath.push_back(path);\n\n\
-    \    return retpath;\n  }\n\n  std::pair<int,int> subtree_query(int r) {\n   \
-    \ assert(r < int(id.size()));\n    return std::make_pair(id[r], id2[r]);\n  }\n\
-    \n};\n\n#endif // HARUILIB_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n"
+    \n#include \"graph/graph_template.hpp\"\n\nnamespace HaruiLib {\n  // cf : https://ngtkana.hatenablog.com/entry/2024/06/24/200138\n\
+    \  struct Interval {\n    // top_id : interval \u306E\u3082\u3063\u3068\u3082\u6839\
+    \u306B\u8FD1\u3044\u9802\u70B9\u306Eid\n    // bottom_id : interval \u306E\u3082\
+    \u3063\u3068\u3082\u8449\u306B\u8FD1\u3044\u9802\u70B9\u306Eid\n    // last :\
+    \ LCA\u3092\u542B\u3080 interval \u3067\u3042\u308B\u304B\u3069\u3046\u304B\n\
+    \    // reverse : from \u2192 to \u3068 top \u2192 bottom\u304C\u9006\u5411\u304D\
+    \u304B\u3069\u3046\u304B\n    int top_id, bottom_id;\n    bool last;\n    bool\
+    \ reverse;\n  \n    Interval(int _top_id, int _bottom_id, bool _last, bool _reverse)\
+    \ : top_id(_top_id), bottom_id(_bottom_id), last(_last), reverse(_reverse) {\n\
+    \  \n    }\n  };\n  \n  using Path = std::vector<Interval>;\n  \n  /*\n  \u6728\
+    \u3092\u3044\u304F\u3064\u304B\u306E\u30D1\u30B9\u306B\u5206\u3051\u308B\u30A2\
+    \u30EB\u30B4\u30EA\u30BA\u30E0\u3002\n  \u3046\u307E\u304FDFS\u3057\u3066\u30D1\
+    \u30B9\u306B\u5206\u3051\u308B\u3068\u3001\u540C\u3058\u30D1\u30B9\u306E\u4E2D\
+    \u3067id\u304C\u9023\u7D9A\u3059\u308B\u306E\u3067\u3001\u4E00\u3064\u306E\u30D1\
+    \u30B9\u306E\u4E2D\u3067\u306F\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\u306A\u3069\
+    \u306E\u5217\u306B\u5BFE\u3057\u3066\u306E\u30A2\u30EB\u30B4\u30EA\u30BA\u30E0\
+    \u304C\u4F7F\u3048\u308B\u3088\u3046\u306B\u306A\u308B\u3002\n  \n  \u9802\u70B9\
+    \u5C5E\u6027\u306E\u554F\u984C\u306F\u304B\u3093\u305F\u3093\u3002\n  \u8FBA\u5C5E\
+    \u6027\u306E\u554F\u984C\u306F\u3001\u8FBA\u306E\u5B50\u5074\u306E\u9802\u70B9\
+    \u306B\u305D\u306E\u60C5\u5831\u3092\u3082\u305F\u305B\u3066\u7BA1\u7406\u3059\
+    \u308B\u3068\u3044\u3044\u3002 \u305D\u306E\u3068\u304D\u306FLCA\u306B\u6CE8\u610F\
+    \u3059\u308B\u3002\n  */\n  struct HLD {\n  private:\n    bool is_built = false;\n\
+    \  public:\n    //vector<vector<int>>children;\n    std::vector<int> parent;\n\
+    \    std::vector<int> id; // id[v] := \u9802\u70B9v\u304Cdfs\u9806\u3067\u4F55\
+    \u756A\u76EE\u306B\u3042\u308B\u304B\u3002 HLD\u3067\u5206\u5272\u3057\u305F\u30D1\
+    \u30B9\u306E\u4E2D\u3067\u306F\u3001\u6DF1\u3055\u304C\u6D45\u3044\u65B9\u304B\
+    \u3089\u6DF1\u3044\u65B9\u3078id\u304C\u9023\u7D9A\u3057\u3066\u5897\u3048\u3066\
+    \u3044\u304F\u3002\n    std::vector<int> id2;\n    std::vector<int> head; // head[v]\
+    \ := \u9802\u70B9v\u304C\u6240\u5C5E\u3059\u308B\u5206\u5272\u3055\u308C\u305F\
+    \u30D1\u30B9\u306E\u3001\u4E00\u756A\u6839\u306B\u8FD1\u3044\u9802\u70B9\u3002\
+    \n    std::vector<int> depth; // depth[v] := \u9802\u70B9v\u306E\u6DF1\u3055\n\
+    \    Graph<int> graph;\n  \n    HLD (int N) : parent(std::vector<int>(N, -1)),\
+    \ id(std::vector<int>(N)), id2(std::vector<int>(N)), head(std::vector<int>(N)),\
+    \ depth(std::vector<int>(N)), graph(N) {}\n  \n    void build(int root=0) {\n\
+    \      dfs_sz(root);\n      int k = 0; dfs_hld(root, k);\n      is_built = true;\n\
+    \    }\n  \n    int dfs_sz(int v) {\n      int ret = 1, mx_sz = 0;\n      for\
+    \ (Edge<int>& nxt : graph[v]) {\n        if (nxt.to == parent[v]) continue;\n\
+    \  \n        parent[nxt.to] = v;\n        depth[nxt.to] = depth[v] + 1;\n    \
+    \    int sz = dfs_sz(nxt.to);\n        ret += sz;\n        if (mx_sz < sz) {\n\
+    \          mx_sz = sz;\n          std::swap(graph[v][0], nxt);\n        }\n  \
+    \    }\n  \n      return ret;\n    }\n  \n    void dfs_hld(int v, int& k) {\n\
+    \      id[v] = k; k++;\n      for (Edge e : graph[v]) {\n        if (e.to == parent[v])\
+    \ continue;\n  \n        // \u4ECA\u898B\u3066\u3044\u308B\u8FBA\u304C\u6700\u5927\
+    \u9023\u7D50\u6210\u5206\u65B9\u5411\u3078\u306E\u8FBA\u306A\u3089,head[e.to]\
+    \ = head[v]\n        // \u305D\u3046\u3067\u306A\u3044\u306A\u3089\u3001head[e.to]\
+    \ = e.to;\n        head[e.to] = (e == graph[v][0] ? head[v] : e.to);\n       \
+    \ dfs_hld(e.to, k);\n      }\n      id2[v] = k;\n    }\n  \n    int lca(int u,\
+    \ int v) {\n      assert(is_built);\n      while (true) {\n        if (id[u] >\
+    \ id[v]) std::swap(u, v);\n        if (head[u] == head[v]) return u;\n  \n   \
+    \     v = parent[head[v]];\n      }\n    }\n  \n    Path get_path(int u, int v)\
+    \ {\n      assert(is_built);\n      Path upath, vpath;\n  \n      while (head[u]\
+    \ != head[v]) {\n  \n        // \u3061\u306A\u307F\u306Bu,v\u306Edepth\u306E\u5927\
+    \u5C0F\u95A2\u4FC2\u306F\u5909\u308F\u308A\u7D9A\u3051\u308B\u3053\u3068\u3082\
+    \u3042\u308B\u3002\n        // 10 \u2192 12\u306A\u3069\u3002\n  \n        //\
+    \ v's head is deeper\n        if (depth[head[v]] >= depth[head[u]]) {\n      \
+    \    assert(depth[head[v]] >= depth[head[u]]);\n          /*\n            /  \
+    \ : heavy edge\n           .... : light edge\n  \n              head[u]\n    \
+    \             /\n                /...\n               u  ...\n              /\
+    \   head[v]\n             /       \\\n            /         \\\n           / \
+    \          v\n          */\n  \n          // u\u2192v \u306A\u306E\u3067reverse=false\n\
+    \          vpath.emplace_back(id[head[v]], id[v], false, false);\n          v\
+    \ = parent[head[v]];\n        }\n  \n        // u's head is deeper\n        else\
+    \ if (depth[head[v]] < depth[head[u]]) {\n          /*\n            /   : heavy\
+    \ edge\n           .... : light edge\n  \n              head[v]\n            \
+    \     /\n                /...\n               v  ...\n              /   head[u]\n\
+    \             /       \\\n            /         \\\n           /           u\n\
+    \          */\n  \n          //\n          upath.emplace_back(id[head[u]], id[u],\
+    \ false, true);\n          u = parent[head[u]];\n        }\n      }\n  \n    \
+    \  // v is deeper\n      /*\n         u\n        /\n       /  \u2190\u2193\n \
+    \     /\n     v\n  \n      */\n      if (depth[v] > depth[u]) {\n        upath.emplace_back(id[u],\
+    \ id[v], true, false);\n      }\n  \n      // u is deeper\n      /*\n        \
+    \ v\n        /\n       /  \u2192\u2191\n      /\n     u\n  \n      */\n      else\
+    \ {\n        upath.emplace_back(id[v], id[u], true, true);\n      }\n      Path\
+    \ retpath = upath;\n      std::reverse(vpath.begin(), vpath.end());\n      for\
+    \ (Interval path : vpath) retpath.push_back(path);\n  \n      return retpath;\n\
+    \    }\n  \n    std::pair<int,int> subtree_query(int r) {\n      assert(r < int(id.size()));\n\
+    \      return std::make_pair(id[r], id2[r]);\n    }\n  \n  };\n\n}\n#endif //\
+    \ HARUILIB_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n"
   dependsOn:
   - graph/graph_template.hpp
   isVerificationFile: false
   path: graph/tree/heavy_light_decomposition.hpp
   requiredBy: []
-  timestamp: '2024-09-07 20:55:28+09:00'
+  timestamp: '2025-03-23 01:11:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-vertex-add-subtree-sum.test.cpp
@@ -157,6 +213,39 @@ title: "Heavy-Light Decomposition(HL\u5206\u89E3, HLD)"
 ---
 
 木に関する部分木クエリ、パスクエリを処理するためのデータ構造。
+
+## 使い方
+
+```
+HaruiLib::HLD hld(N);
+
+for (int i=0; i<N-1; i++) {
+  int u, v; cin >> u >> v;
+  hld.graph.add_edge(u,v);
+  hld.graph.add_edge(v,u);
+}
+
+hld.build();
+```
+
+みたいに構築したあと、
+```
+int a,b; cin >> a >> b;
+HaruiLib::Path path = hld.get_path(a,b);
+
+ll sum = 0;
+for(HaruiLib::Interval intv: path) {
+  sum += seg.prod(intv.top_id, intv.bottom_id + 1);
+}
+```
+のように、id上でセグ木などの列に対するアルゴリズムを使っていく流れが基本だと思われる。
+
+他にも、
+
+- 辺属性なら子側の頂点に持たせるほうがいい
+- 辺属性を考えるときはLCAの頂点に注意する
+
+みたいな色々考えておくことがある。
 
 ## コンストラクタ
 

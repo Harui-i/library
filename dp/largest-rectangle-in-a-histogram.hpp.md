@@ -99,8 +99,22 @@ data:
   - test/verify/aoj-dpl3-c.test.cpp
 documentation_of: dp/largest-rectangle-in-a-histogram.hpp
 layout: document
-redirect_from:
-- /library/dp/largest-rectangle-in-a-histogram.hpp
-- /library/dp/largest-rectangle-in-a-histogram.hpp.html
-title: dp/largest-rectangle-in-a-histogram.hpp
+title: "\u30D2\u30B9\u30C8\u30B0\u30E9\u30E0\u5185\u306E\u6700\u5927\u9577\u65B9\u5F62"
 ---
+
+## 概要
+
+ヒストグラム内の最大長方形を求める。お気持ちはコメントに書いてあるのでそれを参照してくれ。
+
+番長とか先輩とかいうワードは、[スライド最大（最小）値・ヒストグラム内最大長方形問題を俯瞰する](https://qiita.com/kuuso1/items/318d42cd089a49eeb332)
+という記事によるもの。
+
+## largest_reactangle_in_a_histogram
+```
+ll largest_reactangle_in_a_histogram<vector<T>& vec>
+```
+
+vec内の最大長方形の面積を求める
+
+### 計算量
+O(N)

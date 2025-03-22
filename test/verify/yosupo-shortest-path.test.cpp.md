@@ -62,21 +62,8 @@ data:
     \ (Edge ed : graph[front.second]) {\n      if (dist[ed.to] > front.first + ed.cost)\
     \ {\n        dist[ed.to] = front.first + ed.cost;\n        prev[ed.to] = front.second;\n\
     \        que.emplace(dist[ed.to], ed.to);\n      }\n    }\n  }\n\n  return make_pair(dist,\
-    \ prev);\n}\n\n\n#line 6 \"test/verify/yosupo-shortest-path.test.cpp\"\n\nint\
-    \ main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int N, M, s,\
-    \ t; cin >> N >> M >> s >> t;\n\n  Graph<ll> gr(N);\n  for(int i=0; i<M; i++)\
-    \ {\n    ll a, b, c;\n    cin >> a >> b >> c;\n    gr.add_edge(a,b,c);\n  }\n\n\
-    \  vector<ll>dist; vector<int>prev;\n\n   auto pr = dijkstra_path(gr, s);\n  \
-    \ dist = pr.first; prev = pr.second;\n\n  if (dist[t] > LLINF) {\n    cout <<\
-    \ -1 << \"\\n\";\n  }\n  else {\n    ll X = dist[t];\n    int Y;\n    vector<int>\
-    \ path;\n    {\n      int now = t;\n      while (now != -1) {\n        path.push_back(now);\n\
-    \        now = prev[now];\n      }\n      Y = path.size();\n    }\n\n    reverse(path.begin(),\
-    \ path.end());\n    cout << X << \" \" << Y - 1 << \"\\n\";\n    for(int i=0;\
-    \ i<Y-1; i++) {\n      cout << path[i] << \" \" << path[i+1] << \"\\n\";\n   \
-    \ }\n  }\n\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\" \n\n#include\
-    \ \"template/template.hpp\"\n#include \"graph/graph_template.hpp\"\n#include \"\
-    graph/dijkstra.hpp\"\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n\
+    \ prev);\n}\n\n\n#line 6 \"test/verify/yosupo-shortest-path.test.cpp\"\n\n#include\
+    \ <algorithm>\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n\
     \  int N, M, s, t; cin >> N >> M >> s >> t;\n\n  Graph<ll> gr(N);\n  for(int i=0;\
     \ i<M; i++) {\n    ll a, b, c;\n    cin >> a >> b >> c;\n    gr.add_edge(a,b,c);\n\
     \  }\n\n  vector<ll>dist; vector<int>prev;\n\n   auto pr = dijkstra_path(gr, s);\n\
@@ -87,6 +74,19 @@ data:
     \ path.end());\n    cout << X << \" \" << Y - 1 << \"\\n\";\n    for(int i=0;\
     \ i<Y-1; i++) {\n      cout << path[i] << \" \" << path[i+1] << \"\\n\";\n   \
     \ }\n  }\n\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\" \n\n#include\
+    \ \"template/template.hpp\"\n#include \"graph/graph_template.hpp\"\n#include \"\
+    graph/dijkstra.hpp\"\n\n#include <algorithm>\n\nint main() {\n  ios::sync_with_stdio(0);\
+    \ cin.tie(0); cout.tie(0);\n  int N, M, s, t; cin >> N >> M >> s >> t;\n\n  Graph<ll>\
+    \ gr(N);\n  for(int i=0; i<M; i++) {\n    ll a, b, c;\n    cin >> a >> b >> c;\n\
+    \    gr.add_edge(a,b,c);\n  }\n\n  vector<ll>dist; vector<int>prev;\n\n   auto\
+    \ pr = dijkstra_path(gr, s);\n   dist = pr.first; prev = pr.second;\n\n  if (dist[t]\
+    \ > LLINF) {\n    cout << -1 << \"\\n\";\n  }\n  else {\n    ll X = dist[t];\n\
+    \    int Y;\n    vector<int> path;\n    {\n      int now = t;\n      while (now\
+    \ != -1) {\n        path.push_back(now);\n        now = prev[now];\n      }\n\
+    \      Y = path.size();\n    }\n\n    reverse(path.begin(), path.end());\n   \
+    \ cout << X << \" \" << Y - 1 << \"\\n\";\n    for(int i=0; i<Y-1; i++) {\n  \
+    \    cout << path[i] << \" \" << path[i+1] << \"\\n\";\n    }\n  }\n\n}\n"
   dependsOn:
   - template/template.hpp
   - graph/graph_template.hpp
@@ -94,7 +94,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-shortest-path.test.cpp
   requiredBy: []
-  timestamp: '2024-09-07 20:55:28+09:00'
+  timestamp: '2025-03-23 00:55:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-shortest-path.test.cpp
