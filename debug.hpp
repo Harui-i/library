@@ -29,5 +29,18 @@ std::ostream& operator<<(std::ostream& os, const std::pair<T, U>& p) {
   return os;
 }
 
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const std::set<T>& st) {
+  os << '{';
+  auto itr = st.begin();
+  while (itr != st.end()) {
+    os << *itr;
+    itr = next(itr);
+    if (itr != st.end()) os << ", ";
+  }
+  os << '}';
+  return os;
+}
+
 
 #endif // HARUILIB_DEBUG_HPP
