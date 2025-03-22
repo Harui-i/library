@@ -1,6 +1,6 @@
 ---
 title: ヒストグラム内の最大長方形
-documentation_of: //dp/largest-reactangle-in-a-histogram.hpp
+documentation_of: //dp/largest-rectangle-in-a-histogram.hpp
 ---
 
 ## 概要
