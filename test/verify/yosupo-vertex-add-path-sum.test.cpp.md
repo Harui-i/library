@@ -8,8 +8,8 @@ data:
     path: graph/tree/heavy_light_decomposition.hpp
     title: "Heavy-Light Decomposition(HL\u5206\u89E3, HLD)"
   - icon: ':heavy_check_mark:'
-    path: structure/fenwick-tree.hpp
-    title: structure/fenwick-tree.hpp
+    path: structure/fenwick_tree.hpp
+    title: structure/fenwick_tree.hpp
   - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
@@ -31,8 +31,8 @@ data:
     \ bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return false;}\n\
     const int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst ll LLMAX\
     \ = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line 3 \"test/verify/yosupo-vertex-add-path-sum.test.cpp\"\
-    \n\n#line 1 \"structure/fenwick-tree.hpp\"\n\n\n\n#include <vector>\n#line 6 \"\
-    structure/fenwick-tree.hpp\"\n\ntemplate <class T> struct fenwick_tree {\n  fenwick_tree():\
+    \n\n#line 1 \"structure/fenwick_tree.hpp\"\n\n\n\n#include <vector>\n#line 6 \"\
+    structure/fenwick_tree.hpp\"\n\ntemplate <class T> struct fenwick_tree {\n  fenwick_tree():\
     \ _n(0) {}\n  explicit fenwick_tree(int n): _n(n), data(n) {}\n\n  // point add\n\
     \  void add(int p, T x) {\n    assert(0 <= p && p < _n);\n    p++;\n    while\
     \ (p <= _n) {\n      data[p-1] += T(x);\n      p += p & -p;\n    }\n  } \n\n \
@@ -147,7 +147,7 @@ data:
     \ fw.sum(interval.top_id, interval.bottom_id + 1);\n      }\n\n      cout << ret\
     \ << endl;\n    }\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\
-    #include \"template/template.hpp\"\n\n#include \"structure/fenwick-tree.hpp\"\n\
+    #include \"template/template.hpp\"\n\n#include \"structure/fenwick_tree.hpp\"\n\
     #include \"graph/tree/heavy_light_decomposition.hpp\"\n\nint main() {\n  ios::sync_with_stdio(0);\
     \ cin.tie(0); cout.tie(0);\n  int N, Q; cin >> N >> Q;\n  vector<int>a(N); \n\
     \  for(int i=0; i<N; i++) cin >> a[i];\n\n  HaruiLib::HLD hld(N);\n  for (int\
@@ -161,13 +161,13 @@ data:
     \ + 1);\n      }\n\n      cout << ret << endl;\n    }\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - template/template.hpp
-  - structure/fenwick-tree.hpp
+  - structure/fenwick_tree.hpp
   - graph/tree/heavy_light_decomposition.hpp
   - graph/graph_template.hpp
   isVerificationFile: true
   path: test/verify/yosupo-vertex-add-path-sum.test.cpp
   requiredBy: []
-  timestamp: '2025-03-23 13:48:16+09:00'
+  timestamp: '2025-03-23 14:07:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-vertex-add-path-sum.test.cpp

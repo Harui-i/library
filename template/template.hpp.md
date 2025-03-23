@@ -82,6 +82,9 @@ data:
     path: test/verify/yosupo-deque-operate-all-composite.test.cpp
     title: test/verify/yosupo-deque-operate-all-composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-point-add-range-sum.test.cpp
+    title: test/verify/yosupo-point-add-range-sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-queue-operate-all-composite.test.cpp
     title: test/verify/yosupo-queue-operate-all-composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -199,6 +202,7 @@ data:
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-tree-diameter.test.cpp
   - test/verify/atcoder-tdpc-s.test.cpp
+  - test/verify/yosupo-point-add-range-sum.test.cpp
   - test/verify/aoj-0560.test.cpp
   - test/verify/structure/aoj-dsl1-b.test.cpp
   - test/verify/yosupo-shortest-path.test.cpp

@@ -112,8 +112,8 @@ data:
       path: structure/dual-fenwick-tree.hpp
       title: structure/dual-fenwick-tree.hpp
     - icon: ':heavy_check_mark:'
-      path: structure/fenwick-tree.hpp
-      title: structure/fenwick-tree.hpp
+      path: structure/fenwick_tree.hpp
+      title: structure/fenwick_tree.hpp
     - icon: ':heavy_check_mark:'
       path: structure/potentialized-union-find-tree.hpp
       title: "Potentialized Union Find Tree (\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u3064\
@@ -169,6 +169,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-deque-operate-all-composite.test.cpp
       title: test/verify/yosupo-deque-operate-all-composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-point-add-range-sum.test.cpp
+      title: test/verify/yosupo-point-add-range-sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-queue-operate-all-composite.test.cpp
       title: test/verify/yosupo-queue-operate-all-composite.test.cpp
