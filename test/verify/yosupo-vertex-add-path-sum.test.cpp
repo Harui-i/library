@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_path_sum"
 #include "template/template.hpp"
 
-#include "structure/fenwick-tree.hpp"
+#include "structure/fenwick_tree.hpp"
 #include "graph/tree/heavy_light_decomposition.hpp"
 
 int main() {
