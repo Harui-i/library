@@ -101,11 +101,19 @@ data:
     - icon: ':question:'
       path: math/modint.hpp
       title: modint
+    - icon: ':heavy_check_mark:'
+      path: math/modint2611.hpp
+      title: math/modint2611.hpp
   - name: math/matrix
     pages:
     - icon: ':heavy_check_mark:'
       path: math/matrix/matrix.hpp
       title: "Matrix(\u884C\u5217)"
+  - name: string
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: string/rolling-hash.hpp
+      title: "\u30ED\u30FC\u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\u30E5(Rolling Hash)"
   - name: structure
     pages:
     - icon: ':warning:'
@@ -157,6 +165,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/aoj-0560.test.cpp
       title: test/verify/aoj-0560.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/aoj-alds-1-14-b.test.cpp
+      title: test/verify/aoj-alds-1-14-b.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/aoj-dpl3-c.test.cpp
       title: test/verify/aoj-dpl3-c.test.cpp

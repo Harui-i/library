@@ -19,6 +19,9 @@ data:
     path: test/verify/aoj-0560.test.cpp
     title: test/verify/aoj-0560.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/aoj-alds-1-14-b.test.cpp
+    title: test/verify/aoj-alds-1-14-b.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/aoj-dpl3-c.test.cpp
     title: test/verify/aoj-dpl3-c.test.cpp
   - icon: ':heavy_check_mark:'
@@ -199,6 +202,7 @@ data:
   - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-matrix-product.test.cpp
   - test/verify/math/matrix/yosupo-linear-equation.test.cpp
+  - test/verify/aoj-alds-1-14-b.test.cpp
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-tree-diameter.test.cpp
   - test/verify/atcoder-tdpc-s.test.cpp
