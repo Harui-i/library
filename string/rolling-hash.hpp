@@ -47,7 +47,7 @@ struct RollingHash {
   using mint = modint2611;
   std::vector<mint> hashes;
   mint base;
-  constexpr RollingHash (const string& S, mint _base) : base(_base) {
+  constexpr RollingHash (const std::string& S, mint _base) : base(_base) {
     int N = int(S.size());
     hashes.resize(N+1);
     mint powb = base;
