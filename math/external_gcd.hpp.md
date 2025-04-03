@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/sparse-fps.hpp
     title: sparse-fps
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
   - icon: ':warning:'
@@ -29,9 +29,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
     title: test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
-  - icon: ':x:'
-    path: test/verify/atcoder-tdpc-s.test.cpp
-    title: test/verify/atcoder-tdpc-s.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/convolution/yosupo-and-convolution.test.cpp
     title: test/verify/convolution/yosupo-and-convolution.test.cpp
@@ -92,9 +89,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/external_gcd.hpp\"\n\n\n\n#include <tuple>\n\n// g,x,y\n\
@@ -123,7 +120,7 @@ data:
   - formal-power-series/sparse-fps.hpp
   - formal-power-series/fps998.hpp
   timestamp: '2024-06-20 15:39:33+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
   - test/verify/yosupo-vertex-set-path-composite.test.cpp
@@ -139,7 +136,6 @@ data:
   - test/verify/math/matrix/yosupo-matrix-product.test.cpp
   - test/verify/math/matrix/yosupo-linear-equation.test.cpp
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
-  - test/verify/atcoder-tdpc-s.test.cpp
   - test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp

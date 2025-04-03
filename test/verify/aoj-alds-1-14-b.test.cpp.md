@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/rolling-hash.hpp
     title: "\u30ED\u30FC\u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\u30E5(Rolling Hash)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -71,7 +71,7 @@ data:
     \    os << hash.hash.val();\n    os << \", base: \";\n    os << hash.base.val();\n\
     \    os << \"}\";\n    return os;\n  }\n};\n\nstruct RollingHash {\n  using mint\
     \ = modint2611;\n  std::vector<mint> hashes;\n  mint base;\n  constexpr RollingHash\
-    \ (const string& S, mint _base) : base(_base) {\n    int N = int(S.size());\n\
+    \ (const std::string& S, mint _base) : base(_base) {\n    int N = int(S.size());\n\
     \    hashes.resize(N+1);\n    mint powb = base;\n    for (int i=0; i<N; i++) {\n\
     \      hashes[i+1] = hashes[i] + powb * mint(S[i]);\n      powb *= base;\n   \
     \ }\n  }\n\n  constexpr Hash get(int l, int r) const {\n    assert(0 <= l && l\
@@ -98,7 +98,7 @@ data:
   isVerificationFile: true
   path: test/verify/aoj-alds-1-14-b.test.cpp
   requiredBy: []
-  timestamp: '2025-03-27 15:05:33+09:00'
+  timestamp: '2025-04-03 16:44:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/aoj-alds-1-14-b.test.cpp

@@ -56,7 +56,7 @@ data:
     \    os << hash.hash.val();\n    os << \", base: \";\n    os << hash.base.val();\n\
     \    os << \"}\";\n    return os;\n  }\n};\n\nstruct RollingHash {\n  using mint\
     \ = modint2611;\n  std::vector<mint> hashes;\n  mint base;\n  constexpr RollingHash\
-    \ (const string& S, mint _base) : base(_base) {\n    int N = int(S.size());\n\
+    \ (const std::string& S, mint _base) : base(_base) {\n    int N = int(S.size());\n\
     \    hashes.resize(N+1);\n    mint powb = base;\n    for (int i=0; i<N; i++) {\n\
     \      hashes[i+1] = hashes[i] + powb * mint(S[i]);\n      powb *= base;\n   \
     \ }\n  }\n\n  constexpr Hash get(int l, int r) const {\n    assert(0 <= l && l\
@@ -77,8 +77,8 @@ data:
     \  os << \", hash: \";\n    os << hash.hash.val();\n    os << \", base: \";\n\
     \    os << hash.base.val();\n    os << \"}\";\n    return os;\n  }\n};\n\nstruct\
     \ RollingHash {\n  using mint = modint2611;\n  std::vector<mint> hashes;\n  mint\
-    \ base;\n  constexpr RollingHash (const string& S, mint _base) : base(_base) {\n\
-    \    int N = int(S.size());\n    hashes.resize(N+1);\n    mint powb = base;\n\
+    \ base;\n  constexpr RollingHash (const std::string& S, mint _base) : base(_base)\
+    \ {\n    int N = int(S.size());\n    hashes.resize(N+1);\n    mint powb = base;\n\
     \    for (int i=0; i<N; i++) {\n      hashes[i+1] = hashes[i] + powb * mint(S[i]);\n\
     \      powb *= base;\n    }\n  }\n\n  constexpr Hash get(int l, int r) const {\n\
     \    assert(0 <= l && l <= r && r < int(hashes.size()));\n    mint hash_val =\
@@ -89,7 +89,7 @@ data:
   isVerificationFile: false
   path: string/rolling-hash.hpp
   requiredBy: []
-  timestamp: '2025-03-27 15:05:33+09:00'
+  timestamp: '2025-04-03 16:44:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/aoj-alds-1-14-b.test.cpp
@@ -97,3 +97,47 @@ documentation_of: string/rolling-hash.hpp
 layout: document
 title: "\u30ED\u30FC\u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\u30E5(Rolling Hash)"
 ---
+
+RollingHashを扱う。
+
+文字列Sのハッシュは、$ \Sum_{i=0, 1, \dots |S|} b^i S[i] $とする。
+
+# Hash
+
+文字列のハッシュを表現する。
+文字列の長さ、基数、ハッシュの値を持つ。
+
+## コンストラクタ
+
+```
+Hash(mint _hash, mint _base, int _len)
+```
+
+ハッシュした値が`_hash`で、基数が`_base`であり、その文字列は`_len`の長さであるとしてハッシュを初期化する。
+
+```
+operator+(const Hash& rhs) const
+```
+
+rhsを文字列として右から結合したあとのHashを返す。
+基数が同じであることを要求する。
+
+# RollingHash
+
+文字列のHashを扱う。先頭からのハッシュを管理しておくことで、部分文字列のハッシュ計算なども対応する。
+
+## コンストラクタ
+
+```
+RollingHash(const string& S, mint _base): (_base)
+```
+
+## get
+
+```
+Hash get(int l, int r) const
+```
+
+$S$の$[l,r)$部分のハッシュを計算する。
+$mod$は定数なので計算量は$O(1)$
+

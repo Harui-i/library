@@ -27,9 +27,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-grl-1b.test.cpp
     title: test/verify/aoj-grl-1b.test.cpp
-  - icon: ':x:'
-    path: test/verify/atcoder-tdpc-s.test.cpp
-    title: test/verify/atcoder-tdpc-s.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/convolution/yosupo-and-convolution.test.cpp
     title: test/verify/convolution/yosupo-and-convolution.test.cpp
@@ -120,9 +117,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: '#line 1 "template/template.hpp"
@@ -180,7 +177,7 @@ data:
   - test/unittest/unittest-template.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   timestamp: '2024-08-21 21:41:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
@@ -205,7 +202,6 @@ data:
   - test/verify/aoj-alds-1-14-b.test.cpp
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-tree-diameter.test.cpp
-  - test/verify/atcoder-tdpc-s.test.cpp
   - test/verify/yosupo-point-add-range-sum.test.cpp
   - test/verify/aoj-0560.test.cpp
   - test/verify/structure/aoj-dsl1-b.test.cpp

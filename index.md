@@ -29,7 +29,7 @@ data:
       title: dropbox_refresh.py
   - name: dp/automaton
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: dp/automaton/automaton.hpp
       title: "\u6C7A\u5B9A\u6027\u6709\u9650\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3(DFA,\
         \ Deterministic Finite Automaton)"
@@ -89,7 +89,7 @@ data:
     - icon: ':warning:'
       path: math/count_by_remainder.hpp
       title: count by remainder
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/external_gcd.hpp
       title: math/external_gcd.hpp
     - icon: ':heavy_check_mark:'
@@ -98,7 +98,7 @@ data:
     - icon: ':warning:'
       path: math/mod_pow.hpp
       title: math/mod_pow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: modint
     - icon: ':heavy_check_mark:'
@@ -136,7 +136,7 @@ data:
       title: "Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/template.hpp
       title: template/template.hpp
   - name: test/unittest
@@ -174,9 +174,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/aoj-grl-1b.test.cpp
       title: test/verify/aoj-grl-1b.test.cpp
-    - icon: ':x:'
-      path: test/verify/atcoder-tdpc-s.test.cpp
-      title: test/verify/atcoder-tdpc-s.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-deque-operate-all-composite.test.cpp
       title: test/verify/yosupo-deque-operate-all-composite.test.cpp
