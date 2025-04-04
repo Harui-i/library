@@ -72,9 +72,9 @@ struct static_modint {
         return res;
     }
 
-    constexpr auto inv() const {
+    constexpr static_modint inv() const {
         if constexpr (std::is_same<T, double>::value) {
-            return double(1.0) / static_cast<double>(value);
+            return static_modint(1) / static_modint(value);
         }
         else {
             int g, x, y;
