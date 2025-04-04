@@ -67,8 +67,8 @@ data:
     \ pow(long long exp) const {\n        static_modint base = *this, res = static_modint(1);\n\
     \        while (exp > 0) {\n            if (exp & 1) res *= base;\n          \
     \  base *= base;\n            exp >>= 1;\n        }\n        return res;\n   \
-    \ }\n\n    constexpr auto inv() const {\n        if constexpr (std::is_same<T,\
-    \ double>::value) {\n            return double(1.0) / static_cast<double>(value);\n\
+    \ }\n\n    constexpr static_modint inv() const {\n        if constexpr (std::is_same<T,\
+    \ double>::value) {\n            return static_modint(1) / static_modint(value);\n\
     \        }\n        else {\n            int g, x, y;\n            std::tie(g,\
     \ x, y) = extendedGCD(value, MOD);\n            assert(g == 1);\n            if\
     \ (x < 0) x += MOD;\n            return x;\n        }\n    }\n\n    constexpr\
@@ -153,7 +153,7 @@ data:
   isVerificationFile: true
   path: test/verify/yuki-372-itsautomatic.test.cpp
   requiredBy: []
-  timestamp: '2025-02-28 00:34:43+09:00'
+  timestamp: '2025-04-04 21:14:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yuki-372-itsautomatic.test.cpp

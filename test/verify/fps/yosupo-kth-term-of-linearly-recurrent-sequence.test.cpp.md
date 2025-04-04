@@ -74,9 +74,9 @@ data:
     \        static_modint base = *this, res = static_modint(1);\n        while (exp\
     \ > 0) {\n            if (exp & 1) res *= base;\n            base *= base;\n \
     \           exp >>= 1;\n        }\n        return res;\n    }\n\n    constexpr\
-    \ auto inv() const {\n        if constexpr (std::is_same<T, double>::value) {\n\
-    \            return double(1.0) / static_cast<double>(value);\n        }\n   \
-    \     else {\n            int g, x, y;\n            std::tie(g, x, y) = extendedGCD(value,\
+    \ static_modint inv() const {\n        if constexpr (std::is_same<T, double>::value)\
+    \ {\n            return static_modint(1) / static_modint(value);\n        }\n\
+    \        else {\n            int g, x, y;\n            std::tie(g, x, y) = extendedGCD(value,\
     \ MOD);\n            assert(g == 1);\n            if (x < 0) x += MOD;\n     \
     \       return x;\n        }\n    }\n\n    constexpr static_modint& operator/=(const\
     \ static_modint& other) {\n        return *this *= other.inv();\n    }\n\n   \
@@ -132,56 +132,61 @@ data:
     \ + 1] = _vec[i] * mint(i + 1).inv();\n\n    return ret;\n  }\n\n  FPS diff()\
     \ const {\n    const int N = size();\n    FPS ret(max(0, N - 1));\n    for (int\
     \ i = 1; i < N; i++) ret[i - 1] = mint(i) * _vec[i];\n\n    return ret;\n  }\n\
-    \n  FPS(std::vector<mint> vec) : _vec(vec) {\n  }\n\n  FPS(initializer_list<mint>\
-    \ ilist) : _vec(ilist) {\n  }\n\n  // \u9805\u306E\u6570\u306B\u63C3\u3048\u305F\
-    \u307B\u3046\u304C\u3088\u3055\u305D\u3046\n  FPS(int sz) : _vec(std::vector<mint>(sz))\
-    \ {\n  }\n\n  int size() const {\n    return _vec.size();\n  }\n\n  FPS& operator+=(const\
-    \ FPS& rhs) {\n    if (rhs.size() > this->size()) _vec.resize(rhs.size());\n \
-    \   for (int i = 0; i < (int)rhs.size(); ++i) _vec[i] += rhs._vec[i];\n    return\
-    \ *this;\n  }\n\n  FPS& operator-=(const FPS& rhs) {\n    if (rhs.size() > this->size())\
-    \ this->_vec.resize(rhs.size());\n    for (int i = 0; i < (int)rhs.size(); ++i)\
-    \ _vec[i] -= rhs._vec[i];\n    return *this;\n  }\n\n  FPS& operator*=(const FPS&\
-    \ rhs) {\n    _vec = multiply(_vec, rhs._vec);\n    return *this;\n  }\n\n  //\
-    \ Nyaan\u5148\u751F\u306E\u30E9\u30A4\u30D6\u30E9\u30EA\u3092\u5927\u5199\u7D4C\
-    ....\n  FPS& operator/=(const FPS& rhs) {\n    if (size() < rhs.size()) {\n  \
-    \    return *this = FPS(0);\n    }\n    int sz = size() - rhs.size() + 1;\n  \
-    \  //\n    //    FPS left = (*this).rev().pre(sz);\n    //    FPS right = rhs.rev();\n\
-    \    //    right = right.inv(sz);\n    //    FPS mp = left*right;\n    //    mp\
-    \ = mp.pre(sz);\n    //    mp = mp.rev();\n    //    return *this = mp;\n    //\
-    \    return *this = (left * right).pre(sz).rev();\n    return *this = ((*this).rev().pre(sz)\
-    \ * rhs.rev().inv(sz)).pre(sz).rev();\n  }\n\n  FPS& operator%=(const FPS& rhs)\
-    \ {\n    *this -= *this / rhs * rhs;\n    shrink();\n    return *this;\n  }\n\n\
-    \  FPS& operator+=(const mint& rhs) {\n    _vec[0] += rhs;\n    return *this;\n\
-    \  }\n\n  FPS& operator-=(const mint& rhs) {\n    _vec[0] -= rhs;\n    return\
-    \ *this;\n  }\n\n  FPS& operator*=(const mint& rhs) {\n    for (int i = 0; i <\
-    \ size(); i++) _vec[i] *= rhs;\n    return *this;\n  }\n\n  // \u591A\u9805\u5F0F\
-    \u5168\u4F53\u3092\u5B9A\u6570\u9664\u7B97\u3059\u308B\n  FPS& operator/=(const\
-    \ mint& rhs) {\n    for (int i = 0; i < size(); i++) _vec[i] *= rhs.inv();\n \
-    \   return *this;\n  }\n\n  // f /= x^sz\n  FPS operator>>(int sz) const {\n \
-    \   if ((int)this->size() <= sz) return {};\n    FPS ret(*this);\n    ret._vec.erase(ret._vec.begin(),\
-    \ ret._vec.begin() + sz);\n    return ret;\n  }\n\n  // f *= x^sz\n  FPS operator<<(int\
-    \ sz) const {\n    FPS ret(*this);\n    ret._vec.insert(ret._vec.begin(), sz,\
-    \ mint(0));\n\n    return ret;\n  }\n\n  friend FPS operator+(FPS a, const FPS&\
-    \ b) { return a += b; }\n  friend FPS operator-(FPS a, const FPS& b) { return\
-    \ a -= b; }\n  friend FPS operator*(FPS a, const FPS& b) { return a *= b; }\n\
-    \  friend FPS operator/(FPS a, const FPS& b) { return a /= b; }\n  friend FPS\
-    \ operator%(FPS a, const FPS& b) { return a %= b; }\n\n  friend FPS operator+(FPS\
-    \ a, const mint& b) { return a += b; }\n  friend FPS operator+(const mint& b,\
-    \ FPS a) { return a += b; }\n  \n  friend FPS operator-(FPS a, const mint& b)\
-    \ { return a -= b; }\n  friend FPS operator-(const mint& b, FPS a) { return a\
-    \ -= b; }\n\n  friend FPS operator*(FPS a, const mint& b) { return a *= b; }\n\
-    \  friend FPS operator*(const mint& b, FPS a) { return a *= b; }\n\n  friend FPS\
-    \ operator/(FPS a, const mint& b) { return a /= b; }\n  friend FPS operator/(const\
-    \ mint& b, FPS a) { return a /= b; }\n\n  // sz\u6B21\u672A\u6E80\u306E\u9805\u3092\
-    \u53D6\u3063\u3066\u304F\u308B\n  FPS pre(int sz) const {\n    FPS ret = *this;\n\
-    \    ret._vec.resize(sz);\n\n    return ret;\n  }\n\n  FPS rev() const {\n   \
-    \ FPS ret = *this;\n    std::reverse(ret._vec.begin(), ret._vec.end());\n\n  \
-    \  return ret;\n  }\n\n  const mint& operator[](size_t i) const {\n    return\
-    \ _vec[i];\n  }\n\n  mint& operator[](size_t i) {\n    return _vec[i];\n  }\n\n\
-    \  void resize(int sz) {\n    this->_vec.resize(sz);\n  }\n\n  void shrink() {\n\
-    \    while (size() > 0 && _vec.back() == mint(0)) _vec.pop_back();\n  }\n\n  friend\
-    \ ostream& operator<<(ostream& os, const FPS& fps) {\n    for (int i = 0; i <\
-    \ fps.size(); ++i) {\n      if (i > 0) os << \" \";\n      os << fps._vec[i].val();\n\
+    \n  FPS to_egf() const {\n    const int N = size();\n    FPS ret(N);\n    mint\
+    \ fact = mint(1);\n    for (int i=0; i<N; i++) {\n      ret[i] = _vec[i] * fact.inv();\n\
+    \      fact *= mint(i+1);\n    }\n\n    return ret;\n  }\n\n  FPS to_ogf() const\
+    \ {\n    const int N = size();\n    FPS ret(N);\n    mint fact = mint(1);\n  \
+    \  for (int i=0; i<N; i++) {\n      ret[i] = _vec[i] * fact;\n      fact *= mint(i+1);\n\
+    \    }\n    return ret;\n  }\n\n  FPS(std::vector<mint> vec) : _vec(vec) {\n \
+    \ }\n\n  FPS(initializer_list<mint> ilist) : _vec(ilist) {\n  }\n\n  // \u9805\
+    \u306E\u6570\u306B\u63C3\u3048\u305F\u307B\u3046\u304C\u3088\u3055\u305D\u3046\
+    \n  FPS(int sz) : _vec(std::vector<mint>(sz)) {\n  }\n\n  int size() const {\n\
+    \    return _vec.size();\n  }\n\n  FPS& operator+=(const FPS& rhs) {\n    if (rhs.size()\
+    \ > this->size()) _vec.resize(rhs.size());\n    for (int i = 0; i < (int)rhs.size();\
+    \ ++i) _vec[i] += rhs._vec[i];\n    return *this;\n  }\n\n  FPS& operator-=(const\
+    \ FPS& rhs) {\n    if (rhs.size() > this->size()) this->_vec.resize(rhs.size());\n\
+    \    for (int i = 0; i < (int)rhs.size(); ++i) _vec[i] -= rhs._vec[i];\n    return\
+    \ *this;\n  }\n\n  FPS& operator*=(const FPS& rhs) {\n    _vec = multiply(_vec,\
+    \ rhs._vec);\n    return *this;\n  }\n\n  // Nyaan\u5148\u751F\u306E\u30E9\u30A4\
+    \u30D6\u30E9\u30EA\u3092\u5927\u5199\u7D4C....\n  FPS& operator/=(const FPS& rhs)\
+    \ {\n    if (size() < rhs.size()) {\n      return *this = FPS(0);\n    }\n   \
+    \ int sz = size() - rhs.size() + 1;\n    //\n    //    FPS left = (*this).rev().pre(sz);\n\
+    \    //    FPS right = rhs.rev();\n    //    right = right.inv(sz);\n    //  \
+    \  FPS mp = left*right;\n    //    mp = mp.pre(sz);\n    //    mp = mp.rev();\n\
+    \    //    return *this = mp;\n    //    return *this = (left * right).pre(sz).rev();\n\
+    \    return *this = ((*this).rev().pre(sz) * rhs.rev().inv(sz)).pre(sz).rev();\n\
+    \  }\n\n  FPS& operator%=(const FPS& rhs) {\n    *this -= *this / rhs * rhs;\n\
+    \    shrink();\n    return *this;\n  }\n\n  FPS& operator+=(const mint& rhs) {\n\
+    \    _vec[0] += rhs;\n    return *this;\n  }\n\n  FPS& operator-=(const mint&\
+    \ rhs) {\n    _vec[0] -= rhs;\n    return *this;\n  }\n\n  FPS& operator*=(const\
+    \ mint& rhs) {\n    for (int i = 0; i < size(); i++) _vec[i] *= rhs;\n    return\
+    \ *this;\n  }\n\n  // \u591A\u9805\u5F0F\u5168\u4F53\u3092\u5B9A\u6570\u9664\u7B97\
+    \u3059\u308B\n  FPS& operator/=(const mint& rhs) {\n    for (int i = 0; i < size();\
+    \ i++) _vec[i] *= rhs.inv();\n    return *this;\n  }\n\n  // f /= x^sz\n  FPS\
+    \ operator>>(int sz) const {\n    if ((int)this->size() <= sz) return {};\n  \
+    \  FPS ret(*this);\n    ret._vec.erase(ret._vec.begin(), ret._vec.begin() + sz);\n\
+    \    return ret;\n  }\n\n  // f *= x^sz\n  FPS operator<<(int sz) const {\n  \
+    \  FPS ret(*this);\n    ret._vec.insert(ret._vec.begin(), sz, mint(0));\n\n  \
+    \  return ret;\n  }\n\n  friend FPS operator+(FPS a, const FPS& b) { return a\
+    \ += b; }\n  friend FPS operator-(FPS a, const FPS& b) { return a -= b; }\n  friend\
+    \ FPS operator*(FPS a, const FPS& b) { return a *= b; }\n  friend FPS operator/(FPS\
+    \ a, const FPS& b) { return a /= b; }\n  friend FPS operator%(FPS a, const FPS&\
+    \ b) { return a %= b; }\n\n  friend FPS operator+(FPS a, const mint& b) { return\
+    \ a += b; }\n  friend FPS operator+(const mint& b, FPS a) { return a += b; }\n\
+    \  \n  friend FPS operator-(FPS a, const mint& b) { return a -= b; }\n  friend\
+    \ FPS operator-(const mint& b, FPS a) { return a -= b; }\n\n  friend FPS operator*(FPS\
+    \ a, const mint& b) { return a *= b; }\n  friend FPS operator*(const mint& b,\
+    \ FPS a) { return a *= b; }\n\n  friend FPS operator/(FPS a, const mint& b) {\
+    \ return a /= b; }\n  friend FPS operator/(const mint& b, FPS a) { return a /=\
+    \ b; }\n\n  // sz\u6B21\u672A\u6E80\u306E\u9805\u3092\u53D6\u3063\u3066\u304F\u308B\
+    \n  FPS pre(int sz) const {\n    FPS ret = *this;\n    ret._vec.resize(sz);\n\n\
+    \    return ret;\n  }\n\n  FPS rev() const {\n    FPS ret = *this;\n    std::reverse(ret._vec.begin(),\
+    \ ret._vec.end());\n\n    return ret;\n  }\n\n  const mint& operator[](size_t\
+    \ i) const {\n    return _vec[i];\n  }\n\n  mint& operator[](size_t i) {\n   \
+    \ return _vec[i];\n  }\n\n  void resize(int sz) {\n    this->_vec.resize(sz);\n\
+    \  }\n\n  void shrink() {\n    while (size() > 0 && _vec.back() == mint(0)) _vec.pop_back();\n\
+    \  }\n\n  friend ostream& operator<<(ostream& os, const FPS& fps) {\n    for (int\
+    \ i = 0; i < fps.size(); ++i) {\n      if (i > 0) os << \" \";\n      os << fps._vec[i].val();\n\
     \    }\n    return os;\n  }\n\n  // \u4EEE\u60F3\u95A2\u6570\u3063\u3066\u3084\
     \u3064\u3002mod 998244353\u306A\u306E\u304B\u3001\u4ED6\u306ENTT-friendly\u306A\
     mod\u3067\u8003\u3048\u308B\u306E\u304B\u3001\u305D\u308C\u3068\u3082Garner\u3067\
@@ -351,7 +356,7 @@ data:
   isVerificationFile: true
   path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
   requiredBy: []
-  timestamp: '2025-02-28 14:43:36+09:00'
+  timestamp: '2025-04-04 21:15:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
