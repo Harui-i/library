@@ -120,6 +120,29 @@ struct FPS {
     return ret;
   }
 
+  FPS to_egf() const {
+    const int N = size();
+    FPS ret(N);
+    mint fact = mint(1);
+    for (int i=0; i<N; i++) {
+      ret[i] = _vec[i] * fact.inv();
+      fact *= mint(i+1);
+    }
+
+    return ret;
+  }
+
+  FPS to_ogf() const {
+    const int N = size();
+    FPS ret(N);
+    mint fact = mint(1);
+    for (int i=0; i<N; i++) {
+      ret[i] = _vec[i] * fact;
+      fact *= mint(i+1);
+    }
+    return ret;
+  }
+
   FPS(std::vector<mint> vec) : _vec(vec) {
   }
 
