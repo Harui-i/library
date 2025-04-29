@@ -2,7 +2,7 @@
 #define HARUILIB_DEBUG_HPP
 
 #ifdef LOCAL
-#define dbg(x) cerr << __LINE__ << " : " << #x << " = " << (x) << endl
+#define dbg(x) std::cerr << __LINE__ << " : " << #x << " = " << (x) << std::endl
 #else
 #define dbg(x) true
 #endif
@@ -12,6 +12,13 @@
 #include <utility>
 #include <set>
 
+
+template <typename T, typename U>
+std::ostream& operator<<(std::ostream& os, const std::pair<T, U>& p) {
+  os << '(' << p.first << ", " << p.second << ')';
+  return os;
+}
+
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const std::vector<T>& vec) {
   os << '[';
@@ -20,12 +27,6 @@ std::ostream& operator<<(std::ostream& os, const std::vector<T>& vec) {
     if (i != int(vec.size())-1) os << ", ";
   }
   os << ']';
-  return os;
-}
-
-template <typename T, typename U>
-std::ostream& operator<<(std::ostream& os, const std::pair<T, U>& p) {
-  os << '(' << p.first << ", " << p.second << ')';
   return os;
 }
 
