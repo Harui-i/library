@@ -322,22 +322,22 @@ data:
   isVerificationFile: false
   path: formal-power-series/formal-power-series.hpp
   requiredBy:
-  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
-  - formal-power-series/sparse-fps.hpp
   - formal-power-series/fps998.hpp
+  - formal-power-series/sparse-fps.hpp
   - formal-power-series/naive-fps.hpp
   - formal-power-series/fiduccia.hpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   timestamp: '2025-04-04 21:15:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/convolution/yosupo-normal-convolution.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
 documentation_of: formal-power-series/formal-power-series.hpp
 layout: document
 title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
