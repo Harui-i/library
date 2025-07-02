@@ -42,45 +42,46 @@ data:
     #line 7 \"math/modint.hpp\"\n\ntemplate<int MOD, typename T = int>\nstruct static_modint\
     \ {\n    T value;\n\n    constexpr explicit static_modint() : value(0) {}\n\n\
     \    constexpr static_modint(long long v) {\n        if constexpr (std::is_same<T,\
-    \ double>::value) {\n            value = static_cast<T>(v);\n        }\n     \
-    \   else {\n            value = int(((v % MOD) + MOD) % MOD);\n        }\n   \
-    \ }\n\n    constexpr static_modint& operator+=(const static_modint& other) {\n\
-    \        if constexpr (std::is_same<T, double>::value) {\n            value +=\
-    \ other.value;\n        }\n        else {\n            if ((value += other.value)\
-    \ >= MOD) value -= MOD;\n        }\n        return *this;\n    }\n\n    constexpr\
-    \ static_modint& operator-=(const static_modint& other) {\n        if constexpr\
-    \ (std::is_same<T, double>::value) {\n            value -= other.value;\n    \
-    \    }\n        else {\n            if ((value -= other.value) < 0) value += MOD;\n\
-    \        }\n        return *this;\n    }\n\n    constexpr static_modint& operator*=(const\
-    \ static_modint& other) {\n        if constexpr (std::is_same<T, double>::value)\
-    \ {\n            value *= other.value;\n        }\n        else {\n          \
-    \  value = int((long long)value * other.value % MOD);\n        }\n        return\
-    \ *this;\n    }\n\n    constexpr static_modint operator+(const static_modint&\
-    \ other) const {\n        return static_modint(*this) += other;\n    }\n\n   \
-    \ constexpr static_modint operator-(const static_modint& other) const {\n    \
-    \    return static_modint(*this) -= other;\n    }\n\n    constexpr static_modint\
-    \ operator*(const static_modint& other) const {\n        return static_modint(*this)\
-    \ *= other;\n    }\n\n    constexpr static_modint pow(long long exp) const {\n\
-    \        static_modint base = *this, res = static_modint(1);\n        while (exp\
-    \ > 0) {\n            if (exp & 1) res *= base;\n            base *= base;\n \
-    \           exp >>= 1;\n        }\n        return res;\n    }\n\n    constexpr\
-    \ static_modint inv() const {\n        if constexpr (std::is_same<T, double>::value)\
-    \ {\n            return static_modint(1) / static_modint(value);\n        }\n\
-    \        else {\n            int g, x, y;\n            std::tie(g, x, y) = extendedGCD(value,\
-    \ MOD);\n            assert(g == 1);\n            if (x < 0) x += MOD;\n     \
-    \       return x;\n        }\n    }\n\n    constexpr static_modint& operator/=(const\
-    \ static_modint& other) {\n        return *this *= other.inv();\n    }\n\n   \
-    \ constexpr static_modint operator/(const static_modint& other) const {\n    \
-    \    return static_modint(*this) /= other;\n    }\n\n    constexpr bool operator!=(const\
-    \ static_modint& other) const {\n        return val() != other.val();\n    }\n\
-    \n    constexpr bool operator==(const static_modint& other) const {\n        return\
-    \ val() == other.val();\n    }\n\n    T val() const {\n        if constexpr (std::is_same<T,\
-    \ double>::value) {\n            return static_cast<double>(value);\n        }\n\
-    \        else return this->value;\n    }\n\n    friend std::ostream& operator<<(std::ostream&\
-    \ os, const static_modint& mi) {\n        return os << mi.value;\n    }\n\n  \
-    \  friend std::istream& operator>>(std::istream& is, static_modint& mi) {\n  \
-    \      long long x;\n        is >> x;\n        mi = static_modint(x);\n      \
-    \  return is;\n    }\n};\n\ntemplate <int mod>\nusing modint = static_modint<mod>;\n\
+    \ double>::value) {\n            value = double(v);\n        }\n        else {\n\
+    \            value = int(((v % MOD) + MOD) % MOD);\n        }\n    }\n\n    constexpr\
+    \ static_modint& operator+=(const static_modint& other) {\n        if constexpr\
+    \ (std::is_same<T, double>::value) {\n            value += other.value;\n    \
+    \    }\n        else {\n            if ((value += other.value) >= MOD) value -=\
+    \ MOD;\n        }\n        return *this;\n    }\n\n    constexpr static_modint&\
+    \ operator-=(const static_modint& other) {\n        if constexpr (std::is_same<T,\
+    \ double>::value) {\n            value -= other.value;\n        }\n        else\
+    \ {\n            if ((value -= other.value) < 0) value += MOD;\n        }\n  \
+    \      return *this;\n    }\n\n    constexpr static_modint& operator*=(const static_modint&\
+    \ other) {\n        if constexpr (std::is_same<T, double>::value) {\n        \
+    \    value *= other.value;\n        }\n        else {\n            value = int((long\
+    \ long)value * other.value % MOD);\n        }\n        return *this;\n    }\n\n\
+    \    constexpr static_modint operator+(const static_modint& other) const {\n \
+    \       return static_modint(*this) += other;\n    }\n\n    constexpr static_modint\
+    \ operator-(const static_modint& other) const {\n        return static_modint(*this)\
+    \ -= other;\n    }\n\n    constexpr static_modint operator*(const static_modint&\
+    \ other) const {\n        return static_modint(*this) *= other;\n    }\n\n   \
+    \ constexpr static_modint pow(long long exp) const {\n        static_modint base\
+    \ = *this, res = static_modint(1);\n        while (exp > 0) {\n            if\
+    \ (exp & 1) res *= base;\n            base *= base;\n            exp >>= 1;\n\
+    \        }\n        return res;\n    }\n\n    constexpr static_modint inv() const\
+    \ {\n        if constexpr (std::is_same<T, double>::value) {\n            static_modint\
+    \ ret;\n            ret.value = double(1.0) / value;\n            return ret;\n\
+    \        }\n        else {\n            int g, x, y;\n            std::tie(g,\
+    \ x, y) = extendedGCD(value, MOD);\n            assert(g == 1);\n            if\
+    \ (x < 0) x += MOD;\n            return x;\n        }\n    }\n\n    constexpr\
+    \ static_modint& operator/=(const static_modint& other) {\n        return *this\
+    \ *= other.inv();\n    }\n\n    constexpr static_modint operator/(const static_modint&\
+    \ other) const {\n        return static_modint(*this) /= other;\n    }\n\n   \
+    \ constexpr bool operator!=(const static_modint& other) const {\n        return\
+    \ val() != other.val();\n    }\n\n    constexpr bool operator==(const static_modint&\
+    \ other) const {\n        return val() == other.val();\n    }\n\n    T val() const\
+    \ {\n        if constexpr (std::is_same<T, double>::value) {\n            return\
+    \ double(value);\n        }\n        else return this->value;\n    }\n\n    friend\
+    \ std::ostream& operator<<(std::ostream& os, const static_modint& mi) {\n    \
+    \    return os << mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream&\
+    \ is, static_modint& mi) {\n        long long x;\n        is >> x;\n        mi\
+    \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
+    \ modint = static_modint<mod>;\nusing doublemodint = static_modint<59, double>;\n\
     using modint998244353 = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\
     \n\n#line 1 \"convolution/divisor-zeta-moebius-transform.hpp\"\n\n\n\n#include\
     \ <vector>\n#include <map>\n\nnamespace divisor {\n  // \u7D04\u6570\u306B\u3064\
@@ -136,7 +137,7 @@ data:
   isVerificationFile: true
   path: test/verify/convolution/yosupo-lcm-convolution.test.cpp
   requiredBy: []
-  timestamp: '2025-04-04 21:14:56+09:00'
+  timestamp: '2025-07-02 19:15:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/convolution/yosupo-lcm-convolution.test.cpp
