@@ -13,7 +13,7 @@ struct static_modint {
 
     constexpr static_modint(long long v) {
         if constexpr (std::is_same<T, double>::value) {
-            value = static_cast<T>(v);
+            value = double(v);
         }
         else {
             value = int(((v % MOD) + MOD) % MOD);
@@ -74,7 +74,9 @@ struct static_modint {
 
     constexpr static_modint inv() const {
         if constexpr (std::is_same<T, double>::value) {
-            return static_modint(1) / static_modint(value);
+            static_modint ret;
+            ret.value = double(1.0) / value;
+            return ret;
         }
         else {
             int g, x, y;
@@ -103,7 +105,7 @@ struct static_modint {
 
     T val() const {
         if constexpr (std::is_same<T, double>::value) {
-            return static_cast<double>(value);
+            return double(value);
         }
         else return this->value;
     }
@@ -122,6 +124,7 @@ struct static_modint {
 
 template <int mod>
 using modint = static_modint<mod>;
+using doublemodint = static_modint<59, double>;
 using modint998244353 = modint<998244353>;
 using modint1000000007 = modint<1000000007>;
 
