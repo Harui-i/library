@@ -224,6 +224,9 @@ data:
       path: test/verify/fps/yosupo-division-of-polynomials.test.cpp
       title: test/verify/fps/yosupo-division-of-polynomials.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
+      title: test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
       title: test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
     - icon: ':heavy_check_mark:'
