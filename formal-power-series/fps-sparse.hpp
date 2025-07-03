@@ -84,6 +84,81 @@ FPS<mint> log_sparse(const FPS<mint>& f, int deg) {
   return multiply_sparse(f_inv, f.diff(), deg).integral().pre(deg);
 }
 
+
+// g := f ^ k
+// g' = k * f^{k-1} * f'
+// fg' = k * f^k * f'
+// fg' = k * g * f'
+
+template <typename mint>
+FPS<mint> pow_sparse(const FPS<mint>& f, long long k, int deg) {
+  if (k == 0) {
+    FPS ret = {mint(1)};
+    ret.resize(deg);
+    return ret;
+  }
+
+  if (f[0] == mint(0)) {
+    int mindeg = 0;
+    while (mindeg < deg && f[mindeg] == mint(0)) mindeg++; 
+
+    // (x^{mindeg})^k = x^{mindeg * k}
+    // mindeg * k >= deg ⇔ k >= floor(deg / mindeg) である。
+    // →: 自明 (k >= deg / mindeg >= floor(deg / mindeg) なので)
+
+    // ←について:  h1: k >= floor(deg / mindeg) を仮定して Goal: k >= degを示す。
+    // deg = mindeg * q + r (0 <= r < mindeg)と表す。これを使うと
+    // h1: k >= q.
+    // Goal: k >= mindeg * q + r. 
+
+    // mindeg * k > LLINF
+    // mindeg > LLINF / k
+    constexpr ll INF = 4450000000011100000;
+    if (mindeg > INF / k || mindeg * k >= deg) {
+      FPS<mint> ret(deg);
+      assert(ret[0] == mint(0));
+      return ret;
+    }
+    return pow_sparse(f>>mindeg, k, deg-mindeg*k) << k*mindeg;
+  }
+
+  FPS<mint> g(deg);
+  assert(f[0] != mint(0));
+  g[0] = f[0].pow(k);
+
+  std::vector<std::pair<int,mint>> nonzero_f = get_nonzeros(f);
+
+  for (int i=0; i+1<deg; i++) {
+    // g[0], g[1], ..., g[i]が判っている状態で,x^iに注目してg[i+1]を求めにいく。
+
+    // fg' = (f[0] + f[1]x + f[2]x^2 + ... + f[i]x^i)(g[1] + 2g[2]x + 3g[3]x^2 + ... + ig[i]x^{i-1} + (i+1)g[i+1]x^i) (左)
+    // kgf' = k(g[0] + g[1]x + g[2]x^2 + ... + g[i]x^i) * (f[1] + 2*f[2]x 3*f[3]x^2 + ... + i*f[i]x^{i-1} + (i+1)*f[i+1]x^i) (右)
+
+    // 左のx^iの係数は f[0](i+1)g[i+1] + f[1]ig[i] + f[2](i-1)g[i-1] + ... + f[i]g[1]
+    // 右のx^iの係数は k * ( g[0]*(i+1)f[i+1] +  g[1]if[i] + ... + g[i]*1f[1])
+    
+    // f[0](i+1)g[i+1] = k * (g[0]*(i+1)f[i+1] + g[1]if[i] + ... + g[i]*1f[1]) - f[1]ig[i] - f[2](i-1)g[i-1] - ... - f[i]g[1]
+
+    mint sum(0);
+    for(std::pair<int,mint> pim: nonzero_f) {
+      // f[pim.first]: pim.second
+      // 左では 0 <= pim.first <= i
+      // 右では 1 <= pim.first <= i+1の部分を見る
+
+      if (0 <= pim.first && pim.first <= i) sum -= pim.second * mint(i+1-pim.first) * g[i+1-pim.first];
+      if (1 <= pim.first && pim.first <= i+1) sum += mint(k) * g[i+1-pim.first] * mint(pim.first) * pim.second;
+
+    }
+
+    //for (int j=0; j<=i; j++) sum += mint(k) * g[j] * mint(i+1-j) * f[i+1-j];
+    //for (int j=1; j<=i; j++) sum -= f[j] * mint(i+1-j) * g[i+1-j];
+
+    g[i+1] = sum / f[0] / mint(i+1);
+  }
+  
+  return g;
+}
+
 //tabun baggute masu. 
 template<typename mint>
 FPS<mint> multiply_sparse(const FPS<mint>& f, const std::vector<std::pair<int,mint>>& g, int deg = -1) {
