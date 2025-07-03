@@ -3,8 +3,8 @@
 #include "template/template.hpp"
 #include "math/modint.hpp"
 #include "formal-power-series/formal-power-series.hpp"
-#include "formal-power-series/fps998.hpp"
-#include "formal-power-series/sparse-fps.hpp"
+#include "formal-power-series/fps-998.hpp"
+#include "formal-power-series/fps-sparse.hpp"
 
 using mint = modint998244353;
 

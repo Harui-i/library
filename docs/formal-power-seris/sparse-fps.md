@@ -1,6 +1,6 @@
 ---
-title : sparse-fps
-documentation_of: //formal-power-series/sparse-fps.hpp
+title : fps-sparse(疎な場合の高速化)
+documentation_of: //formal-power-series/fps-sparse.hpp
 ---
 
 スパース(非0な項が多い)な形式的べき級数で効率的に計算する。

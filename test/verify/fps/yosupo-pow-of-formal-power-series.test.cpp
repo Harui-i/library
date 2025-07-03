@@ -4,7 +4,7 @@
 #include "math/modint.hpp"
 using mint = modint998244353;
 
-#include "formal-power-series/fps998.hpp"
+#include "formal-power-series/fps-998.hpp"
 
 int main() {
   ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
