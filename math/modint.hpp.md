@@ -13,15 +13,15 @@ data:
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
-    path: formal-power-series/fps998.hpp
+    path: formal-power-series/fps-998.hpp
     title: "mod 998244353\u3067\u306EFPS(Formal Power Series, \u5F62\u5F0F\u7684\u3079\
       \u304D\u7D1A\u6570)"
   - icon: ':warning:'
-    path: formal-power-series/naive-fps.hpp
-    title: formal-power-series/naive-fps.hpp
+    path: formal-power-series/fps-naive.hpp
+    title: formal-power-series/fps-naive.hpp
   - icon: ':heavy_check_mark:'
-    path: formal-power-series/sparse-fps.hpp
-    title: sparse-fps
+    path: formal-power-series/fps-sparse.hpp
+    title: "fps-sparse(\u758E\u306A\u5834\u5408\u306E\u9AD8\u901F\u5316)"
   - icon: ':warning:'
     path: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
     title: test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
@@ -231,10 +231,10 @@ data:
   path: math/modint.hpp
   requiredBy:
   - formal-power-series/formal-power-series.hpp
-  - formal-power-series/fps998.hpp
-  - formal-power-series/sparse-fps.hpp
-  - formal-power-series/naive-fps.hpp
+  - formal-power-series/fps-998.hpp
   - formal-power-series/fiduccia.hpp
+  - formal-power-series/fps-naive.hpp
+  - formal-power-series/fps-sparse.hpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   timestamp: '2025-07-02 19:15:45+09:00'

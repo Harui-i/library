@@ -17,7 +17,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"formal-power-series/naive-fps.hpp\"\n\n\n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\
+  bundledCode: "#line 1 \"formal-power-series/fps-naive.hpp\"\n\n\n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\
     \n\n\n\n#line 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\
     \n\n\n#include <tuple>\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T,\
     \ T, T> extendedGCD(T a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while\
@@ -173,7 +173,7 @@ data:
     \  virtual void next_inv(FPS& g_d) const; \n  virtual void CooleyTukeyNTT998244353(std::vector<mint>&\
     \ a, bool is_reverse) const;\n  //  virtual FPS exp(int deg=-1) const;\n  virtual\
     \ std::vector<mint> multiply(const std::vector<mint>& a, const std::vector<mint>&\
-    \ b);\n};\n\n\n#line 5 \"formal-power-series/naive-fps.hpp\"\n\ntemplate<typename\
+    \ b);\n};\n\n\n#line 5 \"formal-power-series/fps-naive.hpp\"\n\ntemplate<typename\
     \ mint>\nstd::vector<mint> FPS<mint>::multiply(const std::vector<mint>& a, const\
     \ std::vector<mint>& b) {\n  if (a.size() == 0 || b.size() == 0) return std::vector<mint>();\n\
     \  vector<mint> ret(a.size() + b.size() - 1);\n  for(int i=0; i<int(a.size());\
@@ -215,15 +215,15 @@ data:
   - math/modint.hpp
   - math/external_gcd.hpp
   isVerificationFile: false
-  path: formal-power-series/naive-fps.hpp
+  path: formal-power-series/fps-naive.hpp
   requiredBy: []
-  timestamp: '2025-07-02 19:15:45+09:00'
+  timestamp: '2025-07-03 12:55:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: formal-power-series/naive-fps.hpp
+documentation_of: formal-power-series/fps-naive.hpp
 layout: document
 redirect_from:
-- /library/formal-power-series/naive-fps.hpp
-- /library/formal-power-series/naive-fps.hpp.html
-title: formal-power-series/naive-fps.hpp
+- /library/formal-power-series/fps-naive.hpp
+- /library/formal-power-series/fps-naive.hpp.html
+title: formal-power-series/fps-naive.hpp
 ---

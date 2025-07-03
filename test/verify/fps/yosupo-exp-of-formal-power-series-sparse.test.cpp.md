@@ -5,12 +5,12 @@ data:
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
-    path: formal-power-series/fps998.hpp
+    path: formal-power-series/fps-998.hpp
     title: "mod 998244353\u3067\u306EFPS(Formal Power Series, \u5F62\u5F0F\u7684\u3079\
       \u304D\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
-    path: formal-power-series/sparse-fps.hpp
-    title: sparse-fps
+    path: formal-power-series/fps-sparse.hpp
+    title: "fps-sparse(\u758E\u306A\u5834\u5408\u306E\u9AD8\u901F\u5316)"
   - icon: ':heavy_check_mark:'
     path: math/external_gcd.hpp
     title: math/external_gcd.hpp
@@ -196,8 +196,8 @@ data:
     \  virtual void next_inv(FPS& g_d) const; \n  virtual void CooleyTukeyNTT998244353(std::vector<mint>&\
     \ a, bool is_reverse) const;\n  //  virtual FPS exp(int deg=-1) const;\n  virtual\
     \ std::vector<mint> multiply(const std::vector<mint>& a, const std::vector<mint>&\
-    \ b);\n};\n\n\n#line 1 \"formal-power-series/fps998.hpp\"\n\n\n\n#include <array>\n\
-    \n#line 7 \"formal-power-series/fps998.hpp\"\n\nusing mint = modint998244353;\n\
+    \ b);\n};\n\n\n#line 1 \"formal-power-series/fps-998.hpp\"\n\n\n\n#include <array>\n\
+    \n#line 7 \"formal-power-series/fps-998.hpp\"\n\nusing mint = modint998244353;\n\
     //ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
     // constexpr \u95A2\u6570\u5185\u3067 ZETAS \u914D\u5217\u3092\u8A2D\u5B9A\u3059\
     \u308B\u305F\u3081\u306E\u88DC\u52A9\u95A2\u6570\nstd::array<mint, 24> setup_zetas()\
@@ -309,8 +309,8 @@ data:
     0\u306B\u3059\u308B\u3053\u3068\u3067\u5F97\u3089\u308C\u308B\u3002 \n  //   \
     \ [0, d)\u306E\u9805            [d, 2d)\u306E\u9805\n  //    h'_2d*g_d\u306E[0,d)\
     \       h'_2d*g_d\u306E[d, 2d)\n  //    h'_2d*g_d\u306E[2d, 3d)    h'_2d*g_d\u306E\
-    [3d, 4d)\n\n  g = g_origin - h_2d;\n  g.resize(d * 2);\n}\n\n\n#line 1 \"formal-power-series/sparse-fps.hpp\"\
-    \n\n\n\n#line 5 \"formal-power-series/sparse-fps.hpp\"\n\n#line 7 \"formal-power-series/sparse-fps.hpp\"\
+    [3d, 4d)\n\n  g = g_origin - h_2d;\n  g.resize(d * 2);\n}\n\n\n#line 1 \"formal-power-series/fps-sparse.hpp\"\
+    \n\n\n\n#line 5 \"formal-power-series/fps-sparse.hpp\"\n\n#line 7 \"formal-power-series/fps-sparse.hpp\"\
     \n\n\n// FPS\u306E\u975E\u30BC\u30ED\u306A\u9805\u3092\u96C6\u3081\u305Fvector<pair<int,mint>>\u3092\
     \u8FD4\u3059\ntemplate <typename mint>\nstd::vector<std::pair<int,mint>> get_nonzeros(const\
     \ FPS<mint>& f) {\n  std::vector<std::pair<int,mint>> ret;\n  for (int i=0; i<f.size();\
@@ -359,8 +359,8 @@ data:
     \  }\n\n  cout << exp_sparse(f, N) << endl;\n\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series_sparse\"\
     \n\n#include \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include\
-    \ \"formal-power-series/formal-power-series.hpp\"\n#include \"formal-power-series/fps998.hpp\"\
-    \n#include \"formal-power-series/sparse-fps.hpp\"\n\nusing mint = modint998244353;\n\
+    \ \"formal-power-series/formal-power-series.hpp\"\n#include \"formal-power-series/fps-998.hpp\"\
+    \n#include \"formal-power-series/fps-sparse.hpp\"\n\nusing mint = modint998244353;\n\
     \n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int N,\
     \ K; cin >> N >> K;\n  FPS<mint> f(N);\n  for (int i=0; i<K; i++) {\n    int a,\
     \ x; cin >> a >> x;\n    f[a] = mint(x); \n  }\n\n  cout << exp_sparse(f, N) <<\
@@ -371,12 +371,12 @@ data:
   - math/external_gcd.hpp
   - formal-power-series/formal-power-series.hpp
   - math/modint.hpp
-  - formal-power-series/fps998.hpp
-  - formal-power-series/sparse-fps.hpp
+  - formal-power-series/fps-998.hpp
+  - formal-power-series/fps-sparse.hpp
   isVerificationFile: true
   path: test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
   requiredBy: []
-  timestamp: '2025-07-02 19:15:45+09:00'
+  timestamp: '2025-07-03 12:55:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp

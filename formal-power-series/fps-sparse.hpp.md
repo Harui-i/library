@@ -23,7 +23,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"formal-power-series/sparse-fps.hpp\"\n\n\n\n#include <vector>\n\
+  bundledCode: "#line 1 \"formal-power-series/fps-sparse.hpp\"\n\n\n\n#include <vector>\n\
     \n#line 1 \"formal-power-series/formal-power-series.hpp\"\n\n\n\n#line 1 \"math/modint.hpp\"\
     \n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n#include <tuple>\n\n// g,x,y\n\
     template<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T a, T b) {\n\
@@ -179,7 +179,7 @@ data:
     \  virtual void next_inv(FPS& g_d) const; \n  virtual void CooleyTukeyNTT998244353(std::vector<mint>&\
     \ a, bool is_reverse) const;\n  //  virtual FPS exp(int deg=-1) const;\n  virtual\
     \ std::vector<mint> multiply(const std::vector<mint>& a, const std::vector<mint>&\
-    \ b);\n};\n\n\n#line 7 \"formal-power-series/sparse-fps.hpp\"\n\n\n// FPS\u306E\
+    \ b);\n};\n\n\n#line 7 \"formal-power-series/fps-sparse.hpp\"\n\n\n// FPS\u306E\
     \u975E\u30BC\u30ED\u306A\u9805\u3092\u96C6\u3081\u305Fvector<pair<int,mint>>\u3092\
     \u8FD4\u3059\ntemplate <typename mint>\nstd::vector<std::pair<int,mint>> get_nonzeros(const\
     \ FPS<mint>& f) {\n  std::vector<std::pair<int,mint>> ret;\n  for (int i=0; i<f.size();\
@@ -271,16 +271,16 @@ data:
   - math/modint.hpp
   - math/external_gcd.hpp
   isVerificationFile: false
-  path: formal-power-series/sparse-fps.hpp
+  path: formal-power-series/fps-sparse.hpp
   requiredBy: []
-  timestamp: '2025-07-02 19:15:45+09:00'
+  timestamp: '2025-07-03 12:55:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
   - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
-documentation_of: formal-power-series/sparse-fps.hpp
+documentation_of: formal-power-series/fps-sparse.hpp
 layout: document
-title: sparse-fps
+title: "fps-sparse(\u758E\u306A\u5834\u5408\u306E\u9AD8\u901F\u5316)"
 ---
 
 スパース(非0な項が多い)な形式的べき級数で効率的に計算する。
