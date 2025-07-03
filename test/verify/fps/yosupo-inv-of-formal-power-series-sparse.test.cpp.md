@@ -342,8 +342,10 @@ data:
     \      // F\u306Ei-a\u6B21\u306E\u9805\u3092\u8DB3\u3057\u3066\u3044\u304F\n \
     \     if (i-a < 0) continue;\n      assert(i-a >= 0);\n      assert(i+1 > i-a);\n\
     \      F[i+1] += pim.second * F[i-a];\n    }\n    F[i+1] /= mint(i+1);\n  }\n\
-    \  return F;\n}\n\n\n//tabun baggute masu. \ntemplate<typename mint>\nFPS<mint>\
-    \ multiply_sparse(const FPS<mint>& f, const std::vector<std::pair<int,mint>>&\
+    \  return F;\n}\n\n\ntemplate <typename mint>\nFPS<mint> log_sparse(const FPS<mint>&\
+    \ f, int deg) {\n  FPS<mint> f_inv = inv_sparse(f, deg);\n  return multiply_sparse(f_inv,\
+    \ f.diff(), deg).integral().pre(deg);\n}\n\n//tabun baggute masu. \ntemplate<typename\
+    \ mint>\nFPS<mint> multiply_sparse(const FPS<mint>& f, const std::vector<std::pair<int,mint>>&\
     \ g, int deg = -1) {\n  if (deg == -1) deg = f.size() - 1 + g.back().first + 1;\n\
     \n  FPS<mint> ret(deg);\n  for (std::pair<int,mint> pim : g) {\n    assert(pim.second\
     \ != 0);\n    if (pim.second == 0) continue;\n\n    for(int i=0; i<f.size(); i++)\
@@ -377,7 +379,7 @@ data:
   isVerificationFile: true
   path: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
   requiredBy: []
-  timestamp: '2025-07-03 12:55:16+09:00'
+  timestamp: '2025-07-03 15:12:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp

@@ -239,6 +239,9 @@ data:
       path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
       title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
+      title: test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
       title: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
     - icon: ':heavy_check_mark:'

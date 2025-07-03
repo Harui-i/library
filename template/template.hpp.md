@@ -58,6 +58,9 @@ data:
     path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
     title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
+    title: test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
     title: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -194,6 +197,7 @@ data:
   - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
   - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
   - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-division-of-polynomials.test.cpp
