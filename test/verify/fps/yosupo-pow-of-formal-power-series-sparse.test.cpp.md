@@ -30,11 +30,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/exp_of_formal_power_series_sparse
+    PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse
     links:
-    - https://judge.yosupo.jp/problem/exp_of_formal_power_series_sparse
-  bundledCode: "#line 1 \"test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series_sparse\"\
+    - https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse
+  bundledCode: "#line 1 \"test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse\"\
     \n\n#line 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\n\
     using namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
     \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
@@ -390,19 +390,19 @@ data:
     \ <typename mint>\nFPS<mint> multiply_sparse(const FPS<mint>& f, const FPS<mint>&\
     \ g, int deg = -1) {\n  std::vector<std::pair<int,mint>> vpmi;\n\n  for(int i=0;\
     \ i<g.size(); i++) if (g[i] != mint(0)) vpmi.emplace_back(i, g[i]);\n\n  return\
-    \ multiply_sparse(f, vpmi, deg);\n}\n\n\n#line 8 \"test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp\"\
-    \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
-    \ cin.tie(0); cout.tie(0);\n  int N, K; cin >> N >> K;\n  FPS<mint> f(N);\n  for\
-    \ (int i=0; i<K; i++) {\n    int a, x; cin >> a >> x;\n    f[a] = mint(x); \n\
-    \  }\n\n  cout << exp_sparse(f, N) << endl;\n\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series_sparse\"\
+    \ multiply_sparse(f, vpmi, deg);\n}\n\n\n#line 8 \"test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp\"\
+    \n\nusing mint = modint998244353;\n\nint main() {\n  ios::sync_with_stdio(0);\
+    \ cin.tie(0); cout.tie(0);\n  int N, K;\n  ll M;\n  cin >> N >> K >> M;\n  FPS<mint>\
+    \ f(N);\n  for (int i=0; i<K; i++) {\n    int a, x; cin >> a >> x;\n    f[a] =\
+    \ mint(x);\n  }\n  cout << pow_sparse(f, M, N).pre(N) << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse\"\
     \n\n#include \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include\
     \ \"formal-power-series/formal-power-series.hpp\"\n#include \"formal-power-series/fps-998.hpp\"\
     \n#include \"formal-power-series/fps-sparse.hpp\"\n\nusing mint = modint998244353;\n\
-    \n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int N,\
-    \ K; cin >> N >> K;\n  FPS<mint> f(N);\n  for (int i=0; i<K; i++) {\n    int a,\
-    \ x; cin >> a >> x;\n    f[a] = mint(x); \n  }\n\n  cout << exp_sparse(f, N) <<\
-    \ endl;\n\n}\n"
+    \nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int N,\
+    \ K;\n  ll M;\n  cin >> N >> K >> M;\n  FPS<mint> f(N);\n  for (int i=0; i<K;\
+    \ i++) {\n    int a, x; cin >> a >> x;\n    f[a] = mint(x);\n  }\n  cout << pow_sparse(f,\
+    \ M, N).pre(N) << endl;\n}\n"
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
@@ -412,15 +412,15 @@ data:
   - formal-power-series/fps-998.hpp
   - formal-power-series/fps-sparse.hpp
   isVerificationFile: true
-  path: test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
+  path: test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
   requiredBy: []
   timestamp: '2025-07-04 00:15:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
+documentation_of: test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
 layout: document
 redirect_from:
-- /verify/test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
-- /verify/test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp.html
-title: test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
+- /verify/test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
+- /verify/test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp.html
+title: test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
 ---

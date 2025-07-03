@@ -344,17 +344,53 @@ data:
     \      F[i+1] += pim.second * F[i-a];\n    }\n    F[i+1] /= mint(i+1);\n  }\n\
     \  return F;\n}\n\n\ntemplate <typename mint>\nFPS<mint> log_sparse(const FPS<mint>&\
     \ f, int deg) {\n  FPS<mint> f_inv = inv_sparse(f, deg);\n  return multiply_sparse(f_inv,\
-    \ f.diff(), deg).integral().pre(deg);\n}\n\n//tabun baggute masu. \ntemplate<typename\
-    \ mint>\nFPS<mint> multiply_sparse(const FPS<mint>& f, const std::vector<std::pair<int,mint>>&\
-    \ g, int deg = -1) {\n  if (deg == -1) deg = f.size() - 1 + g.back().first + 1;\n\
-    \n  FPS<mint> ret(deg);\n  for (std::pair<int,mint> pim : g) {\n    assert(pim.second\
-    \ != 0);\n    if (pim.second == 0) continue;\n\n    for(int i=0; i<f.size(); i++)\
-    \ {\n      if (i+pim.first >= ret.size()) continue;\n      if (f[i] != mint(0)\
-    \ && pim.second != mint(0)) ret[i+pim.first] += pim.second * f[i];\n    }\n  }\n\
-    \n  return ret;\n}\n\ntemplate <typename mint>\nFPS<mint> multiply_sparse(const\
-    \ FPS<mint>& f, const FPS<mint>& g, int deg = -1) {\n  std::vector<std::pair<int,mint>>\
-    \ vpmi;\n\n  for(int i=0; i<g.size(); i++) if (g[i] != mint(0)) vpmi.emplace_back(i,\
-    \ g[i]);\n\n  return multiply_sparse(f, vpmi, deg);\n}\n\n\n#line 8 \"test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp\"\
+    \ f.diff(), deg).integral().pre(deg);\n}\n\n\n// g := f ^ k\n// g' = k * f^{k-1}\
+    \ * f'\n// fg' = k * f^k * f'\n// fg' = k * g * f'\n\ntemplate <typename mint>\n\
+    FPS<mint> pow_sparse(const FPS<mint>& f, long long k, int deg) {\n  if (k == 0)\
+    \ {\n    FPS ret = {mint(1)};\n    ret.resize(deg);\n    return ret;\n  }\n\n\
+    \  if (f[0] == mint(0)) {\n    int mindeg = 0;\n    while (mindeg < deg && f[mindeg]\
+    \ == mint(0)) mindeg++; \n\n    // (x^{mindeg})^k = x^{mindeg * k}\n    // mindeg\
+    \ * k >= deg \u21D4 k >= floor(deg / mindeg) \u3067\u3042\u308B\u3002\n    //\
+    \ \u2192: \u81EA\u660E (k >= deg / mindeg >= floor(deg / mindeg) \u306A\u306E\u3067\
+    )\n\n    // \u2190\u306B\u3064\u3044\u3066:  h1: k >= floor(deg / mindeg) \u3092\
+    \u4EEE\u5B9A\u3057\u3066 Goal: k >= deg\u3092\u793A\u3059\u3002\n    // deg =\
+    \ mindeg * q + r (0 <= r < mindeg)\u3068\u8868\u3059\u3002\u3053\u308C\u3092\u4F7F\
+    \u3046\u3068\n    // h1: k >= q.\n    // Goal: k >= mindeg * q + r. \n\n    //\
+    \ mindeg * k > LLINF\n    // mindeg > LLINF / k\n    constexpr ll INF = 4450000000011100000;\n\
+    \    if (mindeg > INF / k || mindeg * k >= deg) {\n      FPS<mint> ret(deg);\n\
+    \      assert(ret[0] == mint(0));\n      return ret;\n    }\n    return pow_sparse(f>>mindeg,\
+    \ k, deg-mindeg*k) << k*mindeg;\n  }\n\n  FPS<mint> g(deg);\n  assert(f[0] !=\
+    \ mint(0));\n  g[0] = f[0].pow(k);\n\n  std::vector<std::pair<int,mint>> nonzero_f\
+    \ = get_nonzeros(f);\n\n  for (int i=0; i+1<deg; i++) {\n    // g[0], g[1], ...,\
+    \ g[i]\u304C\u5224\u3063\u3066\u3044\u308B\u72B6\u614B\u3067,x^i\u306B\u6CE8\u76EE\
+    \u3057\u3066g[i+1]\u3092\u6C42\u3081\u306B\u3044\u304F\u3002\n\n    // fg' = (f[0]\
+    \ + f[1]x + f[2]x^2 + ... + f[i]x^i)(g[1] + 2g[2]x + 3g[3]x^2 + ... + ig[i]x^{i-1}\
+    \ + (i+1)g[i+1]x^i) (\u5DE6)\n    // kgf' = k(g[0] + g[1]x + g[2]x^2 + ... + g[i]x^i)\
+    \ * (f[1] + 2*f[2]x 3*f[3]x^2 + ... + i*f[i]x^{i-1} + (i+1)*f[i+1]x^i) (\u53F3\
+    )\n\n    // \u5DE6\u306Ex^i\u306E\u4FC2\u6570\u306F f[0](i+1)g[i+1] + f[1]ig[i]\
+    \ + f[2](i-1)g[i-1] + ... + f[i]g[1]\n    // \u53F3\u306Ex^i\u306E\u4FC2\u6570\
+    \u306F k * ( g[0]*(i+1)f[i+1] +  g[1]if[i] + ... + g[i]*1f[1])\n    \n    // f[0](i+1)g[i+1]\
+    \ = k * (g[0]*(i+1)f[i+1] + g[1]if[i] + ... + g[i]*1f[1]) - f[1]ig[i] - f[2](i-1)g[i-1]\
+    \ - ... - f[i]g[1]\n\n    mint sum(0);\n    for(std::pair<int,mint> pim: nonzero_f)\
+    \ {\n      // f[pim.first]: pim.second\n      // \u5DE6\u3067\u306F 0 <= pim.first\
+    \ <= i\n      // \u53F3\u3067\u306F 1 <= pim.first <= i+1\u306E\u90E8\u5206\u3092\
+    \u898B\u308B\n\n      if (0 <= pim.first && pim.first <= i) sum -= pim.second\
+    \ * mint(i+1-pim.first) * g[i+1-pim.first];\n      if (1 <= pim.first && pim.first\
+    \ <= i+1) sum += mint(k) * g[i+1-pim.first] * mint(pim.first) * pim.second;\n\n\
+    \    }\n\n    //for (int j=0; j<=i; j++) sum += mint(k) * g[j] * mint(i+1-j) *\
+    \ f[i+1-j];\n    //for (int j=1; j<=i; j++) sum -= f[j] * mint(i+1-j) * g[i+1-j];\n\
+    \n    g[i+1] = sum / f[0] / mint(i+1);\n  }\n  \n  return g;\n}\n\n//tabun baggute\
+    \ masu. \ntemplate<typename mint>\nFPS<mint> multiply_sparse(const FPS<mint>&\
+    \ f, const std::vector<std::pair<int,mint>>& g, int deg = -1) {\n  if (deg ==\
+    \ -1) deg = f.size() - 1 + g.back().first + 1;\n\n  FPS<mint> ret(deg);\n  for\
+    \ (std::pair<int,mint> pim : g) {\n    assert(pim.second != 0);\n    if (pim.second\
+    \ == 0) continue;\n\n    for(int i=0; i<f.size(); i++) {\n      if (i+pim.first\
+    \ >= ret.size()) continue;\n      if (f[i] != mint(0) && pim.second != mint(0))\
+    \ ret[i+pim.first] += pim.second * f[i];\n    }\n  }\n\n  return ret;\n}\n\ntemplate\
+    \ <typename mint>\nFPS<mint> multiply_sparse(const FPS<mint>& f, const FPS<mint>&\
+    \ g, int deg = -1) {\n  std::vector<std::pair<int,mint>> vpmi;\n\n  for(int i=0;\
+    \ i<g.size(); i++) if (g[i] != mint(0)) vpmi.emplace_back(i, g[i]);\n\n  return\
+    \ multiply_sparse(f, vpmi, deg);\n}\n\n\n#line 8 \"test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp\"\
     \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
     \ cin.tie(0); cout.tie(0);\n  int N, K; cin >> N >> K;\n\n  FPS<mint> f(N);\n\n\
     \  for (int i=0; i<K; i++) {\n    int a, x; cin >> a >> x;\n    f[a] = mint(x);\n\
@@ -378,7 +414,7 @@ data:
   isVerificationFile: true
   path: test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
   requiredBy: []
-  timestamp: '2025-07-03 15:12:04+09:00'
+  timestamp: '2025-07-04 00:15:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
