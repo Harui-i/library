@@ -78,6 +78,12 @@ FPS<mint> exp_sparse(const FPS<mint>& f, int deg) {
 }
 
 
+template <typename mint>
+FPS<mint> log_sparse(const FPS<mint>& f, int deg) {
+  FPS<mint> f_inv = inv_sparse(f, deg);
+  return multiply_sparse(f_inv, f.diff(), deg).integral().pre(deg);
+}
+
 //tabun baggute masu. 
 template<typename mint>
 FPS<mint> multiply_sparse(const FPS<mint>& f, const std::vector<std::pair<int,mint>>& g, int deg = -1) {
