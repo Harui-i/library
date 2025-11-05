@@ -46,8 +46,8 @@ data:
   timestamp: '2024-07-30 23:24:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
+  - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-vertex-set-path-composite.test.cpp
 documentation_of: math/linear_function.hpp
 layout: document
