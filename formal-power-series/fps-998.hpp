@@ -6,8 +6,9 @@
 #include "formal-power-series/formal-power-series.hpp"
 
 using mint = modint998244353;
-//ZETAS = {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};
-// constexpr 関数内で ZETAS 配列を設定するための補助関数
+// ZETAS =
+// {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};
+//  constexpr 関数内で ZETAS 配列を設定するための補助関数
 std::array<mint, 24> setup_zetas() {
   std::array<mint, 24> zetas;
   zetas[23] = mint(3).pow(119);
@@ -25,7 +26,7 @@ template <typename mint>
 void FPS<mint>::CooleyTukeyNTT998244353(std::vector<mint>& a, bool is_reverse) const {
   int N = a.size();
   int lgN = lg2(N);
-  //for (int i = 0; 1 << i < N; i++) lgN++;
+  // for (int i = 0; 1 << i < N; i++) lgN++;
   assert(N == 1 << lgN);
   assert(lgN <= 23 && "the length shoud be less than or equal to 2^23 ");
 
@@ -37,7 +38,7 @@ void FPS<mint>::CooleyTukeyNTT998244353(std::vector<mint>& a, bool is_reverse) c
     int lgw = lgN;
     int offset = width >> 1;
     while (width > 1) {
-      mint w = ZETAS[lgw]; // 1のwidth乗根
+      mint w = ZETAS[lgw];  // 1のwidth乗根
       for (int top = 0; top < N; top += width) {
         mint root = 1;
         for (int i = top; i < top + offset; i++) {
@@ -64,7 +65,7 @@ void FPS<mint>::CooleyTukeyNTT998244353(std::vector<mint>& a, bool is_reverse) c
     int lgw = 1;
     int offset = 1;
     while (width <= N) {
-      mint w = ZETAS[lgw].inv(); // 1のwidth乗根のinv
+      mint w = ZETAS[lgw].inv();  // 1のwidth乗根のinv
 
       for (int top = 0; top < N; top += width) {
         mint root = 1;
@@ -85,25 +86,24 @@ void FPS<mint>::CooleyTukeyNTT998244353(std::vector<mint>& a, bool is_reverse) c
     for (int i = 0; i < N; i++) a[i] *= mint(N).inv();
     return;
   }
-
 }
 
 template <typename mint>
 std::vector<mint> FPS<mint>::multiply(const std::vector<mint>& a, const std::vector<mint>& b) {
-  if (a.size() == 0 || b.size() == 0) return vector<mint>();
+  if (a.size() == 0 || b.size() == 0) return std::vector<mint>();
 
-  vector<mint> fa(a.begin(), a.end()), fb(b.begin(), b.end());
+  std::vector<mint> fa(a.begin(), a.end()), fb(b.begin(), b.end());
   int n = 1 << lg2(a.size() + b.size());
-  //while (n < (int)(a.size() + b.size())) n <<= 1;
+  // while (n < (int)(a.size() + b.size())) n <<= 1;
 
   fa.resize(n);
   fb.resize(n);
 
-  vector<mint>fc(n);
-  if (min(a.size(), b.size()) <= 40) {
-    for (int i = 0; i < (int)a.size(); i++) for (int j = 0; j < (int)b.size(); j++) fc[i + j] += fa[i] * fb[j];
-  }
-  else {
+  std::vector<mint> fc(n);
+  if (std::min(a.size(), b.size()) <= 40) {
+    for (int i = 0; i < (int)a.size(); i++)
+      for (int j = 0; j < (int)b.size(); j++) fc[i + j] += fa[i] * fb[j];
+  } else {
     CooleyTukeyNTT998244353(fa, false);
     CooleyTukeyNTT998244353(fb, false);
     for (int i = 0; i < n; ++i) fc[i] = fa[i] * fb[i];
@@ -112,7 +112,6 @@ std::vector<mint> FPS<mint>::multiply(const std::vector<mint>& a, const std::vec
   fc.resize(a.size() + b.size() - 1);
   return fc;
 }
-
 
 // FFTの回数を節約したNewton法での逆元計算
 /*
@@ -178,7 +177,7 @@ void FPS<mint>::next_inv(FPS<mint>& g) const {
   int d = g.size();
   FPS f_2d = (*this).pre(2 * d);
   FPS g_d = g.pre(2 * d);
-  FPS g_origin = g.pre(2 * d); // 後々使いたいので保存しておく
+  FPS g_origin = g.pre(2 * d);  // 後々使いたいので保存しておく
 
   CooleyTukeyNTT998244353(f_2d._vec, false);
   CooleyTukeyNTT998244353(g_d._vec, false);
@@ -198,7 +197,7 @@ void FPS<mint>::next_inv(FPS<mint>& g) const {
   //    f_2d*g_dの[0,d)       f_2d*g_dの[d, 2d)
   //    f_2d*g_dの[2d, 3d)    f_2d*g_dの[3d, 4d)
 
-  h_2d[0] = mint(0); // h_2dを (f_2d * g_d - 1)に変えちゃう。
+  h_2d[0] = mint(0);  // h_2dを (f_2d * g_d - 1)に変えちゃう。
   for (int i = 1; i < d; i++) h_2d[i] = 0;
 
   CooleyTukeyNTT998244353(h_2d._vec, false);
@@ -207,8 +206,10 @@ void FPS<mint>::next_inv(FPS<mint>& g) const {
   for (int i = 0; i < d; i++) h_2d[i] = mint(0);
 
   // h_2d - 1 =: h'_2dとおく。
-  // g_2d = g_d - h'_2d * g_d であり、さっきと同じような図を書くと, h_2d * g_dを巡回畳み込みしたものは、下図のようになっている。
-  // 左上はall-zero(定数項も0にしたので)、右下も次数の関係から全部0なので、h_2d * g_dは、巡回畳み込みをしたものの[0,d)の項を0にすることで得られる。 
+  // g_2d = g_d - h'_2d * g_d であり、さっきと同じような図を書くと, h_2d *
+  // g_dを巡回畳み込みしたものは、下図のようになっている。
+  // 左上はall-zero(定数項も0にしたので)、右下も次数の関係から全部0なので、h_2d *
+  // g_dは、巡回畳み込みをしたものの[0,d)の項を0にすることで得られる。
   //    [0, d)の項            [d, 2d)の項
   //    h'_2d*g_dの[0,d)       h'_2d*g_dの[d, 2d)
   //    h'_2d*g_dの[2d, 3d)    h'_2d*g_dの[3d, 4d)
@@ -217,4 +218,4 @@ void FPS<mint>::next_inv(FPS<mint>& g) const {
   g.resize(d * 2);
 }
 
-#endif // HARUILIB_FORMAL_POWER_SERIES_FPS998_HPP
+#endif  // HARUILIB_FORMAL_POWER_SERIES_FPS998_HPP
