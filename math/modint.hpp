@@ -58,6 +58,10 @@ struct static_modint {
         return static_modint(*this) -= other;
     }
 
+    constexpr static_modint operator-() const {
+        return static_modint(0) - *this;
+    }
+
     constexpr static_modint operator*(const static_modint& other) const {
         return static_modint(*this) *= other;
     }
