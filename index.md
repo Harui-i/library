@@ -49,6 +49,9 @@ data:
   - name: formal-power-series
     pages:
     - icon: ':heavy_check_mark:'
+      path: formal-power-series/bostan-mori.hpp
+      title: "Bostan-Mori\u6CD5"
+    - icon: ':heavy_check_mark:'
       path: formal-power-series/fiduccia.hpp
       title: "Fiduccia\u306E\u30A2\u30EB\u30B4\u30EA\u30BA\u30E0 (\u304D\u305F\u307E\
         \u3055\u6CD5?)"
@@ -235,6 +238,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
       title: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
+      title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
       title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp

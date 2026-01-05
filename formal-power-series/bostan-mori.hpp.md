@@ -5,13 +5,6 @@ data:
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
-    path: formal-power-series/fps-998.hpp
-    title: "mod 998244353\u3067\u306EFPS(Formal Power Series, \u5F62\u5F0F\u7684\u3079\
-      \u304D\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
-    path: formal-power-series/fps-sparse.hpp
-    title: "fps-sparse(\u758E\u306A\u5834\u5408\u306E\u9AD8\u901F\u5316)"
-  - icon: ':heavy_check_mark:'
     path: formal-power-series/fps-sparse.hpp
     title: "fps-sparse(\u758E\u306A\u5834\u5408\u306E\u9AD8\u901F\u5316)"
   - icon: ':heavy_check_mark:'
@@ -20,74 +13,67 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
-    path: math/modint.hpp
-    title: modint
-  - icon: ':heavy_check_mark:'
-    path: template/template.hpp
-    title: template/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
+    title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse
-    links:
-    - https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse
-  bundledCode: "#line 1 \"test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse\"\
-    \n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <iostream>\n#include <vector>\n\n#line 1 \"math/modint.hpp\"\n\n\n\n\
-    #line 1 \"math/external_gcd.hpp\"\n\n\n\n#include <tuple>\n\n// g,x,y\ntemplate<typename\
-    \ T>\nconstexpr std::tuple<T, T, T> extendedGCD(T a, T b) {\n    T x0 = 1, y0\
-    \ = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n        T q = a / b;\n        T\
-    \ r = a % b;\n        a = b;\n        b = r;\n        \n        T xTemp = x0 -\
-    \ q * x1;\n        x0 = x1;\n        x1 = xTemp;\n        \n        T yTemp =\
-    \ y0 - q * y1;\n        y0 = y1;\n        y1 = yTemp;\n    }\n    return {a, x0,\
-    \ y0};\n}\n\n#line 5 \"math/modint.hpp\"\n#include <type_traits>\n#include <cassert>\n\
-    \ntemplate<int MOD, typename T = int>\nstruct static_modint {\n    T value;\n\n\
-    \    constexpr explicit static_modint() : value(0) {}\n\n    constexpr static_modint(long\
-    \ long v) {\n        if constexpr (std::is_same<T, double>::value) {\n       \
-    \     value = double(v);\n        }\n        else {\n            value = int(((v\
-    \ % MOD) + MOD) % MOD);\n        }\n    }\n\n    constexpr static_modint& operator+=(const\
+    links: []
+  bundledCode: "#line 1 \"formal-power-series/bostan-mori.hpp\"\n#include <cassert>\n\
+    #include <vector>\n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\n\
+    \n\n\n#include <algorithm>\n#include <iostream>\n#line 7 \"formal-power-series/formal-power-series.hpp\"\
+    \n\n#line 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\
+    \n#include <tuple>\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T,\
+    \ T, T> extendedGCD(T a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while\
+    \ (b != 0) {\n        T q = a / b;\n        T r = a % b;\n        a = b;\n   \
+    \     b = r;\n        \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n   \
+    \     x1 = xTemp;\n        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n\
+    \        y1 = yTemp;\n    }\n    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\
+    \n#include <type_traits>\n#line 7 \"math/modint.hpp\"\n\ntemplate<int MOD, typename\
+    \ T = int>\nstruct static_modint {\n    T value;\n\n    constexpr explicit static_modint()\
+    \ : value(0) {}\n\n    constexpr static_modint(long long v) {\n        if constexpr\
+    \ (std::is_same<T, double>::value) {\n            value = double(v);\n       \
+    \ }\n        else {\n            value = int(((v % MOD) + MOD) % MOD);\n     \
+    \   }\n    }\n\n    constexpr static_modint& operator+=(const static_modint& other)\
+    \ {\n        if constexpr (std::is_same<T, double>::value) {\n            value\
+    \ += other.value;\n        }\n        else {\n            if ((value += other.value)\
+    \ >= MOD) value -= MOD;\n        }\n        return *this;\n    }\n\n    constexpr\
+    \ static_modint& operator-=(const static_modint& other) {\n        if constexpr\
+    \ (std::is_same<T, double>::value) {\n            value -= other.value;\n    \
+    \    }\n        else {\n            if ((value -= other.value) < 0) value += MOD;\n\
+    \        }\n        return *this;\n    }\n\n    constexpr static_modint& operator*=(const\
     \ static_modint& other) {\n        if constexpr (std::is_same<T, double>::value)\
-    \ {\n            value += other.value;\n        }\n        else {\n          \
-    \  if ((value += other.value) >= MOD) value -= MOD;\n        }\n        return\
-    \ *this;\n    }\n\n    constexpr static_modint& operator-=(const static_modint&\
-    \ other) {\n        if constexpr (std::is_same<T, double>::value) {\n        \
-    \    value -= other.value;\n        }\n        else {\n            if ((value\
-    \ -= other.value) < 0) value += MOD;\n        }\n        return *this;\n    }\n\
-    \n    constexpr static_modint& operator*=(const static_modint& other) {\n    \
-    \    if constexpr (std::is_same<T, double>::value) {\n            value *= other.value;\n\
-    \        }\n        else {\n            value = int((long long)value * other.value\
-    \ % MOD);\n        }\n        return *this;\n    }\n\n    constexpr static_modint\
-    \ operator+(const static_modint& other) const {\n        return static_modint(*this)\
-    \ += other;\n    }\n\n    constexpr static_modint operator-(const static_modint&\
-    \ other) const {\n        return static_modint(*this) -= other;\n    }\n\n   \
-    \ constexpr static_modint operator-() const {\n        return static_modint(0)\
-    \ - *this;\n    }\n\n    constexpr static_modint operator*(const static_modint&\
-    \ other) const {\n        return static_modint(*this) *= other;\n    }\n\n   \
-    \ constexpr static_modint pow(long long exp) const {\n        static_modint base\
-    \ = *this, res = static_modint(1);\n        while (exp > 0) {\n            if\
-    \ (exp & 1) res *= base;\n            base *= base;\n            exp >>= 1;\n\
-    \        }\n        return res;\n    }\n\n    constexpr static_modint inv() const\
-    \ {\n        if constexpr (std::is_same<T, double>::value) {\n            static_modint\
-    \ ret;\n            ret.value = double(1.0) / value;\n            return ret;\n\
-    \        }\n        else {\n            int g, x, y;\n            std::tie(g,\
-    \ x, y) = extendedGCD(value, MOD);\n            assert(g == 1);\n            if\
-    \ (x < 0) x += MOD;\n            return x;\n        }\n    }\n\n    constexpr\
-    \ static_modint& operator/=(const static_modint& other) {\n        return *this\
-    \ *= other.inv();\n    }\n\n    constexpr static_modint operator/(const static_modint&\
-    \ other) const {\n        return static_modint(*this) /= other;\n    }\n\n   \
-    \ constexpr bool operator!=(const static_modint& other) const {\n        return\
-    \ val() != other.val();\n    }\n\n    constexpr bool operator==(const static_modint&\
-    \ other) const {\n        return val() == other.val();\n    }\n\n    T val() const\
-    \ {\n        if constexpr (std::is_same<T, double>::value) {\n            return\
-    \ double(value);\n        }\n        else return this->value;\n    }\n\n    friend\
-    \ std::ostream& operator<<(std::ostream& os, const static_modint& mi) {\n    \
-    \    return os << mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream&\
+    \ {\n            value *= other.value;\n        }\n        else {\n          \
+    \  value = int((long long)value * other.value % MOD);\n        }\n        return\
+    \ *this;\n    }\n\n    constexpr static_modint operator+(const static_modint&\
+    \ other) const {\n        return static_modint(*this) += other;\n    }\n\n   \
+    \ constexpr static_modint operator-(const static_modint& other) const {\n    \
+    \    return static_modint(*this) -= other;\n    }\n\n    constexpr static_modint\
+    \ operator-() const {\n        return static_modint(0) - *this;\n    }\n\n   \
+    \ constexpr static_modint operator*(const static_modint& other) const {\n    \
+    \    return static_modint(*this) *= other;\n    }\n\n    constexpr static_modint\
+    \ pow(long long exp) const {\n        static_modint base = *this, res = static_modint(1);\n\
+    \        while (exp > 0) {\n            if (exp & 1) res *= base;\n          \
+    \  base *= base;\n            exp >>= 1;\n        }\n        return res;\n   \
+    \ }\n\n    constexpr static_modint inv() const {\n        if constexpr (std::is_same<T,\
+    \ double>::value) {\n            static_modint ret;\n            ret.value = double(1.0)\
+    \ / value;\n            return ret;\n        }\n        else {\n            int\
+    \ g, x, y;\n            std::tie(g, x, y) = extendedGCD(value, MOD);\n       \
+    \     assert(g == 1);\n            if (x < 0) x += MOD;\n            return x;\n\
+    \        }\n    }\n\n    constexpr static_modint& operator/=(const static_modint&\
+    \ other) {\n        return *this *= other.inv();\n    }\n\n    constexpr static_modint\
+    \ operator/(const static_modint& other) const {\n        return static_modint(*this)\
+    \ /= other;\n    }\n\n    constexpr bool operator!=(const static_modint& other)\
+    \ const {\n        return val() != other.val();\n    }\n\n    constexpr bool operator==(const\
+    \ static_modint& other) const {\n        return val() == other.val();\n    }\n\
+    \n    T val() const {\n        if constexpr (std::is_same<T, double>::value) {\n\
+    \            return double(value);\n        }\n        else return this->value;\n\
+    \    }\n\n    friend std::ostream& operator<<(std::ostream& os, const static_modint&\
+    \ mi) {\n        return os << mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream&\
     \ is, static_modint& mi) {\n        long long x;\n        is >> x;\n        mi\
     \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
     \ modint = static_modint<mod>;\nusing doublemodint = static_modint<59, double>;\n\
@@ -299,157 +285,98 @@ data:
     \  return multiply_sparse(f, vpmi, deg);\n}\n\ntemplate <typename mint>\nFPS<mint>\
     \ FPS<mint>::mul_sparse(const FPS<mint>& g, int deg) const {\n  return multiply_sparse(*this,\
     \ g, deg);\n}\n\n\n#line 304 \"formal-power-series/formal-power-series.hpp\"\n\
-    \n\n#line 1 \"formal-power-series/fps-998.hpp\"\n\n\n\n#include <array>\n\n#line\
-    \ 7 \"formal-power-series/fps-998.hpp\"\n\nusing mint = modint998244353;\n// ZETAS\
-    \ =\n// {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
-    //  constexpr \u95A2\u6570\u5185\u3067 ZETAS \u914D\u5217\u3092\u8A2D\u5B9A\u3059\
-    \u308B\u305F\u3081\u306E\u88DC\u52A9\u95A2\u6570\nstd::array<mint, 24> setup_zetas()\
-    \ {\n  std::array<mint, 24> zetas;\n  zetas[23] = mint(3).pow(119);\n  for (int\
-    \ i = 22; i >= 0; --i) {\n    zetas[i] = (zetas[i + 1] * zetas[i + 1]);\n  }\n\
-    \  return zetas;\n}\n\n// \u30B3\u30F3\u30D1\u30A4\u30EB\u6642\u306B ZETAS \u914D\
-    \u5217\u3092\u521D\u671F\u5316 -> C++23\u3058\u3083\u306A\u3044\u3068\u52D5\u304B\
-    \u3053\u3068\u304C\u5224\u660E\u3057\u305F\u306E\u3067\u30B3\u30F3\u30D1\u30A4\
-    \u30EB\u6642\u306B\u306F\u3084\u3089\u306A\u3044\u65B9\u91DD\u3078\u5909\u66F4\
-    \nstd::array<mint, 24> ZETAS = setup_zetas();\n\n// \u53C2\u8003: https://www.creativ.xyz/fast-fourier-transform/\n\
-    template <typename mint>\nvoid FPS<mint>::CooleyTukeyNTT998244353(std::vector<mint>&\
-    \ a, bool is_reverse) const {\n  int N = a.size();\n  int lgN = lg2(N);\n  //\
-    \ for (int i = 0; 1 << i < N; i++) lgN++;\n  assert(N == 1 << lgN);\n  assert(lgN\
-    \ <= 23 && \"the length shoud be less than or equal to 2^23 \");\n\n  // https://37zigen.com/transpose-fft/\n\
-    \  // https://tayu0110.hatenablog.com/entry/2023/05/06/023244\n  // \u5468\u6CE2\
-    \u6570\u9593\u5F15\u304D\n  if (is_reverse == false) {\n    int width = N;\n \
-    \   int lgw = lgN;\n    int offset = width >> 1;\n    while (width > 1) {\n  \
-    \    mint w = ZETAS[lgw];  // 1\u306Ewidth\u4E57\u6839\n      for (int top = 0;\
-    \ top < N; top += width) {\n        mint root = 1;\n        for (int i = top;\
-    \ i < top + offset; i++) {\n          mint c0 = a[i];\n          mint c1 = a[i\
-    \ + offset];\n\n          a[i] = c0 + c1;\n          a[i + offset] = (c0 - c1)\
-    \ * root;\n          root *= w;\n        }\n      }\n\n      width >>= 1;\n  \
-    \    offset >>= 1;\n      lgw--;\n    }\n    return;\n  }\n\n  // https://37zigen.com/transpose-fft/\n\
-    \  // \u6642\u9593\u9593\u5F15\u304D\n  if (is_reverse == true) {\n    int width\
-    \ = 2;\n    int lgw = 1;\n    int offset = 1;\n    while (width <= N) {\n    \
-    \  mint w = ZETAS[lgw].inv();  // 1\u306Ewidth\u4E57\u6839\u306Einv\n\n      for\
-    \ (int top = 0; top < N; top += width) {\n        mint root = 1;\n        for\
-    \ (int i = top; i < top + offset; i++) {\n          mint c0 = a[i];\n        \
-    \  mint c1 = a[i + offset];\n          a[i] = c0 + c1 * root;\n          a[i +\
-    \ offset] = c0 - c1 * root;\n          root *= w;\n        }\n      }\n\n    \
-    \  width <<= 1;\n      offset <<= 1;\n      lgw++;\n    }\n\n    for (int i =\
-    \ 0; i < N; i++) a[i] *= mint(N).inv();\n    return;\n  }\n}\n\ntemplate <typename\
-    \ mint>\nstd::vector<mint> FPS<mint>::multiply(const std::vector<mint>& a, const\
-    \ std::vector<mint>& b) {\n  if (a.size() == 0 || b.size() == 0) return std::vector<mint>();\n\
-    \n  std::vector<mint> fa(a.begin(), a.end()), fb(b.begin(), b.end());\n  int n\
-    \ = 1 << lg2(a.size() + b.size());\n  // while (n < (int)(a.size() + b.size()))\
-    \ n <<= 1;\n\n  fa.resize(n);\n  fb.resize(n);\n\n  std::vector<mint> fc(n);\n\
-    \  if (std::min(a.size(), b.size()) <= 40) {\n    for (int i = 0; i < (int)a.size();\
-    \ i++)\n      for (int j = 0; j < (int)b.size(); j++) fc[i + j] += fa[i] * fb[j];\n\
-    \  } else {\n    CooleyTukeyNTT998244353(fa, false);\n    CooleyTukeyNTT998244353(fb,\
-    \ false);\n    for (int i = 0; i < n; ++i) fc[i] = fa[i] * fb[i];\n    CooleyTukeyNTT998244353(fc,\
-    \ true);\n  }\n  fc.resize(a.size() + b.size() - 1);\n  return fc;\n}\n\n// FFT\u306E\
-    \u56DE\u6570\u3092\u7BC0\u7D04\u3057\u305FNewton\u6CD5\u3067\u306E\u9006\u5143\
-    \u8A08\u7B97\n/*\ntemplate <typename mint>\nFPS<mint> FPS<mint>::inv_fast1(int\
-    \ deg = -1) const {\n  assert(_vec[0] != mint(0));\n  if (deg == -1) deg = size();\n\
-    \  FPS g(1);\n  g._vec[0] = mint(_vec[0]).inv();\n\n  for (int d = 1; d < deg;\
-    \ d <<= 1) {\n    FPS g_squared = g;\n    FPS g_twice = g * mint(2);\n\n    g_squared.resize(d\
-    \ * 4);\n    CooleyTukeyNTT998244353(g_squared._vec, false);\n    for (int i =\
-    \ 0; i < g_squared.size(); i++) g_squared._vec[i] *= g_squared._vec[i];\n\n  \
-    \  FPS fgg = (*this).FPS::pre(d * 2);\n    fgg.resize(d * 4);\n    CooleyTukeyNTT998244353(fgg._vec,\
-    \ false);\n\n    for (int i = 0; i < fgg.size(); i++) {\n      fgg._vec[i] *=\
-    \ g_squared._vec[i];\n    }\n    CooleyTukeyNTT998244353(fgg._vec, true);\n  \
-    \  fgg.resize(d * 4 - 2);\n\n    g = (g_twice - fgg);\n    g.resize(d * 2);\n\
-    \  }\n\n  return g.pre(deg);\n}\n*/\n\n// \u5DE1\u56DE\u7573\u307F\u8FBC\u307F\
-    \u3092\u5229\u7528\u3057\u3066FFT\u306E\u56DE\u6570\u3092\u7BC0\u7D04\u3057\u305F\
-    Newton\u6CD5\u306B\u3088\u308B\u9006\u5143\u8A08\u7B97\n// https://paper.dropbox.com/doc/fps--CQCZhUV1oN9UT3BCLrowhxgzAg-EoHXQDZxfduAB8wD1PMBW\n\
-    // \u5143\u306E\u8A18\u4E8B\u3068\u306Fg_2d\u3068\u304B\u306E\u547D\u540D\u304C\
-    \u9055\u3046\u3002f_2d\u306A\u3069\u306E\u4E0B\u4ED8\u304D\u306E\u6570\u5B57\u306F\
-    \u3001\u3053\u306E\u30B3\u30FC\u30C9\u3067\u306F\u5F62\u5F0F\u7684\u3079\u304D\
-    \u7D1A\u6570\u306E\u30B5\u30A4\u30BA\u3092\u8868\u3059\u3002\n// \u30CB\u30E5\u30FC\
-    \u30C8\u30F3\u6CD51\u56DE\u3042\u305F\u308A\u306EFFT\u306E\u8A08\u7B97\u91CF\u304C\
-    \u30015 * F(2d)\u306B\u306A\u308B\u3002\n// \u2193\u30B3\u30E1\u30F3\u30C8\u30A2\
-    \u30A6\u30C8\u306EToggle\u5207\u308A\u66FF\u3048\u7528\n//*\n\ntemplate <typename\
-    \ mint>\nFPS<mint> FPS<mint>::inv(int deg) const {\n  assert(_vec[0] != mint(0));\n\
-    \  if (deg == -1) deg = size();\n  FPS g(1);\n  g._vec[0] = mint(_vec[0]).inv();\n\
-    \n  for (int d = 1; d < deg; d <<= 1) {\n    next_inv(g);\n  }\n\n  return g.pre(deg);\n\
-    }\n\n// this\u306E\u9006\u5143\u306En\u9805\u76EE\u307E\u3067\u3092\u53D7\u3051\
-    \u3068\u308A\u3001\u7CBE\u5EA6\u3092\u500D\u306B\u3059\u308B\ntemplate <typename\
-    \ mint>\nvoid FPS<mint>::next_inv(FPS<mint>& g) const {\n  // g_2n = g_n - (f_n\
-    \ g_n - 1) g_n\n  // e_n := f_n g_n - 1\n  int d = g.size();\n  FPS f_2d = (*this).pre(2\
-    \ * d);\n  FPS g_d = g.pre(2 * d);\n  FPS g_origin = g.pre(2 * d);  // \u5F8C\u3005\
-    \u4F7F\u3044\u305F\u3044\u306E\u3067\u4FDD\u5B58\u3057\u3066\u304A\u304F\n\n \
-    \ CooleyTukeyNTT998244353(f_2d._vec, false);\n  CooleyTukeyNTT998244353(g_d._vec,\
-    \ false);\n  assert(2 * d == (int)g_d.size() && f_2d.size() == g_d.size());\n\
-    \  FPS h_2d(2 * d);\n  for (int i = 0; i < 2 * d; i++) h_2d[i] = f_2d[i] * g_d[i];\n\
-    \  CooleyTukeyNTT998244353(h_2d._vec, true);\n\n  // \u3053\u3046\u3059\u308B\u3053\
-    \u3068\u3067\u3001h_2d\u306F f_2d * g_d\u306E 2d\u6B21\u672A\u6E80\u306E\u9805\
-    \u306B\u4E00\u81F4\u3059\u308B\u3002\n  // h_2d\u306Ff_2d\u3068g_d\u306E\u30B5\
-    \u30A4\u30BA2d\u306E\u5DE1\u56DE\u7573\u307F\u8FBC\u307F\u3067\u3042\u308B\u304B\
-    \u3089\u3001 h_2d\u306E\u9805\u306F\u4E0B\u56F3\u306E\u3088\u3046\u306B\u306A\u3063\
-    \u3066\u3044\u308B\u3002\n  // \u3053\u3053\u3067\u3001h_2d\u306E\u3046\u3061\u307B\
-    \u3057\u3044\u90E8\u5206\u306F\u5DE6\u4E0A\u3068\u3001\u53F3\u4E0A\u306E\u90E8\
-    \u5206\u306E\u307F\u3002(f_2d*g_d\u306E2d\u6B21\u672A\u6E80\u304C\u307B\u3057\u3044\
-    \u306E\u3067)\n  // \u5DE6\u4E0A\u306E\u90E8\u5206\u306F\u3001g_d\u306E\u6027\u8CEA\
-    \u304B\u3089\u3001 1, 0, 0, ... \u3068\u306A\u3063\u3066\u3044\u308B\u3053\u3068\
-    \u304C\u308F\u304B\u308B\u3002\n  // \u53F3\u4E0B\u306E\u90E8\u5206\u306F deg(f_2d)\
-    \ < 2d, deg(g_d) < d \u2192 deg(f_2d*g_d) < 3d \u3068\u306A\u3063\u3066\u3001\
-    0\u3068\u306A\u3063\u3066\u3044\u308B\u3053\u3068\u304C\u308F\u304B\u308B\u3002\
-    \n  // \u3088\u3063\u3066\u3001h_2d\u306E[d,2d)\u306E\u90E8\u5206\u306Ff_2d*g_d\u306E\
-    [d,2d)\u306B\u4E00\u81F4\u3059\u308B\u306E\u3067\u4F55\u3082\u51E6\u7406\u3059\
-    \u308B\u5FC5\u8981\u304C\u306A\u304F\u3001\n  // h_2d\u306E[0,d)\u306E\u90E8\u5206\
-    \u306F\u4F59\u8A08\u306A\u8DB3\u3057\u7B97\u304C\u5165\u3063\u3066\u3057\u307E\
-    \u3063\u3066\u3044\u308B\u304C\u30011,0,0,...\u306B\u5909\u3048\u3066\u3057\u307E\
-    \u3048\u3070\u3088\u3044\u3002\n  //    [0, d)\u306E\u9805            [d, 2d)\u306E\
-    \u9805\n  //    f_2d*g_d\u306E[0,d)       f_2d*g_d\u306E[d, 2d)\n  //    f_2d*g_d\u306E\
-    [2d, 3d)    f_2d*g_d\u306E[3d, 4d)\n\n  h_2d[0] = mint(0);  // h_2d\u3092 (f_2d\
-    \ * g_d - 1)\u306B\u5909\u3048\u3061\u3083\u3046\u3002\n  for (int i = 1; i <\
-    \ d; i++) h_2d[i] = 0;\n\n  CooleyTukeyNTT998244353(h_2d._vec, false);\n  for\
-    \ (int i = 0; i < 2 * d; i++) h_2d[i] = g_d[i] * h_2d[i];\n  CooleyTukeyNTT998244353(h_2d._vec,\
-    \ true);\n  for (int i = 0; i < d; i++) h_2d[i] = mint(0);\n\n  // h_2d - 1 =:\
-    \ h'_2d\u3068\u304A\u304F\u3002\n  // g_2d = g_d - h'_2d * g_d \u3067\u3042\u308A\
-    \u3001\u3055\u3063\u304D\u3068\u540C\u3058\u3088\u3046\u306A\u56F3\u3092\u66F8\
-    \u304F\u3068, h_2d *\n  // g_d\u3092\u5DE1\u56DE\u7573\u307F\u8FBC\u307F\u3057\
-    \u305F\u3082\u306E\u306F\u3001\u4E0B\u56F3\u306E\u3088\u3046\u306B\u306A\u3063\
-    \u3066\u3044\u308B\u3002\n  // \u5DE6\u4E0A\u306Fall-zero(\u5B9A\u6570\u9805\u3082\
-    0\u306B\u3057\u305F\u306E\u3067)\u3001\u53F3\u4E0B\u3082\u6B21\u6570\u306E\u95A2\
-    \u4FC2\u304B\u3089\u5168\u90E80\u306A\u306E\u3067\u3001h_2d *\n  // g_d\u306F\u3001\
-    \u5DE1\u56DE\u7573\u307F\u8FBC\u307F\u3092\u3057\u305F\u3082\u306E\u306E[0,d)\u306E\
-    \u9805\u30920\u306B\u3059\u308B\u3053\u3068\u3067\u5F97\u3089\u308C\u308B\u3002\
-    \n  //    [0, d)\u306E\u9805            [d, 2d)\u306E\u9805\n  //    h'_2d*g_d\u306E\
-    [0,d)       h'_2d*g_d\u306E[d, 2d)\n  //    h'_2d*g_d\u306E[2d, 3d)    h'_2d*g_d\u306E\
-    [3d, 4d)\n\n  g = g_origin - h_2d;\n  g.resize(d * 2);\n}\n\n\n#line 3 \"template/template.hpp\"\
-    \nusing namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
-    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
-    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
-    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
-    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
-    \ 8 \"test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp\"\n\n\
-    using mint = modint998244353;\n\nint main() {\n  ios::sync_with_stdio(0);\n  cin.tie(0);\n\
-    \  cout.tie(0);\n  int N, K;\n  ll M;\n  cin >> N >> K >> M;\n  FPS<mint> f(N);\n\
-    \  for (int i = 0; i < K; i++) {\n    int a, x;\n    cin >> a >> x;\n    f[a]\
-    \ = mint(x);\n  }\n  cout << f.pow_sparse(M, N).pre(N) << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse\"\
-    \n\n#include \"formal-power-series/formal-power-series.hpp\"\n#include \"formal-power-series/fps-998.hpp\"\
-    \n#include \"formal-power-series/fps-sparse.hpp\"\n#include \"math/modint.hpp\"\
-    \n#include \"template/template.hpp\"\n\nusing mint = modint998244353;\n\nint main()\
-    \ {\n  ios::sync_with_stdio(0);\n  cin.tie(0);\n  cout.tie(0);\n  int N, K;\n\
-    \  ll M;\n  cin >> N >> K >> M;\n  FPS<mint> f(N);\n  for (int i = 0; i < K; i++)\
-    \ {\n    int a, x;\n    cin >> a >> x;\n    f[a] = mint(x);\n  }\n  cout << f.pow_sparse(M,\
-    \ N).pre(N) << endl;\n}\n"
+    \n\n#line 5 \"formal-power-series/bostan-mori.hpp\"\n\ntemplate <typename mint>\n\
+    FPS<mint> fps_even(const FPS<mint>& f) {\n  std::vector<mint> ret;\n  ret.reserve((f.size()\
+    \ + 1) / 2);\n  for (int i = 0; i < f.size(); i += 2) ret.push_back(f[i]);\n \
+    \ return FPS<mint>(ret);\n}\n\ntemplate <typename mint>\nFPS<mint> fps_odd(const\
+    \ FPS<mint>& f) {\n  std::vector<mint> ret;\n  ret.reserve(f.size() / 2);\n  for\
+    \ (int i = 1; i < f.size(); i += 2) ret.push_back(f[i]);\n  return FPS<mint>(ret);\n\
+    }\n\n// P(x) / Q(x) \u306E x^N \u306E\u4FC2\u6570\u3092\u6C42\u3081\u308B\ntemplate\
+    \ <typename mint>\nmint BostanMori(FPS<mint> P, FPS<mint> Q, unsigned long long\
+    \ N) {\n  assert(Q.size() > 0 && Q[0] != mint(0));\n  while (N > 0) {\n    FPS<mint>\
+    \ Q_neg = Q;\n  for (int i = 1; i < Q_neg.size(); i += 2) Q_neg[i] = -Q_neg[i];\n\
+    \n    FPS<mint> P2 = P * Q_neg;\n    FPS<mint> Q2 = Q * Q_neg;\n\n    if (N &\
+    \ 1) {\n      P = fps_odd(P2);\n    } else {\n      P = fps_even(P2);\n    }\n\
+    \    Q = fps_even(Q2);\n    N >>= 1;\n  }\n  assert(P.size() > 0);\n  return P[0]\
+    \ / Q[0];\n}\n\n// given linear recurrence sequence a_{n+K}= c_1 a_{n+K-1} + c_2\
+    \ a_{n+k-2} + \\dots + c_{K-1} a_{n+1} + c_K a_n\n// a_0, a_1, \\dots, a_{K-1}\
+    \ are given\n// calculate a_N (N-th term of linear recurrence sequence) time complexity\
+    \ is O(K log K log N) (when NNT is used), O(K^2 log N) (when naive convolution\
+    \ is used).\ntemplate <typename mint>\nmint BostanMori(const std::vector<mint>&\
+    \ a, const std::vector<mint>& c, unsigned long long N) {\n  if (N < a.size())\
+    \ return a[N];\n  assert(a.size() == c.size());\n  int K = c.size();\n\n  FPS<mint>\
+    \ Q(K + 1);\n  Q[0] = mint(1);\n  for (int i = 0; i < K; i++) Q[i + 1] = -c[i];\n\
+    \n  FPS<mint> P(K);\n  for (int i = 0; i < K; i++) {\n    mint s = a[i];\n   \
+    \ for (int j = 1; j <= i; j++) s -= c[j - 1] * a[i - j];\n    P[i] = s;\n  }\n\
+    \n  return BostanMori(P, Q, N);\n}\n"
+  code: "#include <cassert>\n#include <vector>\n\n#include \"formal-power-series/formal-power-series.hpp\"\
+    \n\ntemplate <typename mint>\nFPS<mint> fps_even(const FPS<mint>& f) {\n  std::vector<mint>\
+    \ ret;\n  ret.reserve((f.size() + 1) / 2);\n  for (int i = 0; i < f.size(); i\
+    \ += 2) ret.push_back(f[i]);\n  return FPS<mint>(ret);\n}\n\ntemplate <typename\
+    \ mint>\nFPS<mint> fps_odd(const FPS<mint>& f) {\n  std::vector<mint> ret;\n \
+    \ ret.reserve(f.size() / 2);\n  for (int i = 1; i < f.size(); i += 2) ret.push_back(f[i]);\n\
+    \  return FPS<mint>(ret);\n}\n\n// P(x) / Q(x) \u306E x^N \u306E\u4FC2\u6570\u3092\
+    \u6C42\u3081\u308B\ntemplate <typename mint>\nmint BostanMori(FPS<mint> P, FPS<mint>\
+    \ Q, unsigned long long N) {\n  assert(Q.size() > 0 && Q[0] != mint(0));\n  while\
+    \ (N > 0) {\n    FPS<mint> Q_neg = Q;\n  for (int i = 1; i < Q_neg.size(); i +=\
+    \ 2) Q_neg[i] = -Q_neg[i];\n\n    FPS<mint> P2 = P * Q_neg;\n    FPS<mint> Q2\
+    \ = Q * Q_neg;\n\n    if (N & 1) {\n      P = fps_odd(P2);\n    } else {\n   \
+    \   P = fps_even(P2);\n    }\n    Q = fps_even(Q2);\n    N >>= 1;\n  }\n  assert(P.size()\
+    \ > 0);\n  return P[0] / Q[0];\n}\n\n// given linear recurrence sequence a_{n+K}=\
+    \ c_1 a_{n+K-1} + c_2 a_{n+k-2} + \\dots + c_{K-1} a_{n+1} + c_K a_n\n// a_0,\
+    \ a_1, \\dots, a_{K-1} are given\n// calculate a_N (N-th term of linear recurrence\
+    \ sequence) time complexity is O(K log K log N) (when NNT is used), O(K^2 log\
+    \ N) (when naive convolution is used).\ntemplate <typename mint>\nmint BostanMori(const\
+    \ std::vector<mint>& a, const std::vector<mint>& c, unsigned long long N) {\n\
+    \  if (N < a.size()) return a[N];\n  assert(a.size() == c.size());\n  int K =\
+    \ c.size();\n\n  FPS<mint> Q(K + 1);\n  Q[0] = mint(1);\n  for (int i = 0; i <\
+    \ K; i++) Q[i + 1] = -c[i];\n\n  FPS<mint> P(K);\n  for (int i = 0; i < K; i++)\
+    \ {\n    mint s = a[i];\n    for (int j = 1; j <= i; j++) s -= c[j - 1] * a[i\
+    \ - j];\n    P[i] = s;\n  }\n\n  return BostanMori(P, Q, N);\n}\n"
   dependsOn:
   - formal-power-series/formal-power-series.hpp
   - math/modint.hpp
   - math/external_gcd.hpp
   - formal-power-series/fps-sparse.hpp
-  - formal-power-series/fps-998.hpp
-  - formal-power-series/fps-sparse.hpp
-  - math/modint.hpp
-  - template/template.hpp
-  isVerificationFile: true
-  path: test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
+  isVerificationFile: false
+  path: formal-power-series/bostan-mori.hpp
   requiredBy: []
-  timestamp: '2026-01-05 22:46:48+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
+  timestamp: '2026-01-05 22:47:02+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
+documentation_of: formal-power-series/bostan-mori.hpp
 layout: document
-redirect_from:
-- /verify/test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
-- /verify/test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp.html
-title: test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
+title: "Bostan-Mori\u6CD5"
 ---
+
+線形漸化式の第N項や、形式的べき級数の分数 P(x)/Q(x) の係数を高速に求めるアルゴリズム。
+
+## 使い方
+
+```
+mint BostanMori(FPS<mint> P, FPS<mint> Q, unsigned long long N)
+```
+
+P(x) / Q(x) の x^N の係数を返す。Q[0] != 0 が必要。
+
+```
+mint BostanMori(const vector<mint>& a, const vector<mint>& c, unsigned long long N)
+```
+
+a_0..a_{K-1} と
+a_{n+K} = c_1 a_{n+K-1} + ... + c_K a_n
+が与えられたときの a_N を返す。
+
+内部で Q(x) = 1 - c_1 x - ... - c_K x^K とし、
+P(x) = (A(x) Q(x)) mod x^K を作って Bostan-Mori に流している。
+
+## 計算量
+畳み込みが FFT/NTT で高速化されるなら
+- O(K log K log N)
+
+ナイーブな畳み込みなら
+- O(K^2 log N)
+
+## 参考
+- https://qiita.com/ryuhe1/items/da5acbcce4ac1911f47a

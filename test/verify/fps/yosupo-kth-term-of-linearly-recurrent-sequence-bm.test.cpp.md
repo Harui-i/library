@@ -2,15 +2,15 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: formal-power-series/bostan-mori.hpp
+    title: "Bostan-Mori\u6CD5"
+  - icon: ':heavy_check_mark:'
     path: formal-power-series/formal-power-series.hpp
     title: "Formal Power Series (\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
     path: formal-power-series/fps-998.hpp
     title: "mod 998244353\u3067\u306EFPS(Formal Power Series, \u5F62\u5F0F\u7684\u3079\
       \u304D\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
-    path: formal-power-series/fps-sparse.hpp
-    title: "fps-sparse(\u758E\u306A\u5834\u5408\u306E\u9AD8\u901F\u5316)"
   - icon: ':heavy_check_mark:'
     path: formal-power-series/fps-sparse.hpp
     title: "fps-sparse(\u758E\u306A\u5834\u5408\u306E\u9AD8\u901F\u5316)"
@@ -33,66 +33,72 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse
+    PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
     links:
-    - https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse
-  bundledCode: "#line 1 \"test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse\"\
-    \n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <iostream>\n#include <vector>\n\n#line 1 \"math/modint.hpp\"\n\n\n\n\
-    #line 1 \"math/external_gcd.hpp\"\n\n\n\n#include <tuple>\n\n// g,x,y\ntemplate<typename\
-    \ T>\nconstexpr std::tuple<T, T, T> extendedGCD(T a, T b) {\n    T x0 = 1, y0\
-    \ = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n        T q = a / b;\n        T\
-    \ r = a % b;\n        a = b;\n        b = r;\n        \n        T xTemp = x0 -\
-    \ q * x1;\n        x0 = x1;\n        x1 = xTemp;\n        \n        T yTemp =\
-    \ y0 - q * y1;\n        y0 = y1;\n        y1 = yTemp;\n    }\n    return {a, x0,\
-    \ y0};\n}\n\n#line 5 \"math/modint.hpp\"\n#include <type_traits>\n#include <cassert>\n\
-    \ntemplate<int MOD, typename T = int>\nstruct static_modint {\n    T value;\n\n\
-    \    constexpr explicit static_modint() : value(0) {}\n\n    constexpr static_modint(long\
-    \ long v) {\n        if constexpr (std::is_same<T, double>::value) {\n       \
-    \     value = double(v);\n        }\n        else {\n            value = int(((v\
-    \ % MOD) + MOD) % MOD);\n        }\n    }\n\n    constexpr static_modint& operator+=(const\
-    \ static_modint& other) {\n        if constexpr (std::is_same<T, double>::value)\
-    \ {\n            value += other.value;\n        }\n        else {\n          \
-    \  if ((value += other.value) >= MOD) value -= MOD;\n        }\n        return\
-    \ *this;\n    }\n\n    constexpr static_modint& operator-=(const static_modint&\
+    - https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
+  bundledCode: "#line 1 \"test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    \n\n#line 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\n\
+    using namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
+    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
+    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
+    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
+    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
+    \ 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n#include\
+    \ <tuple>\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T\
+    \ a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n   \
+    \     T q = a / b;\n        T r = a % b;\n        a = b;\n        b = r;\n   \
+    \     \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n        x1 = xTemp;\n\
+    \        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n        y1 = yTemp;\n\
+    \    }\n    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\n#include <type_traits>\n\
+    #line 7 \"math/modint.hpp\"\n\ntemplate<int MOD, typename T = int>\nstruct static_modint\
+    \ {\n    T value;\n\n    constexpr explicit static_modint() : value(0) {}\n\n\
+    \    constexpr static_modint(long long v) {\n        if constexpr (std::is_same<T,\
+    \ double>::value) {\n            value = double(v);\n        }\n        else {\n\
+    \            value = int(((v % MOD) + MOD) % MOD);\n        }\n    }\n\n    constexpr\
+    \ static_modint& operator+=(const static_modint& other) {\n        if constexpr\
+    \ (std::is_same<T, double>::value) {\n            value += other.value;\n    \
+    \    }\n        else {\n            if ((value += other.value) >= MOD) value -=\
+    \ MOD;\n        }\n        return *this;\n    }\n\n    constexpr static_modint&\
+    \ operator-=(const static_modint& other) {\n        if constexpr (std::is_same<T,\
+    \ double>::value) {\n            value -= other.value;\n        }\n        else\
+    \ {\n            if ((value -= other.value) < 0) value += MOD;\n        }\n  \
+    \      return *this;\n    }\n\n    constexpr static_modint& operator*=(const static_modint&\
     \ other) {\n        if constexpr (std::is_same<T, double>::value) {\n        \
-    \    value -= other.value;\n        }\n        else {\n            if ((value\
-    \ -= other.value) < 0) value += MOD;\n        }\n        return *this;\n    }\n\
-    \n    constexpr static_modint& operator*=(const static_modint& other) {\n    \
-    \    if constexpr (std::is_same<T, double>::value) {\n            value *= other.value;\n\
-    \        }\n        else {\n            value = int((long long)value * other.value\
-    \ % MOD);\n        }\n        return *this;\n    }\n\n    constexpr static_modint\
-    \ operator+(const static_modint& other) const {\n        return static_modint(*this)\
-    \ += other;\n    }\n\n    constexpr static_modint operator-(const static_modint&\
-    \ other) const {\n        return static_modint(*this) -= other;\n    }\n\n   \
-    \ constexpr static_modint operator-() const {\n        return static_modint(0)\
-    \ - *this;\n    }\n\n    constexpr static_modint operator*(const static_modint&\
-    \ other) const {\n        return static_modint(*this) *= other;\n    }\n\n   \
-    \ constexpr static_modint pow(long long exp) const {\n        static_modint base\
-    \ = *this, res = static_modint(1);\n        while (exp > 0) {\n            if\
-    \ (exp & 1) res *= base;\n            base *= base;\n            exp >>= 1;\n\
-    \        }\n        return res;\n    }\n\n    constexpr static_modint inv() const\
-    \ {\n        if constexpr (std::is_same<T, double>::value) {\n            static_modint\
-    \ ret;\n            ret.value = double(1.0) / value;\n            return ret;\n\
-    \        }\n        else {\n            int g, x, y;\n            std::tie(g,\
-    \ x, y) = extendedGCD(value, MOD);\n            assert(g == 1);\n            if\
-    \ (x < 0) x += MOD;\n            return x;\n        }\n    }\n\n    constexpr\
-    \ static_modint& operator/=(const static_modint& other) {\n        return *this\
-    \ *= other.inv();\n    }\n\n    constexpr static_modint operator/(const static_modint&\
-    \ other) const {\n        return static_modint(*this) /= other;\n    }\n\n   \
-    \ constexpr bool operator!=(const static_modint& other) const {\n        return\
-    \ val() != other.val();\n    }\n\n    constexpr bool operator==(const static_modint&\
-    \ other) const {\n        return val() == other.val();\n    }\n\n    T val() const\
-    \ {\n        if constexpr (std::is_same<T, double>::value) {\n            return\
-    \ double(value);\n        }\n        else return this->value;\n    }\n\n    friend\
-    \ std::ostream& operator<<(std::ostream& os, const static_modint& mi) {\n    \
-    \    return os << mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream&\
+    \    value *= other.value;\n        }\n        else {\n            value = int((long\
+    \ long)value * other.value % MOD);\n        }\n        return *this;\n    }\n\n\
+    \    constexpr static_modint operator+(const static_modint& other) const {\n \
+    \       return static_modint(*this) += other;\n    }\n\n    constexpr static_modint\
+    \ operator-(const static_modint& other) const {\n        return static_modint(*this)\
+    \ -= other;\n    }\n\n    constexpr static_modint operator-() const {\n      \
+    \  return static_modint(0) - *this;\n    }\n\n    constexpr static_modint operator*(const\
+    \ static_modint& other) const {\n        return static_modint(*this) *= other;\n\
+    \    }\n\n    constexpr static_modint pow(long long exp) const {\n        static_modint\
+    \ base = *this, res = static_modint(1);\n        while (exp > 0) {\n         \
+    \   if (exp & 1) res *= base;\n            base *= base;\n            exp >>=\
+    \ 1;\n        }\n        return res;\n    }\n\n    constexpr static_modint inv()\
+    \ const {\n        if constexpr (std::is_same<T, double>::value) {\n         \
+    \   static_modint ret;\n            ret.value = double(1.0) / value;\n       \
+    \     return ret;\n        }\n        else {\n            int g, x, y;\n     \
+    \       std::tie(g, x, y) = extendedGCD(value, MOD);\n            assert(g ==\
+    \ 1);\n            if (x < 0) x += MOD;\n            return x;\n        }\n  \
+    \  }\n\n    constexpr static_modint& operator/=(const static_modint& other) {\n\
+    \        return *this *= other.inv();\n    }\n\n    constexpr static_modint operator/(const\
+    \ static_modint& other) const {\n        return static_modint(*this) /= other;\n\
+    \    }\n\n    constexpr bool operator!=(const static_modint& other) const {\n\
+    \        return val() != other.val();\n    }\n\n    constexpr bool operator==(const\
+    \ static_modint& other) const {\n        return val() == other.val();\n    }\n\
+    \n    T val() const {\n        if constexpr (std::is_same<T, double>::value) {\n\
+    \            return double(value);\n        }\n        else return this->value;\n\
+    \    }\n\n    friend std::ostream& operator<<(std::ostream& os, const static_modint&\
+    \ mi) {\n        return os << mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream&\
     \ is, static_modint& mi) {\n        long long x;\n        is >> x;\n        mi\
     \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
     \ modint = static_modint<mod>;\nusing doublemodint = static_modint<59, double>;\n\
     using modint998244353 = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\
-    \n\n#line 9 \"formal-power-series/formal-power-series.hpp\"\n\ntemplate <typename\
+    \n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\n\n\n\n#include <algorithm>\n\
+    #line 6 \"formal-power-series/formal-power-series.hpp\"\n#include <vector>\n\n\
+    #line 9 \"formal-power-series/formal-power-series.hpp\"\n\ntemplate <typename\
     \ mint>\nstruct FPS {\n  std::vector<mint> _vec;\n\n  constexpr int lg2(int N)\
     \ const {\n    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n   \
     \ if ((1LL << ret) < N) ret++;\n    return ret;\n  }\n\n  // \u30CA\u30A4\u30FC\
@@ -412,44 +418,63 @@ data:
     \u9805\u30920\u306B\u3059\u308B\u3053\u3068\u3067\u5F97\u3089\u308C\u308B\u3002\
     \n  //    [0, d)\u306E\u9805            [d, 2d)\u306E\u9805\n  //    h'_2d*g_d\u306E\
     [0,d)       h'_2d*g_d\u306E[d, 2d)\n  //    h'_2d*g_d\u306E[2d, 3d)    h'_2d*g_d\u306E\
-    [3d, 4d)\n\n  g = g_origin - h_2d;\n  g.resize(d * 2);\n}\n\n\n#line 3 \"template/template.hpp\"\
-    \nusing namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
-    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
-    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
-    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
-    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
-    \ 8 \"test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp\"\n\n\
-    using mint = modint998244353;\n\nint main() {\n  ios::sync_with_stdio(0);\n  cin.tie(0);\n\
-    \  cout.tie(0);\n  int N, K;\n  ll M;\n  cin >> N >> K >> M;\n  FPS<mint> f(N);\n\
-    \  for (int i = 0; i < K; i++) {\n    int a, x;\n    cin >> a >> x;\n    f[a]\
-    \ = mint(x);\n  }\n  cout << f.pow_sparse(M, N).pre(N) << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse\"\
-    \n\n#include \"formal-power-series/formal-power-series.hpp\"\n#include \"formal-power-series/fps-998.hpp\"\
-    \n#include \"formal-power-series/fps-sparse.hpp\"\n#include \"math/modint.hpp\"\
-    \n#include \"template/template.hpp\"\n\nusing mint = modint998244353;\n\nint main()\
-    \ {\n  ios::sync_with_stdio(0);\n  cin.tie(0);\n  cout.tie(0);\n  int N, K;\n\
-    \  ll M;\n  cin >> N >> K >> M;\n  FPS<mint> f(N);\n  for (int i = 0; i < K; i++)\
-    \ {\n    int a, x;\n    cin >> a >> x;\n    f[a] = mint(x);\n  }\n  cout << f.pow_sparse(M,\
-    \ N).pre(N) << endl;\n}\n"
+    [3d, 4d)\n\n  g = g_origin - h_2d;\n  g.resize(d * 2);\n}\n\n\n#line 7 \"test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp\"\
+    \n\n#line 3 \"formal-power-series/bostan-mori.hpp\"\n\n#line 5 \"formal-power-series/bostan-mori.hpp\"\
+    \n\ntemplate <typename mint>\nFPS<mint> fps_even(const FPS<mint>& f) {\n  std::vector<mint>\
+    \ ret;\n  ret.reserve((f.size() + 1) / 2);\n  for (int i = 0; i < f.size(); i\
+    \ += 2) ret.push_back(f[i]);\n  return FPS<mint>(ret);\n}\n\ntemplate <typename\
+    \ mint>\nFPS<mint> fps_odd(const FPS<mint>& f) {\n  std::vector<mint> ret;\n \
+    \ ret.reserve(f.size() / 2);\n  for (int i = 1; i < f.size(); i += 2) ret.push_back(f[i]);\n\
+    \  return FPS<mint>(ret);\n}\n\n// P(x) / Q(x) \u306E x^N \u306E\u4FC2\u6570\u3092\
+    \u6C42\u3081\u308B\ntemplate <typename mint>\nmint BostanMori(FPS<mint> P, FPS<mint>\
+    \ Q, unsigned long long N) {\n  assert(Q.size() > 0 && Q[0] != mint(0));\n  while\
+    \ (N > 0) {\n    FPS<mint> Q_neg = Q;\n  for (int i = 1; i < Q_neg.size(); i +=\
+    \ 2) Q_neg[i] = -Q_neg[i];\n\n    FPS<mint> P2 = P * Q_neg;\n    FPS<mint> Q2\
+    \ = Q * Q_neg;\n\n    if (N & 1) {\n      P = fps_odd(P2);\n    } else {\n   \
+    \   P = fps_even(P2);\n    }\n    Q = fps_even(Q2);\n    N >>= 1;\n  }\n  assert(P.size()\
+    \ > 0);\n  return P[0] / Q[0];\n}\n\n// given linear recurrence sequence a_{n+K}=\
+    \ c_1 a_{n+K-1} + c_2 a_{n+k-2} + \\dots + c_{K-1} a_{n+1} + c_K a_n\n// a_0,\
+    \ a_1, \\dots, a_{K-1} are given\n// calculate a_N (N-th term of linear recurrence\
+    \ sequence) time complexity is O(K log K log N) (when NNT is used), O(K^2 log\
+    \ N) (when naive convolution is used).\ntemplate <typename mint>\nmint BostanMori(const\
+    \ std::vector<mint>& a, const std::vector<mint>& c, unsigned long long N) {\n\
+    \  if (N < a.size()) return a[N];\n  assert(a.size() == c.size());\n  int K =\
+    \ c.size();\n\n  FPS<mint> Q(K + 1);\n  Q[0] = mint(1);\n  for (int i = 0; i <\
+    \ K; i++) Q[i + 1] = -c[i];\n\n  FPS<mint> P(K);\n  for (int i = 0; i < K; i++)\
+    \ {\n    mint s = a[i];\n    for (int j = 1; j <= i; j++) s -= c[j - 1] * a[i\
+    \ - j];\n    P[i] = s;\n  }\n\n  return BostanMori(P, Q, N);\n}\n#line 9 \"test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp\"\
+    \n\nusing mint = modint998244353;\n\nint main() {\n  ios::sync_with_stdio(0);\
+    \ cin.tie(0); cout.tie(0);\n  int d; cin >> d;\n  ll K; cin >> K;\n  vector<mint>\
+    \ a(d); for (int i = 0; i < d; i++) cin >> a[i];\n  vector<mint> c(d); for (int\
+    \ i = 0; i < d; i++) cin >> c[i];\n\n  mint ans = BostanMori(a, c, K);\n\n  cout\
+    \ << ans.val() << \"\\n\";\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    \n\n#include \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include\
+    \ \"formal-power-series/formal-power-series.hpp\"\n#include \"formal-power-series/fps-998.hpp\"\
+    \n\n#include \"formal-power-series/bostan-mori.hpp\"\n\nusing mint = modint998244353;\n\
+    \nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int d;\
+    \ cin >> d;\n  ll K; cin >> K;\n  vector<mint> a(d); for (int i = 0; i < d; i++)\
+    \ cin >> a[i];\n  vector<mint> c(d); for (int i = 0; i < d; i++) cin >> c[i];\n\
+    \n  mint ans = BostanMori(a, c, K);\n\n  cout << ans.val() << \"\\n\";\n}\n"
   dependsOn:
-  - formal-power-series/formal-power-series.hpp
+  - template/template.hpp
   - math/modint.hpp
   - math/external_gcd.hpp
+  - formal-power-series/formal-power-series.hpp
+  - math/modint.hpp
   - formal-power-series/fps-sparse.hpp
   - formal-power-series/fps-998.hpp
-  - formal-power-series/fps-sparse.hpp
-  - math/modint.hpp
-  - template/template.hpp
+  - formal-power-series/bostan-mori.hpp
   isVerificationFile: true
-  path: test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
+  path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
   requiredBy: []
-  timestamp: '2026-01-05 22:46:48+09:00'
+  timestamp: '2026-01-05 22:47:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
+documentation_of: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
 layout: document
 redirect_from:
-- /verify/test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
-- /verify/test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp.html
-title: test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
+- /verify/test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
+- /verify/test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp.html
+title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
 ---

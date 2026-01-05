@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: formal-power-series/bostan-mori.hpp
+    title: "Bostan-Mori\u6CD5"
+  - icon: ':heavy_check_mark:'
     path: formal-power-series/fiduccia.hpp
     title: "Fiduccia\u306E\u30A2\u30EB\u30B4\u30EA\u30BA\u30E0 (\u304D\u305F\u307E\
       \u3055\u6CD5?)"
@@ -53,6 +56,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
     title: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
+    title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
     title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
@@ -120,6 +126,7 @@ data:
   requiredBy:
   - math/modint.hpp
   - formal-power-series/fiduccia.hpp
+  - formal-power-series/bostan-mori.hpp
   - formal-power-series/formal-power-series.hpp
   - formal-power-series/fps-998.hpp
   - formal-power-series/fps-naive.hpp
@@ -133,6 +140,7 @@ data:
   - test/verify/math/matrix/yosupo-linear-equation.test.cpp
   - test/verify/math/matrix/yosupo-matrix-product.test.cpp
   - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
   - test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp

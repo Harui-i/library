@@ -53,18 +53,19 @@ data:
     \ other) const {\n        return static_modint(*this) += other;\n    }\n\n   \
     \ constexpr static_modint operator-(const static_modint& other) const {\n    \
     \    return static_modint(*this) -= other;\n    }\n\n    constexpr static_modint\
-    \ operator*(const static_modint& other) const {\n        return static_modint(*this)\
-    \ *= other;\n    }\n\n    constexpr static_modint pow(long long exp) const {\n\
-    \        static_modint base = *this, res = static_modint(1);\n        while (exp\
-    \ > 0) {\n            if (exp & 1) res *= base;\n            base *= base;\n \
-    \           exp >>= 1;\n        }\n        return res;\n    }\n\n    constexpr\
-    \ static_modint inv() const {\n        if constexpr (std::is_same<T, double>::value)\
-    \ {\n            static_modint ret;\n            ret.value = double(1.0) / value;\n\
-    \            return ret;\n        }\n        else {\n            int g, x, y;\n\
-    \            std::tie(g, x, y) = extendedGCD(value, MOD);\n            assert(g\
-    \ == 1);\n            if (x < 0) x += MOD;\n            return x;\n        }\n\
-    \    }\n\n    constexpr static_modint& operator/=(const static_modint& other)\
-    \ {\n        return *this *= other.inv();\n    }\n\n    constexpr static_modint\
+    \ operator-() const {\n        return static_modint(0) - *this;\n    }\n\n   \
+    \ constexpr static_modint operator*(const static_modint& other) const {\n    \
+    \    return static_modint(*this) *= other;\n    }\n\n    constexpr static_modint\
+    \ pow(long long exp) const {\n        static_modint base = *this, res = static_modint(1);\n\
+    \        while (exp > 0) {\n            if (exp & 1) res *= base;\n          \
+    \  base *= base;\n            exp >>= 1;\n        }\n        return res;\n   \
+    \ }\n\n    constexpr static_modint inv() const {\n        if constexpr (std::is_same<T,\
+    \ double>::value) {\n            static_modint ret;\n            ret.value = double(1.0)\
+    \ / value;\n            return ret;\n        }\n        else {\n            int\
+    \ g, x, y;\n            std::tie(g, x, y) = extendedGCD(value, MOD);\n       \
+    \     assert(g == 1);\n            if (x < 0) x += MOD;\n            return x;\n\
+    \        }\n    }\n\n    constexpr static_modint& operator/=(const static_modint&\
+    \ other) {\n        return *this *= other.inv();\n    }\n\n    constexpr static_modint\
     \ operator/(const static_modint& other) const {\n        return static_modint(*this)\
     \ /= other;\n    }\n\n    constexpr bool operator!=(const static_modint& other)\
     \ const {\n        return val() != other.val();\n    }\n\n    constexpr bool operator==(const\
@@ -337,7 +338,7 @@ data:
   isVerificationFile: false
   path: formal-power-series/fiduccia.hpp
   requiredBy: []
-  timestamp: '2025-11-05 12:09:20+09:00'
+  timestamp: '2026-01-05 22:46:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp

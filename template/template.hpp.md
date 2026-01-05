@@ -55,6 +55,9 @@ data:
     path: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
     title: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
+    title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
     title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -203,6 +206,7 @@ data:
   - test/verify/math/matrix/yosupo-matrix-product.test.cpp
   - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
   - test/verify/yosupo-vertex-add-path-sum.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
   - test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp

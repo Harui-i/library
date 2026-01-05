@@ -6,6 +6,9 @@ data:
     title: math/external_gcd.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: formal-power-series/bostan-mori.hpp
+    title: "Bostan-Mori\u6CD5"
+  - icon: ':heavy_check_mark:'
     path: formal-power-series/fiduccia.hpp
     title: "Fiduccia\u306E\u30A2\u30EB\u30B4\u30EA\u30BA\u30E0 (\u304D\u305F\u307E\
       \u3055\u6CD5?)"
@@ -74,6 +77,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
     title: test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
+    title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
+    title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
     title: test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
@@ -163,18 +172,19 @@ data:
     \ other) const {\n        return static_modint(*this) += other;\n    }\n\n   \
     \ constexpr static_modint operator-(const static_modint& other) const {\n    \
     \    return static_modint(*this) -= other;\n    }\n\n    constexpr static_modint\
-    \ operator*(const static_modint& other) const {\n        return static_modint(*this)\
-    \ *= other;\n    }\n\n    constexpr static_modint pow(long long exp) const {\n\
-    \        static_modint base = *this, res = static_modint(1);\n        while (exp\
-    \ > 0) {\n            if (exp & 1) res *= base;\n            base *= base;\n \
-    \           exp >>= 1;\n        }\n        return res;\n    }\n\n    constexpr\
-    \ static_modint inv() const {\n        if constexpr (std::is_same<T, double>::value)\
-    \ {\n            static_modint ret;\n            ret.value = double(1.0) / value;\n\
-    \            return ret;\n        }\n        else {\n            int g, x, y;\n\
-    \            std::tie(g, x, y) = extendedGCD(value, MOD);\n            assert(g\
-    \ == 1);\n            if (x < 0) x += MOD;\n            return x;\n        }\n\
-    \    }\n\n    constexpr static_modint& operator/=(const static_modint& other)\
-    \ {\n        return *this *= other.inv();\n    }\n\n    constexpr static_modint\
+    \ operator-() const {\n        return static_modint(0) - *this;\n    }\n\n   \
+    \ constexpr static_modint operator*(const static_modint& other) const {\n    \
+    \    return static_modint(*this) *= other;\n    }\n\n    constexpr static_modint\
+    \ pow(long long exp) const {\n        static_modint base = *this, res = static_modint(1);\n\
+    \        while (exp > 0) {\n            if (exp & 1) res *= base;\n          \
+    \  base *= base;\n            exp >>= 1;\n        }\n        return res;\n   \
+    \ }\n\n    constexpr static_modint inv() const {\n        if constexpr (std::is_same<T,\
+    \ double>::value) {\n            static_modint ret;\n            ret.value = double(1.0)\
+    \ / value;\n            return ret;\n        }\n        else {\n            int\
+    \ g, x, y;\n            std::tie(g, x, y) = extendedGCD(value, MOD);\n       \
+    \     assert(g == 1);\n            if (x < 0) x += MOD;\n            return x;\n\
+    \        }\n    }\n\n    constexpr static_modint& operator/=(const static_modint&\
+    \ other) {\n        return *this *= other.inv();\n    }\n\n    constexpr static_modint\
     \ operator/(const static_modint& other) const {\n        return static_modint(*this)\
     \ /= other;\n    }\n\n    constexpr bool operator!=(const static_modint& other)\
     \ const {\n        return val() != other.val();\n    }\n\n    constexpr bool operator==(const\
@@ -209,26 +219,28 @@ data:
     \ operator+(const static_modint& other) const {\n        return static_modint(*this)\
     \ += other;\n    }\n\n    constexpr static_modint operator-(const static_modint&\
     \ other) const {\n        return static_modint(*this) -= other;\n    }\n\n   \
-    \ constexpr static_modint operator*(const static_modint& other) const {\n    \
-    \    return static_modint(*this) *= other;\n    }\n\n    constexpr static_modint\
-    \ pow(long long exp) const {\n        static_modint base = *this, res = static_modint(1);\n\
-    \        while (exp > 0) {\n            if (exp & 1) res *= base;\n          \
-    \  base *= base;\n            exp >>= 1;\n        }\n        return res;\n   \
-    \ }\n\n    constexpr static_modint inv() const {\n        if constexpr (std::is_same<T,\
-    \ double>::value) {\n            static_modint ret;\n            ret.value = double(1.0)\
-    \ / value;\n            return ret;\n        }\n        else {\n            int\
-    \ g, x, y;\n            std::tie(g, x, y) = extendedGCD(value, MOD);\n       \
-    \     assert(g == 1);\n            if (x < 0) x += MOD;\n            return x;\n\
-    \        }\n    }\n\n    constexpr static_modint& operator/=(const static_modint&\
-    \ other) {\n        return *this *= other.inv();\n    }\n\n    constexpr static_modint\
-    \ operator/(const static_modint& other) const {\n        return static_modint(*this)\
-    \ /= other;\n    }\n\n    constexpr bool operator!=(const static_modint& other)\
-    \ const {\n        return val() != other.val();\n    }\n\n    constexpr bool operator==(const\
-    \ static_modint& other) const {\n        return val() == other.val();\n    }\n\
-    \n    T val() const {\n        if constexpr (std::is_same<T, double>::value) {\n\
-    \            return double(value);\n        }\n        else return this->value;\n\
-    \    }\n\n    friend std::ostream& operator<<(std::ostream& os, const static_modint&\
-    \ mi) {\n        return os << mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream&\
+    \ constexpr static_modint operator-() const {\n        return static_modint(0)\
+    \ - *this;\n    }\n\n    constexpr static_modint operator*(const static_modint&\
+    \ other) const {\n        return static_modint(*this) *= other;\n    }\n\n   \
+    \ constexpr static_modint pow(long long exp) const {\n        static_modint base\
+    \ = *this, res = static_modint(1);\n        while (exp > 0) {\n            if\
+    \ (exp & 1) res *= base;\n            base *= base;\n            exp >>= 1;\n\
+    \        }\n        return res;\n    }\n\n    constexpr static_modint inv() const\
+    \ {\n        if constexpr (std::is_same<T, double>::value) {\n            static_modint\
+    \ ret;\n            ret.value = double(1.0) / value;\n            return ret;\n\
+    \        }\n        else {\n            int g, x, y;\n            std::tie(g,\
+    \ x, y) = extendedGCD(value, MOD);\n            assert(g == 1);\n            if\
+    \ (x < 0) x += MOD;\n            return x;\n        }\n    }\n\n    constexpr\
+    \ static_modint& operator/=(const static_modint& other) {\n        return *this\
+    \ *= other.inv();\n    }\n\n    constexpr static_modint operator/(const static_modint&\
+    \ other) const {\n        return static_modint(*this) /= other;\n    }\n\n   \
+    \ constexpr bool operator!=(const static_modint& other) const {\n        return\
+    \ val() != other.val();\n    }\n\n    constexpr bool operator==(const static_modint&\
+    \ other) const {\n        return val() == other.val();\n    }\n\n    T val() const\
+    \ {\n        if constexpr (std::is_same<T, double>::value) {\n            return\
+    \ double(value);\n        }\n        else return this->value;\n    }\n\n    friend\
+    \ std::ostream& operator<<(std::ostream& os, const static_modint& mi) {\n    \
+    \    return os << mi.value;\n    }\n\n    friend std::istream& operator>>(std::istream&\
     \ is, static_modint& mi) {\n        long long x;\n        is >> x;\n        mi\
     \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
     \ modint = static_modint<mod>;\nusing doublemodint = static_modint<59, double>;\n\
@@ -240,12 +252,13 @@ data:
   path: math/modint.hpp
   requiredBy:
   - formal-power-series/fiduccia.hpp
+  - formal-power-series/bostan-mori.hpp
   - formal-power-series/formal-power-series.hpp
   - formal-power-series/fps-998.hpp
   - formal-power-series/fps-naive.hpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
-  timestamp: '2025-07-02 19:15:45+09:00'
+  timestamp: '2026-01-05 22:46:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
@@ -254,6 +267,8 @@ data:
   - test/verify/math/matrix/yosupo-linear-equation.test.cpp
   - test/verify/math/matrix/yosupo-matrix-product.test.cpp
   - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
   - test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
