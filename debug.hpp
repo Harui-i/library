@@ -11,6 +11,7 @@
 #include <vector>
 #include <utility>
 #include <set>
+#include <array>
 
 
 template <typename T, typename U>
@@ -25,6 +26,17 @@ std::ostream& operator<<(std::ostream& os, const std::vector<T>& vec) {
   for (int i=0; i<int(vec.size()); i++) {
     os << vec[i];
     if (i != int(vec.size())-1) os << ", ";
+  }
+  os << ']';
+  return os;
+}
+
+template <typename T, std::size_t N>
+std::ostream& operator<<(std::ostream& os, const std::array<T, N>& arr) {
+  os << '[';
+  for (int i=0; i<int(N); i++) {
+    os << arr[i];
+    if (i != int(N)-1) os << ", ";
   }
   os << ']';
   return os;
