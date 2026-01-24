@@ -1,0 +1,105 @@
+---
+data:
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: structure/fenwick_tree.hpp
+    title: structure/fenwick_tree.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/verify/structure/yosupo-rectangle-sum.test.cpp
+    title: test/verify/structure/yosupo-rectangle-sum.test.cpp
+  _isVerificationFailed: false
+  _pathExtension: hpp
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"structure/offline_2dsum.hpp\"\n\n\n\n#include <vector>\n\
+    #include <algorithm>\n#line 1 \"structure/fenwick_tree.hpp\"\n\n\n\n#line 5 \"\
+    structure/fenwick_tree.hpp\"\n#include <cassert>\n\ntemplate <class T> struct\
+    \ fenwick_tree {\n  fenwick_tree(): _n(0) {}\n  explicit fenwick_tree(int n):\
+    \ _n(n), data(n) {}\n\n  // point add\n  void add(int p, T x) {\n    assert(0\
+    \ <= p && p < _n);\n    p++;\n    while (p <= _n) {\n      data[p-1] += T(x);\n\
+    \      p += p & -p;\n    }\n  } \n\n  T sum(int l, int r) {\n    assert(0 <= l\
+    \ && l <= r && r <= _n);\n    return sum(r) - sum(l);\n  }\n\nprivate:\n  int\
+    \ _n;\n  std::vector<T> data;\n  T sum(int r) {\n    T ret(0);\n    while (r >\
+    \ 0) {\n      ret += data[r-1];\n      r -= r & -r;\n    }\n\n    return ret;\n\
+    \  }\n};\n\n\n#line 7 \"structure/offline_2dsum.hpp\"\n\ntemplate <class T, class\
+    \ W> struct offline_2dsum {\n  struct Point {\n    T x, y;\n    W w;\n  };\n \
+    \ struct Query {\n    T l, d, r, u;\n  };\n\n  void add_point(T x, T y, W w) {\n\
+    \    points.push_back({x, y, w});\n  }\n\n  void add_query(T l, T d, T r, T u)\
+    \ {\n    queries.push_back({l, d, r, u});\n  }\n\n  std::vector<W> solve() {\n\
+    \    int n = points.size();\n    int q = queries.size();\n    std::vector<W> res(q,\
+    \ 0);\n\n    std::vector<T> ys;\n    ys.reserve(n);\n    for (auto& p : points)\
+    \ ys.push_back(p.y);\n    std::sort(ys.begin(), ys.end());\n    ys.erase(std::unique(ys.begin(),\
+    \ ys.end()), ys.end());\n\n    auto get_y = [&](T y) {\n      return std::lower_bound(ys.begin(),\
+    \ ys.end(), y) - ys.begin();\n    };\n\n    struct Event {\n      T x;\n     \
+    \ int d, u;\n      int id;\n      int type; // -1 for l, 1 for r\n      bool operator<(const\
+    \ Event& other) const {\n        if (x != other.x) return x < other.x;\n     \
+    \   return type < other.type;\n      }\n    };\n\n    std::vector<Event> events;\n\
+    \    events.reserve(2 * q);\n    for (int i = 0; i < q; i++) {\n      int d =\
+    \ get_y(queries[i].d);\n      int u = get_y(queries[i].u);\n      events.push_back({queries[i].l,\
+    \ d, u, i, -1});\n      events.push_back({queries[i].r, d, u, i, 1});\n    }\n\
+    \n    std::sort(events.begin(), events.end());\n    std::sort(points.begin(),\
+    \ points.end(), [](const Point& a, const Point& b) {\n      return a.x < b.x;\n\
+    \    });\n\n    fenwick_tree<W> ft(ys.size());\n    int pi = 0;\n    for (auto&\
+    \ e : events) {\n      while (pi < n && points[pi].x < e.x) {\n        ft.add(get_y(points[pi].y),\
+    \ points[pi].w);\n        pi++;\n      }\n      res[e.id] += (W)e.type * ft.sum(e.d,\
+    \ e.u);\n    }\n\n    return res;\n  }\n\nprivate:\n  std::vector<Point> points;\n\
+    \  std::vector<Query> queries;\n};\n\n\n"
+  code: "#ifndef HARUILIB_STRUCTURE_OFFLINE_2DSUM_HPP\n#define HARUILIB_STRUCTURE_OFFLINE_2DSUM_HPP\n\
+    \n#include <vector>\n#include <algorithm>\n#include \"structure/fenwick_tree.hpp\"\
+    \n\ntemplate <class T, class W> struct offline_2dsum {\n  struct Point {\n   \
+    \ T x, y;\n    W w;\n  };\n  struct Query {\n    T l, d, r, u;\n  };\n\n  void\
+    \ add_point(T x, T y, W w) {\n    points.push_back({x, y, w});\n  }\n\n  void\
+    \ add_query(T l, T d, T r, T u) {\n    queries.push_back({l, d, r, u});\n  }\n\
+    \n  std::vector<W> solve() {\n    int n = points.size();\n    int q = queries.size();\n\
+    \    std::vector<W> res(q, 0);\n\n    std::vector<T> ys;\n    ys.reserve(n);\n\
+    \    for (auto& p : points) ys.push_back(p.y);\n    std::sort(ys.begin(), ys.end());\n\
+    \    ys.erase(std::unique(ys.begin(), ys.end()), ys.end());\n\n    auto get_y\
+    \ = [&](T y) {\n      return std::lower_bound(ys.begin(), ys.end(), y) - ys.begin();\n\
+    \    };\n\n    struct Event {\n      T x;\n      int d, u;\n      int id;\n  \
+    \    int type; // -1 for l, 1 for r\n      bool operator<(const Event& other)\
+    \ const {\n        if (x != other.x) return x < other.x;\n        return type\
+    \ < other.type;\n      }\n    };\n\n    std::vector<Event> events;\n    events.reserve(2\
+    \ * q);\n    for (int i = 0; i < q; i++) {\n      int d = get_y(queries[i].d);\n\
+    \      int u = get_y(queries[i].u);\n      events.push_back({queries[i].l, d,\
+    \ u, i, -1});\n      events.push_back({queries[i].r, d, u, i, 1});\n    }\n\n\
+    \    std::sort(events.begin(), events.end());\n    std::sort(points.begin(), points.end(),\
+    \ [](const Point& a, const Point& b) {\n      return a.x < b.x;\n    });\n\n \
+    \   fenwick_tree<W> ft(ys.size());\n    int pi = 0;\n    for (auto& e : events)\
+    \ {\n      while (pi < n && points[pi].x < e.x) {\n        ft.add(get_y(points[pi].y),\
+    \ points[pi].w);\n        pi++;\n      }\n      res[e.id] += (W)e.type * ft.sum(e.d,\
+    \ e.u);\n    }\n\n    return res;\n  }\n\nprivate:\n  std::vector<Point> points;\n\
+    \  std::vector<Query> queries;\n};\n\n#endif // HARUILIB_STRUCTURE_OFFLINE_2DSUM_HPP\n"
+  dependsOn:
+  - structure/fenwick_tree.hpp
+  isVerificationFile: false
+  path: structure/offline_2dsum.hpp
+  requiredBy: []
+  timestamp: '2026-01-24 17:05:41+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/verify/structure/yosupo-rectangle-sum.test.cpp
+documentation_of: structure/offline_2dsum.hpp
+layout: document
+title: Offline 2D Sum (Rectangle Sum)
+---
+
+2次元平面上の点に重みを加え、長方形領域内の重みの総和を求めるクエリをオフラインで処理します。
+
+## 使い方
+
+1. `offline_2dsum<T, W> g;` で初期化する。`T` は座標の型、`W` は重みの型。
+2. `g.add_point(x, y, w)` で点 $(x, y)$ に重み $w$ を追加する。
+3. `g.add_query(l, d, r, u)` で領域 $[l, r) 	imes [d, u)$ の重みの総和を求めるクエリを追加する。
+4. `g.solve()` で各クエリに対する解答を `std::vector<W>` で返す。
+
+## 計算量
+点の個数を $N$、クエリの個数を $Q$ とすると：
+- $O((N + Q) \log N)$
+
+## アルゴリズム
+平面走査と Fenwick Tree を用いて実装されています。
+$y$ 座標は内部で座標圧縮されます。
+

@@ -126,6 +126,9 @@ data:
       path: structure/fenwick_tree.hpp
       title: structure/fenwick_tree.hpp
     - icon: ':heavy_check_mark:'
+      path: structure/offline_2dsum.hpp
+      title: Offline 2D Sum (Rectangle Sum)
+    - icon: ':heavy_check_mark:'
       path: structure/potentialized-union-find-tree.hpp
       title: "Potentialized Union Find Tree (\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u3064\
         \u304DUnionFind\u6728)"
@@ -278,6 +281,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/structure/aoj-dsl1-b.test.cpp
       title: test/verify/structure/aoj-dsl1-b.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/structure/yosupo-rectangle-sum.test.cpp
+      title: test/verify/structure/yosupo-rectangle-sum.test.cpp
   - name: unabstracted_libs/segment-tree
     pages:
     - icon: ':heavy_check_mark:'

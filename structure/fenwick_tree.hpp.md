@@ -1,8 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: structure/offline_2dsum.hpp
+    title: Offline 2D Sum (Rectangle Sum)
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/verify/structure/yosupo-rectangle-sum.test.cpp
+    title: test/verify/structure/yosupo-rectangle-sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-point-add-range-sum.test.cpp
     title: test/verify/yosupo-point-add-range-sum.test.cpp
@@ -35,10 +41,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: structure/fenwick_tree.hpp
-  requiredBy: []
+  requiredBy:
+  - structure/offline_2dsum.hpp
   timestamp: '2025-03-23 14:07:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/verify/structure/yosupo-rectangle-sum.test.cpp
   - test/verify/yosupo-vertex-add-path-sum.test.cpp
   - test/verify/yosupo-point-add-range-sum.test.cpp
 documentation_of: structure/fenwick_tree.hpp

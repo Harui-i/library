@@ -91,6 +91,9 @@ data:
     path: test/verify/structure/aoj-dsl1-b.test.cpp
     title: test/verify/structure/aoj-dsl1-b.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/structure/yosupo-rectangle-sum.test.cpp
+    title: test/verify/structure/yosupo-rectangle-sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-deque-operate-all-composite.test.cpp
     title: test/verify/yosupo-deque-operate-all-composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -198,6 +201,7 @@ data:
   - example.test.cpp
   - test/verify/yosupo-shortest-path.test.cpp
   - test/verify/structure/aoj-dsl1-b.test.cpp
+  - test/verify/structure/yosupo-rectangle-sum.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
   - test/verify/yosupo-vertex-add-subtree-sum.test.cpp
   - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
