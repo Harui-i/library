@@ -17,7 +17,7 @@ int main() {
   for (int q=0; q<Q; q++) {
     int l, d, r, u;
     cin >> l >> d >> r >> u;
-    g.add_query(l, d, r, u);
+    g.add_query(l, r, d, u);
   }
 
   auto ans = g.solve();

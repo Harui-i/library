@@ -11,15 +11,15 @@ template <class T, class W> struct offline_2dsum {
     W w;
   };
   struct Query {
-    T l, d, r, u;
+    T l, r, d, u;
   };
 
   void add_point(T x, T y, W w) {
     points.push_back({x, y, w});
   }
 
-  void add_query(T l, T d, T r, T u) {
-    queries.push_back({l, d, r, u});
+  void add_query(T l, T r, T d, T u) {
+    queries.push_back({l, r, d, u});
   }
 
   std::vector<W> solve() {

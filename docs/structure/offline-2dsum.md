@@ -25,7 +25,7 @@ void add_point(T x, T y, W w)
 ## add_query
 
 ```
-void add_query(T l, T d, T r, T u)
+void add_query(T l, T r, T d, T u)
 ```
 領域 $[l, r) \times [d, u)$ の重みの総和を求めるクエリを追加する。
 つまり、$l \le x < r, d \le y < u$ を満たす点の重みの総和を求める。
