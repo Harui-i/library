@@ -88,18 +88,41 @@ title: Offline 2D Sum (Rectangle Sum)
 
 2次元平面上の点に重みを加え、長方形領域内の重みの総和を求めるクエリをオフラインで処理します。
 
-## 使い方
+## コンストラクタ
 
-1. `offline_2dsum<T, W> g;` で初期化する。`T` は座標の型、`W` は重みの型。
-2. `g.add_point(x, y, w)` で点 $(x, y)$ に重み $w$ を追加する。
-3. `g.add_query(l, d, r, u)` で領域 $[l, r) 	imes [d, u)$ の重みの総和を求めるクエリを追加する。
-4. `g.solve()` で各クエリに対する解答を `std::vector<W>` で返す。
+```
+offline_2dsum<T, W>()
+```
+T: 座標の型, W: 重みの型
 
-## 計算量
-点の個数を $N$、クエリの個数を $Q$ とすると：
-- $O((N + Q) \log N)$
+## add_point
 
-## アルゴリズム
-平面走査と Fenwick Tree を用いて実装されています。
-$y$ 座標は内部で座標圧縮されます。
+```
+void add_point(T x, T y, W w)
+```
+点 $(x, y)$ に重み $w$ を追加する。
 
+### 計算量
+- $O(1)$
+
+## add_query
+
+```
+void add_query(T l, T d, T r, T u)
+```
+領域 $[l, r) \times [d, u)$ の重みの総和を求めるクエリを追加する。
+つまり、$l \le x < r, d \le y < u$ を満たす点の重みの総和を求める。
+
+### 計算量
+- $O(1)$
+
+## solve
+
+```
+std::vector<W> solve()
+```
+追加されたすべてのクエリに対する解答を計算し、追加された順に返す。
+
+### 計算量
+点の個数を $N$、クエリの個数を $Q$ とすると
+- $O(N \log N + Q \log Q + (N + Q) \log N)$
