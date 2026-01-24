@@ -26,9 +26,9 @@ data:
     \ 0) {\n      ret += data[r-1];\n      r -= r & -r;\n    }\n\n    return ret;\n\
     \  }\n};\n\n\n#line 7 \"structure/offline_2dsum.hpp\"\n\ntemplate <class T, class\
     \ W> struct offline_2dsum {\n  struct Point {\n    T x, y;\n    W w;\n  };\n \
-    \ struct Query {\n    T l, d, r, u;\n  };\n\n  void add_point(T x, T y, W w) {\n\
-    \    points.push_back({x, y, w});\n  }\n\n  void add_query(T l, T d, T r, T u)\
-    \ {\n    queries.push_back({l, d, r, u});\n  }\n\n  std::vector<W> solve() {\n\
+    \ struct Query {\n    T l, r, d, u;\n  };\n\n  void add_point(T x, T y, W w) {\n\
+    \    points.push_back({x, y, w});\n  }\n\n  void add_query(T l, T r, T d, T u)\
+    \ {\n    queries.push_back({l, r, d, u});\n  }\n\n  std::vector<W> solve() {\n\
     \    int n = points.size();\n    int q = queries.size();\n    std::vector<W> res(q,\
     \ 0);\n\n    std::vector<T> ys;\n    ys.reserve(n);\n    for (auto& p : points)\
     \ ys.push_back(p.y);\n    std::sort(ys.begin(), ys.end());\n    ys.erase(std::unique(ys.begin(),\
@@ -50,9 +50,9 @@ data:
   code: "#ifndef HARUILIB_STRUCTURE_OFFLINE_2DSUM_HPP\n#define HARUILIB_STRUCTURE_OFFLINE_2DSUM_HPP\n\
     \n#include <vector>\n#include <algorithm>\n#include \"structure/fenwick_tree.hpp\"\
     \n\ntemplate <class T, class W> struct offline_2dsum {\n  struct Point {\n   \
-    \ T x, y;\n    W w;\n  };\n  struct Query {\n    T l, d, r, u;\n  };\n\n  void\
+    \ T x, y;\n    W w;\n  };\n  struct Query {\n    T l, r, d, u;\n  };\n\n  void\
     \ add_point(T x, T y, W w) {\n    points.push_back({x, y, w});\n  }\n\n  void\
-    \ add_query(T l, T d, T r, T u) {\n    queries.push_back({l, d, r, u});\n  }\n\
+    \ add_query(T l, T r, T d, T u) {\n    queries.push_back({l, r, d, u});\n  }\n\
     \n  std::vector<W> solve() {\n    int n = points.size();\n    int q = queries.size();\n\
     \    std::vector<W> res(q, 0);\n\n    std::vector<T> ys;\n    ys.reserve(n);\n\
     \    for (auto& p : points) ys.push_back(p.y);\n    std::sort(ys.begin(), ys.end());\n\
@@ -77,7 +77,7 @@ data:
   isVerificationFile: false
   path: structure/offline_2dsum.hpp
   requiredBy: []
-  timestamp: '2026-01-24 17:05:41+09:00'
+  timestamp: '2026-01-24 17:34:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/structure/yosupo-rectangle-sum.test.cpp
@@ -108,7 +108,7 @@ void add_point(T x, T y, W w)
 ## add_query
 
 ```
-void add_query(T l, T d, T r, T u)
+void add_query(T l, T r, T d, T u)
 ```
 領域 $[l, r) \times [d, u)$ の重みの総和を求めるクエリを追加する。
 つまり、$l \le x < r, d \le y < u$ を満たす点の重みの総和を求める。

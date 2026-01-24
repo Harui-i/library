@@ -38,9 +38,9 @@ data:
     \  T sum(int r) {\n    T ret(0);\n    while (r > 0) {\n      ret += data[r-1];\n\
     \      r -= r & -r;\n    }\n\n    return ret;\n  }\n};\n\n\n#line 7 \"structure/offline_2dsum.hpp\"\
     \n\ntemplate <class T, class W> struct offline_2dsum {\n  struct Point {\n   \
-    \ T x, y;\n    W w;\n  };\n  struct Query {\n    T l, d, r, u;\n  };\n\n  void\
+    \ T x, y;\n    W w;\n  };\n  struct Query {\n    T l, r, d, u;\n  };\n\n  void\
     \ add_point(T x, T y, W w) {\n    points.push_back({x, y, w});\n  }\n\n  void\
-    \ add_query(T l, T d, T r, T u) {\n    queries.push_back({l, d, r, u});\n  }\n\
+    \ add_query(T l, T r, T d, T u) {\n    queries.push_back({l, r, d, u});\n  }\n\
     \n  std::vector<W> solve() {\n    int n = points.size();\n    int q = queries.size();\n\
     \    std::vector<W> res(q, 0);\n\n    std::vector<T> ys;\n    ys.reserve(n);\n\
     \    for (auto& p : points) ys.push_back(p.y);\n    std::sort(ys.begin(), ys.end());\n\
@@ -65,7 +65,7 @@ data:
     \ >> Q;\n  offline_2dsum<int, ll> g;\n  for (int i=0; i<N; i++) {\n    int x,\
     \ y; cin >> x >> y;\n    ll w; cin >> w;\n    g.add_point(x, y, w);\n  }\n\n \
     \ for (int q=0; q<Q; q++) {\n    int l, d, r, u;\n    cin >> l >> d >> r >> u;\n\
-    \    g.add_query(l, d, r, u);\n  }\n\n  auto ans = g.solve();\n  for (auto x :\
+    \    g.add_query(l, r, d, u);\n  }\n\n  auto ans = g.solve();\n  for (auto x :\
     \ ans) cout << x << \"\\n\";\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n#include\
     \ \"template/template.hpp\"\n#include \"structure/offline_2dsum.hpp\"\n\n#include\
@@ -73,7 +73,7 @@ data:
     \  int N, Q; cin >> N >> Q;\n  offline_2dsum<int, ll> g;\n  for (int i=0; i<N;\
     \ i++) {\n    int x, y; cin >> x >> y;\n    ll w; cin >> w;\n    g.add_point(x,\
     \ y, w);\n  }\n\n  for (int q=0; q<Q; q++) {\n    int l, d, r, u;\n    cin >>\
-    \ l >> d >> r >> u;\n    g.add_query(l, d, r, u);\n  }\n\n  auto ans = g.solve();\n\
+    \ l >> d >> r >> u;\n    g.add_query(l, r, d, u);\n  }\n\n  auto ans = g.solve();\n\
     \  for (auto x : ans) cout << x << \"\\n\";\n\n  return 0;\n}\n"
   dependsOn:
   - template/template.hpp
@@ -82,7 +82,7 @@ data:
   isVerificationFile: true
   path: test/verify/structure/yosupo-rectangle-sum.test.cpp
   requiredBy: []
-  timestamp: '2026-01-24 17:05:41+09:00'
+  timestamp: '2026-01-24 17:34:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/structure/yosupo-rectangle-sum.test.cpp
