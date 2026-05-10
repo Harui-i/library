@@ -92,6 +92,9 @@ data:
       title: "Heavy-Light Decomposition(HL\u5206\u89E3, HLD)"
   - name: math
     pages:
+    - icon: ':x:'
+      path: math/big_integer.hpp
+      title: big_integer
     - icon: ':warning:'
       path: math/count_by_remainder.hpp
       title: count by remainder
@@ -148,7 +151,7 @@ data:
       title: "Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/template.hpp
       title: template/template.hpp
   - name: test/unittest
@@ -287,6 +290,15 @@ data:
       title: test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
   - name: test/verify/math
     pages:
+    - icon: ':x:'
+      path: test/verify/math/yosupo-addition-of-big-integers.test.cpp
+      title: test/verify/math/yosupo-addition-of-big-integers.test.cpp
+    - icon: ':x:'
+      path: test/verify/math/yosupo-division-of-big-integers.test.cpp
+      title: test/verify/math/yosupo-division-of-big-integers.test.cpp
+    - icon: ':x:'
+      path: test/verify/math/yosupo-multiplication-of-big-integers.test.cpp
+      title: test/verify/math/yosupo-multiplication-of-big-integers.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/math/yosupo-primality-test.test.cpp
       title: test/verify/math/yosupo-primality-test.test.cpp

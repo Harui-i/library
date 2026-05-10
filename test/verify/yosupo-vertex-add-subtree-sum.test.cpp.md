@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/heavy_light_decomposition.hpp
     title: "Heavy-Light Decomposition(HL\u5206\u89E3, HLD)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

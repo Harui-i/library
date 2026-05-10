@@ -87,6 +87,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
     title: test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
+  - icon: ':x:'
+    path: test/verify/math/yosupo-addition-of-big-integers.test.cpp
+    title: test/verify/math/yosupo-addition-of-big-integers.test.cpp
+  - icon: ':x:'
+    path: test/verify/math/yosupo-division-of-big-integers.test.cpp
+    title: test/verify/math/yosupo-division-of-big-integers.test.cpp
+  - icon: ':x:'
+    path: test/verify/math/yosupo-multiplication-of-big-integers.test.cpp
+    title: test/verify/math/yosupo-multiplication-of-big-integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/math/yosupo-primality-test.test.cpp
     title: test/verify/math/yosupo-primality-test.test.cpp
@@ -138,9 +147,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: '#line 1 "template/template.hpp"
@@ -198,7 +207,7 @@ data:
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - test/unittest/unittest-template.cpp
   timestamp: '2024-08-21 21:41:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/verify/structure/yosupo-rectangle-sum.test.cpp
   - test/verify/structure/aoj-dsl1-b.test.cpp
@@ -207,6 +216,9 @@ data:
   - test/verify/convolution/yosupo-lcm-convolution.test.cpp
   - test/verify/convolution/yosupo-gcd-convolution.test.cpp
   - test/verify/aoj-alds-1-14-b.test.cpp
+  - test/verify/math/yosupo-multiplication-of-big-integers.test.cpp
+  - test/verify/math/yosupo-addition-of-big-integers.test.cpp
+  - test/verify/math/yosupo-division-of-big-integers.test.cpp
   - test/verify/math/yosupo-primality-test.test.cpp
   - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-linear-equation.test.cpp
