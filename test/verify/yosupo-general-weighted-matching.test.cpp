@@ -21,7 +21,7 @@ int main() {
     if (ans.second[i] != -1 && i < ans.second[i]) edges.emplace_back(i, ans.second[i]);
   }
 
-  cout << ans.first << " " << edges.size() << "\n";
+  cout << edges.size() << " " << ans.first << "\n";
   for (auto [u, v] : edges) {
     cout << u << " " << v << "\n";
   }
