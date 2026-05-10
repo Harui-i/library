@@ -251,52 +251,52 @@ data:
   isVerificationFile: false
   path: math/modint.hpp
   requiredBy:
+  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - formal-power-series/fiduccia.hpp
-  - formal-power-series/bostan-mori.hpp
   - formal-power-series/formal-power-series.hpp
   - formal-power-series/fps-998.hpp
+  - formal-power-series/bostan-mori.hpp
   - formal-power-series/fps-naive.hpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   timestamp: '2026-01-05 22:46:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yosupo-queue-operate-all-composite.test.cpp
-  - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
-  - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
-  - test/verify/math/matrix/yosupo-linear-equation.test.cpp
-  - test/verify/math/matrix/yosupo-matrix-product.test.cpp
-  - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
-  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
-  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
-  - test/verify/convolution/yosupo-lcm-convolution.test.cpp
-  - test/verify/convolution/yosupo-normal-convolution.test.cpp
-  - test/verify/convolution/yosupo-normal-convolution.test.cpp
-  - test/verify/convolution/yosupo-gcd-convolution.test.cpp
   - test/verify/convolution/yosupo-and-convolution.test.cpp
+  - test/verify/convolution/yosupo-normal-convolution.test.cpp
+  - test/verify/convolution/yosupo-normal-convolution.test.cpp
+  - test/verify/convolution/yosupo-lcm-convolution.test.cpp
+  - test/verify/convolution/yosupo-gcd-convolution.test.cpp
+  - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-linear-equation.test.cpp
+  - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-matrix-product.test.cpp
+  - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
+  - test/verify/yuki-372-itsautomatic.test.cpp
+  - test/verify/yosupo-queue-operate-all-composite.test.cpp
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-vertex-set-path-composite.test.cpp
-  - test/verify/yuki-372-itsautomatic.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
+  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
   - test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
 documentation_of: math/modint.hpp
 layout: document

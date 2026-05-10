@@ -6,3 +6,17 @@
 
 めちゃめちゃ味気ない名前してるので、いつか"Harui's library"とか
 " Haruis Bibliothek"みたいな名前に変えたいね！
+
+## Verify
+
+検証用の Python 依存は `pyproject.toml` で管理しています。
+
+```bash
+scripts/verify.sh
+```
+
+`oj-verify` に引数を渡す場合は、そのまま続けて指定できます。
+
+```bash
+scripts/verify.sh all --jobs 20
+```

@@ -12,5 +12,7 @@
 以下のコマンドでテストを実行できる:
 
 ```
-uvx --from online-judge-verify-helper oj-verify run
+scripts/verify.sh
 ```
+
+Python 依存は `pyproject.toml` で管理する。検証コマンドは `scripts/verify.sh` 経由で実行し、必要なら `scripts/verify.sh all --jobs 20` のように `oj-verify` の引数を渡す。

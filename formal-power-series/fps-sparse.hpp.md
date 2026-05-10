@@ -268,31 +268,31 @@ data:
   isVerificationFile: false
   path: formal-power-series/fps-sparse.hpp
   requiredBy:
+  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - formal-power-series/fiduccia.hpp
-  - formal-power-series/bostan-mori.hpp
   - formal-power-series/formal-power-series.hpp
   - formal-power-series/fps-998.hpp
+  - formal-power-series/bostan-mori.hpp
   - formal-power-series/fps-naive.hpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   timestamp: '2025-11-05 12:09:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
-  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
   - test/verify/convolution/yosupo-normal-convolution.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
 documentation_of: formal-power-series/fps-sparse.hpp
 layout: document
 title: "fps-sparse(\u758E\u306A\u5834\u5408\u306E\u9AD8\u901F\u5316)"
