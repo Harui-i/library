@@ -80,6 +80,9 @@ data:
       path: graph/dijkstra.hpp
       title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
     - icon: ':heavy_check_mark:'
+      path: graph/general_weighted_matching.hpp
+      title: General Weighted Matching
+    - icon: ':heavy_check_mark:'
       path: graph/graph_template.hpp
       title: graph/graph_template.hpp
   - name: graph/tree
@@ -183,6 +186,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-deque-operate-all-composite.test.cpp
       title: test/verify/yosupo-deque-operate-all-composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/yosupo-general-weighted-matching.test.cpp
+      title: test/verify/yosupo-general-weighted-matching.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-point-add-range-sum.test.cpp
       title: test/verify/yosupo-point-add-range-sum.test.cpp

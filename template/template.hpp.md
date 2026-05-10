@@ -97,6 +97,9 @@ data:
     path: test/verify/yosupo-deque-operate-all-composite.test.cpp
     title: test/verify/yosupo-deque-operate-all-composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/yosupo-general-weighted-matching.test.cpp
+    title: test/verify/yosupo-general-weighted-matching.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-point-add-range-sum.test.cpp
     title: test/verify/yosupo-point-add-range-sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -215,6 +218,7 @@ data:
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-shortest-path.test.cpp
   - test/verify/yosupo-vertex-set-path-composite.test.cpp
+  - test/verify/yosupo-general-weighted-matching.test.cpp
   - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-division-of-polynomials.test.cpp
