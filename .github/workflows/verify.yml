@@ -18,8 +18,11 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
 
+    - name: Set up uv
+      uses: astral-sh/setup-uv@v5
+
     - name: Install dependencies
-      run: pip3 install -U online-judge-verify-helper
+      run: uv sync
 
 
     - name: Set up Rust (1.70.0)
@@ -41,4 +44,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
         GH_PAT: ${{ secrets.GH_PAT }}
-      run: oj-verify all --jobs 20
+      run: scripts/verify.sh all --jobs 20
