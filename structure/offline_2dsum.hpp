@@ -1,8 +1,9 @@
 #ifndef HARUILIB_STRUCTURE_OFFLINE_2DSUM_HPP
 #define HARUILIB_STRUCTURE_OFFLINE_2DSUM_HPP
 
-#include <vector>
 #include <algorithm>
+#include <cassert>
+#include <vector>
 #include "structure/fenwick_tree.hpp"
 
 template <class T, class W> struct offline_2dsum {
@@ -19,6 +20,7 @@ template <class T, class W> struct offline_2dsum {
   }
 
   void add_query(T l, T r, T d, T u) {
+    assert(l <= r && d <= u);
     queries.push_back({l, r, d, u});
   }
 
@@ -51,6 +53,7 @@ template <class T, class W> struct offline_2dsum {
     std::vector<Event> events;
     events.reserve(2 * q);
     for (int i = 0; i < q; i++) {
+      assert(queries[i].l <= queries[i].r && queries[i].d <= queries[i].u);
       int d = get_y(queries[i].d);
       int u = get_y(queries[i].u);
       events.push_back({queries[i].l, d, u, i, -1});
