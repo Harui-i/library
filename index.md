@@ -110,6 +110,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/modint2611.hpp
       title: math/modint2611.hpp
+    - icon: ':heavy_check_mark:'
+      path: math/primality_test.hpp
+      title: primality_test
   - name: math/matrix
     pages:
     - icon: ':heavy_check_mark:'
@@ -282,6 +285,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
       title: test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
+  - name: test/verify/math
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/verify/math/yosupo-primality-test.test.cpp
+      title: test/verify/math/yosupo-primality-test.test.cpp
   - name: test/verify/structure
     pages:
     - icon: ':heavy_check_mark:'

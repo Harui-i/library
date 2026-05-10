@@ -88,6 +88,9 @@ data:
     path: test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
     title: test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/math/yosupo-primality-test.test.cpp
+    title: test/verify/math/yosupo-primality-test.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/structure/aoj-dsl1-b.test.cpp
     title: test/verify/structure/aoj-dsl1-b.test.cpp
   - icon: ':heavy_check_mark:'
@@ -204,6 +207,7 @@ data:
   - test/verify/convolution/yosupo-lcm-convolution.test.cpp
   - test/verify/convolution/yosupo-gcd-convolution.test.cpp
   - test/verify/aoj-alds-1-14-b.test.cpp
+  - test/verify/math/yosupo-primality-test.test.cpp
   - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-linear-equation.test.cpp
   - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
