@@ -5,7 +5,7 @@ documentation_of: //math/decimal_big_integer.hpp
 
 10 進文字列の入出力が重い問題向けの符号付き多倍長整数です。
 
-内部は `10^18` 進数で保持し、乗算は `10^3` chunk に展開して NTT + CRT、除算は Burnikel-Ziegler 除算を使っています。小さい入力では Knuth の基数除算にフォールバックします。
+内部は `10^18` 進数で保持し、乗算は `10^6` chunk に展開して NTT + CRT、除算は Burnikel-Ziegler 除算を使っています。小さい入力では Knuth の基数除算にフォールバックします。
 
 ## 使い方
 

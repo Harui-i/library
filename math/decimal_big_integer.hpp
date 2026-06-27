@@ -226,13 +226,13 @@ struct DecimalBigInteger {
     return x + (-y);
   }
 
-  static std::vector<int> to_base1000(const std::vector<long long>& v) {
+  static std::vector<int> to_base1000000(const std::vector<long long>& v) {
     std::vector<int> res;
-    res.reserve(v.size() * 6);
+    res.reserve(v.size() * 3);
     for(long long x: v) {
-      for(int i=0; i<6; i++) {
-        res.push_back((int)(x % 1000));
-        x /= 1000;
+      for(int i=0; i<3; i++) {
+        res.push_back((int)(x % 1000000));
+        x /= 1000000;
       }
     }
     while(!res.empty() && res.back() == 0) res.pop_back();
@@ -264,7 +264,7 @@ struct DecimalBigInteger {
     using N1 = decimal_big_integer_internal::NTT<998244353, 3>;
     using N2 = decimal_big_integer_internal::NTT<1004535809, 3>;
     using N3 = decimal_big_integer_internal::NTT<469762049, 3>;
-    std::vector<int> sx = to_base1000(x), sy = to_base1000(y);
+    std::vector<int> sx = to_base1000000(x), sy = to_base1000000(y);
     std::vector<int> c1 = N1::convolution(sx, sy);
     std::vector<int> c2 = N2::convolution(sx, sy);
     std::vector<int> c3 = N3::convolution(sx, sy);
@@ -273,22 +273,22 @@ struct DecimalBigInteger {
     long long carry = 0;
     for(size_t i=0; i<c1.size(); i++) {
       long long cur = decimal_big_integer_internal::crt3(c1[i], c2[i], c3[i]) + carry;
-      chunks[i] = (int)(cur % 1000);
-      carry = cur / 1000;
+      chunks[i] = (int)(cur % 1000000);
+      carry = cur / 1000000;
     }
     while(carry > 0) {
-      chunks.push_back((int)(carry % 1000));
-      carry /= 1000;
+      chunks.push_back((int)(carry % 1000000));
+      carry /= 1000000;
     }
 
     std::vector<long long> res;
-    res.reserve((chunks.size() + 5) / 6);
-    for(size_t i=0; i<chunks.size(); i+=6) {
+    res.reserve((chunks.size() + 2) / 3);
+    for(size_t i=0; i<chunks.size(); i+=3) {
       long long cur = 0;
       long long p = 1;
-      for(size_t j=0; j<6 && i+j<chunks.size(); j++) {
+      for(size_t j=0; j<3 && i+j<chunks.size(); j++) {
         cur += (long long)chunks[i + j] * p;
-        p *= 1000;
+        p *= 1000000;
       }
       res.push_back(cur);
     }
@@ -452,13 +452,9 @@ struct DecimalBigInteger {
       int n) {
     DecimalBigInteger q, r;
     int cmp = abs_compare(a1, b1);
-    if(cmp > 0) {
-      DecimalBigInteger dividend = shift_left_digits(a1, 2 * n) + shift_left_digits(a2, n) + a3;
-      DecimalBigInteger divisor = shift_left_digits(b1, n) + b2;
-      return divmod_abs_knuth(std::move(dividend), std::move(divisor));
-    } else if(cmp == 0) {
+    if(cmp >= 0) {
       q = one_shift_digits_minus_one(n);
-      r = a2 + b1;
+      r = shift_left_digits(a1 - b1, n) + a2 + b1;
     } else {
       DecimalBigInteger top = shift_left_digits(a1, n) + a2;
       std::tie(q, r) = div_2n_1n(top, b1);
@@ -482,7 +478,12 @@ struct DecimalBigInteger {
     int n = (int)v.a.size();
     assert(n > 0);
     if(abs_compare(u, v) < 0) return {DecimalBigInteger(0), u};
-    if(n <= 64 || (n & 1)) return divmod_abs_knuth(u, v);
+    if(n <= 64) return divmod_abs_knuth(u, v);
+    if(n & 1) {
+      auto [q, r] = div_2n_1n(shift_left_digits(u, 1), shift_left_digits(v, 1));
+      r = high_digits(r, 1);
+      return {q.trim(), r.trim()};
+    }
 
     int half = n / 2;
     DecimalBigInteger b1 = high_digits(v, half);
