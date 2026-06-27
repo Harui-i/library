@@ -142,6 +142,9 @@ data:
       title: "Potentialized Union Find Tree (\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u3064\
         \u304DUnionFind\u6728)"
     - icon: ':heavy_check_mark:'
+      path: structure/rectangle_apply_point_get.hpp
+      title: Rectangle Apply Point Get
+    - icon: ':heavy_check_mark:'
       path: structure/slide-window-aggregation.hpp
       title: Foldable Deque(Slide Window Aggregation)
   - name: structure/segment-tree
@@ -307,6 +310,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/structure/aoj-dsl1-b.test.cpp
       title: test/verify/structure/aoj-dsl1-b.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/structure/yosupo-rectangle-add-point-get.test.cpp
+      title: test/verify/structure/yosupo-rectangle-add-point-get.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/verify/structure/yosupo-rectangle-sum.test.cpp
       title: test/verify/structure/yosupo-rectangle-sum.test.cpp

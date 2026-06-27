@@ -462,9 +462,9 @@ data:
   timestamp: '2026-05-11 00:50:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/verify/math/yosupo-multiplication-of-big-integers.test.cpp
   - test/verify/math/yosupo-addition-of-big-integers.test.cpp
   - test/verify/math/yosupo-division-of-big-integers.test.cpp
+  - test/verify/math/yosupo-multiplication-of-big-integers.test.cpp
 documentation_of: math/big_integer.hpp
 layout: document
 title: big_integer
