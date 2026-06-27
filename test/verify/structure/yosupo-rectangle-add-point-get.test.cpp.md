@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: structure/rectangle_apply_point_get.hpp
     title: Rectangle Apply Point Get
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

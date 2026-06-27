@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: structure/offline_2dsum.hpp
     title: Offline 2D Sum (Rectangle Sum)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

@@ -30,11 +30,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/log_of_formal_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
     links:
-    - https://judge.yosupo.jp/problem/log_of_formal_power_series
-  bundledCode: "#line 1 \"test/verify/fps/yosupo-log-of-formal-power-series.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\
+    - https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
+  bundledCode: "#line 1 \"test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_of_formal_power_series\"\
     \n\n#line 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\n\
     using namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
     \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
@@ -116,12 +116,14 @@ data:
     \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
     \ modint = static_modint<mod>;\nusing doublemodint = static_modint<59, double>;\n\
     using modint998244353 = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\
-    \n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\n\n\n\n#include <algorithm>\n\
-    #line 6 \"formal-power-series/formal-power-series.hpp\"\n#include <vector>\n\n\
-    #line 9 \"formal-power-series/formal-power-series.hpp\"\n\ntemplate <typename\
-    \ mint>\nstruct FPS {\n  std::vector<mint> _vec;\n\n  constexpr int lg2(int N)\
-    \ const {\n    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n   \
-    \ if ((1LL << ret) < N) ret++;\n    return ret;\n  }\n\n  // \u30CA\u30A4\u30FC\
+    \n\n#line 5 \"test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp\"\n\
+    using mint = modint998244353;\n\n#line 1 \"formal-power-series/fps-998.hpp\"\n\
+    \n\n\n#include <array>\n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\
+    \n\n\n\n#include <algorithm>\n#line 6 \"formal-power-series/formal-power-series.hpp\"\
+    \n#include <vector>\n\n#line 9 \"formal-power-series/formal-power-series.hpp\"\
+    \n\ntemplate <typename mint>\nstruct FPS {\n  std::vector<mint> _vec;\n\n  constexpr\
+    \ int lg2(int N) const {\n    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n\
+    \    if ((1LL << ret) < N) ret++;\n    return ret;\n  }\n\n  // \u30CA\u30A4\u30FC\
     \u30D6\u306A\u30CB\u30E5\u30FC\u30C8\u30F3\u6CD5\u3067\u306E\u9006\u5143\u8A08\
     \u7B97\n  FPS inv_naive(int deg) const {\n    assert(_vec[0] != mint(0));  //\
     \ \u3055\u3042\u3089\u3056\u308C\u3070\u3001\u9006\u5143\u306E\u3066\u3072\u304E\
@@ -337,9 +339,8 @@ data:
     \  return multiply_sparse(f, vpmi, deg);\n}\n\ntemplate <typename mint>\nFPS<mint>\
     \ FPS<mint>::mul_sparse(const FPS<mint>& g, int deg) const {\n  return multiply_sparse(*this,\
     \ g, deg);\n}\n\n\n#line 337 \"formal-power-series/formal-power-series.hpp\"\n\
-    \n\n#line 1 \"formal-power-series/fps-998.hpp\"\n\n\n\n#include <array>\n\n#line\
-    \ 7 \"formal-power-series/fps-998.hpp\"\n\nusing mint = modint998244353;\n// ZETAS\
-    \ =\n// {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
+    \n\n#line 7 \"formal-power-series/fps-998.hpp\"\n\nusing mint = modint998244353;\n\
+    // ZETAS =\n// {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
     //  constexpr \u95A2\u6570\u5185\u3067 ZETAS \u914D\u5217\u3092\u8A2D\u5B9A\u3059\
     \u308B\u305F\u3081\u306E\u88DC\u52A9\u95A2\u6570\nstd::array<mint, 24> setup_zetas()\
     \ {\n  std::array<mint, 24> zetas;\n  zetas[23] = mint(3).pow(119);\n  for (int\
@@ -450,36 +451,38 @@ data:
     \u9805\u30920\u306B\u3059\u308B\u3053\u3068\u3067\u5F97\u3089\u308C\u308B\u3002\
     \n  //    [0, d)\u306E\u9805            [d, 2d)\u306E\u9805\n  //    h'_2d*g_d\u306E\
     [0,d)       h'_2d*g_d\u306E[d, 2d)\n  //    h'_2d*g_d\u306E[2d, 3d)    h'_2d*g_d\u306E\
-    [3d, 4d)\n\n  g = g_origin - h_2d;\n  g.resize(d * 2);\n}\n\n\n#line 7 \"test/verify/fps/yosupo-log-of-formal-power-series.test.cpp\"\
-    \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
-    \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n\
-    \  for(int i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.log(N)\
-    \ << endl;\n\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series\"\
-    \n\n#include \"template/template.hpp\"\n#include \"math/modint.hpp\"\n#include\
-    \ \"formal-power-series/formal-power-series.hpp\"\n#include \"formal-power-series/fps-998.hpp\"\
-    \n\nusing mint = modint998244353;\n\n\nint main() {\n  ios::sync_with_stdio(0);\
-    \ cin.tie(0); cout.tie(0);\n  int N; cin >> N;\n  vector<modint998244353>a(N);\n\
-    \  for(int i=0; i<N; i++) cin >> a[i];\n\n  FPS a_fps(a);\n  cout << a_fps.log(N)\
-    \ << endl;\n\n}\n"
+    [3d, 4d)\n\n  g = g_origin - h_2d;\n  g.resize(d * 2);\n}\n\n\n#line 8 \"test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp\"\
+    \n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n\n  int\
+    \ N; cin >> N;\n  FPS<mint> f(N);\n  for (int i = 0; i < N; i++) cin >> f[i];\n\
+    \n  FPS<mint> g = f.sqrt(N);\n  if (g.size() == 0) {\n    cout << -1 << '\\n';\n\
+    \    return 0;\n  }\n\n  for (int i = 0; i < N; i++) {\n    cout << g[i].val()\
+    \ << \" \\n\"[i == N - 1];\n  }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_of_formal_power_series\"\
+    \n\n#include \"template/template.hpp\"\n#include \"math/modint.hpp\"\nusing mint\
+    \ = modint998244353;\n\n#include \"formal-power-series/fps-998.hpp\"\n\nint main()\
+    \ {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n\n  int N; cin >> N;\n\
+    \  FPS<mint> f(N);\n  for (int i = 0; i < N; i++) cin >> f[i];\n\n  FPS<mint>\
+    \ g = f.sqrt(N);\n  if (g.size() == 0) {\n    cout << -1 << '\\n';\n    return\
+    \ 0;\n  }\n\n  for (int i = 0; i < N; i++) {\n    cout << g[i].val() << \" \\\
+    n\"[i == N - 1];\n  }\n}\n"
   dependsOn:
   - template/template.hpp
   - math/modint.hpp
   - math/external_gcd.hpp
+  - formal-power-series/fps-998.hpp
   - formal-power-series/formal-power-series.hpp
   - math/modint.hpp
   - formal-power-series/fps-sparse.hpp
-  - formal-power-series/fps-998.hpp
   isVerificationFile: true
-  path: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+  path: test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
   requiredBy: []
   timestamp: '2026-06-28 07:56:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+documentation_of: test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
 layout: document
 redirect_from:
-- /verify/test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
-- /verify/test/verify/fps/yosupo-log-of-formal-power-series.test.cpp.html
-title: test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+- /verify/test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
+- /verify/test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp.html
+title: test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
 ---

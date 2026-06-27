@@ -73,6 +73,9 @@ data:
     path: test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
     title: test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
+    title: test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
     title: test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -99,6 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/math/yosupo-primality-test.test.cpp
     title: test/verify/math/yosupo-primality-test.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/math/yosupo-sqrt-mod.test.cpp
+    title: test/verify/math/yosupo-sqrt-mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/structure/aoj-dsl1-b.test.cpp
     title: test/verify/structure/aoj-dsl1-b.test.cpp
@@ -135,7 +141,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-vertex-set-path-composite.test.cpp
     title: test/verify/yosupo-vertex-set-path-composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
   - icon: ':heavy_check_mark:'
@@ -150,9 +156,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: '#line 1 "template/template.hpp"
@@ -210,7 +216,7 @@ data:
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - test/unittest/unittest-template.cpp
   timestamp: '2024-08-21 21:41:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - example.test.cpp
   - test/verify/yuki-372-itsautomatic.test.cpp
@@ -236,6 +242,7 @@ data:
   - test/verify/math/yosupo-addition-of-big-integers.test.cpp
   - test/verify/math/yosupo-division-of-big-integers.test.cpp
   - test/verify/math/yosupo-primality-test.test.cpp
+  - test/verify/math/yosupo-sqrt-mod.test.cpp
   - test/verify/math/matrix/yosupo-matrix-product.test.cpp
   - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
@@ -252,6 +259,7 @@ data:
   - test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
   - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp

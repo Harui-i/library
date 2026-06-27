@@ -71,6 +71,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
     title: test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
+    title: test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -292,6 +295,7 @@ data:
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
   - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
   - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
   - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
 documentation_of: formal-power-series/fps-sparse.hpp
 layout: document

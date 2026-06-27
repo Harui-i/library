@@ -29,11 +29,11 @@ data:
       title: dropbox_refresh.py
   - name: dp/automaton
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: dp/automaton/automaton.hpp
       title: "\u6C7A\u5B9A\u6027\u6709\u9650\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3(DFA,\
         \ Deterministic Finite Automaton)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: dp/automaton/remainder.hpp
       title: "\u3042\u307E\u308A\u3092\u7BA1\u7406\u3059\u308B\u30AA\u30FC\u30C8\u30DE\
         \u30C8\u30F3(remainder.hpp)"
@@ -101,7 +101,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/decimal_big_integer.hpp
       title: decimal_big_integer
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/external_gcd.hpp
       title: math/external_gcd.hpp
     - icon: ':heavy_check_mark:'
@@ -110,7 +110,7 @@ data:
     - icon: ':warning:'
       path: math/mod_pow.hpp
       title: math/mod_pow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.hpp
       title: modint
     - icon: ':heavy_check_mark:'
@@ -157,7 +157,7 @@ data:
       title: "Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/template.hpp
       title: template/template.hpp
   - name: test/unittest
@@ -222,7 +222,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-vertex-set-path-composite.test.cpp
       title: test/verify/yosupo-vertex-set-path-composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yuki-372-itsautomatic.test.cpp
       title: test/verify/yuki-372-itsautomatic.test.cpp
     - icon: ':heavy_check_mark:'
@@ -277,6 +277,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
       title: test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
+      title: test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
   - name: test/verify/math/matrix
     pages:
     - icon: ':heavy_check_mark:'
@@ -308,6 +311,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/math/yosupo-primality-test.test.cpp
       title: test/verify/math/yosupo-primality-test.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/verify/math/yosupo-sqrt-mod.test.cpp
+      title: test/verify/math/yosupo-sqrt-mod.test.cpp
   - name: test/verify/structure
     pages:
     - icon: ':heavy_check_mark:'
