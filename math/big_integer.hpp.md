@@ -2,19 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/verify/math/yosupo-addition-of-big-integers.test.cpp
-    title: test/verify/math/yosupo-addition-of-big-integers.test.cpp
-  - icon: ':x:'
-    path: test/verify/math/yosupo-division-of-big-integers.test.cpp
-    title: test/verify/math/yosupo-division-of-big-integers.test.cpp
-  - icon: ':x:'
-    path: test/verify/math/yosupo-multiplication-of-big-integers.test.cpp
-    title: test/verify/math/yosupo-multiplication-of-big-integers.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/big_integer.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -460,11 +451,8 @@ data:
   path: math/big_integer.hpp
   requiredBy: []
   timestamp: '2026-05-11 00:50:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/verify/math/yosupo-addition-of-big-integers.test.cpp
-  - test/verify/math/yosupo-division-of-big-integers.test.cpp
-  - test/verify/math/yosupo-multiplication-of-big-integers.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: math/big_integer.hpp
 layout: document
 title: big_integer
