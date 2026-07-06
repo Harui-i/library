@@ -19,7 +19,7 @@ data:
   - icon: ':warning:'
     path: formal-power-series/fps-naive.hpp
     title: formal-power-series/fps-naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
   - icon: ':warning:'
@@ -29,6 +29,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
     title: test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/aoj-0570.test.cpp
+    title: test/verify/aoj-0570.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/convolution/yosupo-and-convolution.test.cpp
     title: test/verify/convolution/yosupo-and-convolution.test.cpp
@@ -104,12 +107,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-vertex-set-path-composite.test.cpp
     title: test/verify/yosupo-vertex-set-path-composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/external_gcd.hpp\"\n\n\n\n#include <tuple>\n\n// g,x,y\n\
@@ -138,8 +141,9 @@ data:
   - formal-power-series/formal-power-series.hpp
   - math/modint.hpp
   timestamp: '2024-06-20 15:39:33+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/verify/aoj-0570.test.cpp
   - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
   - test/verify/yosupo-vertex-set-path-composite.test.cpp

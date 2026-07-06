@@ -1,77 +1,127 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/automaton/automaton.hpp
     title: "\u6C7A\u5B9A\u6027\u6709\u9650\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3(DFA,\
       \ Deterministic Finite Automaton)"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/verify/aoj-0570.test.cpp
+    title: test/verify/aoj-0570.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"dp/automaton/automaton.hpp\"\n// https://shino16.github.io/blog/post/algo/%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3/\n\
-    // Dfa\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\ntemplate <typename Alphabet,\
-    \ typename State>\nclass Dfa {\npublic:\n  virtual State init() const = 0; //\
-    \ \u521D\u671F\u72B6\u614B\u3092\u8FD4\u3059\n  virtual State next([[maybe_unused]]\
-    \ State s, [[maybe_unused]] Alphabet a, [[maybe_unused]]int i) const = 0; // s\u306B\
-    a\u3092\u5165\u529B\u3068\u3057\u3066\u4E0E\u3048\u305F\u6642\u306E\u6B21\u306E\
-    \u72B6\u614B\u3092\u8FD4\u3059\n  virtual bool accept([[maybe_unused]] State s)\
-    \ const = 0; // s\u3092\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3\u304C\u53D7\u7406\u3059\
-    \u308B\u304B\u3069\u3046\u304B\n  virtual bool successful([[maybe_unused]] State\
-    \ s) const { return false; } // \u3069\u3046\u3044\u3046\u3075\u3046\u306Bnext\u3057\
-    \u3066\u3044\u3053\u3046\u304C\u3001\u7D76\u5BFE\u306Baccept\u3055\u308C\u308B\
-    \u72B6\u614B\u304B\u3069\u3046\u304B\n  virtual bool unsuccessful([[maybe_unused]]\
-    \ State s) const { return false; } // \u3069\u3046\u3044\u3046\u3075\u3046\u306B\
-    next\u3057\u3066\u3044\u3053\u3046\u304C\u3001\u7D76\u5BFE\u306Baccpet\u3055\u308C\
-    \u306A\u3044\u72B6\u614B\u304B\u3069\u3046\u304B\n};\n#line 2 \"dp/automaton/remainder.hpp\"\
-    \n\n// next\u306F\u6570\u5B57\u306E\u53F3\u7AEF\u306B\u66F8\u304D\u52A0\u3048\u308B\
-    \u30A4\u30E1\u30FC\u30B8\u3002\u3064\u307E\u308A\u3001\u3044\u308D\u3044\u308D\
-    \u306A\u6841\u6570\u3092\u8003\u3048\u3089\u308C\u308B\u3002\n// \u3057\u304B\u3057\
-    \u3001\u56FA\u5B9A\u3057\u305F\u6841\u6570\u306B\u5BFE\u3057\u3066\u5DE6\u304B\
-    \u3089\u57CB\u3081\u3066\u3044\u304F\u30D1\u30BF\u30FC\u30F3\u3067\u4F7F\u3044\
-    \u305F\u3044\u5834\u5408\u3082\u3042\u308A\u305D\u3046\u3002\n// \u6570\u5B57\u306E\
-    M\u306E\u500D\u6570\u306E\u307F\u53D7\u7406\u3059\u308B\u30AA\u30FC\u30C8\u30DE\
-    \u30C8\u30F3\ntemplate <typename Alphabet> \nclass RemainderAutomaton : public\
-    \ Dfa<Alphabet, int> {\n  const int M;\n  const int N_siz;\n\npublic:\n  using\
-    \ State = int;\n  RemainderAutomaton(int _N_siz, int _M) : M(_M), N_siz(_N_siz)\
-    \ {}\n\n  State init() const override {\n    return State(0);\n  }\n\n  State\
-    \ next(State s, char c, [[maybe_unused]] int i) const override {\n    State ret\
-    \ = ((long long)s*10 + (long long)(c - '0') )%M; \n\n    return ret;\n  }\n\n\
-    \  bool accept(State s) const override {\n    return s == 0;\n  }\n\n  bool successful\
-    \ ([[maybe_unused]] State  s) const override {\n    return false;\n  }\n\n  bool\
-    \ unsuccessful([[maybe_unused]] State s) const override {\n    return false;\n\
-    \  }\n  \n};\n"
-  code: "#include \"automaton.hpp\"\n\n// next\u306F\u6570\u5B57\u306E\u53F3\u7AEF\
-    \u306B\u66F8\u304D\u52A0\u3048\u308B\u30A4\u30E1\u30FC\u30B8\u3002\u3064\u307E\
-    \u308A\u3001\u3044\u308D\u3044\u308D\u306A\u6841\u6570\u3092\u8003\u3048\u3089\
-    \u308C\u308B\u3002\n// \u3057\u304B\u3057\u3001\u56FA\u5B9A\u3057\u305F\u6841\u6570\
-    \u306B\u5BFE\u3057\u3066\u5DE6\u304B\u3089\u57CB\u3081\u3066\u3044\u304F\u30D1\
-    \u30BF\u30FC\u30F3\u3067\u4F7F\u3044\u305F\u3044\u5834\u5408\u3082\u3042\u308A\
-    \u305D\u3046\u3002\n// \u6570\u5B57\u306EM\u306E\u500D\u6570\u306E\u307F\u53D7\
-    \u7406\u3059\u308B\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3\ntemplate <typename Alphabet>\
-    \ \nclass RemainderAutomaton : public Dfa<Alphabet, int> {\n  const int M;\n \
-    \ const int N_siz;\n\npublic:\n  using State = int;\n  RemainderAutomaton(int\
-    \ _N_siz, int _M) : M(_M), N_siz(_N_siz) {}\n\n  State init() const override {\n\
-    \    return State(0);\n  }\n\n  State next(State s, char c, [[maybe_unused]] int\
-    \ i) const override {\n    State ret = ((long long)s*10 + (long long)(c - '0')\
-    \ )%M; \n\n    return ret;\n  }\n\n  bool accept(State s) const override {\n \
-    \   return s == 0;\n  }\n\n  bool successful ([[maybe_unused]] State  s) const\
-    \ override {\n    return false;\n  }\n\n  bool unsuccessful([[maybe_unused]] State\
-    \ s) const override {\n    return false;\n  }\n  \n};"
+  bundledCode: "#line 1 \"dp/automaton/remainder.hpp\"\n\n\n\n#line 1 \"dp/automaton/automaton.hpp\"\
+    \n\n\n\n#include <functional>\n#include <memory>\n#include <string>\n#include\
+    \ <unordered_map>\n#include <utility>\n#include <vector>\n\ntemplate <typename\
+    \ Alphabet = int>\nstruct Dfa {\n  using alphabet_type = Alphabet;\n  using state_type\
+    \ = int;\n\n  virtual int state_count() const = 0;\n  virtual int initial_state()\
+    \ const = 0;\n  virtual int next_state(int state, Alphabet c) const = 0;\n  virtual\
+    \ bool accept(int state) const = 0;\n  virtual ~Dfa() = default;\n};\n\ntemplate\
+    \ <typename Alphabet = int>\nusing DfaPtr = std::shared_ptr<Dfa<Alphabet>>;\n\n\
+    template <typename Alphabet = int>\nclass ProductPolicyDfa : public Dfa<Alphabet>\
+    \ {\n  std::vector<DfaPtr<Alphabet>> dfas;\n  std::vector<int> base;\n  int states;\n\
+    \  std::function<bool(const std::vector<bool>&)> policy;\n\npublic:\n  ProductPolicyDfa(std::vector<DfaPtr<Alphabet>>\
+    \ dfas,\n                   std::function<bool(const std::vector<bool>&)> policy)\n\
+    \      : dfas(std::move(dfas)), states(1), policy(std::move(policy)) {\n    base.resize(this->dfas.size());\n\
+    \    for(int i = 0; i < (int)this->dfas.size(); i++) {\n      base[i] = states;\n\
+    \      states *= this->dfas[i]->state_count();\n    }\n  }\n\n  int encode(const\
+    \ std::vector<int>& component_states) const {\n    int state = 0;\n    for(int\
+    \ i = 0; i < (int)dfas.size(); i++) {\n      state += component_states[i] * base[i];\n\
+    \    }\n    return state;\n  }\n\n  std::vector<int> decode(int state) const {\n\
+    \    std::vector<int> component_states(dfas.size());\n    for(int i = 0; i < (int)dfas.size();\
+    \ i++) {\n      component_states[i] = (state / base[i]) % dfas[i]->state_count();\n\
+    \    }\n    return component_states;\n  }\n\n  int state_count() const override\
+    \ {\n    return states;\n  }\n\n  int initial_state() const override {\n    std::vector<int>\
+    \ component_states(dfas.size());\n    for(int i = 0; i < (int)dfas.size(); i++)\
+    \ {\n      component_states[i] = dfas[i]->initial_state();\n    }\n    return\
+    \ encode(component_states);\n  }\n\n  int next_state(int state, Alphabet c) const\
+    \ override {\n    std::vector<int> component_states = decode(state);\n    for(int\
+    \ i = 0; i < (int)dfas.size(); i++) {\n      component_states[i] = dfas[i]->next_state(component_states[i],\
+    \ c);\n    }\n    return encode(component_states);\n  }\n\n  bool accept(int state)\
+    \ const override {\n    std::vector<int> component_states = decode(state);\n \
+    \   std::vector<bool> accepted(dfas.size());\n    for(int i = 0; i < (int)dfas.size();\
+    \ i++) {\n      accepted[i] = dfas[i]->accept(component_states[i]);\n    }\n \
+    \   return policy(accepted);\n  }\n};\n\ntemplate <typename Alphabet = int>\n\
+    class AndDfa : public Dfa<Alphabet> {\n  DfaPtr<Alphabet> lhs;\n  DfaPtr<Alphabet>\
+    \ rhs;\n  int rhs_states;\n\npublic:\n  AndDfa(DfaPtr<Alphabet> lhs, DfaPtr<Alphabet>\
+    \ rhs)\n      : lhs(std::move(lhs)), rhs(std::move(rhs)), rhs_states(this->rhs->state_count())\
+    \ {}\n\n  int encode(int lhs_state, int rhs_state) const {\n    return lhs_state\
+    \ * rhs_states + rhs_state;\n  }\n\n  std::pair<int, int> decode(int state) const\
+    \ {\n    return {state / rhs_states, state % rhs_states};\n  }\n\n  int state_count()\
+    \ const override {\n    return lhs->state_count() * rhs->state_count();\n  }\n\
+    \n  int initial_state() const override {\n    return encode(lhs->initial_state(),\
+    \ rhs->initial_state());\n  }\n\n  int next_state(int state, Alphabet c) const\
+    \ override {\n    auto [a, b] = decode(state);\n    return encode(lhs->next_state(a,\
+    \ c), rhs->next_state(b, c));\n  }\n\n  bool accept(int state) const override\
+    \ {\n    auto [a, b] = decode(state);\n    return lhs->accept(a) && rhs->accept(b);\n\
+    \  }\n};\n\ntemplate <typename T, typename Alphabet = int>\nT count_fixed_length(const\
+    \ Dfa<Alphabet>& dfa, const std::vector<Alphabet>& alphabet, int length) {\n \
+    \ std::unordered_map<int, T> dp, next_dp;\n  dp[dfa.initial_state()] = T(1);\n\
+    \n  for(int i = 0; i < length; i++) {\n    next_dp.clear();\n    for(const auto&\
+    \ [state, value] : dp) {\n      for(const Alphabet& c : alphabet) {\n        next_dp[dfa.next_state(state,\
+    \ c)] += value;\n      }\n    }\n    dp.swap(next_dp);\n  }\n\n  T answer = T(0);\n\
+    \  for(const auto& [state, value] : dp) {\n    if(dfa.accept(state)) answer +=\
+    \ value;\n  }\n  return answer;\n}\n\nclass DecimalLessEqualDfa : public Dfa<int>\
+    \ {\n  std::vector<int> digits;\n\npublic:\n  explicit DecimalLessEqualDfa(const\
+    \ std::string& n) {\n    digits.reserve(n.size());\n    for(char c : n) digits.push_back(c\
+    \ - '0');\n  }\n\n  int encode(int pos, int rel) const {\n    return pos * 3 +\
+    \ rel;\n  }\n\n  std::pair<int, int> decode(int state) const {\n    return {state\
+    \ / 3, state % 3};\n  }\n\n  int state_count() const override {\n    return ((int)digits.size()\
+    \ + 1) * 3;\n  }\n\n  int initial_state() const override {\n    return encode(0,\
+    \ 0);\n  }\n\n  int next_state(int state, int digit) const override {\n    auto\
+    \ [pos, rel] = decode(state);\n    if(pos == (int)digits.size()) return encode(pos,\
+    \ 2);\n\n    if(rel == 0) {\n      if(digit < digits[pos]) rel = 1;\n      if(digit\
+    \ > digits[pos]) rel = 2;\n    }\n    return encode(pos + 1, rel);\n  }\n\n  bool\
+    \ accept(int state) const override {\n    auto [pos, rel] = decode(state);\n \
+    \   return pos == (int)digits.size() && rel != 2;\n  }\n};\n\ntemplate <typename\
+    \ Alphabet = int>\nclass LeadingZeroSkipDfa : public Dfa<Alphabet> {\n  DfaPtr<Alphabet>\
+    \ inner;\n  Alphabet zero;\n  int inner_states;\n\npublic:\n  LeadingZeroSkipDfa(DfaPtr<Alphabet>\
+    \ inner, Alphabet zero = Alphabet())\n      : inner(std::move(inner)), zero(zero),\
+    \ inner_states(this->inner->state_count()) {}\n\n  int encode(bool started, int\
+    \ inner_state) const {\n    return (started ? inner_states : 0) + inner_state;\n\
+    \  }\n\n  std::pair<bool, int> decode(int state) const {\n    if(state < inner_states)\
+    \ return {false, state};\n    return {true, state - inner_states};\n  }\n\n  int\
+    \ state_count() const override {\n    return inner_states * 2;\n  }\n\n  int initial_state()\
+    \ const override {\n    return encode(false, inner->initial_state());\n  }\n\n\
+    \  int next_state(int state, Alphabet c) const override {\n    auto [started,\
+    \ inner_state] = decode(state);\n    if(!started && c == zero) return encode(false,\
+    \ inner_state);\n    return encode(true, inner->next_state(inner_state, c));\n\
+    \  }\n\n  bool accept(int state) const override {\n    auto [started, inner_state]\
+    \ = decode(state);\n    if(started) return inner->accept(inner_state);\n\n   \
+    \ int zero_state = inner->next_state(inner->initial_state(), zero);\n    return\
+    \ inner->accept(zero_state);\n  }\n};\n\n\n#line 5 \"dp/automaton/remainder.hpp\"\
+    \n\nclass DecimalRemainderDfa : public Dfa<int> {\n  int mod;\n\npublic:\n  explicit\
+    \ DecimalRemainderDfa(int mod) : mod(mod) {}\n\n  int state_count() const override\
+    \ {\n    return mod;\n  }\n\n  int initial_state() const override {\n    return\
+    \ 0;\n  }\n\n  int next_state(int state, int digit) const override {\n    return\
+    \ ((long long)state * 10 + digit) % mod;\n  }\n\n  bool accept(int state) const\
+    \ override {\n    return state == 0;\n  }\n};\n\nusing RemainderAutomaton = DecimalRemainderDfa;\n\
+    \n\n"
+  code: "#ifndef HARUILIB_DP_AUTOMATON_REMAINDER_HPP\n#define HARUILIB_DP_AUTOMATON_REMAINDER_HPP\n\
+    \n#include \"dp/automaton/automaton.hpp\"\n\nclass DecimalRemainderDfa : public\
+    \ Dfa<int> {\n  int mod;\n\npublic:\n  explicit DecimalRemainderDfa(int mod) :\
+    \ mod(mod) {}\n\n  int state_count() const override {\n    return mod;\n  }\n\n\
+    \  int initial_state() const override {\n    return 0;\n  }\n\n  int next_state(int\
+    \ state, int digit) const override {\n    return ((long long)state * 10 + digit)\
+    \ % mod;\n  }\n\n  bool accept(int state) const override {\n    return state ==\
+    \ 0;\n  }\n};\n\nusing RemainderAutomaton = DecimalRemainderDfa;\n\n#endif\n"
   dependsOn:
   - dp/automaton/automaton.hpp
   isVerificationFile: false
   path: dp/automaton/remainder.hpp
   requiredBy: []
-  timestamp: '2024-05-29 21:25:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-07-07 00:03:05+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/verify/aoj-0570.test.cpp
   - test/verify/yuki-372-itsautomatic.test.cpp
 documentation_of: dp/automaton/remainder.hpp
 layout: document
@@ -79,7 +129,25 @@ title: "\u3042\u307E\u308A\u3092\u7BA1\u7406\u3059\u308B\u30AA\u30FC\u30C8\u30DE
   \u30F3(remainder.hpp)"
 ---
 
-これいるか？　nextは、数字の右側に桁を加えるような操作を考えている。 '998'に'2'を与えてnextすると'9982'に対応する状態が返ってくるイメージ。
-わざわざライブラリにするほどのものでもなくね？？？
-ライブラリにするほど複雑でもないから、1から書けばいいし、ライブラリにするなら「よく出るオートマトンは事前に書いておく」かつ「オートマトンのAND合成もライブラリにある」という状態が望ましいけど、
-AND合成のオートマトンは書くの難しいし、どうせなら2つだけじゃなくて任意個の合成もできたほうが便利だけどそれもやっぱり難しいしで、オートマトンをライブラリにして有効に使うのは難しそう。
+10 進表記を左から読んで、値の `mod` での余りを状態として持つ DFA。
+
+```cpp
+DecimalRemainderDfa dfa(mod);
+```
+
+状態数は `mod`。受理状態は余り `0`。
+
+```cpp
+int next_state(int state, int digit) {
+  return (state * 10 + digit) % mod;
+}
+```
+
+固定長 0 埋めの桁 DP で「通常の 10 進表記としての値」を扱いたい場合は、`LeadingZeroSkipDfa` で包む。
+
+```cpp
+DfaPtr<int> multiple_of_m = make_shared<LeadingZeroSkipDfa<int>>(
+    make_shared<DecimalRemainderDfa>(m));
+```
+
+余りだけなら先頭 0 を読んでも値は変わらないが、他の通常表記向け DFA と同じ形で合成できるので、桁 DP では包んでおくと扱いが揃う。

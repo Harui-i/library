@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/external_gcd.hpp
     title: math/external_gcd.hpp
   _extendedRequiredBy:
@@ -32,6 +32,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
     title: test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/verify/aoj-0570.test.cpp
+    title: test/verify/aoj-0570.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/verify/convolution/yosupo-and-convolution.test.cpp
     title: test/verify/convolution/yosupo-and-convolution.test.cpp
@@ -146,12 +149,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-vertex-set-path-composite.test.cpp
     title: test/verify/yosupo-vertex-set-path-composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"math/external_gcd.hpp\"\
@@ -313,8 +316,9 @@ data:
   - formal-power-series/fps-998.hpp
   - formal-power-series/formal-power-series.hpp
   timestamp: '2026-06-28 07:56:01+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/verify/aoj-0570.test.cpp
   - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/yosupo-queue-operate-all-composite.test.cpp
   - test/verify/yosupo-vertex-set-path-composite.test.cpp

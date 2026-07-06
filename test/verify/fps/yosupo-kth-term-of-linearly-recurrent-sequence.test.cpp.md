@@ -15,16 +15,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/fps-sparse.hpp
     title: "fps-sparse(\u758E\u306A\u5834\u5408\u306E\u9AD8\u901F\u5316)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/external_gcd.hpp
     title: math/external_gcd.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
