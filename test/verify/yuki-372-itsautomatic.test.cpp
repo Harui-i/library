@@ -17,8 +17,7 @@ int main() {
 
   vector<char> alphabet = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
-  RemainderAutomaton<char> ra(S.size(), M);
-
+  DecimalRemainderDfa ra(M);
 
   mint ans = 0;
   vector<mint>dp1(M), dp2(M);
