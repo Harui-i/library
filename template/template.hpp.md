@@ -126,45 +126,51 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-point-add-range-sum.test.cpp
     title: test/verify/yosupo-point-add-range-sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-queue-operate-all-composite.test.cpp
     title: test/verify/yosupo-queue-operate-all-composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-shortest-path.test.cpp
     title: test/verify/yosupo-shortest-path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-tree-diameter.test.cpp
     title: test/verify/yosupo-tree-diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-vertex-add-path-sum.test.cpp
     title: test/verify/yosupo-vertex-add-path-sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
     title: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-vertex-set-path-composite.test.cpp
     title: test/verify/yosupo-vertex-set-path-composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
     title: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    links: []
+    links:
+    - https://harui-i.github.io/library/template/template.hpp.html
   bundledCode: '#line 1 "template/template.hpp"
+
+
+
+    // https://harui-i.github.io/library/template/template.hpp.html
+
 
     #include <iostream>
 
@@ -188,8 +194,17 @@ data:
 
     const ll LLINF = 1000000000000000000;
 
+
+
     '
-  code: '#include <iostream>
+  code: '#ifndef HARUILIB_TEMPLATE_TEMPLATE_HPP
+
+    #define HARUILIB_TEMPLATE_TEMPLATE_HPP
+
+    // https://harui-i.github.io/library/template/template.hpp.html
+
+
+    #include <iostream>
 
     #include <cassert>
 
@@ -211,6 +226,9 @@ data:
 
     const ll LLINF = 1000000000000000000;
 
+
+    #endif
+
     '
   dependsOn: []
   isVerificationFile: false
@@ -218,59 +236,59 @@ data:
   requiredBy:
   - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
   - test/unittest/unittest-template.cpp
-  timestamp: '2024-08-21 21:41:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-17 23:49:45+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - example.test.cpp
-  - test/verify/aoj-0570.test.cpp
-  - test/verify/yuki-372-itsautomatic.test.cpp
-  - test/verify/yosupo-queue-operate-all-composite.test.cpp
-  - test/verify/yosupo-vertex-add-subtree-sum.test.cpp
-  - test/verify/aoj-grl-1b.test.cpp
-  - test/verify/yosupo-vertex-set-path-composite.test.cpp
-  - test/verify/yosupo-tree-diameter.test.cpp
-  - test/verify/yosupo-vertex-add-path-sum.test.cpp
-  - test/verify/convolution/yosupo-lcm-convolution.test.cpp
-  - test/verify/convolution/yosupo-normal-convolution.test.cpp
-  - test/verify/convolution/yosupo-gcd-convolution.test.cpp
-  - test/verify/convolution/yosupo-and-convolution.test.cpp
-  - test/verify/aoj-dpl3-c.test.cpp
-  - test/verify/yosupo-shortest-path.test.cpp
-  - test/verify/aoj-alds-1-14-b.test.cpp
-  - test/verify/structure/aoj-dsl1-b.test.cpp
-  - test/verify/structure/yosupo-rectangle-sum.test.cpp
-  - test/verify/structure/yosupo-rectangle-add-point-get.test.cpp
-  - test/verify/yosupo-general-weighted-matching.test.cpp
-  - test/verify/yosupo-point-add-range-sum.test.cpp
-  - test/verify/aoj-0560.test.cpp
-  - test/verify/math/yosupo-addition-of-big-integers.test.cpp
-  - test/verify/math/yosupo-division-of-big-integers.test.cpp
-  - test/verify/math/yosupo-primality-test.test.cpp
-  - test/verify/math/yosupo-sqrt-mod.test.cpp
-  - test/verify/math/matrix/yosupo-matrix-product.test.cpp
-  - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
-  - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
-  - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
-  - test/verify/math/matrix/yosupo-linear-equation.test.cpp
-  - test/verify/math/yosupo-multiplication-of-big-integers.test.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
+  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
   - test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
   - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
+  - test/verify/yosupo-general-weighted-matching.test.cpp
+  - test/verify/convolution/yosupo-lcm-convolution.test.cpp
+  - test/verify/convolution/yosupo-normal-convolution.test.cpp
+  - test/verify/convolution/yosupo-and-convolution.test.cpp
+  - test/verify/convolution/yosupo-gcd-convolution.test.cpp
+  - test/verify/yosupo-queue-operate-all-composite.test.cpp
+  - test/verify/aoj-0560.test.cpp
+  - test/verify/aoj-alds-1-14-b.test.cpp
+  - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/yosupo-deque-operate-all-composite.test.cpp
+  - test/verify/aoj-grl-1b.test.cpp
+  - test/verify/aoj-dpl3-c.test.cpp
+  - test/verify/yosupo-vertex-add-path-sum.test.cpp
+  - test/verify/yosupo-shortest-path.test.cpp
+  - test/verify/math/yosupo-multiplication-of-big-integers.test.cpp
+  - test/verify/math/yosupo-addition-of-big-integers.test.cpp
+  - test/verify/math/yosupo-sqrt-mod.test.cpp
+  - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-matrix-product.test.cpp
+  - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-linear-equation.test.cpp
+  - test/verify/math/yosupo-division-of-big-integers.test.cpp
+  - test/verify/math/yosupo-primality-test.test.cpp
+  - test/verify/structure/yosupo-rectangle-sum.test.cpp
+  - test/verify/structure/yosupo-rectangle-add-point-get.test.cpp
+  - test/verify/structure/aoj-dsl1-b.test.cpp
+  - test/verify/yosupo-tree-diameter.test.cpp
+  - test/verify/yosupo-vertex-add-subtree-sum.test.cpp
+  - test/verify/aoj-0570.test.cpp
+  - test/verify/yosupo-vertex-set-path-composite.test.cpp
+  - test/verify/yosupo-point-add-range-sum.test.cpp
   - test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
-  - unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
+  - example.test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
-  - unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
   - unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
+  - unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
+  - unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
 documentation_of: template/template.hpp
 layout: document
 redirect_from:

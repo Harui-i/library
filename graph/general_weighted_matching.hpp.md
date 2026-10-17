@@ -10,11 +10,12 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"graph/general_weighted_matching.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <functional>\n#include <limits>\n#include <queue>\n#include <utility>\n\
-    #include <vector>\n\nnamespace mylib {\n\nstruct GeneralWeightedMatching {\n \
-    \ int n;\n  std::vector<std::vector<long long>> w;\n\n  explicit GeneralWeightedMatching(int\
+    links:
+    - https://harui-i.github.io/library/graph/general_weighted_matching.hpp.html
+  bundledCode: "#line 1 \"graph/general_weighted_matching.hpp\"\n\n\n// https://harui-i.github.io/library/graph/general_weighted_matching.hpp.html\n\
+    \n#include <algorithm>\n#include <functional>\n#include <limits>\n#include <queue>\n\
+    #include <utility>\n#include <vector>\n\nnamespace mylib {\n\nstruct GeneralWeightedMatching\
+    \ {\n  int n;\n  std::vector<std::vector<long long>> w;\n\n  explicit GeneralWeightedMatching(int\
     \ n_) : n(n_), w(n_, std::vector<long long>(n_, 0)) {}\n\n  void add_edge(int\
     \ u, int v, long long cost) {\n    if (u == v) return;\n    if (w[u][v] < cost)\
     \ w[u][v] = w[v][u] = cost;\n  }\n\n  std::pair<long long, std::vector<int>> solve()\
@@ -127,6 +128,7 @@ data:
     \ for (int i = 0; i < n; i++) {\n      if (mate[i] > i) total += w[i][mate[i]];\n\
     \    }\n    return {total, mate};\n  }\n};\n\n} // namespace mylib\n\n\n"
   code: "#ifndef HARUILIB_GRAPH_GENERAL_WEIGHTED_MATCHING_HPP\n#define HARUILIB_GRAPH_GENERAL_WEIGHTED_MATCHING_HPP\n\
+    // https://harui-i.github.io/library/graph/general_weighted_matching.hpp.html\n\
     \n#include <algorithm>\n#include <functional>\n#include <limits>\n#include <queue>\n\
     #include <utility>\n#include <vector>\n\nnamespace mylib {\n\nstruct GeneralWeightedMatching\
     \ {\n  int n;\n  std::vector<std::vector<long long>> w;\n\n  explicit GeneralWeightedMatching(int\
@@ -245,7 +247,7 @@ data:
   isVerificationFile: false
   path: graph/general_weighted_matching.hpp
   requiredBy: []
-  timestamp: '2026-05-10 20:38:40+09:00'
+  timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-general-weighted-matching.test.cpp

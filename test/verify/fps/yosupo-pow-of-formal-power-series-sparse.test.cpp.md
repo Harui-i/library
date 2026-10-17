@@ -14,16 +14,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/fps-sparse.hpp
     title: "fps-sparse(\u758E\u306A\u5834\u5408\u306E\u9AD8\u901F\u5316)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/external_gcd.hpp
     title: math/external_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -38,61 +38,63 @@ data:
     - https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse
   bundledCode: "#line 1 \"test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse\"\
-    \n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <iostream>\n#include <vector>\n\n#line 1 \"math/modint.hpp\"\n\n\n\n\
-    #line 1 \"math/external_gcd.hpp\"\n\n\n\n#include <tuple>\n\n// g,x,y\ntemplate<typename\
-    \ T>\nconstexpr std::tuple<T, T, T> extendedGCD(T a, T b) {\n    T x0 = 1, y0\
-    \ = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n        T q = a / b;\n        T\
-    \ r = a % b;\n        a = b;\n        b = r;\n        \n        T xTemp = x0 -\
-    \ q * x1;\n        x0 = x1;\n        x1 = xTemp;\n        \n        T yTemp =\
-    \ y0 - q * y1;\n        y0 = y1;\n        y1 = yTemp;\n    }\n    return {a, x0,\
-    \ y0};\n}\n\n#line 5 \"math/modint.hpp\"\n#include <type_traits>\n#include <cassert>\n\
-    \nlong long mod_pow_ll(long long x, long long n, long long mod) {\n    long long\
-    \ ret = 1;\n    while (n > 0) {\n        if (n & 1) ret = (__int128)ret * x %\
-    \ mod;\n        x = (__int128)x * x % mod;\n        n >>= 1;\n    }\n    return\
-    \ ret;\n}\n\n// x^2 = a (mod p) \u3068\u306A\u308B x \u3092\u8FD4\u3059\u3002\u5B58\
-    \u5728\u3057\u306A\u3044\u5834\u5408\u306F -1\u3002\n// p \u306F\u7D20\u6570\u3067\
-    \u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3059\u308B\u3002\nlong long mod_sqrt(long\
-    \ long a, long long p) {\n    a %= p;\n    if (a < 0) a += p;\n    if (a == 0)\
-    \ return 0;\n    if (p == 2) return a;\n    if (mod_pow_ll(a, (p - 1) / 2, p)\
-    \ != 1) return -1;\n    if (p % 4 == 3) return mod_pow_ll(a, (p + 1) / 4, p);\n\
-    \n    long long q = p - 1;\n    int s = 0;\n    while ((q & 1) == 0) {\n     \
-    \   q >>= 1;\n        s++;\n    }\n\n    long long z = 2;\n    while (mod_pow_ll(z,\
-    \ (p - 1) / 2, p) != p - 1) z++;\n\n    long long c = mod_pow_ll(z, q, p);\n \
-    \   long long x = mod_pow_ll(a, (q + 1) / 2, p);\n    long long t = mod_pow_ll(a,\
-    \ q, p);\n    int m = s;\n\n    while (t != 1) {\n        int i = 1;\n       \
-    \ long long tt = (__int128)t * t % p;\n        while (tt != 1) {\n           \
-    \ tt = (__int128)tt * tt % p;\n            i++;\n        }\n        long long\
-    \ b = c;\n        for (int j = 0; j < m - i - 1; j++) b = (__int128)b * b % p;\n\
-    \        x = (__int128)x * b % p;\n        c = (__int128)b * b % p;\n        t\
-    \ = (__int128)t * c % p;\n        m = i;\n    }\n\n    return x;\n}\n\ntemplate<int\
-    \ MOD, typename T = int>\nstruct static_modint {\n    T value;\n\n    constexpr\
-    \ explicit static_modint() : value(0) {}\n\n    static constexpr int mod() { return\
-    \ MOD; }\n\n    constexpr static_modint(long long v) {\n        if constexpr (std::is_same<T,\
-    \ double>::value) {\n            value = double(v);\n        }\n        else {\n\
-    \            value = int(((v % MOD) + MOD) % MOD);\n        }\n    }\n\n    constexpr\
-    \ static_modint& operator+=(const static_modint& other) {\n        if constexpr\
-    \ (std::is_same<T, double>::value) {\n            value += other.value;\n    \
-    \    }\n        else {\n            if ((value += other.value) >= MOD) value -=\
-    \ MOD;\n        }\n        return *this;\n    }\n\n    constexpr static_modint&\
-    \ operator-=(const static_modint& other) {\n        if constexpr (std::is_same<T,\
-    \ double>::value) {\n            value -= other.value;\n        }\n        else\
-    \ {\n            if ((value -= other.value) < 0) value += MOD;\n        }\n  \
-    \      return *this;\n    }\n\n    constexpr static_modint& operator*=(const static_modint&\
-    \ other) {\n        if constexpr (std::is_same<T, double>::value) {\n        \
-    \    value *= other.value;\n        }\n        else {\n            value = int((long\
-    \ long)value * other.value % MOD);\n        }\n        return *this;\n    }\n\n\
-    \    constexpr static_modint operator+(const static_modint& other) const {\n \
-    \       return static_modint(*this) += other;\n    }\n\n    constexpr static_modint\
-    \ operator-(const static_modint& other) const {\n        return static_modint(*this)\
-    \ -= other;\n    }\n\n    constexpr static_modint operator-() const {\n      \
-    \  return static_modint(0) - *this;\n    }\n\n    constexpr static_modint operator*(const\
-    \ static_modint& other) const {\n        return static_modint(*this) *= other;\n\
-    \    }\n\n    constexpr static_modint pow(long long exp) const {\n        static_modint\
-    \ base = *this, res = static_modint(1);\n        while (exp > 0) {\n         \
-    \   if (exp & 1) res *= base;\n            base *= base;\n            exp >>=\
-    \ 1;\n        }\n        return res;\n    }\n\n    long long sqrt_val() const\
-    \ {\n        return mod_sqrt(value, MOD);\n    }\n\n    static_modint sqrt() const\
+    \n\n#line 1 \"formal-power-series/formal-power-series.hpp\"\n\n\n// https://harui-i.github.io/library/formal-power-series/formal-power-series.hpp.html\n\
+    \n#include <algorithm>\n#include <iostream>\n#include <vector>\n\n#line 1 \"math/modint.hpp\"\
+    \n\n\n// https://harui-i.github.io/library/math/modint.hpp.html\n\n#line 1 \"\
+    math/external_gcd.hpp\"\n\n\n// https://harui-i.github.io/library/math/external_gcd.hpp.html\n\
+    \n#include <tuple>\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T,\
+    \ T, T> extendedGCD(T a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while\
+    \ (b != 0) {\n        T q = a / b;\n        T r = a % b;\n        a = b;\n   \
+    \     b = r;\n        \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n   \
+    \     x1 = xTemp;\n        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n\
+    \        y1 = yTemp;\n    }\n    return {a, x0, y0};\n}\n\n#line 6 \"math/modint.hpp\"\
+    \n#include <type_traits>\n#include <cassert>\n\nlong long mod_pow_ll(long long\
+    \ x, long long n, long long mod) {\n    long long ret = 1;\n    while (n > 0)\
+    \ {\n        if (n & 1) ret = (__int128)ret * x % mod;\n        x = (__int128)x\
+    \ * x % mod;\n        n >>= 1;\n    }\n    return ret;\n}\n\n// x^2 = a (mod p)\
+    \ \u3068\u306A\u308B x \u3092\u8FD4\u3059\u3002\u5B58\u5728\u3057\u306A\u3044\u5834\
+    \u5408\u306F -1\u3002\n// p \u306F\u7D20\u6570\u3067\u3042\u308B\u3053\u3068\u3092\
+    \u4EEE\u5B9A\u3059\u308B\u3002\nlong long mod_sqrt(long long a, long long p) {\n\
+    \    a %= p;\n    if (a < 0) a += p;\n    if (a == 0) return 0;\n    if (p ==\
+    \ 2) return a;\n    if (mod_pow_ll(a, (p - 1) / 2, p) != 1) return -1;\n    if\
+    \ (p % 4 == 3) return mod_pow_ll(a, (p + 1) / 4, p);\n\n    long long q = p -\
+    \ 1;\n    int s = 0;\n    while ((q & 1) == 0) {\n        q >>= 1;\n        s++;\n\
+    \    }\n\n    long long z = 2;\n    while (mod_pow_ll(z, (p - 1) / 2, p) != p\
+    \ - 1) z++;\n\n    long long c = mod_pow_ll(z, q, p);\n    long long x = mod_pow_ll(a,\
+    \ (q + 1) / 2, p);\n    long long t = mod_pow_ll(a, q, p);\n    int m = s;\n\n\
+    \    while (t != 1) {\n        int i = 1;\n        long long tt = (__int128)t\
+    \ * t % p;\n        while (tt != 1) {\n            tt = (__int128)tt * tt % p;\n\
+    \            i++;\n        }\n        long long b = c;\n        for (int j = 0;\
+    \ j < m - i - 1; j++) b = (__int128)b * b % p;\n        x = (__int128)x * b %\
+    \ p;\n        c = (__int128)b * b % p;\n        t = (__int128)t * c % p;\n   \
+    \     m = i;\n    }\n\n    return x;\n}\n\ntemplate<int MOD, typename T = int>\n\
+    struct static_modint {\n    T value;\n\n    constexpr explicit static_modint()\
+    \ : value(0) {}\n\n    static constexpr int mod() { return MOD; }\n\n    constexpr\
+    \ static_modint(long long v) {\n        if constexpr (std::is_same<T, double>::value)\
+    \ {\n            value = double(v);\n        }\n        else {\n            value\
+    \ = int(((v % MOD) + MOD) % MOD);\n        }\n    }\n\n    constexpr static_modint&\
+    \ operator+=(const static_modint& other) {\n        if constexpr (std::is_same<T,\
+    \ double>::value) {\n            value += other.value;\n        }\n        else\
+    \ {\n            if ((value += other.value) >= MOD) value -= MOD;\n        }\n\
+    \        return *this;\n    }\n\n    constexpr static_modint& operator-=(const\
+    \ static_modint& other) {\n        if constexpr (std::is_same<T, double>::value)\
+    \ {\n            value -= other.value;\n        }\n        else {\n          \
+    \  if ((value -= other.value) < 0) value += MOD;\n        }\n        return *this;\n\
+    \    }\n\n    constexpr static_modint& operator*=(const static_modint& other)\
+    \ {\n        if constexpr (std::is_same<T, double>::value) {\n            value\
+    \ *= other.value;\n        }\n        else {\n            value = int((long long)value\
+    \ * other.value % MOD);\n        }\n        return *this;\n    }\n\n    constexpr\
+    \ static_modint operator+(const static_modint& other) const {\n        return\
+    \ static_modint(*this) += other;\n    }\n\n    constexpr static_modint operator-(const\
+    \ static_modint& other) const {\n        return static_modint(*this) -= other;\n\
+    \    }\n\n    constexpr static_modint operator-() const {\n        return static_modint(0)\
+    \ - *this;\n    }\n\n    constexpr static_modint operator*(const static_modint&\
+    \ other) const {\n        return static_modint(*this) *= other;\n    }\n\n   \
+    \ constexpr static_modint pow(long long exp) const {\n        static_modint base\
+    \ = *this, res = static_modint(1);\n        while (exp > 0) {\n            if\
+    \ (exp & 1) res *= base;\n            base *= base;\n            exp >>= 1;\n\
+    \        }\n        return res;\n    }\n\n    long long sqrt_val() const {\n \
+    \       return mod_sqrt(value, MOD);\n    }\n\n    static_modint sqrt() const\
     \ {\n        long long ret = sqrt_val();\n        assert(ret != -1);\n       \
     \ return static_modint(ret);\n    }\n\n    constexpr static_modint inv() const\
     \ {\n        if constexpr (std::is_same<T, double>::value) {\n            static_modint\
@@ -114,7 +116,7 @@ data:
     \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
     \ modint = static_modint<mod>;\nusing doublemodint = static_modint<59, double>;\n\
     using modint998244353 = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\
-    \n\n#line 9 \"formal-power-series/formal-power-series.hpp\"\n\ntemplate <typename\
+    \n\n#line 10 \"formal-power-series/formal-power-series.hpp\"\n\ntemplate <typename\
     \ mint>\nstruct FPS {\n  std::vector<mint> _vec;\n\n  constexpr int lg2(int N)\
     \ const {\n    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n   \
     \ if ((1LL << ret) < N) ret++;\n    return ret;\n  }\n\n  // \u30CA\u30A4\u30FC\
@@ -239,23 +241,23 @@ data:
     \ next_inv(FPS& g_d) const;\n  virtual void CooleyTukeyNTT998244353(std::vector<mint>&\
     \ a, bool is_reverse) const;\n  //  virtual FPS exp(int deg=-1) const;\n  virtual\
     \ std::vector<mint> multiply(const std::vector<mint>& a, const std::vector<mint>&\
-    \ b);\n};\n\n#line 1 \"formal-power-series/fps-sparse.hpp\"\n\n\n\n#line 6 \"\
-    formal-power-series/fps-sparse.hpp\"\n\n// forward decl to avoid circular include:\
-    \ formal-power-series.hpp includes this file\ntemplate <typename mint>\nstruct\
-    \ FPS;\n\n// FPS\u306E\u975E\u30BC\u30ED\u306A\u9805\u3092\u96C6\u3081\u305Fvector<pair<int,mint>>\u3092\
-    \u8FD4\u3059\ntemplate <typename mint>\nstd::vector<std::pair<int, mint>> get_nonzeros(const\
-    \ FPS<mint>& f) {\n  std::vector<std::pair<int, mint>> ret;\n  for (int i = 0;\
-    \ i < f.size(); i++) {\n    if (f[i] != mint(0)) ret.emplace_back(i, f[i]);\n\
-    \  }\n  return ret;\n}\n\n// \u2193--- inverse of sparse fps ---\u2193\n// calculate\
-    \ inverse of f(sparse)\n// deg : -1 + ( maximum degree of g )\ntemplate <typename\
-    \ mint>\nFPS<mint> inv_sparse(const std::vector<std::pair<int, mint>>& f, int\
-    \ deg) {\n  assert(deg >= 0);\n  for (int i = 0; i < (int)f.size() - 1; i++) assert(f[i].first\
-    \ < f[i + 1].first);\n  assert(f[0].first == 0 && f[0].second != mint(0));\n\n\
-    \  mint f0inv = f[0].second.inv();\n  std::vector<mint> g(deg);\n  g[0] = f0inv;\n\
-    \  for (int i = 0; i < deg - 1; i++) {\n    for (std::pair<int, mint> pim : f)\
-    \ {\n      if (i + 1 - pim.first >= 0)\n        g[i + 1] -= pim.second * g[i +\
-    \ 1 - pim.first];\n      else\n        continue;\n    }\n    g[i + 1] *= f0inv;\n\
-    \  }\n\n  return g;\n}\n\ntemplate <typename mint>\nFPS<mint> inv_sparse(const\
+    \ b);\n};\n\n#line 1 \"formal-power-series/fps-sparse.hpp\"\n\n\n// https://harui-i.github.io/library/formal-power-series/fps-sparse.hpp.html\n\
+    \n#line 7 \"formal-power-series/fps-sparse.hpp\"\n\n// forward decl to avoid circular\
+    \ include: formal-power-series.hpp includes this file\ntemplate <typename mint>\n\
+    struct FPS;\n\n// FPS\u306E\u975E\u30BC\u30ED\u306A\u9805\u3092\u96C6\u3081\u305F\
+    vector<pair<int,mint>>\u3092\u8FD4\u3059\ntemplate <typename mint>\nstd::vector<std::pair<int,\
+    \ mint>> get_nonzeros(const FPS<mint>& f) {\n  std::vector<std::pair<int, mint>>\
+    \ ret;\n  for (int i = 0; i < f.size(); i++) {\n    if (f[i] != mint(0)) ret.emplace_back(i,\
+    \ f[i]);\n  }\n  return ret;\n}\n\n// \u2193--- inverse of sparse fps ---\u2193\
+    \n// calculate inverse of f(sparse)\n// deg : -1 + ( maximum degree of g )\ntemplate\
+    \ <typename mint>\nFPS<mint> inv_sparse(const std::vector<std::pair<int, mint>>&\
+    \ f, int deg) {\n  assert(deg >= 0);\n  for (int i = 0; i < (int)f.size() - 1;\
+    \ i++) assert(f[i].first < f[i + 1].first);\n  assert(f[0].first == 0 && f[0].second\
+    \ != mint(0));\n\n  mint f0inv = f[0].second.inv();\n  std::vector<mint> g(deg);\n\
+    \  g[0] = f0inv;\n  for (int i = 0; i < deg - 1; i++) {\n    for (std::pair<int,\
+    \ mint> pim : f) {\n      if (i + 1 - pim.first >= 0)\n        g[i + 1] -= pim.second\
+    \ * g[i + 1 - pim.first];\n      else\n        continue;\n    }\n    g[i + 1]\
+    \ *= f0inv;\n  }\n\n  return g;\n}\n\ntemplate <typename mint>\nFPS<mint> inv_sparse(const\
     \ FPS<mint>& f, int deg) {\n  return inv_sparse(get_nonzeros(f), deg);\n}\n\n\
     template <typename mint>\nFPS<mint> FPS<mint>::inv_sparse(int deg) const {\n \
     \ return ::inv_sparse(*this, deg);\n}\n\n// \u2191--- inverse of sparse fps ----\u2191\
@@ -332,10 +334,10 @@ data:
     \ i < g.size(); i++)\n    if (g[i] != mint(0)) vpmi.emplace_back(i, g[i]);\n\n\
     \  return multiply_sparse(f, vpmi, deg);\n}\n\ntemplate <typename mint>\nFPS<mint>\
     \ FPS<mint>::mul_sparse(const FPS<mint>& g, int deg) const {\n  return multiply_sparse(*this,\
-    \ g, deg);\n}\n\n\n#line 337 \"formal-power-series/formal-power-series.hpp\"\n\
-    \n\n#line 1 \"formal-power-series/fps-998.hpp\"\n\n\n\n#include <array>\n\n#line\
-    \ 7 \"formal-power-series/fps-998.hpp\"\n\nusing mint = modint998244353;\n// ZETAS\
-    \ =\n// {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
+    \ g, deg);\n}\n\n\n#line 338 \"formal-power-series/formal-power-series.hpp\"\n\
+    \n\n#line 1 \"formal-power-series/fps-998.hpp\"\n\n\n// https://harui-i.github.io/library/formal-power-series/fps-998.hpp.html\n\
+    \n#include <array>\n\n#line 8 \"formal-power-series/fps-998.hpp\"\n\nusing mint\
+    \ = modint998244353;\n// ZETAS =\n// {1,998244352,911660635,372528824,929031873,452798380,922799308,781712469,476477967,166035806,258648936,584193783,63912897,350007156,666702199,968855178,629671588,24514907,996173970,363395222,565042129,733596141,267099868,15311432};\n\
     //  constexpr \u95A2\u6570\u5185\u3067 ZETAS \u914D\u5217\u3092\u8A2D\u5B9A\u3059\
     \u308B\u305F\u3081\u306E\u88DC\u52A9\u95A2\u6570\nstd::array<mint, 24> setup_zetas()\
     \ {\n  std::array<mint, 24> zetas;\n  zetas[23] = mint(3).pow(119);\n  for (int\
@@ -446,17 +448,19 @@ data:
     \u9805\u30920\u306B\u3059\u308B\u3053\u3068\u3067\u5F97\u3089\u308C\u308B\u3002\
     \n  //    [0, d)\u306E\u9805            [d, 2d)\u306E\u9805\n  //    h'_2d*g_d\u306E\
     [0,d)       h'_2d*g_d\u306E[d, 2d)\n  //    h'_2d*g_d\u306E[2d, 3d)    h'_2d*g_d\u306E\
-    [3d, 4d)\n\n  g = g_origin - h_2d;\n  g.resize(d * 2);\n}\n\n\n#line 3 \"template/template.hpp\"\
-    \nusing namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
-    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
-    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
-    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
-    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
-    \ 8 \"test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp\"\n\n\
-    using mint = modint998244353;\n\nint main() {\n  ios::sync_with_stdio(0);\n  cin.tie(0);\n\
-    \  cout.tie(0);\n  int N, K;\n  ll M;\n  cin >> N >> K >> M;\n  FPS<mint> f(N);\n\
-    \  for (int i = 0; i < K; i++) {\n    int a, x;\n    cin >> a >> x;\n    f[a]\
-    \ = mint(x);\n  }\n  cout << f.pow_sparse(M, N).pre(N) << endl;\n}\n"
+    [3d, 4d)\n\n  g = g_origin - h_2d;\n  g.resize(d * 2);\n}\n\n\n#line 1 \"template/template.hpp\"\
+    \n\n\n// https://harui-i.github.io/library/template/template.hpp.html\n\n#line\
+    \ 7 \"template/template.hpp\"\nusing namespace std;\nusing ll = long long;\ntemplate<class\
+    \ T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b; return true;} return\
+    \ false;}\ntemplate<class T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b;\
+    \ return true;} return false;}\nconst int INTINF = 1000001000;\nconst int INTMAX\
+    \ = 2147483647;\nconst ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n\
+    \n\n#line 8 \"test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp\"\
+    \n\nusing mint = modint998244353;\n\nint main() {\n  ios::sync_with_stdio(0);\n\
+    \  cin.tie(0);\n  cout.tie(0);\n  int N, K;\n  ll M;\n  cin >> N >> K >> M;\n\
+    \  FPS<mint> f(N);\n  for (int i = 0; i < K; i++) {\n    int a, x;\n    cin >>\
+    \ a >> x;\n    f[a] = mint(x);\n  }\n  cout << f.pow_sparse(M, N).pre(N) << endl;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse\"\
     \n\n#include \"formal-power-series/formal-power-series.hpp\"\n#include \"formal-power-series/fps-998.hpp\"\
     \n#include \"formal-power-series/fps-sparse.hpp\"\n#include \"math/modint.hpp\"\
@@ -477,7 +481,7 @@ data:
   isVerificationFile: true
   path: test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
   requiredBy: []
-  timestamp: '2026-06-28 07:56:01+09:00'
+  timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp

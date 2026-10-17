@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/primality_test.hpp
     title: primality_test
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -19,15 +19,16 @@ data:
     - https://judge.yosupo.jp/problem/primality_test
   bundledCode: "#line 1 \"test/verify/math/yosupo-primality-test.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n\n#line 1 \"template/template.hpp\"\
-    \n#include <iostream>\n#include <cassert>\nusing namespace std;\nusing ll = long\
-    \ long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b;\
-    \ return true;} return false;}\ntemplate<class T> inline bool chmin(T& a, const\
-    \ T& b) {if (b<a) {a=b; return true;} return false;}\nconst int INTINF = 1000001000;\n\
-    const int INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\nconst ll\
-    \ LLINF = 1000000000000000000;\n#line 1 \"math/primality_test.hpp\"\n\n\n\n#include\
-    \ <cstdint>\n\nnamespace primality_test_internal {\n\nusing u64 = unsigned long\
-    \ long;\nusing u128 = unsigned __int128;\n\ninline u64 mod_pow_u64(u64 a, u64\
-    \ e, u64 mod) {\n  u64 ret = 1;\n  while(e > 0) {\n    if(e & 1) ret = (u128)ret\
+    \n\n\n// https://harui-i.github.io/library/template/template.hpp.html\n\n#include\
+    \ <iostream>\n#include <cassert>\nusing namespace std;\nusing ll = long long;\n\
+    template<class T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b; return true;}\
+    \ return false;}\ntemplate<class T> inline bool chmin(T& a, const T& b) {if (b<a)\
+    \ {a=b; return true;} return false;}\nconst int INTINF = 1000001000;\nconst int\
+    \ INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\nconst ll LLINF\
+    \ = 1000000000000000000;\n\n\n#line 1 \"math/primality_test.hpp\"\n\n\n// https://harui-i.github.io/library/math/primality_test.hpp.html\n\
+    \n#include <cstdint>\n\nnamespace primality_test_internal {\n\nusing u64 = unsigned\
+    \ long long;\nusing u128 = unsigned __int128;\n\ninline u64 mod_pow_u64(u64 a,\
+    \ u64 e, u64 mod) {\n  u64 ret = 1;\n  while(e > 0) {\n    if(e & 1) ret = (u128)ret\
     \ * a % mod;\n    a = (u128)a * a % mod;\n    e >>= 1;\n  }\n  return ret;\n}\n\
     \ninline bool miller_rabin(u64 n, u64 a, u64 d, int s) {\n  if(a % n == 0) return\
     \ true;\n  u64 x = mod_pow_u64(a, d, n);\n  if(x == 1 || x == n - 1) return true;\n\
@@ -54,7 +55,7 @@ data:
   isVerificationFile: true
   path: test/verify/math/yosupo-primality-test.test.cpp
   requiredBy: []
-  timestamp: '2026-05-11 00:18:16+09:00'
+  timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/math/yosupo-primality-test.test.cpp

@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: formal-power-series/fps-sparse.hpp
     title: "fps-sparse(\u758E\u306A\u5834\u5408\u306E\u9AD8\u901F\u5316)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/external_gcd.hpp
     title: math/external_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
   _extendedRequiredBy: []
@@ -22,17 +22,20 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"formal-power-series/fiduccia.hpp\"\n#include <vector>\n\
-    #line 1 \"formal-power-series/formal-power-series.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <iostream>\n#line 7 \"formal-power-series/formal-power-series.hpp\"\n\
-    \n#line 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n\
-    #include <tuple>\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T, T,\
-    \ T> extendedGCD(T a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while\
+    links:
+    - https://harui-i.github.io/library/formal-power-series/fiduccia.hpp.html
+  bundledCode: "#line 1 \"formal-power-series/fiduccia.hpp\"\n\n\n// https://harui-i.github.io/library/formal-power-series/fiduccia.hpp.html\n\
+    \n#include <vector>\n#line 1 \"formal-power-series/formal-power-series.hpp\"\n\
+    \n\n// https://harui-i.github.io/library/formal-power-series/formal-power-series.hpp.html\n\
+    \n#include <algorithm>\n#include <iostream>\n#line 8 \"formal-power-series/formal-power-series.hpp\"\
+    \n\n#line 1 \"math/modint.hpp\"\n\n\n// https://harui-i.github.io/library/math/modint.hpp.html\n\
+    \n#line 1 \"math/external_gcd.hpp\"\n\n\n// https://harui-i.github.io/library/math/external_gcd.hpp.html\n\
+    \n#include <tuple>\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T,\
+    \ T, T> extendedGCD(T a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while\
     \ (b != 0) {\n        T q = a / b;\n        T r = a % b;\n        a = b;\n   \
     \     b = r;\n        \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n   \
     \     x1 = xTemp;\n        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n\
-    \        y1 = yTemp;\n    }\n    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\
+    \        y1 = yTemp;\n    }\n    return {a, x0, y0};\n}\n\n#line 6 \"math/modint.hpp\"\
     \n#include <type_traits>\n#include <cassert>\n\nlong long mod_pow_ll(long long\
     \ x, long long n, long long mod) {\n    long long ret = 1;\n    while (n > 0)\
     \ {\n        if (n & 1) ret = (__int128)ret * x % mod;\n        x = (__int128)x\
@@ -101,7 +104,7 @@ data:
     \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
     \ modint = static_modint<mod>;\nusing doublemodint = static_modint<59, double>;\n\
     using modint998244353 = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\
-    \n\n#line 9 \"formal-power-series/formal-power-series.hpp\"\n\ntemplate <typename\
+    \n\n#line 10 \"formal-power-series/formal-power-series.hpp\"\n\ntemplate <typename\
     \ mint>\nstruct FPS {\n  std::vector<mint> _vec;\n\n  constexpr int lg2(int N)\
     \ const {\n    int ret = 0;\n    if (N > 0) ret = 31 - __builtin_clz(N);\n   \
     \ if ((1LL << ret) < N) ret++;\n    return ret;\n  }\n\n  // \u30CA\u30A4\u30FC\
@@ -226,23 +229,23 @@ data:
     \ next_inv(FPS& g_d) const;\n  virtual void CooleyTukeyNTT998244353(std::vector<mint>&\
     \ a, bool is_reverse) const;\n  //  virtual FPS exp(int deg=-1) const;\n  virtual\
     \ std::vector<mint> multiply(const std::vector<mint>& a, const std::vector<mint>&\
-    \ b);\n};\n\n#line 1 \"formal-power-series/fps-sparse.hpp\"\n\n\n\n#line 6 \"\
-    formal-power-series/fps-sparse.hpp\"\n\n// forward decl to avoid circular include:\
-    \ formal-power-series.hpp includes this file\ntemplate <typename mint>\nstruct\
-    \ FPS;\n\n// FPS\u306E\u975E\u30BC\u30ED\u306A\u9805\u3092\u96C6\u3081\u305Fvector<pair<int,mint>>\u3092\
-    \u8FD4\u3059\ntemplate <typename mint>\nstd::vector<std::pair<int, mint>> get_nonzeros(const\
-    \ FPS<mint>& f) {\n  std::vector<std::pair<int, mint>> ret;\n  for (int i = 0;\
-    \ i < f.size(); i++) {\n    if (f[i] != mint(0)) ret.emplace_back(i, f[i]);\n\
-    \  }\n  return ret;\n}\n\n// \u2193--- inverse of sparse fps ---\u2193\n// calculate\
-    \ inverse of f(sparse)\n// deg : -1 + ( maximum degree of g )\ntemplate <typename\
-    \ mint>\nFPS<mint> inv_sparse(const std::vector<std::pair<int, mint>>& f, int\
-    \ deg) {\n  assert(deg >= 0);\n  for (int i = 0; i < (int)f.size() - 1; i++) assert(f[i].first\
-    \ < f[i + 1].first);\n  assert(f[0].first == 0 && f[0].second != mint(0));\n\n\
-    \  mint f0inv = f[0].second.inv();\n  std::vector<mint> g(deg);\n  g[0] = f0inv;\n\
-    \  for (int i = 0; i < deg - 1; i++) {\n    for (std::pair<int, mint> pim : f)\
-    \ {\n      if (i + 1 - pim.first >= 0)\n        g[i + 1] -= pim.second * g[i +\
-    \ 1 - pim.first];\n      else\n        continue;\n    }\n    g[i + 1] *= f0inv;\n\
-    \  }\n\n  return g;\n}\n\ntemplate <typename mint>\nFPS<mint> inv_sparse(const\
+    \ b);\n};\n\n#line 1 \"formal-power-series/fps-sparse.hpp\"\n\n\n// https://harui-i.github.io/library/formal-power-series/fps-sparse.hpp.html\n\
+    \n#line 7 \"formal-power-series/fps-sparse.hpp\"\n\n// forward decl to avoid circular\
+    \ include: formal-power-series.hpp includes this file\ntemplate <typename mint>\n\
+    struct FPS;\n\n// FPS\u306E\u975E\u30BC\u30ED\u306A\u9805\u3092\u96C6\u3081\u305F\
+    vector<pair<int,mint>>\u3092\u8FD4\u3059\ntemplate <typename mint>\nstd::vector<std::pair<int,\
+    \ mint>> get_nonzeros(const FPS<mint>& f) {\n  std::vector<std::pair<int, mint>>\
+    \ ret;\n  for (int i = 0; i < f.size(); i++) {\n    if (f[i] != mint(0)) ret.emplace_back(i,\
+    \ f[i]);\n  }\n  return ret;\n}\n\n// \u2193--- inverse of sparse fps ---\u2193\
+    \n// calculate inverse of f(sparse)\n// deg : -1 + ( maximum degree of g )\ntemplate\
+    \ <typename mint>\nFPS<mint> inv_sparse(const std::vector<std::pair<int, mint>>&\
+    \ f, int deg) {\n  assert(deg >= 0);\n  for (int i = 0; i < (int)f.size() - 1;\
+    \ i++) assert(f[i].first < f[i + 1].first);\n  assert(f[0].first == 0 && f[0].second\
+    \ != mint(0));\n\n  mint f0inv = f[0].second.inv();\n  std::vector<mint> g(deg);\n\
+    \  g[0] = f0inv;\n  for (int i = 0; i < deg - 1; i++) {\n    for (std::pair<int,\
+    \ mint> pim : f) {\n      if (i + 1 - pim.first >= 0)\n        g[i + 1] -= pim.second\
+    \ * g[i + 1 - pim.first];\n      else\n        continue;\n    }\n    g[i + 1]\
+    \ *= f0inv;\n  }\n\n  return g;\n}\n\ntemplate <typename mint>\nFPS<mint> inv_sparse(const\
     \ FPS<mint>& f, int deg) {\n  return inv_sparse(get_nonzeros(f), deg);\n}\n\n\
     template <typename mint>\nFPS<mint> FPS<mint>::inv_sparse(int deg) const {\n \
     \ return ::inv_sparse(*this, deg);\n}\n\n// \u2191--- inverse of sparse fps ----\u2191\
@@ -319,8 +322,8 @@ data:
     \ i < g.size(); i++)\n    if (g[i] != mint(0)) vpmi.emplace_back(i, g[i]);\n\n\
     \  return multiply_sparse(f, vpmi, deg);\n}\n\ntemplate <typename mint>\nFPS<mint>\
     \ FPS<mint>::mul_sparse(const FPS<mint>& g, int deg) const {\n  return multiply_sparse(*this,\
-    \ g, deg);\n}\n\n\n#line 337 \"formal-power-series/formal-power-series.hpp\"\n\
-    \n\n#line 3 \"formal-power-series/fiduccia.hpp\"\n\n// AtCoder\u3067\u306Fverify\u3067\
+    \ g, deg);\n}\n\n\n#line 338 \"formal-power-series/formal-power-series.hpp\"\n\
+    \n\n#line 7 \"formal-power-series/fiduccia.hpp\"\n\n// AtCoder\u3067\u306Fverify\u3067\
     \u304D\u305F\u304C\u3001LC\u3067\u306F\u3067\u304D\u305A\n// given linear recurrence\
     \ sequence a_{n+K}= c_1 a_{n+K-1} + c_2 a_{n+k-2} + \\dots + c_{K-1} a_{n+1} +\
     \ c_K a_n\n// a_0, a_1, \\dots, a_{K-1} are given\n// calculate a_N (N-th term\
@@ -341,9 +344,11 @@ data:
     \u3067\u5B9A\u6570\u500D\u304C\u826F\u304F\u306A\u308B\u306D\n      if (remainder.size()\
     \ >= varphi.size()) remainder %= varphi;\n    }\n  }\n\n  // remainder = x^N mod\
     \ varphi \n  mint ret = 0;\n  assert(remainder.size() <= K);\n  for(int i=0; i<remainder.size();\
-    \ i++) {\n    ret += remainder[i] * a[i];\n  }\n\n  return ret;\n}\n"
-  code: "#include <vector>\n#include \"formal-power-series/formal-power-series.hpp\"\
-    \n\n// AtCoder\u3067\u306Fverify\u3067\u304D\u305F\u304C\u3001LC\u3067\u306F\u3067\
+    \ i++) {\n    ret += remainder[i] * a[i];\n  }\n\n  return ret;\n}\n\n\n"
+  code: "#ifndef HARUILIB_FORMAL_POWER_SERIES_FIDUCCIA_HPP\n#define HARUILIB_FORMAL_POWER_SERIES_FIDUCCIA_HPP\n\
+    // https://harui-i.github.io/library/formal-power-series/fiduccia.hpp.html\n\n\
+    #include <vector>\n#include \"formal-power-series/formal-power-series.hpp\"\n\n\
+    // AtCoder\u3067\u306Fverify\u3067\u304D\u305F\u304C\u3001LC\u3067\u306F\u3067\
     \u304D\u305A\n// given linear recurrence sequence a_{n+K}= c_1 a_{n+K-1} + c_2\
     \ a_{n+k-2} + \\dots + c_{K-1} a_{n+1} + c_K a_n\n// a_0, a_1, \\dots, a_{K-1}\
     \ are given\n// calculate a_N (N-th term of linear recurrence sequence) time complexity\
@@ -364,7 +369,7 @@ data:
     \n      if (remainder.size() >= varphi.size()) remainder %= varphi;\n    }\n \
     \ }\n\n  // remainder = x^N mod varphi \n  mint ret = 0;\n  assert(remainder.size()\
     \ <= K);\n  for(int i=0; i<remainder.size(); i++) {\n    ret += remainder[i] *\
-    \ a[i];\n  }\n\n  return ret;\n}\n"
+    \ a[i];\n  }\n\n  return ret;\n}\n\n#endif\n"
   dependsOn:
   - formal-power-series/formal-power-series.hpp
   - math/modint.hpp
@@ -373,7 +378,7 @@ data:
   isVerificationFile: false
   path: formal-power-series/fiduccia.hpp
   requiredBy: []
-  timestamp: '2026-06-28 07:56:01+09:00'
+  timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp

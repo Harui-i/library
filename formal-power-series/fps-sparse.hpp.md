@@ -78,12 +78,13 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"formal-power-series/fps-sparse.hpp\"\n\n\n\n#include <cassert>\n\
-    #include <vector>\n\n// forward decl to avoid circular include: formal-power-series.hpp\
-    \ includes this file\ntemplate <typename mint>\nstruct FPS;\n\n// FPS\u306E\u975E\
-    \u30BC\u30ED\u306A\u9805\u3092\u96C6\u3081\u305Fvector<pair<int,mint>>\u3092\u8FD4\
-    \u3059\ntemplate <typename mint>\nstd::vector<std::pair<int, mint>> get_nonzeros(const\
+    links:
+    - https://harui-i.github.io/library/formal-power-series/fps-sparse.hpp.html
+  bundledCode: "#line 1 \"formal-power-series/fps-sparse.hpp\"\n\n\n// https://harui-i.github.io/library/formal-power-series/fps-sparse.hpp.html\n\
+    \n#include <cassert>\n#include <vector>\n\n// forward decl to avoid circular include:\
+    \ formal-power-series.hpp includes this file\ntemplate <typename mint>\nstruct\
+    \ FPS;\n\n// FPS\u306E\u975E\u30BC\u30ED\u306A\u9805\u3092\u96C6\u3081\u305Fvector<pair<int,mint>>\u3092\
+    \u8FD4\u3059\ntemplate <typename mint>\nstd::vector<std::pair<int, mint>> get_nonzeros(const\
     \ FPS<mint>& f) {\n  std::vector<std::pair<int, mint>> ret;\n  for (int i = 0;\
     \ i < f.size(); i++) {\n    if (f[i] != mint(0)) ret.emplace_back(i, f[i]);\n\
     \  }\n  return ret;\n}\n\n// \u2193--- inverse of sparse fps ---\u2193\n// calculate\
@@ -174,6 +175,7 @@ data:
     \ FPS<mint>::mul_sparse(const FPS<mint>& g, int deg) const {\n  return multiply_sparse(*this,\
     \ g, deg);\n}\n\n\n"
   code: "#ifndef HARUILIB_FORMAL_POWER_SERIES_SPARSE_FPS_HPP\n#define HARUILIB_FORMAL_POWER_SERIES_SPARSE_FPS_HPP\n\
+    // https://harui-i.github.io/library/formal-power-series/fps-sparse.hpp.html\n\
     \n#include <cassert>\n#include <vector>\n\n// forward decl to avoid circular include:\
     \ formal-power-series.hpp includes this file\ntemplate <typename mint>\nstruct\
     \ FPS;\n\n// FPS\u306E\u975E\u30BC\u30ED\u306A\u9805\u3092\u96C6\u3081\u305Fvector<pair<int,mint>>\u3092\
@@ -271,32 +273,32 @@ data:
   isVerificationFile: false
   path: formal-power-series/fps-sparse.hpp
   requiredBy:
-  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
+  - formal-power-series/fps-998.hpp
   - formal-power-series/fps-naive.hpp
+  - formal-power-series/formal-power-series.hpp
   - formal-power-series/fiduccia.hpp
   - formal-power-series/bostan-mori.hpp
-  - formal-power-series/fps-998.hpp
-  - formal-power-series/formal-power-series.hpp
-  timestamp: '2025-11-05 12:09:20+09:00'
+  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
+  timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/convolution/yosupo-normal-convolution.test.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
+  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
   - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
   - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
   - test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
   - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
+  - test/verify/convolution/yosupo-normal-convolution.test.cpp
 documentation_of: formal-power-series/fps-sparse.hpp
 layout: document
 title: "fps-sparse(\u758E\u306A\u5834\u5408\u306E\u9AD8\u901F\u5316)"

@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bellmanford.hpp
     title: "Bellmanford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/graph_template.hpp
     title: graph/graph_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -21,19 +21,20 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B
   bundledCode: "#line 1 \"test/verify/aoj-grl-1b.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B\"\
-    \n#line 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\n\
-    using namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
-    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
-    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
-    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
-    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
-    \ 3 \"test/verify/aoj-grl-1b.test.cpp\"\n#include <vector>\n\n#line 1 \"graph/bellmanford.hpp\"\
-    \n\n\n\n#line 5 \"graph/bellmanford.hpp\"\n#include <queue>\n#line 7 \"graph/bellmanford.hpp\"\
-    \n#include <limits>\n\n#line 1 \"graph/graph_template.hpp\"\n\n\n\n#line 5 \"\
-    graph/graph_template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int from;\
-    \ int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1), to(-1),\
-    \ cost(T(0)) {}\n\n  Edge(int _from, int _to, T _cost) : from(_from), to(_to),\
-    \ cost(_cost) {}\n\n  // unweighted\n  Edge(int _from, int _to) : from(_from),\
+    \n#line 1 \"template/template.hpp\"\n\n\n// https://harui-i.github.io/library/template/template.hpp.html\n\
+    \n#include <iostream>\n#include <cassert>\nusing namespace std;\nusing ll = long\
+    \ long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b;\
+    \ return true;} return false;}\ntemplate<class T> inline bool chmin(T& a, const\
+    \ T& b) {if (b<a) {a=b; return true;} return false;}\nconst int INTINF = 1000001000;\n\
+    const int INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\nconst ll\
+    \ LLINF = 1000000000000000000;\n\n\n#line 3 \"test/verify/aoj-grl-1b.test.cpp\"\
+    \n#include <vector>\n\n#line 1 \"graph/bellmanford.hpp\"\n\n\n// https://harui-i.github.io/library/graph/bellmanford.hpp.html\n\
+    \n#line 6 \"graph/bellmanford.hpp\"\n#include <queue>\n#line 8 \"graph/bellmanford.hpp\"\
+    \n#include <limits>\n\n#line 1 \"graph/graph_template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/graph_template.hpp.html\n\
+    \n#line 6 \"graph/graph_template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  int from; int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1),\
+    \ to(-1), cost(T(0)) {}\n\n  Edge(int _from, int _to, T _cost) : from(_from),\
+    \ to(_to), cost(_cost) {}\n\n  // unweighted\n  Edge(int _from, int _to) : from(_from),\
     \ to(_to), cost(T(1)) {}\n\n  bool operator==(const Edge& rhs) const {\n    return\
     \ from == rhs.from && to == rhs.to && cost == rhs.cost;\n  }\n\n  bool operator<(const\
     \ Edge& rhs) const {\n    return cost < rhs.cost;\n  }\n  \n  bool operator>(const\
@@ -43,7 +44,7 @@ data:
     \  }\n\n  void add_edge(Edge<T> e) {\n    (*this)[e.from].push_back(e);\n  }\n\
     \n  // weighted\n  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
-    \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 10\
+    \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 11\
     \ \"graph/bellmanford.hpp\"\n\n// \u5B8C\u5168\u306B\u30D1\u30AF\u30EA\u307E\u3057\
     \u305F\n// https://ei1333.github.io/library/graph/shortest-path/bellman-ford.hpp\n\
     template <typename T> \nstd::vector<T> bellman_ford(const std::vector<Edge<T>>&\
@@ -83,7 +84,7 @@ data:
   isVerificationFile: true
   path: test/verify/aoj-grl-1b.test.cpp
   requiredBy: []
-  timestamp: '2024-09-07 20:55:28+09:00'
+  timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/aoj-grl-1b.test.cpp

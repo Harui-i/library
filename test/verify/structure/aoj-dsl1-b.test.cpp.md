@@ -5,7 +5,7 @@ data:
     path: structure/potentialized-union-find-tree.hpp
     title: "Potentialized Union Find Tree (\u30DD\u30C6\u30F3\u30B7\u30E3\u30EB\u3064\
       \u304DUnionFind\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -20,24 +20,25 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_1_B
   bundledCode: "#line 1 \"test/verify/structure/aoj-dsl1-b.test.cpp\"\n#define PROBLEM\
     \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_1_B\"\n\n#line\
-    \ 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\nusing\
-    \ namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
-    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
-    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
-    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
-    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
-    \ 1 \"structure/potentialized-union-find-tree.hpp\"\n\n\n\n#include <vector>\n\
-    \ntemplate <typename T, T(*op)(T, T), T(*invop)(T, T), T(*e)()>\nstruct PotentializedUnionFindTree\
-    \ {\nprivate:\n  int n;\n  std::vector<int> parent;\n  std::vector<int> rank;\n\
-    \  std::vector<T> potential;\n\npublic:\n  explicit PotentializedUnionFindTree(int\
-    \ _n) : n(_n), parent(_n), rank(_n, 0), potential(_n, e()) {\n    for (int i =\
-    \ 0; i < n; ++i) {\n      parent[i] = i;\n    }\n  }\n  \n  int merge(int a, int\
-    \ b, T d) {\n    assert(0 <= a && a < n);\n    assert(0 <= b && b < n);\n    int\
-    \ rootA = leader(a);\n    int rootB = leader(b);\n\n    if (rootA == rootB) return\
-    \ rootA;\n\n    T new_potential = invop(potential[a], op(d, potential[b]));\n\n\
-    \    if (rank[rootA] < rank[rootB]) {  \n      std::swap(rootA, rootB);\n    \
-    \  new_potential = invop(e(), new_potential);\n    }\n\n    parent[rootB] = rootA;\n\
-    \    potential[rootB] = new_potential;\n\n    if (rank[rootA] == rank[rootB])\
+    \ 1 \"template/template.hpp\"\n\n\n// https://harui-i.github.io/library/template/template.hpp.html\n\
+    \n#include <iostream>\n#include <cassert>\nusing namespace std;\nusing ll = long\
+    \ long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b;\
+    \ return true;} return false;}\ntemplate<class T> inline bool chmin(T& a, const\
+    \ T& b) {if (b<a) {a=b; return true;} return false;}\nconst int INTINF = 1000001000;\n\
+    const int INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\nconst ll\
+    \ LLINF = 1000000000000000000;\n\n\n#line 1 \"structure/potentialized-union-find-tree.hpp\"\
+    \n\n\n// https://harui-i.github.io/library/structure/potentialized-union-find-tree.hpp.html\n\
+    \n#include <vector>\n\ntemplate <typename T, T(*op)(T, T), T(*invop)(T, T), T(*e)()>\n\
+    struct PotentializedUnionFindTree {\nprivate:\n  int n;\n  std::vector<int> parent;\n\
+    \  std::vector<int> rank;\n  std::vector<T> potential;\n\npublic:\n  explicit\
+    \ PotentializedUnionFindTree(int _n) : n(_n), parent(_n), rank(_n, 0), potential(_n,\
+    \ e()) {\n    for (int i = 0; i < n; ++i) {\n      parent[i] = i;\n    }\n  }\n\
+    \  \n  int merge(int a, int b, T d) {\n    assert(0 <= a && a < n);\n    assert(0\
+    \ <= b && b < n);\n    int rootA = leader(a);\n    int rootB = leader(b);\n\n\
+    \    if (rootA == rootB) return rootA;\n\n    T new_potential = invop(potential[a],\
+    \ op(d, potential[b]));\n\n    if (rank[rootA] < rank[rootB]) {  \n      std::swap(rootA,\
+    \ rootB);\n      new_potential = invop(e(), new_potential);\n    }\n\n    parent[rootB]\
+    \ = rootA;\n    potential[rootB] = new_potential;\n\n    if (rank[rootA] == rank[rootB])\
     \ {\n      rank[rootA]++;\n    }\n\n    return rootA;\n  }\n\n  bool same(int\
     \ a, int b) {\n    assert(0 <= a && a < n);\n    assert(0 <= b && b < n);\n  \
     \  return leader(a) == leader(b);\n  }\n\n  int leader(int a) {\n    assert(0\
@@ -73,7 +74,7 @@ data:
   isVerificationFile: true
   path: test/verify/structure/aoj-dsl1-b.test.cpp
   requiredBy: []
-  timestamp: '2024-08-21 21:41:37+09:00'
+  timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/structure/aoj-dsl1-b.test.cpp

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/graph_template.hpp
     title: graph/graph_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/heavy_light_decomposition.hpp
     title: "Heavy-Light Decomposition(HL\u5206\u89E3, HLD)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: structure/fenwick_tree.hpp
     title: structure/fenwick_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
@@ -25,38 +25,40 @@ data:
     - https://judge.yosupo.jp/problem/vertex_add_path_sum
   bundledCode: "#line 1 \"test/verify/yosupo-vertex-add-path-sum.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n#line 1 \"\
-    template/template.hpp\"\n#include <iostream>\n#include <cassert>\nusing namespace\
-    \ std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T& a, const\
-    \ T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class T> inline\
-    \ bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return false;}\n\
-    const int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst ll LLMAX\
-    \ = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line 3 \"test/verify/yosupo-vertex-add-path-sum.test.cpp\"\
-    \n\n#line 1 \"structure/fenwick_tree.hpp\"\n\n\n\n#include <vector>\n#line 6 \"\
-    structure/fenwick_tree.hpp\"\n\ntemplate <class T> struct fenwick_tree {\n  fenwick_tree():\
-    \ _n(0) {}\n  explicit fenwick_tree(int n): _n(n), data(n) {}\n\n  // point add\n\
-    \  void add(int p, T x) {\n    assert(0 <= p && p < _n);\n    p++;\n    while\
-    \ (p <= _n) {\n      data[p-1] += T(x);\n      p += p & -p;\n    }\n  } \n\n \
-    \ T sum(int l, int r) {\n    assert(0 <= l && l <= r && r <= _n);\n    return\
-    \ sum(r) - sum(l);\n  }\n\nprivate:\n  int _n;\n  std::vector<T> data;\n  T sum(int\
-    \ r) {\n    T ret(0);\n    while (r > 0) {\n      ret += data[r-1];\n      r -=\
-    \ r & -r;\n    }\n\n    return ret;\n  }\n};\n\n\n#line 1 \"graph/tree/heavy_light_decomposition.hpp\"\
-    \n\n\n\n#line 5 \"graph/tree/heavy_light_decomposition.hpp\"\n#include <algorithm>\n\
-    #line 7 \"graph/tree/heavy_light_decomposition.hpp\"\n#include <utility>\n\n#line\
-    \ 1 \"graph/graph_template.hpp\"\n\n\n\n#line 5 \"graph/graph_template.hpp\"\n\
-    \ntemplate <typename T>\nstruct Edge {\n  int from; int to;\n  T cost;\n\n  //\
-    \ default constructor\n  Edge () : from(-1), to(-1), cost(T(0)) {}\n\n  Edge(int\
-    \ _from, int _to, T _cost) : from(_from), to(_to), cost(_cost) {}\n\n  // unweighted\n\
-    \  Edge(int _from, int _to) : from(_from), to(_to), cost(T(1)) {}\n\n  bool operator==(const\
-    \ Edge& rhs) const {\n    return from == rhs.from && to == rhs.to && cost == rhs.cost;\n\
-    \  }\n\n  bool operator<(const Edge& rhs) const {\n    return cost < rhs.cost;\n\
-    \  }\n  \n  bool operator>(const Edge& rhs) const {\n    return cost > rhs.cost;\n\
-    \  }\n\n};\n\n\ntemplate <typename T>\nstruct Graph : std::vector<std::vector<Edge<T>>>\
-    \ {\n\n  using std::vector<std::vector<Edge<T>>>::vector; // inherit constructors\n\
-    \n  void add_edge(int i, Edge<T> e) {\n    (*this)[i].push_back(e);\n  }\n\n \
-    \ void add_edge(Edge<T> e) {\n    (*this)[e.from].push_back(e);\n  }\n\n  // weighted\n\
-    \  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
+    template/template.hpp\"\n\n\n// https://harui-i.github.io/library/template/template.hpp.html\n\
+    \n#include <iostream>\n#include <cassert>\nusing namespace std;\nusing ll = long\
+    \ long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b;\
+    \ return true;} return false;}\ntemplate<class T> inline bool chmin(T& a, const\
+    \ T& b) {if (b<a) {a=b; return true;} return false;}\nconst int INTINF = 1000001000;\n\
+    const int INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\nconst ll\
+    \ LLINF = 1000000000000000000;\n\n\n#line 3 \"test/verify/yosupo-vertex-add-path-sum.test.cpp\"\
+    \n\n#line 1 \"structure/fenwick_tree.hpp\"\n\n\n// https://harui-i.github.io/library/structure/fenwick_tree.hpp.html\n\
+    \n#include <vector>\n#line 7 \"structure/fenwick_tree.hpp\"\n\ntemplate <class\
+    \ T> struct fenwick_tree {\n  fenwick_tree(): _n(0) {}\n  explicit fenwick_tree(int\
+    \ n): _n(n), data(n) {}\n\n  // point add\n  void add(int p, T x) {\n    assert(0\
+    \ <= p && p < _n);\n    p++;\n    while (p <= _n) {\n      data[p-1] += T(x);\n\
+    \      p += p & -p;\n    }\n  } \n\n  T sum(int l, int r) {\n    assert(0 <= l\
+    \ && l <= r && r <= _n);\n    return sum(r) - sum(l);\n  }\n\nprivate:\n  int\
+    \ _n;\n  std::vector<T> data;\n  T sum(int r) {\n    T ret(0);\n    while (r >\
+    \ 0) {\n      ret += data[r-1];\n      r -= r & -r;\n    }\n\n    return ret;\n\
+    \  }\n};\n\n\n#line 1 \"graph/tree/heavy_light_decomposition.hpp\"\n\n\n// https://harui-i.github.io/library/graph/tree/heavy_light_decomposition.hpp.html\n\
+    \n#line 6 \"graph/tree/heavy_light_decomposition.hpp\"\n#include <algorithm>\n\
+    #line 8 \"graph/tree/heavy_light_decomposition.hpp\"\n#include <utility>\n\n#line\
+    \ 1 \"graph/graph_template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/graph_template.hpp.html\n\
+    \n#line 6 \"graph/graph_template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  int from; int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1),\
+    \ to(-1), cost(T(0)) {}\n\n  Edge(int _from, int _to, T _cost) : from(_from),\
+    \ to(_to), cost(_cost) {}\n\n  // unweighted\n  Edge(int _from, int _to) : from(_from),\
+    \ to(_to), cost(T(1)) {}\n\n  bool operator==(const Edge& rhs) const {\n    return\
+    \ from == rhs.from && to == rhs.to && cost == rhs.cost;\n  }\n\n  bool operator<(const\
+    \ Edge& rhs) const {\n    return cost < rhs.cost;\n  }\n  \n  bool operator>(const\
+    \ Edge& rhs) const {\n    return cost > rhs.cost;\n  }\n\n};\n\n\ntemplate <typename\
+    \ T>\nstruct Graph : std::vector<std::vector<Edge<T>>> {\n\n  using std::vector<std::vector<Edge<T>>>::vector;\
+    \ // inherit constructors\n\n  void add_edge(int i, Edge<T> e) {\n    (*this)[i].push_back(e);\n\
+    \  }\n\n  void add_edge(Edge<T> e) {\n    (*this)[e.from].push_back(e);\n  }\n\
+    \n  // weighted\n  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
-    \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 10\
+    \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 11\
     \ \"graph/tree/heavy_light_decomposition.hpp\"\n\nnamespace HaruiLib {\n  // cf\
     \ : https://ngtkana.hatenablog.com/entry/2024/06/24/200138\n  struct Interval\
     \ {\n    // top_id : interval \u306E\u3082\u3063\u3068\u3082\u6839\u306B\u8FD1\
@@ -167,8 +169,8 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-vertex-add-path-sum.test.cpp
   requiredBy: []
-  timestamp: '2025-03-23 14:07:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-17 23:49:45+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/verify/yosupo-vertex-add-path-sum.test.cpp
 layout: document

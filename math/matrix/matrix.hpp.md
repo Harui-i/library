@@ -23,10 +23,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
+    - https://harui-i.github.io/library/math/matrix/matrix.hpp.html
     - https://nyaannyaan.github.io/library/matrix/linear-equation.hpp
-  bundledCode: "#line 1 \"math/matrix/matrix.hpp\"\n\n\n\n#include <vector>\n\ntemplate\
-    \ <class T>\nstruct Matrix{\nprivate: \n  std::vector<std::vector<T>>vec;\n  int\
-    \ N, M;\npublic:\n\n  Matrix(int _N, int _M) : vec(std::vector<std::vector<T>>(_N,\
+  bundledCode: "#line 1 \"math/matrix/matrix.hpp\"\n\n\n// https://harui-i.github.io/library/math/matrix/matrix.hpp.html\n\
+    \n#include <vector>\n\ntemplate <class T>\nstruct Matrix{\nprivate: \n  std::vector<std::vector<T>>vec;\n\
+    \  int N, M;\npublic:\n\n  Matrix(int _N, int _M) : vec(std::vector<std::vector<T>>(_N,\
     \ std::vector<T>(_M))), N(_N), M(_M)  {\n    assert(_N >= 0 && _M >= 0); // 0*0\u306E\
     \u884C\u5217\u3092\u8FD4\u3057\u305F\u3044\u3068\u304D\u3082\u3042\u308B(\u9006\
     \u884C\u5217\u306A\u304B\u3063\u305F\u3068\u304D\u3068\u304B)\n  }\n\n  Matrix<T>\
@@ -92,7 +93,8 @@ data:
     \ {\n          vec[row][col2] -= vec[rank][col2] * fac;\n        }\n      }\n\
     \    }\n    rank++;\n  }\n\n  return rank;\n}\n\n\n};\n\n\n"
   code: "#ifndef HARUILIB_MATH_MATRIX_MATRIX_HPP\n#define HARUILIB_MATH_MATRIX_MATRIX_HPP\n\
-    \n#include <vector>\n\ntemplate <class T>\nstruct Matrix{\nprivate: \n  std::vector<std::vector<T>>vec;\n\
+    // https://harui-i.github.io/library/math/matrix/matrix.hpp.html\n\n#include <vector>\n\
+    \ntemplate <class T>\nstruct Matrix{\nprivate: \n  std::vector<std::vector<T>>vec;\n\
     \  int N, M;\npublic:\n\n  Matrix(int _N, int _M) : vec(std::vector<std::vector<T>>(_N,\
     \ std::vector<T>(_M))), N(_N), M(_M)  {\n    assert(_N >= 0 && _M >= 0); // 0*0\u306E\
     \u884C\u5217\u3092\u8FD4\u3057\u305F\u3044\u3068\u304D\u3082\u3042\u308B(\u9006\
@@ -162,12 +164,12 @@ data:
   isVerificationFile: false
   path: math/matrix/matrix.hpp
   requiredBy: []
-  timestamp: '2024-07-03 22:51:47+09:00'
+  timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/math/matrix/yosupo-matrix-product.test.cpp
-  - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-matrix-product.test.cpp
   - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-linear-equation.test.cpp
 documentation_of: math/matrix/matrix.hpp

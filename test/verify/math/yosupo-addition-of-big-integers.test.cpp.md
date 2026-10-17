@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/decimal_big_integer.hpp
     title: decimal_big_integer
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -19,14 +19,16 @@ data:
     - https://judge.yosupo.jp/problem/addition_of_big_integers
   bundledCode: "#line 1 \"test/verify/math/yosupo-addition-of-big-integers.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/addition_of_big_integers\"\
-    \n\n#line 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\n\
-    using namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
-    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
-    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
-    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
-    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
-    \ 1 \"math/decimal_big_integer.hpp\"\n\n\n\n#include <algorithm>\n#line 6 \"math/decimal_big_integer.hpp\"\
-    \n#include <cctype>\n#include <cstdint>\n#include <iomanip>\n#line 10 \"math/decimal_big_integer.hpp\"\
+    \n\n#line 1 \"template/template.hpp\"\n\n\n// https://harui-i.github.io/library/template/template.hpp.html\n\
+    \n#include <iostream>\n#include <cassert>\nusing namespace std;\nusing ll = long\
+    \ long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b;\
+    \ return true;} return false;}\ntemplate<class T> inline bool chmin(T& a, const\
+    \ T& b) {if (b<a) {a=b; return true;} return false;}\nconst int INTINF = 1000001000;\n\
+    const int INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\nconst ll\
+    \ LLINF = 1000000000000000000;\n\n\n#line 1 \"math/decimal_big_integer.hpp\"\n\
+    \n\n// https://harui-i.github.io/library/math/decimal_big_integer.hpp.html\n\n\
+    #include <algorithm>\n#line 7 \"math/decimal_big_integer.hpp\"\n#include <cctype>\n\
+    #include <cstdint>\n#include <iomanip>\n#line 11 \"math/decimal_big_integer.hpp\"\
     \n#include <string>\n#include <tuple>\n#include <utility>\n#include <vector>\n\
     \nnamespace decimal_big_integer_internal {\n\ntemplate<int MOD, int G>\nstruct\
     \ NTT {\n  static int mod_pow(int a, int e) {\n    long long r = 1, x = a;\n \
@@ -262,7 +264,7 @@ data:
   isVerificationFile: true
   path: test/verify/math/yosupo-addition-of-big-integers.test.cpp
   requiredBy: []
-  timestamp: '2026-06-28 00:46:41+09:00'
+  timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/math/yosupo-addition-of-big-integers.test.cpp

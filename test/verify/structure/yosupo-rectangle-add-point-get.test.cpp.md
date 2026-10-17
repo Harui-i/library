@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: structure/rectangle_apply_point_get.hpp
     title: Rectangle Apply Point Get
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -19,35 +19,36 @@ data:
     - https://judge.yosupo.jp/problem/rectangle_add_point_get
   bundledCode: "#line 1 \"test/verify/structure/yosupo-rectangle-add-point-get.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_add_point_get\"\n\
-    #line 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\nusing\
-    \ namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
-    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
-    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
-    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
-    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
-    \ 1 \"structure/rectangle_apply_point_get.hpp\"\n\n\n\n#line 5 \"structure/rectangle_apply_point_get.hpp\"\
-    \n#include <vector>\n\ntemplate <class F, F (*composition)(F, F), F (*id)(), class\
-    \ T = int>\nstruct rectangle_apply_point_get {\n  rectangle_apply_point_get(T\
-    \ xl, T xr, T yl, T yr)\n      : xl(xl), xr(xr), yl(yl), yr(yr), root(-1) {\n\
-    \    assert(xl < xr);\n    assert(yl < yr);\n    root = new_x_node();\n  }\n\n\
-    \  void apply(T l, T r, T d, T u, F f) {\n    assert(xl <= l && l <= r && r <=\
-    \ xr);\n    assert(yl <= d && d <= u && u <= yr);\n    apply_x(root, xl, xr, l,\
-    \ r, d, u, f);\n  }\n\n  F get(T x, T y) const {\n    assert(xl <= x && x < xr);\n\
-    \    assert(yl <= y && y < yr);\n    return get_x(root, xl, xr, x, y);\n  }\n\n\
-    private:\n  struct XNode {\n    int left, right, y_root;\n  };\n\n  struct YNode\
-    \ {\n    int left, right;\n    F val;\n  };\n\n  int new_x_node() {\n    xs.push_back({-1,\
-    \ -1, -1});\n    return (int)xs.size() - 1;\n  }\n\n  int new_y_node() {\n   \
-    \ ys.push_back({-1, -1, id()});\n    return (int)ys.size() - 1;\n  }\n\n  void\
-    \ apply_x(int k, T nl, T nr, T ql, T qr, T qd, T qu, F f) {\n    if (qr <= nl\
-    \ || nr <= ql) return;\n    if (ql <= nl && nr <= qr) {\n      xs[k].y_root =\
-    \ apply_y(xs[k].y_root, yl, yr, qd, qu, f);\n      return;\n    }\n\n    T mid\
-    \ = nl + (nr - nl) / 2;\n    if (ql < mid) {\n      if (xs[k].left == -1) {\n\
-    \        int child = new_x_node();\n        xs[k].left = child;\n      }\n   \
-    \   apply_x(xs[k].left, nl, mid, ql, qr, qd, qu, f);\n    }\n    if (mid < qr)\
-    \ {\n      if (xs[k].right == -1) {\n        int child = new_x_node();\n     \
-    \   xs[k].right = child;\n      }\n      apply_x(xs[k].right, mid, nr, ql, qr,\
-    \ qd, qu, f);\n    }\n  }\n\n  int apply_y(int k, T nl, T nr, T ql, T qr, F f)\
-    \ {\n    if (qr <= nl || nr <= ql) return k;\n    if (k == -1) k = new_y_node();\n\
+    #line 1 \"template/template.hpp\"\n\n\n// https://harui-i.github.io/library/template/template.hpp.html\n\
+    \n#include <iostream>\n#include <cassert>\nusing namespace std;\nusing ll = long\
+    \ long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b;\
+    \ return true;} return false;}\ntemplate<class T> inline bool chmin(T& a, const\
+    \ T& b) {if (b<a) {a=b; return true;} return false;}\nconst int INTINF = 1000001000;\n\
+    const int INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\nconst ll\
+    \ LLINF = 1000000000000000000;\n\n\n#line 1 \"structure/rectangle_apply_point_get.hpp\"\
+    \n\n\n// https://harui-i.github.io/library/structure/rectangle_apply_point_get.hpp.html\n\
+    \n#line 6 \"structure/rectangle_apply_point_get.hpp\"\n#include <vector>\n\ntemplate\
+    \ <class F, F (*composition)(F, F), F (*id)(), class T = int>\nstruct rectangle_apply_point_get\
+    \ {\n  rectangle_apply_point_get(T xl, T xr, T yl, T yr)\n      : xl(xl), xr(xr),\
+    \ yl(yl), yr(yr), root(-1) {\n    assert(xl < xr);\n    assert(yl < yr);\n   \
+    \ root = new_x_node();\n  }\n\n  void apply(T l, T r, T d, T u, F f) {\n    assert(xl\
+    \ <= l && l <= r && r <= xr);\n    assert(yl <= d && d <= u && u <= yr);\n   \
+    \ apply_x(root, xl, xr, l, r, d, u, f);\n  }\n\n  F get(T x, T y) const {\n  \
+    \  assert(xl <= x && x < xr);\n    assert(yl <= y && y < yr);\n    return get_x(root,\
+    \ xl, xr, x, y);\n  }\n\nprivate:\n  struct XNode {\n    int left, right, y_root;\n\
+    \  };\n\n  struct YNode {\n    int left, right;\n    F val;\n  };\n\n  int new_x_node()\
+    \ {\n    xs.push_back({-1, -1, -1});\n    return (int)xs.size() - 1;\n  }\n\n\
+    \  int new_y_node() {\n    ys.push_back({-1, -1, id()});\n    return (int)ys.size()\
+    \ - 1;\n  }\n\n  void apply_x(int k, T nl, T nr, T ql, T qr, T qd, T qu, F f)\
+    \ {\n    if (qr <= nl || nr <= ql) return;\n    if (ql <= nl && nr <= qr) {\n\
+    \      xs[k].y_root = apply_y(xs[k].y_root, yl, yr, qd, qu, f);\n      return;\n\
+    \    }\n\n    T mid = nl + (nr - nl) / 2;\n    if (ql < mid) {\n      if (xs[k].left\
+    \ == -1) {\n        int child = new_x_node();\n        xs[k].left = child;\n \
+    \     }\n      apply_x(xs[k].left, nl, mid, ql, qr, qd, qu, f);\n    }\n    if\
+    \ (mid < qr) {\n      if (xs[k].right == -1) {\n        int child = new_x_node();\n\
+    \        xs[k].right = child;\n      }\n      apply_x(xs[k].right, mid, nr, ql,\
+    \ qr, qd, qu, f);\n    }\n  }\n\n  int apply_y(int k, T nl, T nr, T ql, T qr,\
+    \ F f) {\n    if (qr <= nl || nr <= ql) return k;\n    if (k == -1) k = new_y_node();\n\
     \    if (ql <= nl && nr <= qr) {\n      ys[k].val = composition(f, ys[k].val);\n\
     \      return k;\n    }\n\n    T mid = nl + (nr - nl) / 2;\n    if (ql < mid)\
     \ ys[k].left = apply_y(ys[k].left, nl, mid, ql, qr, f);\n    if (mid < qr) ys[k].right\
@@ -116,7 +117,7 @@ data:
   isVerificationFile: true
   path: test/verify/structure/yosupo-rectangle-add-point-get.test.cpp
   requiredBy: []
-  timestamp: '2026-06-27 23:23:51+09:00'
+  timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/structure/yosupo-rectangle-add-point-get.test.cpp

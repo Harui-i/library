@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/rolling-hash.hpp
     title: "\u30ED\u30FC\u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\u30E5(Rolling Hash)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -22,16 +22,17 @@ data:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B
   bundledCode: "#line 1 \"test/verify/aoj-alds-1-14-b.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B\"\n#line\
-    \ 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\nusing\
-    \ namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
-    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
-    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
-    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
-    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
-    \ 3 \"test/verify/aoj-alds-1-14-b.test.cpp\"\n\n#include <string>\n\n#line 1 \"\
-    string/rolling-hash.hpp\"\n\n\n\n#line 5 \"string/rolling-hash.hpp\"\n#include\
-    \ <vector>\n#line 7 \"string/rolling-hash.hpp\"\n\n#line 1 \"math/modint2611.hpp\"\
-    \n\n\n\n#include <random>\n#include <chrono>\n/*\n\u6CD5\u304C2^61 - 1\u306Emodint\n\
+    \ 1 \"template/template.hpp\"\n\n\n// https://harui-i.github.io/library/template/template.hpp.html\n\
+    \n#include <iostream>\n#include <cassert>\nusing namespace std;\nusing ll = long\
+    \ long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b;\
+    \ return true;} return false;}\ntemplate<class T> inline bool chmin(T& a, const\
+    \ T& b) {if (b<a) {a=b; return true;} return false;}\nconst int INTINF = 1000001000;\n\
+    const int INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\nconst ll\
+    \ LLINF = 1000000000000000000;\n\n\n#line 3 \"test/verify/aoj-alds-1-14-b.test.cpp\"\
+    \n\n#include <string>\n\n#line 1 \"string/rolling-hash.hpp\"\n\n\n// https://harui-i.github.io/library/string/rolling-hash.hpp.html\n\
+    \n#line 6 \"string/rolling-hash.hpp\"\n#include <vector>\n#line 8 \"string/rolling-hash.hpp\"\
+    \n\n#line 1 \"math/modint2611.hpp\"\n\n\n// https://harui-i.github.io/library/math/modint2611.hpp.html\n\
+    \n#include <random>\n#include <chrono>\n/*\n\u6CD5\u304C2^61 - 1\u306Emodint\n\
     cf: https://qiita.com/keymoon/items/11fac5627672a6d6a9f6\n */\n\nstruct modint2611\
     \ {\n\n  constexpr static const uint64_t mod = (1ull << 61ull) - 1;\n  using uint128_t\
     \ = __uint128_t;\n  uint64_t _val;\n\n  constexpr explicit modint2611() : _val(0)\
@@ -58,7 +59,7 @@ data:
     \ (*this).pow(mod - 2);\n  }\n\n  static inline modint2611 generate_base() {\n\
     \    mt19937_64 mt(chrono::steady_clock::now().time_since_epoch().count());\n\
     \    uniform_int_distribution< uint64_t > rand(1, mod - 1);\n\n    return modint2611(rand(mt));\n\
-    \  }\n\n};\n\n\n#line 9 \"string/rolling-hash.hpp\"\n\nstruct Hash {\n  using\
+    \  }\n\n};\n\n\n#line 10 \"string/rolling-hash.hpp\"\n\nstruct Hash {\n  using\
     \ mint = modint2611;\n  mint hash;\n  mint base;\n  int len;\n\n  // \u30B3\u30F3\
     \u30B9\u30C8\u30E9\u30AF\u30BF\n  constexpr Hash(mint _hash, mint _base, int _len):\
     \ hash(_hash), base(_base), len(_len) {\n  }\n\n  // \u6587\u5B57\u5217s\u306E\
@@ -115,7 +116,7 @@ data:
   isVerificationFile: true
   path: test/verify/aoj-alds-1-14-b.test.cpp
   requiredBy: []
-  timestamp: '2025-04-29 18:43:20+09:00'
+  timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/aoj-alds-1-14-b.test.cpp

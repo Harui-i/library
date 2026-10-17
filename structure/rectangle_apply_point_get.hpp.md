@@ -10,10 +10,11 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"structure/rectangle_apply_point_get.hpp\"\n\n\n\n#include\
-    \ <cassert>\n#include <vector>\n\ntemplate <class F, F (*composition)(F, F), F\
-    \ (*id)(), class T = int>\nstruct rectangle_apply_point_get {\n  rectangle_apply_point_get(T\
+    links:
+    - https://harui-i.github.io/library/structure/rectangle_apply_point_get.hpp.html
+  bundledCode: "#line 1 \"structure/rectangle_apply_point_get.hpp\"\n\n\n// https://harui-i.github.io/library/structure/rectangle_apply_point_get.hpp.html\n\
+    \n#include <cassert>\n#include <vector>\n\ntemplate <class F, F (*composition)(F,\
+    \ F), F (*id)(), class T = int>\nstruct rectangle_apply_point_get {\n  rectangle_apply_point_get(T\
     \ xl, T xr, T yl, T yr)\n      : xl(xl), xr(xr), yl(yl), yr(yr), root(-1) {\n\
     \    assert(xl < xr);\n    assert(yl < yr);\n    root = new_x_node();\n  }\n\n\
     \  void apply(T l, T r, T d, T u, F f) {\n    assert(xl <= l && l <= r && r <=\
@@ -49,6 +50,7 @@ data:
     \  }\n\n  T xl, xr, yl, yr;\n  int root;\n  std::vector<XNode> xs;\n  std::vector<YNode>\
     \ ys;\n};\n\n\n"
   code: "#ifndef HARUILIB_STRUCTURE_RECTANGLE_APPLY_POINT_GET_HPP\n#define HARUILIB_STRUCTURE_RECTANGLE_APPLY_POINT_GET_HPP\n\
+    // https://harui-i.github.io/library/structure/rectangle_apply_point_get.hpp.html\n\
     \n#include <cassert>\n#include <vector>\n\ntemplate <class F, F (*composition)(F,\
     \ F), F (*id)(), class T = int>\nstruct rectangle_apply_point_get {\n  rectangle_apply_point_get(T\
     \ xl, T xr, T yl, T yr)\n      : xl(xl), xr(xr), yl(yl), yr(yr), root(-1) {\n\
@@ -89,7 +91,7 @@ data:
   isVerificationFile: false
   path: structure/rectangle_apply_point_get.hpp
   requiredBy: []
-  timestamp: '2026-06-27 23:23:51+09:00'
+  timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/structure/yosupo-rectangle-add-point-get.test.cpp

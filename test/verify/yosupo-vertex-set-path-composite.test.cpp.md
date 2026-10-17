@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/graph_template.hpp
     title: graph/graph_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/heavy_light_decomposition.hpp
     title: "Heavy-Light Decomposition(HL\u5206\u89E3, HLD)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/external_gcd.hpp
     title: math/external_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/linear_function.hpp
     title: math/linear_function.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint.hpp
     title: modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -31,62 +31,63 @@ data:
     - https://judge.yosupo.jp/problem/vertex_set_path_composite
   bundledCode: "#line 1 \"test/verify/yosupo-vertex-set-path-composite.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\n\
-    #line 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\nusing\
-    \ namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
-    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
-    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
-    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
-    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
-    \ 3 \"test/verify/yosupo-vertex-set-path-composite.test.cpp\"\n#include <vector>\n\
-    \n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\nnamespace atcoder {\n\nnamespace\
-    \ internal {\n\n// @param n `0 <= n`\n// @return minimum non-negative `x` s.t.\
-    \ `n <= 2**x`\nint ceil_pow2(int n) {\n    int x = 0;\n    while ((1U << x) <\
-    \ (unsigned int)(n)) x++;\n    return x;\n}\n\n// @param n `1 <= n`\n// @return\
-    \ minimum non-negative `x` s.t. `(n & (1 << x)) != 0`\nconstexpr int bsf_constexpr(unsigned\
-    \ int n) {\n    int x = 0;\n    while (!(n & (1 << x))) x++;\n    return x;\n\
-    }\n\n// @param n `1 <= n`\n// @return minimum non-negative `x` s.t. `(n & (1 <<\
-    \ x)) != 0`\nint bsf(unsigned int n) {\n#ifdef _MSC_VER\n    unsigned long index;\n\
-    \    _BitScanForward(&index, n);\n    return index;\n#else\n    return __builtin_ctz(n);\n\
-    #endif\n}\n\n}  // namespace internal\n\n}  // namespace atcoder\n\nnamespace\
-    \ atcoder {\n\ntemplate <class S, S (*op)(S, S), S (*e)()> struct segtree {\n\
-    \  public:\n    segtree() : segtree(0) {}\n    explicit segtree(int n) : segtree(std::vector<S>(n,\
-    \ e())) {}\n    explicit segtree(const std::vector<S>& v) : _n(int(v.size()))\
-    \ {\n        log = internal::ceil_pow2(_n);\n        size = 1 << log;\n      \
-    \  d = std::vector<S>(2 * size, e());\n        for (int i = 0; i < _n; i++) d[size\
-    \ + i] = v[i];\n        for (int i = size - 1; i >= 1; i--) {\n            update(i);\n\
-    \        }\n    }\n\n    void set(int p, S x) {\n        assert(0 <= p && p <\
-    \ _n);\n        p += size;\n        d[p] = x;\n        for (int i = 1; i <= log;\
-    \ i++) update(p >> i);\n    }\n\n    S get(int p) const {\n        assert(0 <=\
-    \ p && p < _n);\n        return d[p + size];\n    }\n\n    S prod(int l, int r)\
-    \ const {\n        assert(0 <= l && l <= r && r <= _n);\n        S sml = e(),\
-    \ smr = e();\n        l += size;\n        r += size;\n\n        while (l < r)\
-    \ {\n            if (l & 1) sml = op(sml, d[l++]);\n            if (r & 1) smr\
-    \ = op(d[--r], smr);\n            l >>= 1;\n            r >>= 1;\n        }\n\
-    \        return op(sml, smr);\n    }\n\n    S all_prod() const { return d[1];\
-    \ }\n\n    template <bool (*f)(S)> int max_right(int l) const {\n        return\
-    \ max_right(l, [](S x) { return f(x); });\n    }\n    template <class F> int max_right(int\
-    \ l, F f) const {\n        assert(0 <= l && l <= _n);\n        assert(f(e()));\n\
-    \        if (l == _n) return _n;\n        l += size;\n        S sm = e();\n  \
-    \      do {\n            while (l % 2 == 0) l >>= 1;\n            if (!f(op(sm,\
-    \ d[l]))) {\n                while (l < size) {\n                    l = (2 *\
-    \ l);\n                    if (f(op(sm, d[l]))) {\n                        sm\
-    \ = op(sm, d[l]);\n                        l++;\n                    }\n     \
-    \           }\n                return l - size;\n            }\n            sm\
-    \ = op(sm, d[l]);\n            l++;\n        } while ((l & -l) != l);\n      \
-    \  return _n;\n    }\n\n    template <bool (*f)(S)> int min_left(int r) const\
-    \ {\n        return min_left(r, [](S x) { return f(x); });\n    }\n    template\
-    \ <class F> int min_left(int r, F f) const {\n        assert(0 <= r && r <= _n);\n\
-    \        assert(f(e()));\n        if (r == 0) return 0;\n        r += size;\n\
-    \        S sm = e();\n        do {\n            r--;\n            while (r > 1\
-    \ && (r % 2)) r >>= 1;\n            if (!f(op(d[r], sm))) {\n                while\
-    \ (r < size) {\n                    r = (2 * r + 1);\n                    if (f(op(d[r],\
-    \ sm))) {\n                        sm = op(d[r], sm);\n                      \
-    \  r--;\n                    }\n                }\n                return r +\
-    \ 1 - size;\n            }\n            sm = op(d[r], sm);\n        } while ((r\
-    \ & -r) != r);\n        return 0;\n    }\n\n  private:\n    int _n, size, log;\n\
-    \    std::vector<S> d;\n\n    void update(int k) { d[k] = op(d[2 * k], d[2 * k\
-    \ + 1]); }\n};\n\n}  // namespace atcoder\n\n#line 1 \"math/linear_function.hpp\"\
-    \n\n\n\ntemplate <typename T>\nstruct LinearFunction {\n  T a, b;\n\n  LinearFunction()\
+    #line 1 \"template/template.hpp\"\n\n\n// https://harui-i.github.io/library/template/template.hpp.html\n\
+    \n#include <iostream>\n#include <cassert>\nusing namespace std;\nusing ll = long\
+    \ long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b;\
+    \ return true;} return false;}\ntemplate<class T> inline bool chmin(T& a, const\
+    \ T& b) {if (b<a) {a=b; return true;} return false;}\nconst int INTINF = 1000001000;\n\
+    const int INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\nconst ll\
+    \ LLINF = 1000000000000000000;\n\n\n#line 3 \"test/verify/yosupo-vertex-set-path-composite.test.cpp\"\
+    \n#include <vector>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\nnamespace\
+    \ atcoder {\n\nnamespace internal {\n\n// @param n `0 <= n`\n// @return minimum\
+    \ non-negative `x` s.t. `n <= 2**x`\nint ceil_pow2(int n) {\n    int x = 0;\n\
+    \    while ((1U << x) < (unsigned int)(n)) x++;\n    return x;\n}\n\n// @param\
+    \ n `1 <= n`\n// @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`\n\
+    constexpr int bsf_constexpr(unsigned int n) {\n    int x = 0;\n    while (!(n\
+    \ & (1 << x))) x++;\n    return x;\n}\n\n// @param n `1 <= n`\n// @return minimum\
+    \ non-negative `x` s.t. `(n & (1 << x)) != 0`\nint bsf(unsigned int n) {\n#ifdef\
+    \ _MSC_VER\n    unsigned long index;\n    _BitScanForward(&index, n);\n    return\
+    \ index;\n#else\n    return __builtin_ctz(n);\n#endif\n}\n\n}  // namespace internal\n\
+    \n}  // namespace atcoder\n\nnamespace atcoder {\n\ntemplate <class S, S (*op)(S,\
+    \ S), S (*e)()> struct segtree {\n  public:\n    segtree() : segtree(0) {}\n \
+    \   explicit segtree(int n) : segtree(std::vector<S>(n, e())) {}\n    explicit\
+    \ segtree(const std::vector<S>& v) : _n(int(v.size())) {\n        log = internal::ceil_pow2(_n);\n\
+    \        size = 1 << log;\n        d = std::vector<S>(2 * size, e());\n      \
+    \  for (int i = 0; i < _n; i++) d[size + i] = v[i];\n        for (int i = size\
+    \ - 1; i >= 1; i--) {\n            update(i);\n        }\n    }\n\n    void set(int\
+    \ p, S x) {\n        assert(0 <= p && p < _n);\n        p += size;\n        d[p]\
+    \ = x;\n        for (int i = 1; i <= log; i++) update(p >> i);\n    }\n\n    S\
+    \ get(int p) const {\n        assert(0 <= p && p < _n);\n        return d[p +\
+    \ size];\n    }\n\n    S prod(int l, int r) const {\n        assert(0 <= l &&\
+    \ l <= r && r <= _n);\n        S sml = e(), smr = e();\n        l += size;\n \
+    \       r += size;\n\n        while (l < r) {\n            if (l & 1) sml = op(sml,\
+    \ d[l++]);\n            if (r & 1) smr = op(d[--r], smr);\n            l >>= 1;\n\
+    \            r >>= 1;\n        }\n        return op(sml, smr);\n    }\n\n    S\
+    \ all_prod() const { return d[1]; }\n\n    template <bool (*f)(S)> int max_right(int\
+    \ l) const {\n        return max_right(l, [](S x) { return f(x); });\n    }\n\
+    \    template <class F> int max_right(int l, F f) const {\n        assert(0 <=\
+    \ l && l <= _n);\n        assert(f(e()));\n        if (l == _n) return _n;\n \
+    \       l += size;\n        S sm = e();\n        do {\n            while (l %\
+    \ 2 == 0) l >>= 1;\n            if (!f(op(sm, d[l]))) {\n                while\
+    \ (l < size) {\n                    l = (2 * l);\n                    if (f(op(sm,\
+    \ d[l]))) {\n                        sm = op(sm, d[l]);\n                    \
+    \    l++;\n                    }\n                }\n                return l\
+    \ - size;\n            }\n            sm = op(sm, d[l]);\n            l++;\n \
+    \       } while ((l & -l) != l);\n        return _n;\n    }\n\n    template <bool\
+    \ (*f)(S)> int min_left(int r) const {\n        return min_left(r, [](S x) { return\
+    \ f(x); });\n    }\n    template <class F> int min_left(int r, F f) const {\n\
+    \        assert(0 <= r && r <= _n);\n        assert(f(e()));\n        if (r ==\
+    \ 0) return 0;\n        r += size;\n        S sm = e();\n        do {\n      \
+    \      r--;\n            while (r > 1 && (r % 2)) r >>= 1;\n            if (!f(op(d[r],\
+    \ sm))) {\n                while (r < size) {\n                    r = (2 * r\
+    \ + 1);\n                    if (f(op(d[r], sm))) {\n                        sm\
+    \ = op(d[r], sm);\n                        r--;\n                    }\n     \
+    \           }\n                return r + 1 - size;\n            }\n         \
+    \   sm = op(d[r], sm);\n        } while ((r & -r) != r);\n        return 0;\n\
+    \    }\n\n  private:\n    int _n, size, log;\n    std::vector<S> d;\n\n    void\
+    \ update(int k) { d[k] = op(d[2 * k], d[2 * k + 1]); }\n};\n\n}  // namespace\
+    \ atcoder\n\n#line 1 \"math/linear_function.hpp\"\n\n\n// https://harui-i.github.io/library/math/linear_function.hpp.html\n\
+    \ntemplate <typename T>\nstruct LinearFunction {\n  T a, b;\n\n  LinearFunction()\
     \ : a{0}, b(0) {}\n  LinearFunction(T _a, T _b) : a(_a), b(_b) {}\n\n  static\
     \ LinearFunction Add_Identity() {\n    return LinearFunction(T(0), T(0));\n  }\n\
     \n  static LinearFunction Mul_Identity(){\n    return LinearFunction(T(1), T(0));\n\
@@ -96,53 +97,54 @@ data:
     \  }\n\n  // rhs(f())\n  LinearFunction operator*(const LinearFunction& rhs) const\
     \ {\n    LinearFunction f = *this;\n    return rhs.composite(f);\n  }\n\n  T operator()(T\
     \ x) const {\n    return a * x + b;\n  }\n\n};\n\n\n\n#line 1 \"math/modint.hpp\"\
-    \n\n\n\n#line 1 \"math/external_gcd.hpp\"\n\n\n\n#include <tuple>\n\n// g,x,y\n\
-    template<typename T>\nconstexpr std::tuple<T, T, T> extendedGCD(T a, T b) {\n\
-    \    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while (b != 0) {\n        T q = a\
-    \ / b;\n        T r = a % b;\n        a = b;\n        b = r;\n        \n     \
-    \   T xTemp = x0 - q * x1;\n        x0 = x1;\n        x1 = xTemp;\n        \n\
-    \        T yTemp = y0 - q * y1;\n        y0 = y1;\n        y1 = yTemp;\n    }\n\
-    \    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\n#include <type_traits>\n\
-    #line 7 \"math/modint.hpp\"\n\nlong long mod_pow_ll(long long x, long long n,\
-    \ long long mod) {\n    long long ret = 1;\n    while (n > 0) {\n        if (n\
-    \ & 1) ret = (__int128)ret * x % mod;\n        x = (__int128)x * x % mod;\n  \
-    \      n >>= 1;\n    }\n    return ret;\n}\n\n// x^2 = a (mod p) \u3068\u306A\u308B\
-    \ x \u3092\u8FD4\u3059\u3002\u5B58\u5728\u3057\u306A\u3044\u5834\u5408\u306F -1\u3002\
-    \n// p \u306F\u7D20\u6570\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3059\
-    \u308B\u3002\nlong long mod_sqrt(long long a, long long p) {\n    a %= p;\n  \
-    \  if (a < 0) a += p;\n    if (a == 0) return 0;\n    if (p == 2) return a;\n\
-    \    if (mod_pow_ll(a, (p - 1) / 2, p) != 1) return -1;\n    if (p % 4 == 3) return\
-    \ mod_pow_ll(a, (p + 1) / 4, p);\n\n    long long q = p - 1;\n    int s = 0;\n\
-    \    while ((q & 1) == 0) {\n        q >>= 1;\n        s++;\n    }\n\n    long\
-    \ long z = 2;\n    while (mod_pow_ll(z, (p - 1) / 2, p) != p - 1) z++;\n\n   \
-    \ long long c = mod_pow_ll(z, q, p);\n    long long x = mod_pow_ll(a, (q + 1)\
-    \ / 2, p);\n    long long t = mod_pow_ll(a, q, p);\n    int m = s;\n\n    while\
-    \ (t != 1) {\n        int i = 1;\n        long long tt = (__int128)t * t % p;\n\
-    \        while (tt != 1) {\n            tt = (__int128)tt * tt % p;\n        \
-    \    i++;\n        }\n        long long b = c;\n        for (int j = 0; j < m\
-    \ - i - 1; j++) b = (__int128)b * b % p;\n        x = (__int128)x * b % p;\n \
-    \       c = (__int128)b * b % p;\n        t = (__int128)t * c % p;\n        m\
-    \ = i;\n    }\n\n    return x;\n}\n\ntemplate<int MOD, typename T = int>\nstruct\
-    \ static_modint {\n    T value;\n\n    constexpr explicit static_modint() : value(0)\
-    \ {}\n\n    static constexpr int mod() { return MOD; }\n\n    constexpr static_modint(long\
-    \ long v) {\n        if constexpr (std::is_same<T, double>::value) {\n       \
-    \     value = double(v);\n        }\n        else {\n            value = int(((v\
-    \ % MOD) + MOD) % MOD);\n        }\n    }\n\n    constexpr static_modint& operator+=(const\
+    \n\n\n// https://harui-i.github.io/library/math/modint.hpp.html\n\n#line 1 \"\
+    math/external_gcd.hpp\"\n\n\n// https://harui-i.github.io/library/math/external_gcd.hpp.html\n\
+    \n#include <tuple>\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T,\
+    \ T, T> extendedGCD(T a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while\
+    \ (b != 0) {\n        T q = a / b;\n        T r = a % b;\n        a = b;\n   \
+    \     b = r;\n        \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n   \
+    \     x1 = xTemp;\n        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n\
+    \        y1 = yTemp;\n    }\n    return {a, x0, y0};\n}\n\n#line 6 \"math/modint.hpp\"\
+    \n#include <type_traits>\n#line 8 \"math/modint.hpp\"\n\nlong long mod_pow_ll(long\
+    \ long x, long long n, long long mod) {\n    long long ret = 1;\n    while (n\
+    \ > 0) {\n        if (n & 1) ret = (__int128)ret * x % mod;\n        x = (__int128)x\
+    \ * x % mod;\n        n >>= 1;\n    }\n    return ret;\n}\n\n// x^2 = a (mod p)\
+    \ \u3068\u306A\u308B x \u3092\u8FD4\u3059\u3002\u5B58\u5728\u3057\u306A\u3044\u5834\
+    \u5408\u306F -1\u3002\n// p \u306F\u7D20\u6570\u3067\u3042\u308B\u3053\u3068\u3092\
+    \u4EEE\u5B9A\u3059\u308B\u3002\nlong long mod_sqrt(long long a, long long p) {\n\
+    \    a %= p;\n    if (a < 0) a += p;\n    if (a == 0) return 0;\n    if (p ==\
+    \ 2) return a;\n    if (mod_pow_ll(a, (p - 1) / 2, p) != 1) return -1;\n    if\
+    \ (p % 4 == 3) return mod_pow_ll(a, (p + 1) / 4, p);\n\n    long long q = p -\
+    \ 1;\n    int s = 0;\n    while ((q & 1) == 0) {\n        q >>= 1;\n        s++;\n\
+    \    }\n\n    long long z = 2;\n    while (mod_pow_ll(z, (p - 1) / 2, p) != p\
+    \ - 1) z++;\n\n    long long c = mod_pow_ll(z, q, p);\n    long long x = mod_pow_ll(a,\
+    \ (q + 1) / 2, p);\n    long long t = mod_pow_ll(a, q, p);\n    int m = s;\n\n\
+    \    while (t != 1) {\n        int i = 1;\n        long long tt = (__int128)t\
+    \ * t % p;\n        while (tt != 1) {\n            tt = (__int128)tt * tt % p;\n\
+    \            i++;\n        }\n        long long b = c;\n        for (int j = 0;\
+    \ j < m - i - 1; j++) b = (__int128)b * b % p;\n        x = (__int128)x * b %\
+    \ p;\n        c = (__int128)b * b % p;\n        t = (__int128)t * c % p;\n   \
+    \     m = i;\n    }\n\n    return x;\n}\n\ntemplate<int MOD, typename T = int>\n\
+    struct static_modint {\n    T value;\n\n    constexpr explicit static_modint()\
+    \ : value(0) {}\n\n    static constexpr int mod() { return MOD; }\n\n    constexpr\
+    \ static_modint(long long v) {\n        if constexpr (std::is_same<T, double>::value)\
+    \ {\n            value = double(v);\n        }\n        else {\n            value\
+    \ = int(((v % MOD) + MOD) % MOD);\n        }\n    }\n\n    constexpr static_modint&\
+    \ operator+=(const static_modint& other) {\n        if constexpr (std::is_same<T,\
+    \ double>::value) {\n            value += other.value;\n        }\n        else\
+    \ {\n            if ((value += other.value) >= MOD) value -= MOD;\n        }\n\
+    \        return *this;\n    }\n\n    constexpr static_modint& operator-=(const\
     \ static_modint& other) {\n        if constexpr (std::is_same<T, double>::value)\
-    \ {\n            value += other.value;\n        }\n        else {\n          \
-    \  if ((value += other.value) >= MOD) value -= MOD;\n        }\n        return\
-    \ *this;\n    }\n\n    constexpr static_modint& operator-=(const static_modint&\
-    \ other) {\n        if constexpr (std::is_same<T, double>::value) {\n        \
-    \    value -= other.value;\n        }\n        else {\n            if ((value\
-    \ -= other.value) < 0) value += MOD;\n        }\n        return *this;\n    }\n\
-    \n    constexpr static_modint& operator*=(const static_modint& other) {\n    \
-    \    if constexpr (std::is_same<T, double>::value) {\n            value *= other.value;\n\
-    \        }\n        else {\n            value = int((long long)value * other.value\
-    \ % MOD);\n        }\n        return *this;\n    }\n\n    constexpr static_modint\
-    \ operator+(const static_modint& other) const {\n        return static_modint(*this)\
-    \ += other;\n    }\n\n    constexpr static_modint operator-(const static_modint&\
-    \ other) const {\n        return static_modint(*this) -= other;\n    }\n\n   \
-    \ constexpr static_modint operator-() const {\n        return static_modint(0)\
+    \ {\n            value -= other.value;\n        }\n        else {\n          \
+    \  if ((value -= other.value) < 0) value += MOD;\n        }\n        return *this;\n\
+    \    }\n\n    constexpr static_modint& operator*=(const static_modint& other)\
+    \ {\n        if constexpr (std::is_same<T, double>::value) {\n            value\
+    \ *= other.value;\n        }\n        else {\n            value = int((long long)value\
+    \ * other.value % MOD);\n        }\n        return *this;\n    }\n\n    constexpr\
+    \ static_modint operator+(const static_modint& other) const {\n        return\
+    \ static_modint(*this) += other;\n    }\n\n    constexpr static_modint operator-(const\
+    \ static_modint& other) const {\n        return static_modint(*this) -= other;\n\
+    \    }\n\n    constexpr static_modint operator-() const {\n        return static_modint(0)\
     \ - *this;\n    }\n\n    constexpr static_modint operator*(const static_modint&\
     \ other) const {\n        return static_modint(*this) *= other;\n    }\n\n   \
     \ constexpr static_modint pow(long long exp) const {\n        static_modint base\
@@ -171,23 +173,24 @@ data:
     \ = static_modint(x);\n        return is;\n    }\n};\n\ntemplate <int mod>\nusing\
     \ modint = static_modint<mod>;\nusing doublemodint = static_modint<59, double>;\n\
     using modint998244353 = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\
-    \n\n#line 1 \"graph/tree/heavy_light_decomposition.hpp\"\n\n\n\n#line 5 \"graph/tree/heavy_light_decomposition.hpp\"\
-    \n#include <algorithm>\n#line 7 \"graph/tree/heavy_light_decomposition.hpp\"\n\
-    #include <utility>\n\n#line 1 \"graph/graph_template.hpp\"\n\n\n\n#line 5 \"graph/graph_template.hpp\"\
-    \n\ntemplate <typename T>\nstruct Edge {\n  int from; int to;\n  T cost;\n\n \
-    \ // default constructor\n  Edge () : from(-1), to(-1), cost(T(0)) {}\n\n  Edge(int\
-    \ _from, int _to, T _cost) : from(_from), to(_to), cost(_cost) {}\n\n  // unweighted\n\
-    \  Edge(int _from, int _to) : from(_from), to(_to), cost(T(1)) {}\n\n  bool operator==(const\
-    \ Edge& rhs) const {\n    return from == rhs.from && to == rhs.to && cost == rhs.cost;\n\
-    \  }\n\n  bool operator<(const Edge& rhs) const {\n    return cost < rhs.cost;\n\
-    \  }\n  \n  bool operator>(const Edge& rhs) const {\n    return cost > rhs.cost;\n\
-    \  }\n\n};\n\n\ntemplate <typename T>\nstruct Graph : std::vector<std::vector<Edge<T>>>\
-    \ {\n\n  using std::vector<std::vector<Edge<T>>>::vector; // inherit constructors\n\
-    \n  void add_edge(int i, Edge<T> e) {\n    (*this)[i].push_back(e);\n  }\n\n \
-    \ void add_edge(Edge<T> e) {\n    (*this)[e.from].push_back(e);\n  }\n\n  // weighted\n\
-    \  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
+    \n\n#line 1 \"graph/tree/heavy_light_decomposition.hpp\"\n\n\n// https://harui-i.github.io/library/graph/tree/heavy_light_decomposition.hpp.html\n\
+    \n#line 6 \"graph/tree/heavy_light_decomposition.hpp\"\n#include <algorithm>\n\
+    #line 8 \"graph/tree/heavy_light_decomposition.hpp\"\n#include <utility>\n\n#line\
+    \ 1 \"graph/graph_template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/graph_template.hpp.html\n\
+    \n#line 6 \"graph/graph_template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  int from; int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1),\
+    \ to(-1), cost(T(0)) {}\n\n  Edge(int _from, int _to, T _cost) : from(_from),\
+    \ to(_to), cost(_cost) {}\n\n  // unweighted\n  Edge(int _from, int _to) : from(_from),\
+    \ to(_to), cost(T(1)) {}\n\n  bool operator==(const Edge& rhs) const {\n    return\
+    \ from == rhs.from && to == rhs.to && cost == rhs.cost;\n  }\n\n  bool operator<(const\
+    \ Edge& rhs) const {\n    return cost < rhs.cost;\n  }\n  \n  bool operator>(const\
+    \ Edge& rhs) const {\n    return cost > rhs.cost;\n  }\n\n};\n\n\ntemplate <typename\
+    \ T>\nstruct Graph : std::vector<std::vector<Edge<T>>> {\n\n  using std::vector<std::vector<Edge<T>>>::vector;\
+    \ // inherit constructors\n\n  void add_edge(int i, Edge<T> e) {\n    (*this)[i].push_back(e);\n\
+    \  }\n\n  void add_edge(Edge<T> e) {\n    (*this)[e.from].push_back(e);\n  }\n\
+    \n  // weighted\n  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
-    \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 10\
+    \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 11\
     \ \"graph/tree/heavy_light_decomposition.hpp\"\n\nnamespace HaruiLib {\n  // cf\
     \ : https://ngtkana.hatenablog.com/entry/2024/06/24/200138\n  struct Interval\
     \ {\n    // top_id : interval \u306E\u3082\u3063\u3068\u3082\u6839\u306B\u8FD1\
@@ -367,8 +370,8 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-vertex-set-path-composite.test.cpp
   requiredBy: []
-  timestamp: '2026-06-28 07:56:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-17 23:49:45+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/verify/yosupo-vertex-set-path-composite.test.cpp
 layout: document

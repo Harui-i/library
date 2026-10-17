@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/external_gcd.hpp
     title: math/external_gcd.hpp
   _extendedRequiredBy:
@@ -143,27 +143,29 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-deque-operate-all-composite.test.cpp
     title: test/verify/yosupo-deque-operate-all-composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-queue-operate-all-composite.test.cpp
     title: test/verify/yosupo-queue-operate-all-composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-vertex-set-path-composite.test.cpp
     title: test/verify/yosupo-vertex-set-path-composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"math/modint.hpp\"\n\n\n\n#line 1 \"math/external_gcd.hpp\"\
-    \n\n\n\n#include <tuple>\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T,\
+    links:
+    - https://harui-i.github.io/library/math/modint.hpp.html
+  bundledCode: "#line 1 \"math/modint.hpp\"\n\n\n// https://harui-i.github.io/library/math/modint.hpp.html\n\
+    \n#line 1 \"math/external_gcd.hpp\"\n\n\n// https://harui-i.github.io/library/math/external_gcd.hpp.html\n\
+    \n#include <tuple>\n\n// g,x,y\ntemplate<typename T>\nconstexpr std::tuple<T,\
     \ T, T> extendedGCD(T a, T b) {\n    T x0 = 1, y0 = 0, x1 = 0, y1 = 1;\n    while\
     \ (b != 0) {\n        T q = a / b;\n        T r = a % b;\n        a = b;\n   \
     \     b = r;\n        \n        T xTemp = x0 - q * x1;\n        x0 = x1;\n   \
     \     x1 = xTemp;\n        \n        T yTemp = y0 - q * y1;\n        y0 = y1;\n\
-    \        y1 = yTemp;\n    }\n    return {a, x0, y0};\n}\n\n#line 5 \"math/modint.hpp\"\
+    \        y1 = yTemp;\n    }\n    return {a, x0, y0};\n}\n\n#line 6 \"math/modint.hpp\"\
     \n#include <type_traits>\n#include <cassert>\n\nlong long mod_pow_ll(long long\
     \ x, long long n, long long mod) {\n    long long ret = 1;\n    while (n > 0)\
     \ {\n        if (n & 1) ret = (__int128)ret * x % mod;\n        x = (__int128)x\
@@ -233,14 +235,14 @@ data:
     \ modint = static_modint<mod>;\nusing doublemodint = static_modint<59, double>;\n\
     using modint998244353 = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n\
     \n\n"
-  code: "#ifndef HARUILIB_MATH_MODINT_HPP\n#define HARUILIB_MATH_MODINT_HPP\n\n#include\
-    \ \"math/external_gcd.hpp\"\n#include <type_traits>\n#include <cassert>\n\nlong\
-    \ long mod_pow_ll(long long x, long long n, long long mod) {\n    long long ret\
-    \ = 1;\n    while (n > 0) {\n        if (n & 1) ret = (__int128)ret * x % mod;\n\
-    \        x = (__int128)x * x % mod;\n        n >>= 1;\n    }\n    return ret;\n\
-    }\n\n// x^2 = a (mod p) \u3068\u306A\u308B x \u3092\u8FD4\u3059\u3002\u5B58\u5728\
-    \u3057\u306A\u3044\u5834\u5408\u306F -1\u3002\n// p \u306F\u7D20\u6570\u3067\u3042\
-    \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3059\u308B\u3002\nlong long mod_sqrt(long\
+  code: "#ifndef HARUILIB_MATH_MODINT_HPP\n#define HARUILIB_MATH_MODINT_HPP\n// https://harui-i.github.io/library/math/modint.hpp.html\n\
+    \n#include \"math/external_gcd.hpp\"\n#include <type_traits>\n#include <cassert>\n\
+    \nlong long mod_pow_ll(long long x, long long n, long long mod) {\n    long long\
+    \ ret = 1;\n    while (n > 0) {\n        if (n & 1) ret = (__int128)ret * x %\
+    \ mod;\n        x = (__int128)x * x % mod;\n        n >>= 1;\n    }\n    return\
+    \ ret;\n}\n\n// x^2 = a (mod p) \u3068\u306A\u308B x \u3092\u8FD4\u3059\u3002\u5B58\
+    \u5728\u3057\u306A\u3044\u5834\u5408\u306F -1\u3002\n// p \u306F\u7D20\u6570\u3067\
+    \u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3059\u308B\u3002\nlong long mod_sqrt(long\
     \ long a, long long p) {\n    a %= p;\n    if (a < 0) a += p;\n    if (a == 0)\
     \ return 0;\n    if (p == 2) return a;\n    if (mod_pow_ll(a, (p - 1) / 2, p)\
     \ != 1) return -1;\n    if (p % 4 == 3) return mod_pow_ll(a, (p + 1) / 4, p);\n\
@@ -308,56 +310,56 @@ data:
   isVerificationFile: false
   path: math/modint.hpp
   requiredBy:
-  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
+  - formal-power-series/fps-998.hpp
   - formal-power-series/fps-naive.hpp
+  - formal-power-series/formal-power-series.hpp
   - formal-power-series/fiduccia.hpp
   - formal-power-series/bostan-mori.hpp
-  - formal-power-series/fps-998.hpp
-  - formal-power-series/formal-power-series.hpp
-  timestamp: '2026-06-28 07:56:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-naive-test.cpp
+  timestamp: '2026-10-17 23:49:45+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/verify/aoj-0570.test.cpp
-  - test/verify/yuki-372-itsautomatic.test.cpp
-  - test/verify/yosupo-queue-operate-all-composite.test.cpp
-  - test/verify/yosupo-vertex-set-path-composite.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
+  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
+  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
+  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
+  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
   - test/verify/convolution/yosupo-lcm-convolution.test.cpp
   - test/verify/convolution/yosupo-normal-convolution.test.cpp
   - test/verify/convolution/yosupo-normal-convolution.test.cpp
-  - test/verify/convolution/yosupo-gcd-convolution.test.cpp
   - test/verify/convolution/yosupo-and-convolution.test.cpp
+  - test/verify/convolution/yosupo-gcd-convolution.test.cpp
+  - test/verify/yosupo-queue-operate-all-composite.test.cpp
+  - test/verify/yuki-372-itsautomatic.test.cpp
+  - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/math/yosupo-sqrt-mod.test.cpp
-  - test/verify/math/matrix/yosupo-matrix-product.test.cpp
-  - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-matrix-product.test.cpp
   - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-linear-equation.test.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
-  - test/verify/fps/yosupo-inv-of-formal-power-series-fast2.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-exp-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
-  - test/verify/fps/yosupo-division-of-polynomials.test.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
-  - test/verify/fps/yosupo-kth-term-of-linearly-recurrent-sequence-bm.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-log-of-formal-power-series-sparse.test.cpp
-  - test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-sqrt-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
-  - test/verify/fps/yosupo-pow-of-formal-power-series.test.cpp
-  - test/verify/yosupo-deque-operate-all-composite.test.cpp
+  - test/verify/aoj-0570.test.cpp
+  - test/verify/yosupo-vertex-set-path-composite.test.cpp
   - test/unittest/unittest-multiple-divisor-moebius-transform.test.cpp
 documentation_of: math/modint.hpp
 layout: document

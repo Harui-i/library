@@ -5,7 +5,7 @@ data:
     path: dp/largest-rectangle-in-a-histogram.hpp
     title: "\u30D2\u30B9\u30C8\u30B0\u30E9\u30E0\u5185\u306E\u6700\u5927\u9577\u65B9\
       \u5F62"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -19,14 +19,15 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_3_C
   bundledCode: "#line 1 \"test/verify/aoj-dpl3-c.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_3_C\"\
-    \n\n#line 1 \"template/template.hpp\"\n#include <iostream>\n#include <cassert>\n\
-    using namespace std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T&\
-    \ a, const T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class\
-    \ T> inline bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return\
-    \ false;}\nconst int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst\
-    \ ll LLMAX = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line\
-    \ 1 \"dp/largest-rectangle-in-a-histogram.hpp\"\n\n\n#include <stack>\n#include\
-    \ <vector>\n\ntemplate <typename T>\nlong long  largest_reactangle_in_a_histogram(std::vector<T>&\
+    \n\n#line 1 \"template/template.hpp\"\n\n\n// https://harui-i.github.io/library/template/template.hpp.html\n\
+    \n#include <iostream>\n#include <cassert>\nusing namespace std;\nusing ll = long\
+    \ long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b;\
+    \ return true;} return false;}\ntemplate<class T> inline bool chmin(T& a, const\
+    \ T& b) {if (b<a) {a=b; return true;} return false;}\nconst int INTINF = 1000001000;\n\
+    const int INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\nconst ll\
+    \ LLINF = 1000000000000000000;\n\n\n#line 1 \"dp/largest-rectangle-in-a-histogram.hpp\"\
+    \n\n\n// https://harui-i.github.io/library/dp/largest-rectangle-in-a-histogram.hpp.html\n\
+    #include <stack>\n#include <vector>\n\ntemplate <typename T>\nlong long  largest_reactangle_in_a_histogram(std::vector<T>&\
     \ vec) {\n  int N = vec.size();\n  std::stack<T> st; // \u6700\u5F31\u756A\u9577\
     (\u3092index\u3067\u8868\u3057\u305F)\u5F85\u6A5F\u5217\u306E\u30A4\u30E1\u30FC\
     \u30B8\u3002\u5352\u696D\u306B\u3088\u308B\u5F15\u9000\u304C\u306A\u3044\u305F\
@@ -78,7 +79,7 @@ data:
   isVerificationFile: true
   path: test/verify/aoj-dpl3-c.test.cpp
   requiredBy: []
-  timestamp: '2024-08-21 21:41:37+09:00'
+  timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/aoj-dpl3-c.test.cpp

@@ -1,43 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/graph_template.hpp
     title: graph/graph_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-vertex-add-path-sum.test.cpp
     title: test/verify/yosupo-vertex-add-path-sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
     title: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-vertex-set-path-composite.test.cpp
     title: test/verify/yosupo-vertex-set-path-composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
+    - https://harui-i.github.io/library/graph/tree/heavy_light_decomposition.hpp.html
     - https://ngtkana.hatenablog.com/entry/2024/06/24/200138
-  bundledCode: "#line 1 \"graph/tree/heavy_light_decomposition.hpp\"\n\n\n\n#include\
-    \ <vector>\n#include <algorithm>\n#include <cassert>\n#include <utility>\n\n#line\
-    \ 1 \"graph/graph_template.hpp\"\n\n\n\n#line 5 \"graph/graph_template.hpp\"\n\
-    \ntemplate <typename T>\nstruct Edge {\n  int from; int to;\n  T cost;\n\n  //\
-    \ default constructor\n  Edge () : from(-1), to(-1), cost(T(0)) {}\n\n  Edge(int\
-    \ _from, int _to, T _cost) : from(_from), to(_to), cost(_cost) {}\n\n  // unweighted\n\
-    \  Edge(int _from, int _to) : from(_from), to(_to), cost(T(1)) {}\n\n  bool operator==(const\
-    \ Edge& rhs) const {\n    return from == rhs.from && to == rhs.to && cost == rhs.cost;\n\
-    \  }\n\n  bool operator<(const Edge& rhs) const {\n    return cost < rhs.cost;\n\
-    \  }\n  \n  bool operator>(const Edge& rhs) const {\n    return cost > rhs.cost;\n\
-    \  }\n\n};\n\n\ntemplate <typename T>\nstruct Graph : std::vector<std::vector<Edge<T>>>\
-    \ {\n\n  using std::vector<std::vector<Edge<T>>>::vector; // inherit constructors\n\
-    \n  void add_edge(int i, Edge<T> e) {\n    (*this)[i].push_back(e);\n  }\n\n \
-    \ void add_edge(Edge<T> e) {\n    (*this)[e.from].push_back(e);\n  }\n\n  // weighted\n\
-    \  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
+  bundledCode: "#line 1 \"graph/tree/heavy_light_decomposition.hpp\"\n\n\n// https://harui-i.github.io/library/graph/tree/heavy_light_decomposition.hpp.html\n\
+    \n#include <vector>\n#include <algorithm>\n#include <cassert>\n#include <utility>\n\
+    \n#line 1 \"graph/graph_template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/graph_template.hpp.html\n\
+    \n#line 6 \"graph/graph_template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  int from; int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1),\
+    \ to(-1), cost(T(0)) {}\n\n  Edge(int _from, int _to, T _cost) : from(_from),\
+    \ to(_to), cost(_cost) {}\n\n  // unweighted\n  Edge(int _from, int _to) : from(_from),\
+    \ to(_to), cost(T(1)) {}\n\n  bool operator==(const Edge& rhs) const {\n    return\
+    \ from == rhs.from && to == rhs.to && cost == rhs.cost;\n  }\n\n  bool operator<(const\
+    \ Edge& rhs) const {\n    return cost < rhs.cost;\n  }\n  \n  bool operator>(const\
+    \ Edge& rhs) const {\n    return cost > rhs.cost;\n  }\n\n};\n\n\ntemplate <typename\
+    \ T>\nstruct Graph : std::vector<std::vector<Edge<T>>> {\n\n  using std::vector<std::vector<Edge<T>>>::vector;\
+    \ // inherit constructors\n\n  void add_edge(int i, Edge<T> e) {\n    (*this)[i].push_back(e);\n\
+    \  }\n\n  void add_edge(Edge<T> e) {\n    (*this)[e.from].push_back(e);\n  }\n\
+    \n  // weighted\n  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
-    \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 10\
+    \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 11\
     \ \"graph/tree/heavy_light_decomposition.hpp\"\n\nnamespace HaruiLib {\n  // cf\
     \ : https://ngtkana.hatenablog.com/entry/2024/06/24/200138\n  struct Interval\
     \ {\n    // top_id : interval \u306E\u3082\u3063\u3068\u3082\u6839\u306B\u8FD1\
@@ -117,6 +118,7 @@ data:
     \ r) {\n      assert(r < int(id.size()));\n      return std::make_pair(id[r],\
     \ id2[r]);\n    }\n  \n  };\n\n}\n\n"
   code: "#ifndef HARUILIB_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n#define HARUILIB_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n\
+    // https://harui-i.github.io/library/graph/tree/heavy_light_decomposition.hpp.html\n\
     \n#include <vector>\n#include <algorithm>\n#include <cassert>\n#include <utility>\n\
     \n#include \"graph/graph_template.hpp\"\n\nnamespace HaruiLib {\n  // cf : https://ngtkana.hatenablog.com/entry/2024/06/24/200138\n\
     \  struct Interval {\n    // top_id : interval \u306E\u3082\u3063\u3068\u3082\u6839\
@@ -201,12 +203,12 @@ data:
   isVerificationFile: false
   path: graph/tree/heavy_light_decomposition.hpp
   requiredBy: []
-  timestamp: '2025-03-23 01:11:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-17 23:49:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/verify/yosupo-vertex-add-path-sum.test.cpp
   - test/verify/yosupo-vertex-add-subtree-sum.test.cpp
   - test/verify/yosupo-vertex-set-path-composite.test.cpp
-  - test/verify/yosupo-vertex-add-path-sum.test.cpp
 documentation_of: graph/tree/heavy_light_decomposition.hpp
 layout: document
 title: "Heavy-Light Decomposition(HL\u5206\u89E3, HLD)"

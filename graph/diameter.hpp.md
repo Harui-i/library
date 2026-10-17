@@ -1,22 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/graph_template.hpp
     title: graph/graph_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yosupo-tree-diameter.test.cpp
     title: test/verify/yosupo-tree-diameter.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"graph/diameter.hpp\"\n\n\n\n\n#include <algorithm>\n#include\
-    \ <vector>\n#include <queue>\n#line 1 \"graph/graph_template.hpp\"\n\n\n\n#line\
-    \ 5 \"graph/graph_template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
+    links:
+    - https://harui-i.github.io/library/graph/diameter.hpp.html
+  bundledCode: "#line 1 \"graph/diameter.hpp\"\n\n\n// https://harui-i.github.io/library/graph/diameter.hpp.html\n\
+    \n\n#include <algorithm>\n#include <vector>\n#include <queue>\n#line 1 \"graph/graph_template.hpp\"\
+    \n\n\n// https://harui-i.github.io/library/graph/graph_template.hpp.html\n\n#line\
+    \ 6 \"graph/graph_template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
     \ from; int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1),\
     \ to(-1), cost(T(0)) {}\n\n  Edge(int _from, int _to, T _cost) : from(_from),\
     \ to(_to), cost(_cost) {}\n\n  // unweighted\n  Edge(int _from, int _to) : from(_from),\
@@ -29,7 +31,7 @@ data:
     \  }\n\n  void add_edge(Edge<T> e) {\n    (*this)[e.from].push_back(e);\n  }\n\
     \n  // weighted\n  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
-    \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 9\
+    \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 10\
     \ \"graph/diameter.hpp\"\n\nnamespace mylib {\n\n  using std::vector;\n  using\
     \ std::pair;\n  using std::queue;\n\n  template <typename T>\n  pair<vector<int>,\
     \ T> diameter_path(const Graph<T>& graph) {\n    int N = (int)graph.size();\n\n\
@@ -55,8 +57,9 @@ data:
     \    }\n\n    return make_pair(diameter_path, farest2.first);\n  }\n\n} // namespace\
     \ mylib\n\n\n"
   code: "#ifndef HARUILIB_GRAPH_DIAMETER_HPP\n#define HARUILIB_GRAPH_DIAMETER_HPP\n\
-    \n\n#include <algorithm>\n#include <vector>\n#include <queue>\n#include \"graph/graph_template.hpp\"\
-    \n\nnamespace mylib {\n\n  using std::vector;\n  using std::pair;\n  using std::queue;\n\
+    // https://harui-i.github.io/library/graph/diameter.hpp.html\n\n\n#include <algorithm>\n\
+    #include <vector>\n#include <queue>\n#include \"graph/graph_template.hpp\"\n\n\
+    namespace mylib {\n\n  using std::vector;\n  using std::pair;\n  using std::queue;\n\
     \n  template <typename T>\n  pair<vector<int>, T> diameter_path(const Graph<T>&\
     \ graph) {\n    int N = (int)graph.size();\n\n    // first sweep\n    pair<T,\
     \ int> farest1 = make_pair(T(0), 0);\n    {\n      vector<T> dist(N, T(-1));\n\
@@ -85,8 +88,8 @@ data:
   isVerificationFile: false
   path: graph/diameter.hpp
   requiredBy: []
-  timestamp: '2025-03-23 00:55:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-17 23:49:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/verify/yosupo-tree-diameter.test.cpp
 documentation_of: graph/diameter.hpp

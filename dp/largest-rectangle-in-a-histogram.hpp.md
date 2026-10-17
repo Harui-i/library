@@ -10,9 +10,10 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"dp/largest-rectangle-in-a-histogram.hpp\"\n\n\n#include\
-    \ <stack>\n#include <vector>\n\ntemplate <typename T>\nlong long  largest_reactangle_in_a_histogram(std::vector<T>&\
+    links:
+    - https://harui-i.github.io/library/dp/largest-rectangle-in-a-histogram.hpp.html
+  bundledCode: "#line 1 \"dp/largest-rectangle-in-a-histogram.hpp\"\n\n\n// https://harui-i.github.io/library/dp/largest-rectangle-in-a-histogram.hpp.html\n\
+    #include <stack>\n#include <vector>\n\ntemplate <typename T>\nlong long  largest_reactangle_in_a_histogram(std::vector<T>&\
     \ vec) {\n  int N = vec.size();\n  std::stack<T> st; // \u6700\u5F31\u756A\u9577\
     (\u3092index\u3067\u8868\u3057\u305F)\u5F85\u6A5F\u5217\u306E\u30A4\u30E1\u30FC\
     \u30B8\u3002\u5352\u696D\u306B\u3088\u308B\u5F15\u9000\u304C\u306A\u3044\u305F\
@@ -51,6 +52,7 @@ data:
     \    st.pop();\n  }\n\n  ll ans = 0;\n  for(int i=0; i<N; i++) {\n    chmax(ans,\
     \ (ll)(ridx[i] - (lidx[i] + 1)) * vec[i]);\n  }\n  return ans; \n}\n\n"
   code: "#ifndef HARUILIB_DP_LARGEST_RECTANGLE_IN_A_HISTOGRAM_HPP\n#define HARUILIB_DP_LARGEST_RECTANGLE_IN_A_HISTOGRAM_HPP\n\
+    // https://harui-i.github.io/library/dp/largest-rectangle-in-a-histogram.hpp.html\n\
     #include <stack>\n#include <vector>\n\ntemplate <typename T>\nlong long  largest_reactangle_in_a_histogram(std::vector<T>&\
     \ vec) {\n  int N = vec.size();\n  std::stack<T> st; // \u6700\u5F31\u756A\u9577\
     (\u3092index\u3067\u8868\u3057\u305F)\u5F85\u6A5F\u5217\u306E\u30A4\u30E1\u30FC\
@@ -93,7 +95,7 @@ data:
   isVerificationFile: false
   path: dp/largest-rectangle-in-a-histogram.hpp
   requiredBy: []
-  timestamp: '2024-08-21 21:41:37+09:00'
+  timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/aoj-dpl3-c.test.cpp

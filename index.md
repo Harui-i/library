@@ -29,11 +29,11 @@ data:
       title: dropbox_refresh.py
   - name: dp/automaton
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: dp/automaton/automaton.hpp
       title: "\u6C7A\u5B9A\u6027\u6709\u9650\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3(DFA,\
         \ Deterministic Finite Automaton)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: dp/automaton/remainder.hpp
       title: "\u3042\u307E\u308A\u3092\u7BA1\u7406\u3059\u308B\u30AA\u30FC\u30C8\u30DE\
         \u30C8\u30F3(remainder.hpp)"
@@ -73,21 +73,21 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/bellmanford.hpp
       title: "Bellmanford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/diameter.hpp
       title: "Tree Diameter(\u6728\u306E\u76F4\u5F84)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/dijkstra.hpp
       title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
     - icon: ':heavy_check_mark:'
       path: graph/general_weighted_matching.hpp
       title: General Weighted Matching
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/graph_template.hpp
       title: graph/graph_template.hpp
   - name: graph/tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/tree/heavy_light_decomposition.hpp
       title: "Heavy-Light Decomposition(HL\u5206\u89E3, HLD)"
   - name: math
@@ -101,16 +101,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/decimal_big_integer.hpp
       title: decimal_big_integer
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/external_gcd.hpp
       title: math/external_gcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/linear_function.hpp
       title: math/linear_function.hpp
     - icon: ':warning:'
       path: math/mod_pow.hpp
       title: math/mod_pow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/modint.hpp
       title: modint
     - icon: ':heavy_check_mark:'
@@ -134,7 +134,7 @@ data:
     - icon: ':warning:'
       path: structure/dual-fenwick-tree.hpp
       title: structure/dual-fenwick-tree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: structure/fenwick_tree.hpp
       title: structure/fenwick_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -147,7 +147,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: structure/rectangle_apply_point_get.hpp
       title: Rectangle Apply Point Get
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: structure/slide-window-aggregation.hpp
       title: Foldable Deque(Slide Window Aggregation)
   - name: structure/segment-tree
@@ -157,7 +157,7 @@ data:
       title: "Segment Tree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/template.hpp
       title: template/template.hpp
   - name: test/unittest
@@ -207,25 +207,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/verify/yosupo-point-add-range-sum.test.cpp
       title: test/verify/yosupo-point-add-range-sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yosupo-queue-operate-all-composite.test.cpp
       title: test/verify/yosupo-queue-operate-all-composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yosupo-shortest-path.test.cpp
       title: test/verify/yosupo-shortest-path.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yosupo-tree-diameter.test.cpp
       title: test/verify/yosupo-tree-diameter.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yosupo-vertex-add-path-sum.test.cpp
       title: test/verify/yosupo-vertex-add-path-sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
       title: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yosupo-vertex-set-path-composite.test.cpp
       title: test/verify/yosupo-vertex-set-path-composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/verify/yuki-372-itsautomatic.test.cpp
       title: test/verify/yuki-372-itsautomatic.test.cpp
     - icon: ':heavy_check_mark:'
@@ -330,16 +330,16 @@ data:
       title: test/verify/structure/yosupo-rectangle-sum.test.cpp
   - name: unabstracted_libs/segment-tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
       title: unabstracted_libs/segment-tree/aoj-dsl-2-a(RMQ).test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
       title: unabstracted_libs/segment-tree/aoj-dsl-2-b(RSQ).test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
       title: unabstracted_libs/segment-tree/aoj-dsl-2-d(RUQ).test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
       title: unabstracted_libs/segment-tree/aoj-dsl-2-e(RAQ).test.cpp
 layout: toppage

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: dp/automaton/remainder.hpp
     title: "\u3042\u307E\u308A\u3092\u7BA1\u7406\u3059\u308B\u30AA\u30FC\u30C8\u30DE\
       \u30C8\u30F3(remainder.hpp)"
@@ -10,27 +10,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-0570.test.cpp
     title: test/verify/aoj-0570.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"dp/automaton/automaton.hpp\"\n\n\n\n#include <functional>\n\
-    #include <memory>\n#include <string>\n#include <unordered_map>\n#include <utility>\n\
-    #include <vector>\n\ntemplate <typename Alphabet = int>\nstruct Dfa {\n  using\
-    \ alphabet_type = Alphabet;\n  using state_type = int;\n\n  virtual int state_count()\
-    \ const = 0;\n  virtual int initial_state() const = 0;\n  virtual int next_state(int\
-    \ state, Alphabet c) const = 0;\n  virtual bool accept(int state) const = 0;\n\
-    \  virtual ~Dfa() = default;\n};\n\ntemplate <typename Alphabet = int>\nusing\
-    \ DfaPtr = std::shared_ptr<Dfa<Alphabet>>;\n\ntemplate <typename Alphabet = int>\n\
-    class ProductPolicyDfa : public Dfa<Alphabet> {\n  std::vector<DfaPtr<Alphabet>>\
-    \ dfas;\n  std::vector<int> base;\n  int states;\n  std::function<bool(const std::vector<bool>&)>\
-    \ policy;\n\npublic:\n  ProductPolicyDfa(std::vector<DfaPtr<Alphabet>> dfas,\n\
-    \                   std::function<bool(const std::vector<bool>&)> policy)\n  \
-    \    : dfas(std::move(dfas)), states(1), policy(std::move(policy)) {\n    base.resize(this->dfas.size());\n\
+    links:
+    - https://harui-i.github.io/library/dp/automaton/automaton.hpp.html
+  bundledCode: "#line 1 \"dp/automaton/automaton.hpp\"\n\n\n// https://harui-i.github.io/library/dp/automaton/automaton.hpp.html\n\
+    \n#include <functional>\n#include <memory>\n#include <string>\n#include <unordered_map>\n\
+    #include <utility>\n#include <vector>\n\ntemplate <typename Alphabet = int>\n\
+    struct Dfa {\n  using alphabet_type = Alphabet;\n  using state_type = int;\n\n\
+    \  virtual int state_count() const = 0;\n  virtual int initial_state() const =\
+    \ 0;\n  virtual int next_state(int state, Alphabet c) const = 0;\n  virtual bool\
+    \ accept(int state) const = 0;\n  virtual ~Dfa() = default;\n};\n\ntemplate <typename\
+    \ Alphabet = int>\nusing DfaPtr = std::shared_ptr<Dfa<Alphabet>>;\n\ntemplate\
+    \ <typename Alphabet = int>\nclass ProductPolicyDfa : public Dfa<Alphabet> {\n\
+    \  std::vector<DfaPtr<Alphabet>> dfas;\n  std::vector<int> base;\n  int states;\n\
+    \  std::function<bool(const std::vector<bool>&)> policy;\n\npublic:\n  ProductPolicyDfa(std::vector<DfaPtr<Alphabet>>\
+    \ dfas,\n                   std::function<bool(const std::vector<bool>&)> policy)\n\
+    \      : dfas(std::move(dfas)), states(1), policy(std::move(policy)) {\n    base.resize(this->dfas.size());\n\
     \    for(int i = 0; i < (int)this->dfas.size(); i++) {\n      base[i] = states;\n\
     \      states *= this->dfas[i]->state_count();\n    }\n  }\n\n  int encode(const\
     \ std::vector<int>& component_states) const {\n    int state = 0;\n    for(int\
@@ -99,7 +100,8 @@ data:
     \ int zero_state = inner->next_state(inner->initial_state(), zero);\n    return\
     \ inner->accept(zero_state);\n  }\n};\n\n\n"
   code: "#ifndef HARUILIB_DP_AUTOMATON_AUTOMATON_HPP\n#define HARUILIB_DP_AUTOMATON_AUTOMATON_HPP\n\
-    \n#include <functional>\n#include <memory>\n#include <string>\n#include <unordered_map>\n\
+    // https://harui-i.github.io/library/dp/automaton/automaton.hpp.html\n\n#include\
+    \ <functional>\n#include <memory>\n#include <string>\n#include <unordered_map>\n\
     #include <utility>\n#include <vector>\n\ntemplate <typename Alphabet = int>\n\
     struct Dfa {\n  using alphabet_type = Alphabet;\n  using state_type = int;\n\n\
     \  virtual int state_count() const = 0;\n  virtual int initial_state() const =\
@@ -183,11 +185,11 @@ data:
   path: dp/automaton/automaton.hpp
   requiredBy:
   - dp/automaton/remainder.hpp
-  timestamp: '2026-07-07 00:03:05+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-17 23:49:45+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/verify/aoj-0570.test.cpp
   - test/verify/yuki-372-itsautomatic.test.cpp
+  - test/verify/aoj-0570.test.cpp
 documentation_of: dp/automaton/automaton.hpp
 layout: document
 title: "\u6C7A\u5B9A\u6027\u6709\u9650\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3(DFA, Deterministic\

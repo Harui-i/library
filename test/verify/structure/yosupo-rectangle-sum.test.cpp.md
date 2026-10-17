@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: structure/fenwick_tree.hpp
     title: structure/fenwick_tree.hpp
   - icon: ':heavy_check_mark:'
     path: structure/offline_2dsum.hpp
     title: Offline 2D Sum (Rectangle Sum)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []
@@ -22,26 +22,28 @@ data:
     - https://judge.yosupo.jp/problem/rectangle_sum
   bundledCode: "#line 1 \"test/verify/structure/yosupo-rectangle-sum.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n#line 1 \"\
-    template/template.hpp\"\n#include <iostream>\n#include <cassert>\nusing namespace\
-    \ std;\nusing ll = long long;\ntemplate<class T> inline bool chmax(T& a, const\
-    \ T& b) {if (a<b) {a=b; return true;} return false;}\ntemplate<class T> inline\
-    \ bool chmin(T& a, const T& b) {if (b<a) {a=b; return true;} return false;}\n\
-    const int INTINF = 1000001000;\nconst int INTMAX = 2147483647;\nconst ll LLMAX\
-    \ = 9223372036854775807;\nconst ll LLINF = 1000000000000000000;\n#line 1 \"structure/offline_2dsum.hpp\"\
-    \n\n\n\n#include <algorithm>\n#line 6 \"structure/offline_2dsum.hpp\"\n#include\
-    \ <vector>\n#line 1 \"structure/fenwick_tree.hpp\"\n\n\n\n#line 6 \"structure/fenwick_tree.hpp\"\
-    \n\ntemplate <class T> struct fenwick_tree {\n  fenwick_tree(): _n(0) {}\n  explicit\
-    \ fenwick_tree(int n): _n(n), data(n) {}\n\n  // point add\n  void add(int p,\
-    \ T x) {\n    assert(0 <= p && p < _n);\n    p++;\n    while (p <= _n) {\n   \
-    \   data[p-1] += T(x);\n      p += p & -p;\n    }\n  } \n\n  T sum(int l, int\
-    \ r) {\n    assert(0 <= l && l <= r && r <= _n);\n    return sum(r) - sum(l);\n\
-    \  }\n\nprivate:\n  int _n;\n  std::vector<T> data;\n  T sum(int r) {\n    T ret(0);\n\
-    \    while (r > 0) {\n      ret += data[r-1];\n      r -= r & -r;\n    }\n\n \
-    \   return ret;\n  }\n};\n\n\n#line 8 \"structure/offline_2dsum.hpp\"\n\ntemplate\
-    \ <class T, class W> struct offline_2dsum {\n  struct Point {\n    T x, y;\n \
-    \   W w;\n  };\n  struct Query {\n    T l, r, d, u;\n  };\n\n  void add_point(T\
-    \ x, T y, W w) {\n    points.push_back({x, y, w});\n  }\n\n  void add_query(T\
-    \ l, T r, T d, T u) {\n    assert(l <= r && d <= u);\n    queries.push_back({l,\
+    template/template.hpp\"\n\n\n// https://harui-i.github.io/library/template/template.hpp.html\n\
+    \n#include <iostream>\n#include <cassert>\nusing namespace std;\nusing ll = long\
+    \ long;\ntemplate<class T> inline bool chmax(T& a, const T& b) {if (a<b) {a=b;\
+    \ return true;} return false;}\ntemplate<class T> inline bool chmin(T& a, const\
+    \ T& b) {if (b<a) {a=b; return true;} return false;}\nconst int INTINF = 1000001000;\n\
+    const int INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\nconst ll\
+    \ LLINF = 1000000000000000000;\n\n\n#line 1 \"structure/offline_2dsum.hpp\"\n\n\
+    \n// https://harui-i.github.io/library/structure/offline_2dsum.hpp.html\n\n#include\
+    \ <algorithm>\n#line 7 \"structure/offline_2dsum.hpp\"\n#include <vector>\n#line\
+    \ 1 \"structure/fenwick_tree.hpp\"\n\n\n// https://harui-i.github.io/library/structure/fenwick_tree.hpp.html\n\
+    \n#line 7 \"structure/fenwick_tree.hpp\"\n\ntemplate <class T> struct fenwick_tree\
+    \ {\n  fenwick_tree(): _n(0) {}\n  explicit fenwick_tree(int n): _n(n), data(n)\
+    \ {}\n\n  // point add\n  void add(int p, T x) {\n    assert(0 <= p && p < _n);\n\
+    \    p++;\n    while (p <= _n) {\n      data[p-1] += T(x);\n      p += p & -p;\n\
+    \    }\n  } \n\n  T sum(int l, int r) {\n    assert(0 <= l && l <= r && r <= _n);\n\
+    \    return sum(r) - sum(l);\n  }\n\nprivate:\n  int _n;\n  std::vector<T> data;\n\
+    \  T sum(int r) {\n    T ret(0);\n    while (r > 0) {\n      ret += data[r-1];\n\
+    \      r -= r & -r;\n    }\n\n    return ret;\n  }\n};\n\n\n#line 9 \"structure/offline_2dsum.hpp\"\
+    \n\ntemplate <class T, class W> struct offline_2dsum {\n  struct Point {\n   \
+    \ T x, y;\n    W w;\n  };\n  struct Query {\n    T l, r, d, u;\n  };\n\n  void\
+    \ add_point(T x, T y, W w) {\n    points.push_back({x, y, w});\n  }\n\n  void\
+    \ add_query(T l, T r, T d, T u) {\n    assert(l <= r && d <= u);\n    queries.push_back({l,\
     \ r, d, u});\n  }\n\n  std::vector<W> solve() {\n    int n = points.size();\n\
     \    int q = queries.size();\n    std::vector<W> res(q, 0);\n\n    std::vector<T>\
     \ ys;\n    ys.reserve(n);\n    for (auto& p : points) ys.push_back(p.y);\n   \
@@ -84,7 +86,7 @@ data:
   isVerificationFile: true
   path: test/verify/structure/yosupo-rectangle-sum.test.cpp
   requiredBy: []
-  timestamp: '2026-05-10 19:38:55+09:00'
+  timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/structure/yosupo-rectangle-sum.test.cpp
