@@ -1,5 +1,6 @@
 #ifndef HARUILIB_DEBUG_HPP
 #define HARUILIB_DEBUG_HPP
+// https://harui-i.github.io/library/debug.hpp.html
 
 #ifdef LOCAL
 #define dbg(x) std::cerr << __LINE__ << " : " << #x << " = " << (x) << std::endl

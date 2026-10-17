@@ -1,5 +1,6 @@
 #ifndef HARUILIB_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP
 #define HARUILIB_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP
+// https://harui-i.github.io/library/graph/tree/heavy_light_decomposition.hpp.html
 
 #include <vector>
 #include <algorithm>

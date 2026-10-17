@@ -1,5 +1,6 @@
 #ifndef HARUILIB_DP_AUTOMATON_REMAINDER_HPP
 #define HARUILIB_DP_AUTOMATON_REMAINDER_HPP
+// https://harui-i.github.io/library/dp/automaton/remainder.hpp.html
 
 #include "dp/automaton/automaton.hpp"
 

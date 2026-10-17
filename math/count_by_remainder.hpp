@@ -1,5 +1,6 @@
 #ifndef HARUILIB_MATH_COUNT_BY_REMAINDER_HPP
 #define HARUILIB_MATH_COUNT_BY_REMAINDER_HPP
+// https://harui-i.github.io/library/math/count_by_remainder.hpp.html
 
 template <typename T= long long>
 // l以上r未満で、Mで割った余りがbである整数の個数を求める

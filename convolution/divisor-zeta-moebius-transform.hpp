@@ -1,5 +1,6 @@
 #ifndef HARUILIB_CONVOLUTION_DIVISOR_ZETA_MOEBIUS_TRANSFORM_HPP
 #define HARUILIB_CONVOLUTION_DIVISOR_ZETA_MOEBIUS_TRANSFORM_HPP
+// https://harui-i.github.io/library/convolution/divisor-zeta-moebius-transform.hpp.html
 
 #include <vector>
 #include <map>

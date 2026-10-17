@@ -1,5 +1,6 @@
 #ifndef HARUILIB_DP_CUMULATIVE_SUM_2D_HPP
 #define HARUILIB_DP_CUMULATIVE_SUM_2D_HPP
+// https://harui-i.github.io/library/dp/cumulative-sum-2d.hpp.html
 
 #include <cassert>
 #include <vector>

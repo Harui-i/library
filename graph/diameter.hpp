@@ -1,5 +1,6 @@
 #ifndef HARUILIB_GRAPH_DIAMETER_HPP
 #define HARUILIB_GRAPH_DIAMETER_HPP
+// https://harui-i.github.io/library/graph/diameter.hpp.html
 
 
 #include <algorithm>

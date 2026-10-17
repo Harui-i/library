@@ -1,5 +1,6 @@
 #ifndef HARUILIB_STRUCTURE_POTENTIALIZED_UNION_FIND_TREE_HPP
 #define HARUILIB_STRUCTURE_POTENTIALIZED_UNION_FIND_TREE_HPP
+// https://harui-i.github.io/library/structure/potentialized-union-find-tree.hpp.html
 
 #include <vector>
 

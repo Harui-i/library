@@ -1,5 +1,6 @@
 #ifndef HARUILIB_STRUCTURE_FENWICK_TREE_HPP
 #define HARUILIB_STRUCTURE_FENWICK_TREE_HPP
+// https://harui-i.github.io/library/structure/fenwick_tree.hpp.html
 
 #include <vector>
 #include <cassert>

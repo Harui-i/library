@@ -1,5 +1,6 @@
 #ifndef HARUILIB_CONVOLUTION_SUBSET_ZETA_MOEBIUS_TRANSFORM_HPP
 #define HARUILIB_CONVOLUTION_SUBSET_ZETA_MOEBIUS_TRANSFORM_HPP
+// https://harui-i.github.io/library/convolution/subset-zeta-moebius-transform.hpp.html
 
 #include <vector>
 

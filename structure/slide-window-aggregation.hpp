@@ -1,5 +1,6 @@
 #ifndef HARUILIB_LIBRARY_STRUCTURE_SLIDE_WINDOW_AGGREGATION_HPP
 #define HARUILIB_LIBRARY_STRUCTURE_SLIDE_WINDOW_AGGREGATION_HPP
+// https://harui-i.github.io/library/structure/slide-window-aggregation.hpp.html
 
 #include <vector>
 #include <algorithm>

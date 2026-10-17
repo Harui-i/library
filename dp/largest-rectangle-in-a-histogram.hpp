@@ -1,5 +1,6 @@
 #ifndef HARUILIB_DP_LARGEST_RECTANGLE_IN_A_HISTOGRAM_HPP
 #define HARUILIB_DP_LARGEST_RECTANGLE_IN_A_HISTOGRAM_HPP
+// https://harui-i.github.io/library/dp/largest-rectangle-in-a-histogram.hpp.html
 #include <stack>
 #include <vector>
 

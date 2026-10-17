@@ -1,3 +1,7 @@
+#ifndef HARUILIB_FORMAL_POWER_SERIES_FIDUCCIA_HPP
+#define HARUILIB_FORMAL_POWER_SERIES_FIDUCCIA_HPP
+// https://harui-i.github.io/library/formal-power-series/fiduccia.hpp.html
+
 #include <vector>
 #include "formal-power-series/formal-power-series.hpp"
 
@@ -42,3 +46,5 @@ mint Fiduccia(const vector<mint>& a, const vector<mint>& c, unsigned long long  
 
   return ret;
 }
+
+#endif

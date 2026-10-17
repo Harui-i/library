@@ -1,5 +1,6 @@
 #ifndef HARUILIB_MATH_MODINT2611_HPP
 #define HARUILIB_MATH_MODINT2611_HPP
+// https://harui-i.github.io/library/math/modint2611.hpp.html
 
 #include <random>
 #include <chrono>

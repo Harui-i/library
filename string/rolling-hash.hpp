@@ -1,5 +1,6 @@
 #ifndef HARUILIB_LIBRARY_STRING_ROLLING_HASH_HPP
 #define HARUILIB_LIBRARY_STRING_ROLLING_HASH_HPP
+// https://harui-i.github.io/library/string/rolling-hash.hpp.html
 
 #include <iostream>
 #include <vector>

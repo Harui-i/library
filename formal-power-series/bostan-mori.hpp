@@ -1,3 +1,7 @@
+#ifndef HARUILIB_FORMAL_POWER_SERIES_BOSTAN_MORI_HPP
+#define HARUILIB_FORMAL_POWER_SERIES_BOSTAN_MORI_HPP
+// https://harui-i.github.io/library/formal-power-series/bostan-mori.hpp.html
+
 #include <cassert>
 #include <vector>
 
@@ -64,3 +68,5 @@ mint BostanMori(const std::vector<mint>& a, const std::vector<mint>& c, unsigned
 
   return BostanMori(P, Q, N);
 }
+
+#endif

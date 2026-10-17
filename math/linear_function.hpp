@@ -1,5 +1,6 @@
 #ifndef HARUILIB_LINEAR_FUNCTION_HPP
 #define HARUILIB_LINEAR_FUNCTION_HPP
+// https://harui-i.github.io/library/math/linear_function.hpp.html
 
 template <typename T>
 struct LinearFunction {

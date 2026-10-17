@@ -1,5 +1,6 @@
 #ifndef HARUILIB_FORMAL_POWER_SERIES_NAIVE_FPS_HPP
 #define HARUILIB_FORMAL_POWER_SERIES_NAIVE_FPS_HPP
+// https://harui-i.github.io/library/formal-power-series/fps-naive.hpp.html
 
 #include "formal-power-series/formal-power-series.hpp"
 
