@@ -1,5 +1,6 @@
 #ifndef HARUILIB_STRUCTURE_OFFLINE_2DSUM_HPP
 #define HARUILIB_STRUCTURE_OFFLINE_2DSUM_HPP
+// https://harui-i.github.io/library/structure/offline_2dsum.hpp.html
 
 #include <algorithm>
 #include <cassert>

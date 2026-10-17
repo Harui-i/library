@@ -1,5 +1,6 @@
 #ifndef HARUILIB_DP_AUTOMATON_AUTOMATON_HPP
 #define HARUILIB_DP_AUTOMATON_AUTOMATON_HPP
+// https://harui-i.github.io/library/dp/automaton/automaton.hpp.html
 
 #include <functional>
 #include <memory>

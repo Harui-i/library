@@ -1,5 +1,6 @@
 #ifndef HARUILIB_FORMAL_POWER_SERIES_FPS998_HPP
 #define HARUILIB_FORMAL_POWER_SERIES_FPS998_HPP
+// https://harui-i.github.io/library/formal-power-series/fps-998.hpp.html
 
 #include <array>
 

@@ -1,5 +1,6 @@
 #ifndef HARUILIB_GRAPH_BELLMANFORD_HPP
 #define HARUILIB_GRAPH_BELLMANFORD_HPP
+// https://harui-i.github.io/library/graph/bellmanford.hpp.html
 
 #include <cassert>
 #include <queue>

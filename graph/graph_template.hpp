@@ -1,5 +1,6 @@
 #ifndef HARUILIB_GRAPH_TEMPLATE_HPP
 #define HARUILIB_GRAPH_TEMPLATE_HPP
+// https://harui-i.github.io/library/graph/graph_template.hpp.html
 
 #include <vector>
 

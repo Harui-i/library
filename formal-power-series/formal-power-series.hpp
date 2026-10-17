@@ -1,5 +1,6 @@
 #ifndef HARUILIB_FORMAL_POWER_SERIES_FORMAL_POWER_SERIES_HPP
 #define HARUILIB_FORMAL_POWER_SERIES_FORMAL_POWER_SERIES_HPP
+// https://harui-i.github.io/library/formal-power-series/formal-power-series.hpp.html
 
 #include <algorithm>
 #include <iostream>

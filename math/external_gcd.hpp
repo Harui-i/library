@@ -1,5 +1,6 @@
 #ifndef HARUILIB_MATH_EXTERNAL_GCD_HPP
 #define HARUILIB_MATH_EXTERNAL_GCD_HPP
+// https://harui-i.github.io/library/math/external_gcd.hpp.html
 
 #include <tuple>
 

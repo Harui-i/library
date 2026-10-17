@@ -1,5 +1,6 @@
 #ifndef HARUILIB_MATH_PRIMALITY_TEST_HPP
 #define HARUILIB_MATH_PRIMALITY_TEST_HPP
+// https://harui-i.github.io/library/math/primality_test.hpp.html
 
 #include <cstdint>
 

@@ -1,5 +1,6 @@
 #ifndef HARUILIB_STRUCTURE_RECTANGLE_APPLY_POINT_GET_HPP
 #define HARUILIB_STRUCTURE_RECTANGLE_APPLY_POINT_GET_HPP
+// https://harui-i.github.io/library/structure/rectangle_apply_point_get.hpp.html
 
 #include <cassert>
 #include <vector>

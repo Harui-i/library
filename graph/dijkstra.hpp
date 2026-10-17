@@ -1,5 +1,6 @@
 #ifndef HARUILIB_GRAPH_DIJKSTRA_HPP
 #define HARUILIB_GRAPH_DIJKSTRA_HPP
+// https://harui-i.github.io/library/graph/dijkstra.hpp.html
 
 #include <queue>
 #include <vector>

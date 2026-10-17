@@ -1,5 +1,6 @@
 #ifndef HARUILIB_MATH_MOD_POW_HPP
 #define HARUILIB_MATH_MOD_POW_HPP
+// https://harui-i.github.io/library/math/mod_pow.hpp.html
 
 template <typename T>
 T mod_pow(T x, ll a, const T &p) {

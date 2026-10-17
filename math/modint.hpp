@@ -1,5 +1,6 @@
 #ifndef HARUILIB_MATH_MODINT_HPP
 #define HARUILIB_MATH_MODINT_HPP
+// https://harui-i.github.io/library/math/modint.hpp.html
 
 #include "math/external_gcd.hpp"
 #include <type_traits>

@@ -1,5 +1,6 @@
 #ifndef HARUILIB_FORMAL_POWER_SERIES_SPARSE_FPS_HPP
 #define HARUILIB_FORMAL_POWER_SERIES_SPARSE_FPS_HPP
+// https://harui-i.github.io/library/formal-power-series/fps-sparse.hpp.html
 
 #include <cassert>
 #include <vector>
