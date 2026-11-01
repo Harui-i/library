@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/primality_test.hpp
     title: primality_test
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
   _extendedRequiredBy: []

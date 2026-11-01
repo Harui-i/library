@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-point-add-range-sum.test.cpp
     title: test/verify/yosupo-point-add-range-sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-vertex-add-path-sum.test.cpp
     title: test/verify/yosupo-vertex-add-path-sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://harui-i.github.io/library/structure/fenwick_tree.hpp.html
@@ -46,11 +46,11 @@ data:
   requiredBy:
   - structure/offline_2dsum.hpp
   timestamp: '2026-10-17 23:49:45+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yosupo-vertex-add-path-sum.test.cpp
-  - test/verify/structure/yosupo-rectangle-sum.test.cpp
   - test/verify/yosupo-point-add-range-sum.test.cpp
+  - test/verify/structure/yosupo-rectangle-sum.test.cpp
+  - test/verify/yosupo-vertex-add-path-sum.test.cpp
 documentation_of: structure/fenwick_tree.hpp
 layout: document
 redirect_from:

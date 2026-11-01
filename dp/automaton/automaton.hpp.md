@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: dp/automaton/remainder.hpp
     title: "\u3042\u307E\u308A\u3092\u7BA1\u7406\u3059\u308B\u30AA\u30FC\u30C8\u30DE\
       \u30C8\u30F3(remainder.hpp)"
@@ -10,12 +10,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-0570.test.cpp
     title: test/verify/aoj-0570.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yuki-372-itsautomatic.test.cpp
     title: test/verify/yuki-372-itsautomatic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://harui-i.github.io/library/dp/automaton/automaton.hpp.html
@@ -186,7 +186,7 @@ data:
   requiredBy:
   - dp/automaton/remainder.hpp
   timestamp: '2026-10-17 23:49:45+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/aoj-0570.test.cpp

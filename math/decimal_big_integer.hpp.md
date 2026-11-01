@@ -474,8 +474,8 @@ data:
   timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/math/yosupo-multiplication-of-big-integers.test.cpp
   - test/verify/math/yosupo-addition-of-big-integers.test.cpp
+  - test/verify/math/yosupo-multiplication-of-big-integers.test.cpp
   - test/verify/math/yosupo-division-of-big-integers.test.cpp
 documentation_of: math/decimal_big_integer.hpp
 layout: document

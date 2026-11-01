@@ -5,37 +5,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bellmanford.hpp
     title: "Bellmanford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/diameter.hpp
     title: "Tree Diameter(\u6728\u306E\u76F4\u5F84)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/heavy_light_decomposition.hpp
     title: "Heavy-Light Decomposition(HL\u5206\u89E3, HLD)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/verify/aoj-grl-1b.test.cpp
     title: test/verify/aoj-grl-1b.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-shortest-path.test.cpp
     title: test/verify/yosupo-shortest-path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-tree-diameter.test.cpp
     title: test/verify/yosupo-tree-diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-vertex-add-path-sum.test.cpp
     title: test/verify/yosupo-vertex-add-path-sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
     title: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-vertex-set-path-composite.test.cpp
     title: test/verify/yosupo-vertex-set-path-composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://harui-i.github.io/library/graph/graph_template.hpp.html
@@ -75,19 +75,19 @@ data:
   isVerificationFile: false
   path: graph/graph_template.hpp
   requiredBy:
-  - graph/bellmanford.hpp
   - graph/dijkstra.hpp
+  - graph/bellmanford.hpp
   - graph/diameter.hpp
   - graph/tree/heavy_light_decomposition.hpp
   timestamp: '2026-10-17 23:49:45+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/aoj-grl-1b.test.cpp
-  - test/verify/yosupo-vertex-add-path-sum.test.cpp
+  - test/verify/yosupo-vertex-set-path-composite.test.cpp
+  - test/verify/yosupo-vertex-add-subtree-sum.test.cpp
   - test/verify/yosupo-shortest-path.test.cpp
   - test/verify/yosupo-tree-diameter.test.cpp
-  - test/verify/yosupo-vertex-add-subtree-sum.test.cpp
-  - test/verify/yosupo-vertex-set-path-composite.test.cpp
+  - test/verify/yosupo-vertex-add-path-sum.test.cpp
 documentation_of: graph/graph_template.hpp
 layout: document
 redirect_from:

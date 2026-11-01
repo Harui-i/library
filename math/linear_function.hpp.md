@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-deque-operate-all-composite.test.cpp
     title: test/verify/yosupo-deque-operate-all-composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-queue-operate-all-composite.test.cpp
     title: test/verify/yosupo-queue-operate-all-composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/verify/yosupo-vertex-set-path-composite.test.cpp
     title: test/verify/yosupo-vertex-set-path-composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://harui-i.github.io/library/math/linear_function.hpp.html
@@ -46,11 +46,11 @@ data:
   path: math/linear_function.hpp
   requiredBy: []
   timestamp: '2026-10-17 23:49:45+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yosupo-queue-operate-all-composite.test.cpp
-  - test/verify/yosupo-deque-operate-all-composite.test.cpp
   - test/verify/yosupo-vertex-set-path-composite.test.cpp
+  - test/verify/yosupo-deque-operate-all-composite.test.cpp
+  - test/verify/yosupo-queue-operate-all-composite.test.cpp
 documentation_of: math/linear_function.hpp
 layout: document
 redirect_from:
