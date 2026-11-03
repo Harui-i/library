@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <vector>
 #include <queue>
-#include "graph/graph_template.hpp"
+#include "graph/template.hpp"
 
 namespace mylib {
 

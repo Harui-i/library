@@ -18,7 +18,7 @@ int main() {
   }
 
   hld.build();
-  fenwick_tree<ll> fw(N);
+  FenwickTree<ll> fw(N);
   for (int i=0; i<N; i++) {
     fw.add(hld.id[i], a[i]);
   }

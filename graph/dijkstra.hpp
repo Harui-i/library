@@ -7,7 +7,7 @@
 #include <limits>
 #include <utility>
 
-#include "graph/graph_template.hpp"
+#include "graph/template.hpp"
 
 template <typename T>
 std::vector<T> dijkstra(const Graph<T>& graph, int start) {

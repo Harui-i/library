@@ -5,9 +5,9 @@
 #include <vector>
 #include <cassert>
 
-template <class T> struct fenwick_tree {
-  fenwick_tree(): _n(0) {}
-  explicit fenwick_tree(int n): _n(n), data(n) {}
+template <class T> struct FenwickTree {
+  FenwickTree(): _n(0) {}
+  explicit FenwickTree(int n): _n(n), data(n) {}
 
   // point add
   void add(int p, T x) {

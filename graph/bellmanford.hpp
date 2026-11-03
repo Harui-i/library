@@ -7,7 +7,7 @@
 #include <vector>
 #include <limits>
 
-#include "graph/graph_template.hpp"
+#include "graph/template.hpp"
 
 // 完全にパクリました
 // https://ei1333.github.io/library/graph/shortest-path/bellman-ford.hpp
