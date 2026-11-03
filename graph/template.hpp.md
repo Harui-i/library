@@ -38,8 +38,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
-    - https://harui-i.github.io/library/graph/graph_template.hpp.html
-  bundledCode: "#line 1 \"graph/graph_template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/graph_template.hpp.html\n\
+    - https://harui-i.github.io/library/graph/template.hpp.html
+  bundledCode: "#line 1 \"graph/template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/template.hpp.html\n\
     \n#include <vector>\n\ntemplate <typename T>\nstruct Edge {\n  int from; int to;\n\
     \  T cost;\n\n  // default constructor\n  Edge () : from(-1), to(-1), cost(T(0))\
     \ {}\n\n  Edge(int _from, int _to, T _cost) : from(_from), to(_to), cost(_cost)\
@@ -55,9 +55,9 @@ data:
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
     \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n"
   code: "#ifndef HARUILIB_GRAPH_TEMPLATE_HPP\n#define HARUILIB_GRAPH_TEMPLATE_HPP\n\
-    // https://harui-i.github.io/library/graph/graph_template.hpp.html\n\n#include\
-    \ <vector>\n\ntemplate <typename T>\nstruct Edge {\n  int from; int to;\n  T cost;\n\
-    \n  // default constructor\n  Edge () : from(-1), to(-1), cost(T(0)) {}\n\n  Edge(int\
+    // https://harui-i.github.io/library/graph/template.hpp.html\n\n#include <vector>\n\
+    \ntemplate <typename T>\nstruct Edge {\n  int from; int to;\n  T cost;\n\n  //\
+    \ default constructor\n  Edge () : from(-1), to(-1), cost(T(0)) {}\n\n  Edge(int\
     \ _from, int _to, T _cost) : from(_from), to(_to), cost(_cost) {}\n\n  // unweighted\n\
     \  Edge(int _from, int _to) : from(_from), to(_to), cost(T(1)) {}\n\n  bool operator==(const\
     \ Edge& rhs) const {\n    return from == rhs.from && to == rhs.to && cost == rhs.cost;\n\
@@ -73,13 +73,13 @@ data:
     \ HARUILIB_GRAPH_TEMPLATE_HPP"
   dependsOn: []
   isVerificationFile: false
-  path: graph/graph_template.hpp
+  path: graph/template.hpp
   requiredBy:
   - graph/dijkstra.hpp
   - graph/bellmanford.hpp
   - graph/diameter.hpp
   - graph/tree/heavy_light_decomposition.hpp
-  timestamp: '2026-10-17 23:49:45+09:00'
+  timestamp: '2026-11-03 12:08:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/aoj-grl-1b.test.cpp
@@ -88,10 +88,10 @@ data:
   - test/verify/yosupo-shortest-path.test.cpp
   - test/verify/yosupo-tree-diameter.test.cpp
   - test/verify/yosupo-vertex-add-path-sum.test.cpp
-documentation_of: graph/graph_template.hpp
+documentation_of: graph/template.hpp
 layout: document
 redirect_from:
-- /library/graph/graph_template.hpp
-- /library/graph/graph_template.hpp.html
-title: graph/graph_template.hpp
+- /library/graph/template.hpp
+- /library/graph/template.hpp.html
+title: graph/template.hpp
 ---

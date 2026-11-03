@@ -5,8 +5,8 @@ data:
     path: graph/diameter.hpp
     title: "Tree Diameter(\u6728\u306E\u76F4\u5F84)"
   - icon: ':heavy_check_mark:'
-    path: graph/graph_template.hpp
-    title: graph/graph_template.hpp
+    path: graph/template.hpp
+    title: graph/template.hpp
   - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
@@ -28,7 +28,7 @@ data:
     \ return false;}\ntemplate<class T> inline bool chmin(T& a, const T& b) {if (b<a)\
     \ {a=b; return true;} return false;}\nconst int INTINF = 1000001000;\nconst int\
     \ INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\nconst ll LLINF\
-    \ = 1000000000000000000;\n\n\n#line 1 \"graph/graph_template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/graph_template.hpp.html\n\
+    \ = 1000000000000000000;\n\n\n#line 1 \"graph/template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/template.hpp.html\n\
     \n#include <vector>\n\ntemplate <typename T>\nstruct Edge {\n  int from; int to;\n\
     \  T cost;\n\n  // default constructor\n  Edge () : from(-1), to(-1), cost(T(0))\
     \ {}\n\n  Edge(int _from, int _to, T _cost) : from(_from), to(_to), cost(_cost)\
@@ -77,22 +77,22 @@ data:
     \ i++) {\n    cout << pr.first[i];\n    if (i < N-1) cout << \" \";\n    else\
     \ cout << \"\\n\";\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_diameter\"\n\n#include\
-    \ \"template/template.hpp\"\n#include \"graph/graph_template.hpp\"\n#include \"\
-    graph/diameter.hpp\"\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n\
-    \n  int N; cin >> N;\n  Graph<ll>graph(N);\n  for(int i=0; i<N-1; i++) {\n   \
-    \ ll a, b, c; cin >> a >> b >> c;\n    graph.add_edge(a,b,c);\n    graph.add_edge(b,a,c);\n\
+    \ \"template/template.hpp\"\n#include \"graph/template.hpp\"\n#include \"graph/diameter.hpp\"\
+    \n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n\n  int\
+    \ N; cin >> N;\n  Graph<ll>graph(N);\n  for(int i=0; i<N-1; i++) {\n    ll a,\
+    \ b, c; cin >> a >> b >> c;\n    graph.add_edge(a,b,c);\n    graph.add_edge(b,a,c);\n\
     \  }\n\n  pair<vector<int>, ll> pr = mylib::diameter_path<ll>(graph);\n\n  cout\
     \ << pr.second << \" \" << pr.first.size() << \"\\n\";\n  for(int i=0; i<(int)pr.first.size();\
     \ i++) {\n    cout << pr.first[i];\n    if (i < N-1) cout << \" \";\n    else\
     \ cout << \"\\n\";\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - template/template.hpp
-  - graph/graph_template.hpp
+  - graph/template.hpp
   - graph/diameter.hpp
   isVerificationFile: true
   path: test/verify/yosupo-tree-diameter.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 23:49:45+09:00'
+  timestamp: '2026-11-03 12:08:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-tree-diameter.test.cpp

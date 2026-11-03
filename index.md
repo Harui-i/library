@@ -83,8 +83,8 @@ data:
       path: graph/general_weighted_matching.hpp
       title: General Weighted Matching
     - icon: ':heavy_check_mark:'
-      path: graph/graph_template.hpp
-      title: graph/graph_template.hpp
+      path: graph/template.hpp
+      title: graph/template.hpp
   - name: graph/tree
     pages:
     - icon: ':heavy_check_mark:'

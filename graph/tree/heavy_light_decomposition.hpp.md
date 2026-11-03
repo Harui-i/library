@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/graph_template.hpp
-    title: graph/graph_template.hpp
+    path: graph/template.hpp
+    title: graph/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -24,9 +24,9 @@ data:
     - https://ngtkana.hatenablog.com/entry/2024/06/24/200138
   bundledCode: "#line 1 \"graph/tree/heavy_light_decomposition.hpp\"\n\n\n// https://harui-i.github.io/library/graph/tree/heavy_light_decomposition.hpp.html\n\
     \n#include <vector>\n#include <algorithm>\n#include <cassert>\n#include <utility>\n\
-    \n#line 1 \"graph/graph_template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/graph_template.hpp.html\n\
-    \n#line 6 \"graph/graph_template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
-    \  int from; int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1),\
+    \n#line 1 \"graph/template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/template.hpp.html\n\
+    \n#line 6 \"graph/template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
+    \ from; int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1),\
     \ to(-1), cost(T(0)) {}\n\n  Edge(int _from, int _to, T _cost) : from(_from),\
     \ to(_to), cost(_cost) {}\n\n  // unweighted\n  Edge(int _from, int _to) : from(_from),\
     \ to(_to), cost(T(1)) {}\n\n  bool operator==(const Edge& rhs) const {\n    return\
@@ -120,7 +120,7 @@ data:
   code: "#ifndef HARUILIB_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n#define HARUILIB_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n\
     // https://harui-i.github.io/library/graph/tree/heavy_light_decomposition.hpp.html\n\
     \n#include <vector>\n#include <algorithm>\n#include <cassert>\n#include <utility>\n\
-    \n#include \"graph/graph_template.hpp\"\n\nnamespace HaruiLib {\n  // cf : https://ngtkana.hatenablog.com/entry/2024/06/24/200138\n\
+    \n#include \"graph/template.hpp\"\n\nnamespace HaruiLib {\n  // cf : https://ngtkana.hatenablog.com/entry/2024/06/24/200138\n\
     \  struct Interval {\n    // top_id : interval \u306E\u3082\u3063\u3068\u3082\u6839\
     \u306B\u8FD1\u3044\u9802\u70B9\u306Eid\n    // bottom_id : interval \u306E\u3082\
     \u3063\u3068\u3082\u8449\u306B\u8FD1\u3044\u9802\u70B9\u306Eid\n    // last :\
@@ -199,11 +199,11 @@ data:
     \      return std::make_pair(id[r], id2[r]);\n    }\n  \n  };\n\n}\n#endif //\
     \ HARUILIB_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n"
   dependsOn:
-  - graph/graph_template.hpp
+  - graph/template.hpp
   isVerificationFile: false
   path: graph/tree/heavy_light_decomposition.hpp
   requiredBy: []
-  timestamp: '2026-10-17 23:49:45+09:00'
+  timestamp: '2026-11-03 12:08:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-vertex-set-path-composite.test.cpp

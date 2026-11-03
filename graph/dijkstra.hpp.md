@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/graph_template.hpp
-    title: graph/graph_template.hpp
+    path: graph/template.hpp
+    title: graph/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -17,9 +17,9 @@ data:
     - https://harui-i.github.io/library/graph/dijkstra.hpp.html
   bundledCode: "#line 1 \"graph/dijkstra.hpp\"\n\n\n// https://harui-i.github.io/library/graph/dijkstra.hpp.html\n\
     \n#include <queue>\n#include <vector>\n#include <limits>\n#include <utility>\n\
-    \n#line 1 \"graph/graph_template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/graph_template.hpp.html\n\
-    \n#line 6 \"graph/graph_template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
-    \  int from; int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1),\
+    \n#line 1 \"graph/template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/template.hpp.html\n\
+    \n#line 6 \"graph/template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
+    \ from; int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1),\
     \ to(-1), cost(T(0)) {}\n\n  Edge(int _from, int _to, T _cost) : from(_from),\
     \ to(_to), cost(_cost) {}\n\n  // unweighted\n  Edge(int _from, int _to) : from(_from),\
     \ to(_to), cost(T(1)) {}\n\n  bool operator==(const Edge& rhs) const {\n    return\
@@ -53,7 +53,7 @@ data:
     \ ed.to);\n      }\n    }\n  }\n\n  return make_pair(dist, prev);\n}\n\n\n"
   code: "#ifndef HARUILIB_GRAPH_DIJKSTRA_HPP\n#define HARUILIB_GRAPH_DIJKSTRA_HPP\n\
     // https://harui-i.github.io/library/graph/dijkstra.hpp.html\n\n#include <queue>\n\
-    #include <vector>\n#include <limits>\n#include <utility>\n\n#include \"graph/graph_template.hpp\"\
+    #include <vector>\n#include <limits>\n#include <utility>\n\n#include \"graph/template.hpp\"\
     \n\ntemplate <typename T>\nstd::vector<T> dijkstra(const Graph<T>& graph, int\
     \ start) {\n  int N = (int)graph.size();\n  constexpr T INF = numeric_limits<T>::max();\n\
     \  std::vector<T>dist(N, INF);\n  using P = std::pair<T, int>;\n\n  std::priority_queue<P,\
@@ -74,11 +74,11 @@ data:
     \        que.emplace(dist[ed.to], ed.to);\n      }\n    }\n  }\n\n  return make_pair(dist,\
     \ prev);\n}\n\n#endif // HARUILIB_GRAPH_DIJKSTRA_HPP"
   dependsOn:
-  - graph/graph_template.hpp
+  - graph/template.hpp
   isVerificationFile: false
   path: graph/dijkstra.hpp
   requiredBy: []
-  timestamp: '2026-10-17 23:49:45+09:00'
+  timestamp: '2026-11-03 12:08:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-shortest-path.test.cpp

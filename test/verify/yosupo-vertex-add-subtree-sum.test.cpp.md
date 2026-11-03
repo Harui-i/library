@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/graph_template.hpp
-    title: graph/graph_template.hpp
+    path: graph/template.hpp
+    title: graph/template.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree/heavy_light_decomposition.hpp
     title: "Heavy-Light Decomposition(HL\u5206\u89E3, HLD)"
@@ -86,9 +86,9 @@ data:
     #line 1 \"graph/tree/heavy_light_decomposition.hpp\"\n\n\n// https://harui-i.github.io/library/graph/tree/heavy_light_decomposition.hpp.html\n\
     \n#line 6 \"graph/tree/heavy_light_decomposition.hpp\"\n#include <algorithm>\n\
     #line 8 \"graph/tree/heavy_light_decomposition.hpp\"\n#include <utility>\n\n#line\
-    \ 1 \"graph/graph_template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/graph_template.hpp.html\n\
-    \n#line 6 \"graph/graph_template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
-    \  int from; int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1),\
+    \ 1 \"graph/template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/template.hpp.html\n\
+    \n#line 6 \"graph/template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
+    \ from; int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1),\
     \ to(-1), cost(T(0)) {}\n\n  Edge(int _from, int _to, T _cost) : from(_from),\
     \ to(_to), cost(_cost) {}\n\n  // unweighted\n  Edge(int _from, int _to) : from(_from),\
     \ to(_to), cost(T(1)) {}\n\n  bool operator==(const Edge& rhs) const {\n    return\
@@ -256,11 +256,11 @@ data:
   dependsOn:
   - template/template.hpp
   - graph/tree/heavy_light_decomposition.hpp
-  - graph/graph_template.hpp
+  - graph/template.hpp
   isVerificationFile: true
   path: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 23:49:45+09:00'
+  timestamp: '2026-11-03 12:08:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-vertex-add-subtree-sum.test.cpp

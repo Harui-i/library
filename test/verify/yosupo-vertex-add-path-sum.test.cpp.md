@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/graph_template.hpp
-    title: graph/graph_template.hpp
+    path: graph/template.hpp
+    title: graph/template.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree/heavy_light_decomposition.hpp
     title: "Heavy-Light Decomposition(HL\u5206\u89E3, HLD)"
@@ -34,7 +34,7 @@ data:
     \ LLINF = 1000000000000000000;\n\n\n#line 3 \"test/verify/yosupo-vertex-add-path-sum.test.cpp\"\
     \n\n#line 1 \"structure/fenwick_tree.hpp\"\n\n\n// https://harui-i.github.io/library/structure/fenwick_tree.hpp.html\n\
     \n#include <vector>\n#line 7 \"structure/fenwick_tree.hpp\"\n\ntemplate <class\
-    \ T> struct fenwick_tree {\n  fenwick_tree(): _n(0) {}\n  explicit fenwick_tree(int\
+    \ T> struct FenwickTree {\n  FenwickTree(): _n(0) {}\n  explicit FenwickTree(int\
     \ n): _n(n), data(n) {}\n\n  // point add\n  void add(int p, T x) {\n    assert(0\
     \ <= p && p < _n);\n    p++;\n    while (p <= _n) {\n      data[p-1] += T(x);\n\
     \      p += p & -p;\n    }\n  } \n\n  T sum(int l, int r) {\n    assert(0 <= l\
@@ -44,9 +44,9 @@ data:
     \  }\n};\n\n\n#line 1 \"graph/tree/heavy_light_decomposition.hpp\"\n\n\n// https://harui-i.github.io/library/graph/tree/heavy_light_decomposition.hpp.html\n\
     \n#line 6 \"graph/tree/heavy_light_decomposition.hpp\"\n#include <algorithm>\n\
     #line 8 \"graph/tree/heavy_light_decomposition.hpp\"\n#include <utility>\n\n#line\
-    \ 1 \"graph/graph_template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/graph_template.hpp.html\n\
-    \n#line 6 \"graph/graph_template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
-    \  int from; int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1),\
+    \ 1 \"graph/template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/template.hpp.html\n\
+    \n#line 6 \"graph/template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
+    \ from; int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1),\
     \ to(-1), cost(T(0)) {}\n\n  Edge(int _from, int _to, T _cost) : from(_from),\
     \ to(_to), cost(_cost) {}\n\n  // unweighted\n  Edge(int _from, int _to) : from(_from),\
     \ to(_to), cost(T(1)) {}\n\n  bool operator==(const Edge& rhs) const {\n    return\
@@ -141,7 +141,7 @@ data:
     \ Q; cin >> N >> Q;\n  vector<int>a(N); \n  for(int i=0; i<N; i++) cin >> a[i];\n\
     \n  HaruiLib::HLD hld(N);\n  for (int i=0; i<N-1; i++) {\n    int u, v; cin >>\
     \ u >> v;\n    hld.graph.add_edge(u,v);\n    hld.graph.add_edge(v,u);\n  }\n\n\
-    \  hld.build();\n  fenwick_tree<ll> fw(N);\n  for (int i=0; i<N; i++) {\n    fw.add(hld.id[i],\
+    \  hld.build();\n  FenwickTree<ll> fw(N);\n  for (int i=0; i<N; i++) {\n    fw.add(hld.id[i],\
     \ a[i]);\n  }\n\n  for (int q=0; q<Q; q++) {\n    int op; cin >> op;\n    if (op\
     \ == 0) {\n      int p, x; cin >> p >> x;\n      fw.add(hld.id[p], x);\n    }\n\
     \    else if (op == 1) {\n      int u, v; cin >> u >> v;\n      ll ret = 0;\n\n\
@@ -154,7 +154,7 @@ data:
     \ cin.tie(0); cout.tie(0);\n  int N, Q; cin >> N >> Q;\n  vector<int>a(N); \n\
     \  for(int i=0; i<N; i++) cin >> a[i];\n\n  HaruiLib::HLD hld(N);\n  for (int\
     \ i=0; i<N-1; i++) {\n    int u, v; cin >> u >> v;\n    hld.graph.add_edge(u,v);\n\
-    \    hld.graph.add_edge(v,u);\n  }\n\n  hld.build();\n  fenwick_tree<ll> fw(N);\n\
+    \    hld.graph.add_edge(v,u);\n  }\n\n  hld.build();\n  FenwickTree<ll> fw(N);\n\
     \  for (int i=0; i<N; i++) {\n    fw.add(hld.id[i], a[i]);\n  }\n\n  for (int\
     \ q=0; q<Q; q++) {\n    int op; cin >> op;\n    if (op == 0) {\n      int p, x;\
     \ cin >> p >> x;\n      fw.add(hld.id[p], x);\n    }\n    else if (op == 1) {\n\
@@ -165,11 +165,11 @@ data:
   - template/template.hpp
   - structure/fenwick_tree.hpp
   - graph/tree/heavy_light_decomposition.hpp
-  - graph/graph_template.hpp
+  - graph/template.hpp
   isVerificationFile: true
   path: test/verify/yosupo-vertex-add-path-sum.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 23:49:45+09:00'
+  timestamp: '2026-11-03 12:09:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-vertex-add-path-sum.test.cpp

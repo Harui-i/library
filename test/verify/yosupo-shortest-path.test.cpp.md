@@ -5,8 +5,8 @@ data:
     path: graph/dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
   - icon: ':heavy_check_mark:'
-    path: graph/graph_template.hpp
-    title: graph/graph_template.hpp
+    path: graph/template.hpp
+    title: graph/template.hpp
   - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
@@ -28,7 +28,7 @@ data:
     \ return false;}\ntemplate<class T> inline bool chmin(T& a, const T& b) {if (b<a)\
     \ {a=b; return true;} return false;}\nconst int INTINF = 1000001000;\nconst int\
     \ INTMAX = 2147483647;\nconst ll LLMAX = 9223372036854775807;\nconst ll LLINF\
-    \ = 1000000000000000000;\n\n\n#line 1 \"graph/graph_template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/graph_template.hpp.html\n\
+    \ = 1000000000000000000;\n\n\n#line 1 \"graph/template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/template.hpp.html\n\
     \n#include <vector>\n\ntemplate <typename T>\nstruct Edge {\n  int from; int to;\n\
     \  T cost;\n\n  // default constructor\n  Edge () : from(-1), to(-1), cost(T(0))\
     \ {}\n\n  Edge(int _from, int _to, T _cost) : from(_from), to(_to), cost(_cost)\
@@ -77,26 +77,26 @@ data:
     \ i<Y-1; i++) {\n      cout << path[i] << \" \" << path[i+1] << \"\\n\";\n   \
     \ }\n  }\n\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\" \n\n#include\
-    \ \"template/template.hpp\"\n#include \"graph/graph_template.hpp\"\n#include \"\
-    graph/dijkstra.hpp\"\n\n#include <algorithm>\n\nint main() {\n  ios::sync_with_stdio(0);\
-    \ cin.tie(0); cout.tie(0);\n  int N, M, s, t; cin >> N >> M >> s >> t;\n\n  Graph<ll>\
-    \ gr(N);\n  for(int i=0; i<M; i++) {\n    ll a, b, c;\n    cin >> a >> b >> c;\n\
-    \    gr.add_edge(a,b,c);\n  }\n\n  vector<ll>dist; vector<int>prev;\n\n   auto\
-    \ pr = dijkstra_path(gr, s);\n   dist = pr.first; prev = pr.second;\n\n  if (dist[t]\
-    \ > LLINF) {\n    cout << -1 << \"\\n\";\n  }\n  else {\n    ll X = dist[t];\n\
-    \    int Y;\n    vector<int> path;\n    {\n      int now = t;\n      while (now\
-    \ != -1) {\n        path.push_back(now);\n        now = prev[now];\n      }\n\
-    \      Y = path.size();\n    }\n\n    reverse(path.begin(), path.end());\n   \
-    \ cout << X << \" \" << Y - 1 << \"\\n\";\n    for(int i=0; i<Y-1; i++) {\n  \
-    \    cout << path[i] << \" \" << path[i+1] << \"\\n\";\n    }\n  }\n\n}\n"
+    \ \"template/template.hpp\"\n#include \"graph/template.hpp\"\n#include \"graph/dijkstra.hpp\"\
+    \n\n#include <algorithm>\n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0);\
+    \ cout.tie(0);\n  int N, M, s, t; cin >> N >> M >> s >> t;\n\n  Graph<ll> gr(N);\n\
+    \  for(int i=0; i<M; i++) {\n    ll a, b, c;\n    cin >> a >> b >> c;\n    gr.add_edge(a,b,c);\n\
+    \  }\n\n  vector<ll>dist; vector<int>prev;\n\n   auto pr = dijkstra_path(gr, s);\n\
+    \   dist = pr.first; prev = pr.second;\n\n  if (dist[t] > LLINF) {\n    cout <<\
+    \ -1 << \"\\n\";\n  }\n  else {\n    ll X = dist[t];\n    int Y;\n    vector<int>\
+    \ path;\n    {\n      int now = t;\n      while (now != -1) {\n        path.push_back(now);\n\
+    \        now = prev[now];\n      }\n      Y = path.size();\n    }\n\n    reverse(path.begin(),\
+    \ path.end());\n    cout << X << \" \" << Y - 1 << \"\\n\";\n    for(int i=0;\
+    \ i<Y-1; i++) {\n      cout << path[i] << \" \" << path[i+1] << \"\\n\";\n   \
+    \ }\n  }\n\n}\n"
   dependsOn:
   - template/template.hpp
-  - graph/graph_template.hpp
+  - graph/template.hpp
   - graph/dijkstra.hpp
   isVerificationFile: true
   path: test/verify/yosupo-shortest-path.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 23:49:45+09:00'
+  timestamp: '2026-11-03 12:08:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-shortest-path.test.cpp

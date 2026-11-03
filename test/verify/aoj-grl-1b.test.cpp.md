@@ -5,8 +5,8 @@ data:
     path: graph/bellmanford.hpp
     title: "Bellmanford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
   - icon: ':heavy_check_mark:'
-    path: graph/graph_template.hpp
-    title: graph/graph_template.hpp
+    path: graph/template.hpp
+    title: graph/template.hpp
   - icon: ':heavy_check_mark:'
     path: template/template.hpp
     title: template/template.hpp
@@ -30,9 +30,9 @@ data:
     \ LLINF = 1000000000000000000;\n\n\n#line 3 \"test/verify/aoj-grl-1b.test.cpp\"\
     \n#include <vector>\n\n#line 1 \"graph/bellmanford.hpp\"\n\n\n// https://harui-i.github.io/library/graph/bellmanford.hpp.html\n\
     \n#line 6 \"graph/bellmanford.hpp\"\n#include <queue>\n#line 8 \"graph/bellmanford.hpp\"\
-    \n#include <limits>\n\n#line 1 \"graph/graph_template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/graph_template.hpp.html\n\
-    \n#line 6 \"graph/graph_template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
-    \  int from; int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1),\
+    \n#include <limits>\n\n#line 1 \"graph/template.hpp\"\n\n\n// https://harui-i.github.io/library/graph/template.hpp.html\n\
+    \n#line 6 \"graph/template.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
+    \ from; int to;\n  T cost;\n\n  // default constructor\n  Edge () : from(-1),\
     \ to(-1), cost(T(0)) {}\n\n  Edge(int _from, int _to, T _cost) : from(_from),\
     \ to(_to), cost(_cost) {}\n\n  // unweighted\n  Edge(int _from, int _to) : from(_from),\
     \ to(_to), cost(T(1)) {}\n\n  bool operator==(const Edge& rhs) const {\n    return\
@@ -80,11 +80,11 @@ data:
   dependsOn:
   - template/template.hpp
   - graph/bellmanford.hpp
-  - graph/graph_template.hpp
+  - graph/template.hpp
   isVerificationFile: true
   path: test/verify/aoj-grl-1b.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 23:49:45+09:00'
+  timestamp: '2026-11-03 12:08:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/aoj-grl-1b.test.cpp

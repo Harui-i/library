@@ -32,8 +32,8 @@ data:
     \n// https://harui-i.github.io/library/structure/offline_2dsum.hpp.html\n\n#include\
     \ <algorithm>\n#line 7 \"structure/offline_2dsum.hpp\"\n#include <vector>\n#line\
     \ 1 \"structure/fenwick_tree.hpp\"\n\n\n// https://harui-i.github.io/library/structure/fenwick_tree.hpp.html\n\
-    \n#line 7 \"structure/fenwick_tree.hpp\"\n\ntemplate <class T> struct fenwick_tree\
-    \ {\n  fenwick_tree(): _n(0) {}\n  explicit fenwick_tree(int n): _n(n), data(n)\
+    \n#line 7 \"structure/fenwick_tree.hpp\"\n\ntemplate <class T> struct FenwickTree\
+    \ {\n  FenwickTree(): _n(0) {}\n  explicit FenwickTree(int n): _n(n), data(n)\
     \ {}\n\n  // point add\n  void add(int p, T x) {\n    assert(0 <= p && p < _n);\n\
     \    p++;\n    while (p <= _n) {\n      data[p-1] += T(x);\n      p += p & -p;\n\
     \    }\n  } \n\n  T sum(int l, int r) {\n    assert(0 <= l && l <= r && r <= _n);\n\
@@ -59,7 +59,7 @@ data:
     \ u, i, -1});\n      events.push_back({queries[i].r, d, u, i, 1});\n    }\n\n\
     \    std::sort(events.begin(), events.end());\n    std::sort(points.begin(), points.end(),\
     \ [](const Point& a, const Point& b) {\n      return a.x < b.x;\n    });\n\n \
-    \   fenwick_tree<W> ft(ys.size());\n    int pi = 0;\n    for (auto& e : events)\
+    \   FenwickTree<W> ft(ys.size());\n    int pi = 0;\n    for (auto& e : events)\
     \ {\n      while (pi < n && points[pi].x < e.x) {\n        ft.add(get_y(points[pi].y),\
     \ points[pi].w);\n        pi++;\n      }\n      res[e.id] += (W)e.type * ft.sum(e.d,\
     \ e.u);\n    }\n\n    return res;\n  }\n\nprivate:\n  std::vector<Point> points;\n\
@@ -86,7 +86,7 @@ data:
   isVerificationFile: true
   path: test/verify/structure/yosupo-rectangle-sum.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 23:49:45+09:00'
+  timestamp: '2026-11-03 12:09:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/structure/yosupo-rectangle-sum.test.cpp
