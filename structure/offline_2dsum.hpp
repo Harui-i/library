@@ -66,7 +66,7 @@ template <class T, class W> struct offline_2dsum {
       return a.x < b.x;
     });
 
-    fenwick_tree<W> ft(ys.size());
+    FenwickTree<W> ft(ys.size());
     int pi = 0;
     for (auto& e : events) {
       while (pi < n && points[pi].x < e.x) {
