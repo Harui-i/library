@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/tree_diameter"
 
 #include "template/template.hpp"
-#include "graph/graph_template.hpp"
+#include "graph/template.hpp"
 #include "graph/diameter.hpp"
 
 int main() {

@@ -7,7 +7,7 @@
 #include <cassert>
 #include <utility>
 
-#include "graph/graph_template.hpp"
+#include "graph/template.hpp"
 
 namespace HaruiLib {
   // cf : https://ngtkana.hatenablog.com/entry/2024/06/24/200138

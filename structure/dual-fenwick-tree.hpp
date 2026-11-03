@@ -5,10 +5,10 @@
 #include <cassert>
 #include <vector>
 
-template <class T> struct dual_fenwick_tree {
+template <class T> struct DualFenwickTree {
 public:
-  dual_fenwick_tree(): _n(0) {}
-  explicit dual_fenwick_tree(int n): _n(n), data(n) {}
+  DualFenwickTree(): _n(0) {}
+  explicit DualFenwickTree(int n): _n(n), data(n) {}
 
   // point sum
   T sum(int p) {
