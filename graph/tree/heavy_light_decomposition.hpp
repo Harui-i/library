@@ -9,7 +9,7 @@
 
 #include "graph/template.hpp"
 
-namespace HaruiLib {
+namespace haruilib {
   // cf : https://ngtkana.hatenablog.com/entry/2024/06/24/200138
   struct Interval {
     // top_id : interval のもっとも根に近い頂点のid

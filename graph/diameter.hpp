@@ -8,7 +8,7 @@
 #include <queue>
 #include "graph/template.hpp"
 
-namespace mylib {
+namespace haruilib {
 
   using std::vector;
   using std::pair;
@@ -84,6 +84,6 @@ namespace mylib {
     return make_pair(diameter_path, farest2.first);
   }
 
-} // namespace mylib
+} // namespace haruilib
 
 #endif // HARUILIB_GRAPH_DIAMETER_HPP

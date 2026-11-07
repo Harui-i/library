@@ -10,7 +10,7 @@ int main() {
   vector<int>a(N); 
   for(int i=0; i<N; i++) cin >> a[i];
 
-  HaruiLib::HLD hld(N);
+  haruilib::HLD hld(N);
   for (int i=0; i<N-1; i++) {
     int u, v; cin >> u >> v;
     hld.graph.add_edge(u,v);
@@ -33,7 +33,7 @@ int main() {
       int u, v; cin >> u >> v;
       ll ret = 0;
 
-      for (HaruiLib::Interval interval : hld.get_path(u, v)) {
+      for (haruilib::Interval interval : hld.get_path(u, v)) {
         ret += fw.sum(interval.top_id, interval.bottom_id + 1);
       }
 

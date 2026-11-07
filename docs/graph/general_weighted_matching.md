@@ -10,7 +10,7 @@ documentation_of: //graph/general_weighted_matching.hpp
 ## 使い方
 
 ```cpp
-mylib::GeneralWeightedMatching wm(N);
+haruilib::GeneralWeightedMatching wm(N);
 wm.add_edge(u, v, w);
 auto [sum, mate] = wm.solve();
 ```
