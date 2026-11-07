@@ -32,7 +32,7 @@ data:
     \n  // weighted\n  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
     \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 10\
-    \ \"graph/diameter.hpp\"\n\nnamespace mylib {\n\n  using std::vector;\n  using\
+    \ \"graph/diameter.hpp\"\n\nnamespace haruilib {\n\n  using std::vector;\n  using\
     \ std::pair;\n  using std::queue;\n\n  template <typename T>\n  pair<vector<int>,\
     \ T> diameter_path(const Graph<T>& graph) {\n    int N = (int)graph.size();\n\n\
     \    // first sweep\n    pair<T, int> farest1 = make_pair(T(0), 0);\n    {\n \
@@ -55,12 +55,12 @@ data:
     \      while (now != -1) {\n        diameter_path.push_back(now);\n        now\
     \ = prev[now];\n      }\n\n      reverse(diameter_path.begin(), diameter_path.end());\n\
     \    }\n\n    return make_pair(diameter_path, farest2.first);\n  }\n\n} // namespace\
-    \ mylib\n\n\n"
+    \ haruilib\n\n\n"
   code: "#ifndef HARUILIB_GRAPH_DIAMETER_HPP\n#define HARUILIB_GRAPH_DIAMETER_HPP\n\
     // https://harui-i.github.io/library/graph/diameter.hpp.html\n\n\n#include <algorithm>\n\
     #include <vector>\n#include <queue>\n#include \"graph/template.hpp\"\n\nnamespace\
-    \ mylib {\n\n  using std::vector;\n  using std::pair;\n  using std::queue;\n\n\
-    \  template <typename T>\n  pair<vector<int>, T> diameter_path(const Graph<T>&\
+    \ haruilib {\n\n  using std::vector;\n  using std::pair;\n  using std::queue;\n\
+    \n  template <typename T>\n  pair<vector<int>, T> diameter_path(const Graph<T>&\
     \ graph) {\n    int N = (int)graph.size();\n\n    // first sweep\n    pair<T,\
     \ int> farest1 = make_pair(T(0), 0);\n    {\n      vector<T> dist(N, T(-1));\n\
     \      dist[0] = T(0);\n\n      queue<int> que;\n      que.push(0);\n      while\
@@ -82,13 +82,13 @@ data:
     \      while (now != -1) {\n        diameter_path.push_back(now);\n        now\
     \ = prev[now];\n      }\n\n      reverse(diameter_path.begin(), diameter_path.end());\n\
     \    }\n\n    return make_pair(diameter_path, farest2.first);\n  }\n\n} // namespace\
-    \ mylib\n\n#endif // HARUILIB_GRAPH_DIAMETER_HPP\n"
+    \ haruilib\n\n#endif // HARUILIB_GRAPH_DIAMETER_HPP\n"
   dependsOn:
   - graph/template.hpp
   isVerificationFile: false
   path: graph/diameter.hpp
   requiredBy: []
-  timestamp: '2026-11-03 12:08:18+09:00'
+  timestamp: '2026-11-07 16:55:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/verify/yosupo-tree-diameter.test.cpp

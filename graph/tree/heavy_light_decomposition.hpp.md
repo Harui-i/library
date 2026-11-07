@@ -39,7 +39,7 @@ data:
     \n  // weighted\n  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
     \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 11\
-    \ \"graph/tree/heavy_light_decomposition.hpp\"\n\nnamespace HaruiLib {\n  // cf\
+    \ \"graph/tree/heavy_light_decomposition.hpp\"\n\nnamespace haruilib {\n  // cf\
     \ : https://ngtkana.hatenablog.com/entry/2024/06/24/200138\n  struct Interval\
     \ {\n    // top_id : interval \u306E\u3082\u3063\u3068\u3082\u6839\u306B\u8FD1\
     \u3044\u9802\u70B9\u306Eid\n    // bottom_id : interval \u306E\u3082\u3063\u3068\
@@ -120,7 +120,7 @@ data:
   code: "#ifndef HARUILIB_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n#define HARUILIB_GRAPH_TREE_HEAVY_LIGHT_DECOMPOSITION_HPP\n\
     // https://harui-i.github.io/library/graph/tree/heavy_light_decomposition.hpp.html\n\
     \n#include <vector>\n#include <algorithm>\n#include <cassert>\n#include <utility>\n\
-    \n#include \"graph/template.hpp\"\n\nnamespace HaruiLib {\n  // cf : https://ngtkana.hatenablog.com/entry/2024/06/24/200138\n\
+    \n#include \"graph/template.hpp\"\n\nnamespace haruilib {\n  // cf : https://ngtkana.hatenablog.com/entry/2024/06/24/200138\n\
     \  struct Interval {\n    // top_id : interval \u306E\u3082\u3063\u3068\u3082\u6839\
     \u306B\u8FD1\u3044\u9802\u70B9\u306Eid\n    // bottom_id : interval \u306E\u3082\
     \u3063\u3068\u3082\u8449\u306B\u8FD1\u3044\u9802\u70B9\u306Eid\n    // last :\
@@ -203,12 +203,12 @@ data:
   isVerificationFile: false
   path: graph/tree/heavy_light_decomposition.hpp
   requiredBy: []
-  timestamp: '2026-11-03 12:08:18+09:00'
+  timestamp: '2026-11-07 16:55:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yosupo-vertex-set-path-composite.test.cpp
   - test/verify/yosupo-vertex-add-subtree-sum.test.cpp
   - test/verify/yosupo-vertex-add-path-sum.test.cpp
+  - test/verify/yosupo-vertex-set-path-composite.test.cpp
 documentation_of: graph/tree/heavy_light_decomposition.hpp
 layout: document
 title: "Heavy-Light Decomposition(HL\u5206\u89E3, HLD)"
@@ -219,7 +219,7 @@ title: "Heavy-Light Decomposition(HL\u5206\u89E3, HLD)"
 ## 使い方
 
 ```
-HaruiLib::HLD hld(N);
+haruilib::HLD hld(N);
 
 for (int i=0; i<N-1; i++) {
   int u, v; cin >> u >> v;
@@ -233,10 +233,10 @@ hld.build();
 みたいに構築したあと、
 ```
 int a,b; cin >> a >> b;
-HaruiLib::Path path = hld.get_path(a,b);
+haruilib::Path path = hld.get_path(a,b);
 
 ll sum = 0;
-for(HaruiLib::Interval intv: path) {
+for(haruilib::Interval intv: path) {
   sum += seg.prod(intv.top_id, intv.bottom_id + 1);
 }
 ```

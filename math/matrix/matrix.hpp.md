@@ -167,11 +167,11 @@ data:
   timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
-  - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
-  - test/verify/math/matrix/yosupo-matrix-product.test.cpp
-  - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
   - test/verify/math/matrix/yosupo-linear-equation.test.cpp
+  - test/verify/math/matrix/yosupo-rank-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-pow-of-matrix.test.cpp
+  - test/verify/math/matrix/yosupo-matrix-product.test.cpp
+  - test/verify/math/matrix/yosupo-inverse-of-matrix.test.cpp
 documentation_of: math/matrix/matrix.hpp
 layout: document
 title: "Matrix(\u884C\u5217)"

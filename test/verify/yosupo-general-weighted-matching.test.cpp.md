@@ -28,7 +28,7 @@ data:
     \ LLINF = 1000000000000000000;\n\n\n#line 1 \"graph/general_weighted_matching.hpp\"\
     \n\n\n// https://harui-i.github.io/library/graph/general_weighted_matching.hpp.html\n\
     \n#include <algorithm>\n#include <functional>\n#include <limits>\n#include <queue>\n\
-    #include <utility>\n#include <vector>\n\nnamespace mylib {\n\nstruct GeneralWeightedMatching\
+    #include <utility>\n#include <vector>\n\nnamespace haruilib {\n\nstruct GeneralWeightedMatching\
     \ {\n  int n;\n  std::vector<std::vector<long long>> w;\n\n  explicit GeneralWeightedMatching(int\
     \ n_) : n(n_), w(n_, std::vector<long long>(n_, 0)) {}\n\n  void add_edge(int\
     \ u, int v, long long cost) {\n    if (u == v) return;\n    if (w[u][v] < cost)\
@@ -140,11 +140,11 @@ data:
     \ mate(n, -1);\n    long long total = 0;\n    for (int i = 1; i <= N; i++) {\n\
     \      if (match[i] && match[i] <= N) mate[i - 1] = match[i] - 1;\n    }\n   \
     \ for (int i = 0; i < n; i++) {\n      if (mate[i] > i) total += w[i][mate[i]];\n\
-    \    }\n    return {total, mate};\n  }\n};\n\n} // namespace mylib\n\n\n#line\
+    \    }\n    return {total, mate};\n  }\n};\n\n} // namespace haruilib\n\n\n#line\
     \ 5 \"test/verify/yosupo-general-weighted-matching.test.cpp\"\n\nint main() {\n\
     \  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n\n  int N, M; cin >> N >>\
-    \ M;\n  mylib::GeneralWeightedMatching wm(N);\n  for (int i = 0; i < M; i++) {\n\
-    \    int u, v;\n    long long w;\n    cin >> u >> v >> w;\n    wm.add_edge(u,\
+    \ M;\n  haruilib::GeneralWeightedMatching wm(N);\n  for (int i = 0; i < M; i++)\
+    \ {\n    int u, v;\n    long long w;\n    cin >> u >> v >> w;\n    wm.add_edge(u,\
     \ v, w);\n  }\n\n  auto ans = wm.solve();\n  vector<pair<int, int>> edges;\n \
     \ for (int i = 0; i < N; i++) {\n    if (ans.second[i] != -1 && i < ans.second[i])\
     \ edges.emplace_back(i, ans.second[i]);\n  }\n\n  cout << edges.size() << \" \"\
@@ -153,9 +153,9 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/general_weighted_matching\"\
     \n\n#include \"template/template.hpp\"\n#include \"graph/general_weighted_matching.hpp\"\
     \n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n\n  int\
-    \ N, M; cin >> N >> M;\n  mylib::GeneralWeightedMatching wm(N);\n  for (int i\
-    \ = 0; i < M; i++) {\n    int u, v;\n    long long w;\n    cin >> u >> v >> w;\n\
-    \    wm.add_edge(u, v, w);\n  }\n\n  auto ans = wm.solve();\n  vector<pair<int,\
+    \ N, M; cin >> N >> M;\n  haruilib::GeneralWeightedMatching wm(N);\n  for (int\
+    \ i = 0; i < M; i++) {\n    int u, v;\n    long long w;\n    cin >> u >> v >>\
+    \ w;\n    wm.add_edge(u, v, w);\n  }\n\n  auto ans = wm.solve();\n  vector<pair<int,\
     \ int>> edges;\n  for (int i = 0; i < N; i++) {\n    if (ans.second[i] != -1 &&\
     \ i < ans.second[i]) edges.emplace_back(i, ans.second[i]);\n  }\n\n  cout << edges.size()\
     \ << \" \" << ans.first << \"\\n\";\n  for (auto [u, v] : edges) {\n    cout <<\
@@ -166,7 +166,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-general-weighted-matching.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 23:49:45+09:00'
+  timestamp: '2026-11-07 16:55:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-general-weighted-matching.test.cpp

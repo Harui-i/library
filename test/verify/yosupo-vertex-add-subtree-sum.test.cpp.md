@@ -101,7 +101,7 @@ data:
     \n  // weighted\n  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
     \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 11\
-    \ \"graph/tree/heavy_light_decomposition.hpp\"\n\nnamespace HaruiLib {\n  // cf\
+    \ \"graph/tree/heavy_light_decomposition.hpp\"\n\nnamespace haruilib {\n  // cf\
     \ : https://ngtkana.hatenablog.com/entry/2024/06/24/200138\n  struct Interval\
     \ {\n    // top_id : interval \u306E\u3082\u3063\u3068\u3082\u6839\u306B\u8FD1\
     \u3044\u9802\u70B9\u306Eid\n    // bottom_id : interval \u306E\u3082\u3063\u3068\
@@ -181,7 +181,7 @@ data:
     \ id2[r]);\n    }\n  \n  };\n\n}\n\n#line 139 \"test/verify/yosupo-vertex-add-subtree-sum.test.cpp\"\
     \n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n  int N,\
     \ Q; cin >> N >> Q;\n  vector<int>a(N); \n  for(int i=0; i<N; i++) cin >> a[i];\n\
-    \n  HaruiLib::HLD hld(N);\n  for (int i=1; i<N; i++) {\n    int p; cin >> p;\n\
+    \n  haruilib::HLD hld(N);\n  for (int i=1; i<N; i++) {\n    int p; cin >> p;\n\
     \    hld.graph.add_edge(i,p);\n    hld.graph.add_edge(p,i);\n  }\n\n  hld.build();\n\
     \  atcoder::fenwick_tree<ll> fw(N);\n  for (int i=0; i<N; i++) {\n    fw.add(hld.id[i],\
     \ a[i]);\n  }\n\n  for (int q=0; q<Q; q++) {\n    int op; cin >> op;\n    if (op\
@@ -245,7 +245,7 @@ data:
     \ -r;\n        }\n        return s;\n    }\n};\n\n}  // namespace atcoder\n\n\
     #include \"graph/tree/heavy_light_decomposition.hpp\"\n\nint main() {\n  ios::sync_with_stdio(0);\
     \ cin.tie(0); cout.tie(0);\n  int N, Q; cin >> N >> Q;\n  vector<int>a(N); \n\
-    \  for(int i=0; i<N; i++) cin >> a[i];\n\n  HaruiLib::HLD hld(N);\n  for (int\
+    \  for(int i=0; i<N; i++) cin >> a[i];\n\n  haruilib::HLD hld(N);\n  for (int\
     \ i=1; i<N; i++) {\n    int p; cin >> p;\n    hld.graph.add_edge(i,p);\n    hld.graph.add_edge(p,i);\n\
     \  }\n\n  hld.build();\n  atcoder::fenwick_tree<ll> fw(N);\n  for (int i=0; i<N;\
     \ i++) {\n    fw.add(hld.id[i], a[i]);\n  }\n\n  for (int q=0; q<Q; q++) {\n \
@@ -260,7 +260,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-vertex-add-subtree-sum.test.cpp
   requiredBy: []
-  timestamp: '2026-11-03 12:08:18+09:00'
+  timestamp: '2026-11-07 16:55:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-vertex-add-subtree-sum.test.cpp

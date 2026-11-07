@@ -191,7 +191,7 @@ data:
     \n  // weighted\n  void add_edge(int _from, int _to, T _cost) {\n    (*this)[_from].push_back(Edge(_from,\
     \ _to, _cost));\n  }\n\n  // unweighted\n  void add_edge(int _from, int _to) {\n\
     \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 11\
-    \ \"graph/tree/heavy_light_decomposition.hpp\"\n\nnamespace HaruiLib {\n  // cf\
+    \ \"graph/tree/heavy_light_decomposition.hpp\"\n\nnamespace haruilib {\n  // cf\
     \ : https://ngtkana.hatenablog.com/entry/2024/06/24/200138\n  struct Interval\
     \ {\n    // top_id : interval \u306E\u3082\u3063\u3068\u3082\u6839\u306B\u8FD1\
     \u3044\u9802\u70B9\u306Eid\n    // bottom_id : interval \u306E\u3082\u3063\u3068\
@@ -274,7 +274,7 @@ data:
     }\n\nLF e() {\n  return LF::Mul_Identity();\n}\n\nint main() {\n  ios::sync_with_stdio(0);\
     \ cin.tie(0); cout.tie(0);\n  int N, Q; cin >> N >> Q; \n  vector<LF>a(N);\n \
     \ for(int i=0; i<N; i++) {\n    int coef_a, coef_b;\n    cin >> coef_a >> coef_b;\n\
-    \    a[i] = LF(coef_a, coef_b);\n  }\n\n  HaruiLib::HLD hld(N);\n  for(int i=0;\
+    \    a[i] = LF(coef_a, coef_b);\n  }\n\n  haruilib::HLD hld(N);\n  for(int i=0;\
     \ i<N-1; i++) {\n    int u, v; cin >> u >> v;\n    hld.graph.add_edge(u,v);\n\
     \    hld.graph.add_edge(v,u);\n  } \n  hld.build();\n\n  atcoder::segtree<LF,op,e>\
     \ seg(N);\n  atcoder::segtree<LF,revop,e> revseg(N);\n\n  for(int i=0; i<N; i++)\
@@ -283,7 +283,7 @@ data:
     \   int p, c, d; cin >> p >> c >> d;\n      seg.set(hld.id[p], LF(c,d));\n   \
     \   revseg.set(hld.id[p], LF(c,d));\n    }\n    else if (op == 1) {\n      int\
     \ u, v; cin >> u >> v;\n      mint x; cin >> x;\n\n      LF ret = LF::Mul_Identity();\n\
-    \      HaruiLib::Path path = hld.get_path(u,v);\n      for (HaruiLib::Interval\
+    \      haruilib::Path path = hld.get_path(u,v);\n      for (haruilib::Interval\
     \ interval : path) {\n        if (interval.reverse == true) {\n          ret =\
     \ ret * revseg.prod(interval.top_id, interval.bottom_id + 1);\n        }\n   \
     \     else {\n          ret = ret * seg.prod(interval.top_id, interval.bottom_id\
@@ -345,7 +345,7 @@ data:
     }\n\nLF e() {\n  return LF::Mul_Identity();\n}\n\nint main() {\n  ios::sync_with_stdio(0);\
     \ cin.tie(0); cout.tie(0);\n  int N, Q; cin >> N >> Q; \n  vector<LF>a(N);\n \
     \ for(int i=0; i<N; i++) {\n    int coef_a, coef_b;\n    cin >> coef_a >> coef_b;\n\
-    \    a[i] = LF(coef_a, coef_b);\n  }\n\n  HaruiLib::HLD hld(N);\n  for(int i=0;\
+    \    a[i] = LF(coef_a, coef_b);\n  }\n\n  haruilib::HLD hld(N);\n  for(int i=0;\
     \ i<N-1; i++) {\n    int u, v; cin >> u >> v;\n    hld.graph.add_edge(u,v);\n\
     \    hld.graph.add_edge(v,u);\n  } \n  hld.build();\n\n  atcoder::segtree<LF,op,e>\
     \ seg(N);\n  atcoder::segtree<LF,revop,e> revseg(N);\n\n  for(int i=0; i<N; i++)\
@@ -354,7 +354,7 @@ data:
     \   int p, c, d; cin >> p >> c >> d;\n      seg.set(hld.id[p], LF(c,d));\n   \
     \   revseg.set(hld.id[p], LF(c,d));\n    }\n    else if (op == 1) {\n      int\
     \ u, v; cin >> u >> v;\n      mint x; cin >> x;\n\n      LF ret = LF::Mul_Identity();\n\
-    \      HaruiLib::Path path = hld.get_path(u,v);\n      for (HaruiLib::Interval\
+    \      haruilib::Path path = hld.get_path(u,v);\n      for (haruilib::Interval\
     \ interval : path) {\n        if (interval.reverse == true) {\n          ret =\
     \ ret * revseg.prod(interval.top_id, interval.bottom_id + 1);\n        }\n   \
     \     else {\n          ret = ret * seg.prod(interval.top_id, interval.bottom_id\
@@ -370,7 +370,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-vertex-set-path-composite.test.cpp
   requiredBy: []
-  timestamp: '2026-11-03 12:08:18+09:00'
+  timestamp: '2026-11-07 16:55:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-vertex-set-path-composite.test.cpp

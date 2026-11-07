@@ -188,8 +188,8 @@ data:
   timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/aoj-0570.test.cpp
+  - test/verify/yuki-372-itsautomatic.test.cpp
 documentation_of: dp/automaton/automaton.hpp
 layout: document
 title: "\u6C7A\u5B9A\u6027\u6709\u9650\u30AA\u30FC\u30C8\u30DE\u30C8\u30F3(DFA, Deterministic\

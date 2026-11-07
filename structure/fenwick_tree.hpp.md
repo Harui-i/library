@@ -48,8 +48,8 @@ data:
   timestamp: '2026-11-03 12:09:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yosupo-point-add-range-sum.test.cpp
   - test/verify/structure/yosupo-rectangle-sum.test.cpp
+  - test/verify/yosupo-point-add-range-sum.test.cpp
   - test/verify/yosupo-vertex-add-path-sum.test.cpp
 documentation_of: structure/fenwick_tree.hpp
 layout: document

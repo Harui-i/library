@@ -124,8 +124,8 @@ data:
   timestamp: '2026-10-17 23:49:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/verify/yuki-372-itsautomatic.test.cpp
   - test/verify/aoj-0570.test.cpp
+  - test/verify/yuki-372-itsautomatic.test.cpp
 documentation_of: dp/automaton/remainder.hpp
 layout: document
 title: "\u3042\u307E\u308A\u3092\u7BA1\u7406\u3059\u308B\u30AA\u30FC\u30C8\u30DE\u30C8\

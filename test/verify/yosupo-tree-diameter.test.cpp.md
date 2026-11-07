@@ -45,8 +45,8 @@ data:
     \    (*this)[_from].push_back(Edge(_from, _to, T(1)));\n  }\n\n};\n\n\n#line 1\
     \ \"graph/diameter.hpp\"\n\n\n// https://harui-i.github.io/library/graph/diameter.hpp.html\n\
     \n\n#include <algorithm>\n#line 8 \"graph/diameter.hpp\"\n#include <queue>\n#line\
-    \ 10 \"graph/diameter.hpp\"\n\nnamespace mylib {\n\n  using std::vector;\n  using\
-    \ std::pair;\n  using std::queue;\n\n  template <typename T>\n  pair<vector<int>,\
+    \ 10 \"graph/diameter.hpp\"\n\nnamespace haruilib {\n\n  using std::vector;\n\
+    \  using std::pair;\n  using std::queue;\n\n  template <typename T>\n  pair<vector<int>,\
     \ T> diameter_path(const Graph<T>& graph) {\n    int N = (int)graph.size();\n\n\
     \    // first sweep\n    pair<T, int> farest1 = make_pair(T(0), 0);\n    {\n \
     \     vector<T> dist(N, T(-1));\n      dist[0] = T(0);\n\n      queue<int> que;\n\
@@ -68,12 +68,12 @@ data:
     \      while (now != -1) {\n        diameter_path.push_back(now);\n        now\
     \ = prev[now];\n      }\n\n      reverse(diameter_path.begin(), diameter_path.end());\n\
     \    }\n\n    return make_pair(diameter_path, farest2.first);\n  }\n\n} // namespace\
-    \ mylib\n\n\n#line 6 \"test/verify/yosupo-tree-diameter.test.cpp\"\n\nint main()\
+    \ haruilib\n\n\n#line 6 \"test/verify/yosupo-tree-diameter.test.cpp\"\n\nint main()\
     \ {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n\n  int N; cin >> N;\n\
     \  Graph<ll>graph(N);\n  for(int i=0; i<N-1; i++) {\n    ll a, b, c; cin >> a\
     \ >> b >> c;\n    graph.add_edge(a,b,c);\n    graph.add_edge(b,a,c);\n  }\n\n\
-    \  pair<vector<int>, ll> pr = mylib::diameter_path<ll>(graph);\n\n  cout << pr.second\
-    \ << \" \" << pr.first.size() << \"\\n\";\n  for(int i=0; i<(int)pr.first.size();\
+    \  pair<vector<int>, ll> pr = haruilib::diameter_path<ll>(graph);\n\n  cout <<\
+    \ pr.second << \" \" << pr.first.size() << \"\\n\";\n  for(int i=0; i<(int)pr.first.size();\
     \ i++) {\n    cout << pr.first[i];\n    if (i < N-1) cout << \" \";\n    else\
     \ cout << \"\\n\";\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_diameter\"\n\n#include\
@@ -81,8 +81,8 @@ data:
     \n\nint main() {\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n\n  int\
     \ N; cin >> N;\n  Graph<ll>graph(N);\n  for(int i=0; i<N-1; i++) {\n    ll a,\
     \ b, c; cin >> a >> b >> c;\n    graph.add_edge(a,b,c);\n    graph.add_edge(b,a,c);\n\
-    \  }\n\n  pair<vector<int>, ll> pr = mylib::diameter_path<ll>(graph);\n\n  cout\
-    \ << pr.second << \" \" << pr.first.size() << \"\\n\";\n  for(int i=0; i<(int)pr.first.size();\
+    \  }\n\n  pair<vector<int>, ll> pr = haruilib::diameter_path<ll>(graph);\n\n \
+    \ cout << pr.second << \" \" << pr.first.size() << \"\\n\";\n  for(int i=0; i<(int)pr.first.size();\
     \ i++) {\n    cout << pr.first[i];\n    if (i < N-1) cout << \" \";\n    else\
     \ cout << \"\\n\";\n  }\n\n  return 0;\n}\n"
   dependsOn:
@@ -92,7 +92,7 @@ data:
   isVerificationFile: true
   path: test/verify/yosupo-tree-diameter.test.cpp
   requiredBy: []
-  timestamp: '2026-11-03 12:08:18+09:00'
+  timestamp: '2026-11-07 16:55:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/verify/yosupo-tree-diameter.test.cpp
