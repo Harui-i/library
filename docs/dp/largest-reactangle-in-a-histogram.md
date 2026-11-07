@@ -15,7 +15,13 @@ documentation_of: //dp/largest-rectangle-in-a-histogram.hpp
 ll largest_reactangle_in_a_histogram<vector<T>& vec>
 ```
 
-vec内の最大長方形の面積を求める
+`vec` を幅 1 の棒の高さとして、ヒストグラム内に作れる最大長方形の面積を `long long` で返す。高さは非負とする。空配列なら 0 を返す。引数の配列は変更しない。
+
+### 引数
+
+- `vec`: 各棒の高さを並べた配列。要素数を $N$ とする。
 
 ### 計算量
-O(N)
+$O(N)$
+
+補助空間は $O(N)$。
