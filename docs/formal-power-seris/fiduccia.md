@@ -11,10 +11,10 @@ Fiducciaの論文はarchive.orgにあったきがする。ACMのだったはず�
 
 参考にしたもの: [https://qiita.com/ryuhe1/items/da5acbcce4ac1911f47a] のFiducciaのアルゴリズム ~ 二種類の繰り返し二乗法あたりまで。
 
-## Fidducia
+## Fiduccia
 
 ```
-mint Fidducia(const vector<mint>& a, const vector<mint>& c, unsigned long long N)
+mint Fiduccia(const vector<mint>& a, const vector<mint>& c, unsigned long long N)
 ```
 
 $a_{n+K}= c_1 a_{n+K-1} + c_2 a_{n+k-2} + \dots + c_{K-1} a_{n+1} + c_K a_n $
@@ -22,15 +22,22 @@ $a_{n+K}= c_1 a_{n+K-1} + c_2 a_{n+k-2} + \dots + c_{K-1} a_{n+1} + c_K a_n $
 
 $ a_0, a_1, \dots, a_{K-1} $ がわかっているときに、$a_N$を求める。
 
+- `a`: 初期値列。`a[i] = a_i`。
+- `c`: 漸化式の係数列。`c[i] = c_{i+1}`。`a` と同じ長さであること。
+- `N`: 求める項の添字（0-indexed）。
+- 戻り値: $a_N$。
+
 
 ### 計算量
 
-畳み込みがFFTなどで高速化されるなら
-- $ O(K log K log N) $
+畳み込みが FFT/NTT で高速化されるなら
+- $O(K \log K \log N)$
 
 ナイーブな畳み込みを使うなら
 
-- $ O(K^2 log N) $
+- $O(K^2 \log N)$
+
+ここで $K=|a|=|c|$。初期値と係数は同じ体（この実装では `mint`）上で扱う。
 
 
 

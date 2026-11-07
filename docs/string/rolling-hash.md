@@ -37,6 +37,8 @@ rhsを文字列として右から結合したあとのHashを返す。
 RollingHash(const string& S, mint _base): (_base)
 ```
 
+文字列 `S` の prefix hash を構築する。`_base` はハッシュの基数で、同じ `Hash` 同士の演算では一致している必要がある。構築時間・空間はいずれも $O(|S|)$。
+
 ## get
 
 ```
@@ -44,5 +46,14 @@ Hash get(int l, int r) const
 ```
 
 $S$の$[l,r)$部分のハッシュを計算する。
-$mod$は定数なので計算量は$O(1)$
+制約は $0 \le l \le r \le |S|$。計算量は $O(1)$（固定幅整数演算のモデル）。
+
+## 引数・戻り値
+
+- `Hash(string s, mint base)`: `s` のハッシュを作る。時間 $O(|s|)$、追加領域 $O(1)$。
+- `Hash(mint hash, mint base, int len)`: ハッシュ値・基数・長さを指定して作る。
+- `Hash + Hash` / `Hash + char`: 文字列として右側へ連結したハッシュを返す。基数が一致すること。
+- `get(l, r)`: 部分文字列を表す `Hash` を返す。
+
+使用する法は `modint2611` の $2^{61}-1$。ハッシュ値の衝突可能性があるため、文字列の一致判定を厳密に保証する用途には使えない。
 
