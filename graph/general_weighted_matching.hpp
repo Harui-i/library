@@ -9,7 +9,7 @@
 #include <utility>
 #include <vector>
 
-namespace mylib {
+namespace haruilib {
 
 struct GeneralWeightedMatching {
   int n;
@@ -316,6 +316,6 @@ struct GeneralWeightedMatching {
   }
 };
 
-} // namespace mylib
+} // namespace haruilib
 
 #endif

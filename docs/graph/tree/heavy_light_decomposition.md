@@ -8,7 +8,7 @@ documentation_of: //graph/tree/heavy_light_decomposition.hpp
 ## 使い方
 
 ```
-HaruiLib::HLD hld(N);
+haruilib::HLD hld(N);
 
 for (int i=0; i<N-1; i++) {
   int u, v; cin >> u >> v;
@@ -22,10 +22,10 @@ hld.build();
 みたいに構築したあと、
 ```
 int a,b; cin >> a >> b;
-HaruiLib::Path path = hld.get_path(a,b);
+haruilib::Path path = hld.get_path(a,b);
 
 ll sum = 0;
-for(HaruiLib::Interval intv: path) {
+for(haruilib::Interval intv: path) {
   sum += seg.prod(intv.top_id, intv.bottom_id + 1);
 }
 ```

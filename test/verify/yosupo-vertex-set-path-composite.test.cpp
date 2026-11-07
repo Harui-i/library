@@ -179,7 +179,7 @@ int main() {
     a[i] = LF(coef_a, coef_b);
   }
 
-  HaruiLib::HLD hld(N);
+  haruilib::HLD hld(N);
   for(int i=0; i<N-1; i++) {
     int u, v; cin >> u >> v;
     hld.graph.add_edge(u,v);
@@ -207,8 +207,8 @@ int main() {
       mint x; cin >> x;
 
       LF ret = LF::Mul_Identity();
-      HaruiLib::Path path = hld.get_path(u,v);
-      for (HaruiLib::Interval interval : path) {
+      haruilib::Path path = hld.get_path(u,v);
+      for (haruilib::Interval interval : path) {
         if (interval.reverse == true) {
           ret = ret * revseg.prod(interval.top_id, interval.bottom_id + 1);
         }

@@ -15,7 +15,7 @@ int main() {
     graph.add_edge(b,a,c);
   }
 
-  pair<vector<int>, ll> pr = mylib::diameter_path<ll>(graph);
+  pair<vector<int>, ll> pr = haruilib::diameter_path<ll>(graph);
 
   cout << pr.second << " " << pr.first.size() << "\n";
   for(int i=0; i<(int)pr.first.size(); i++) {
