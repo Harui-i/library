@@ -121,6 +121,7 @@ rectangle_apply_point_get<F, composition, id, T = int>(T xl, T xr, T yl, T yr)
 
 座標範囲 $[xl, xr) \times [yl, yr)$ を指定する。
 `T` は座標の型です。
+`xl < xr`, `yl < yr` が必要です。座標範囲は半開区間です。
 
 ## apply
 
@@ -129,6 +130,8 @@ void apply(T l, T r, T d, T u, F f)
 ```
 
 領域 $[l, r) \times [d, u)$ に作用 `f` を掛ける。
+
+- 引数: 長方形の境界と作用 `f`。指定した長方形はコンストラクタの座標範囲内にあること。
 
 ### 計算量
 座標範囲の幅を $X = xr - xl, Y = yr - yl$ として
@@ -139,10 +142,13 @@ void apply(T l, T r, T d, T u, F f)
 ## get
 
 ```
-F get(T x, T y)
+F get(T x, T y) const
 ```
 
 点 `(x, y)` に掛かっている作用素の合成を返す。
+
+- 引数: コンストラクタで指定した範囲に含まれる点 `(x, y)`。
+- 戻り値: その点に作用した要素を適用順に合成した値。何も作用していない場合は `id()`。
 
 ### 計算量
 座標範囲の幅を $X = xr - xl, Y = yr - yl$ として

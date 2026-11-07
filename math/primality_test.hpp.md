@@ -70,6 +70,8 @@ bool is_prime(unsigned long long n);
 
 `n` が素数なら `true`、そうでなければ `false` を返します。
 
+引数は `unsigned long long` の全範囲を扱います。`n < 2` は `false` です。
+
 ## 計算量
 
 `O(log n)`

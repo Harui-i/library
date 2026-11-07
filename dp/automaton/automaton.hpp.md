@@ -320,6 +320,19 @@ DfaPtr<int> normal_decimal_condition = make_shared<LeadingZeroSkipDfa<int>>(
 mint ans = count_fixed_length<mint>(*dfa, alphabet, L);
 ```
 
+### 引数・計算量
+
+- `dfa`: 使用する DFA。状態番号は `0 <= state < state_count()` であること。
+- `alphabet`: 各桁で選べる記号の集合。重複がある場合は重複分も別の選択肢として数える。
+- `length`: 読み込む記号数。0 以上。
+- 戻り値: 指定長で受理される列の個数を `T` で返す。
+- 時間: $O(L A S)$ 期待時間。$L$ は `length`、$A$ は `alphabet.size()`、$S$ は DFA の状態数。実際には各段階で到達した状態だけを処理する。
+- 空間: $O(S)$。
+
+`ProductPolicyDfa` の状態数は構成要素の状態数の積で、`AndDfa` も 2 つの状態数の積になる。積 DFA の状態遷移・受理判定は構成要素数に比例する時間がかかる。
+
+`DecimalLessEqualDfa` の引数 `n` は 10 進数字列で、状態数と構築時間は文字列長を $L$ として $O(L)$。`LeadingZeroSkipDfa` の状態数は内側 DFA の 2 倍で、遷移・受理判定は内側 DFA と同じ計算量である。
+
 ## Verify
 
 - `test/verify/aoj-0570.test.cpp`

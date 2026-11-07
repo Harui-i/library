@@ -134,11 +134,18 @@ title: "\u3042\u307E\u308A\u3092\u7BA1\u7406\u3059\u308B\u30AA\u30FC\u30C8\u30DE
 
 10 進表記を左から読んで、値の `mod` での余りを状態として持つ DFA。
 
+## `DecimalRemainderDfa`
+
 ```cpp
 DecimalRemainderDfa dfa(mod);
 ```
 
 状態数は `mod`。受理状態は余り `0`。
+
+- 引数 `mod`: 正の整数。状態は $0,\ldots,mod-1$。
+- `next_state(state, digit)`: `digit` は 10 進数字（$0\le digit\le9$）。次の余りを返す。
+- `accept(state)`: 余り 0 の状態だけを受理する。
+- 状態遷移の時間計算量: $O(1)$。
 
 ```cpp
 int next_state(int state, int digit) {

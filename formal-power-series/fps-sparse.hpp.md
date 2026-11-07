@@ -304,7 +304,9 @@ layout: document
 title: "fps-sparse(\u758E\u306A\u5834\u5408\u306E\u9AD8\u901F\u5316)"
 ---
 
-スパース(非0な項が多い)な形式的べき級数で効率的に計算する。
+非ゼロ項が少ない（スパースな）形式的べき級数で効率的に計算する。ここで `deg` は次数ではなく、計算する係数の個数を表す。
+
+`get_nonzeros(f)` は、非ゼロ係数を `(次数, 係数)` の昇順ペア列にして返す。入力の項数を $N$、非ゼロ項数を $K$ として時間 $O(N)$、空間 $O(K)$。
 
 ## inv_sparse
 スパースな形式的べき級数の逆元を効率的(?)に計算する。
@@ -312,8 +314,10 @@ title: "fps-sparse(\u758E\u306A\u5834\u5408\u306E\u9AD8\u901F\u5316)"
 
 ↓非ゼロな項のpairを与えるときに使う
 ```cpp
-FPS inv_sparse(const vector<pair<int,mint>>& f, int deg)
+FPS<mint> inv_sparse(const vector<pair<int,mint>>& f, int deg)
 ```
+
+`f` は次数の昇順で重複のない非ゼロ係数の列で、先頭は `(0, f_0)`、かつ `f_0 != 0`。`deg` は出力の項数（正の整数）。戻り値は $f^{-1}$ の先頭 `deg` 項。
 
 ↓普通にFPSを与えるとき
 ```cpp
@@ -323,8 +327,7 @@ f.inv_sparse(deg)
 ```
 
 ### 計算量
-非0な項の数を $K$、先頭の$N$項を求めるとして
-- $O(NK)$
+非ゼロ項数を $K$、出力項数を $N$ として時間 $O(NK)$、空間 $O(N)$。
 
 ### 原理
 そんなに難しくないけど、忘れてしまったときのために一応書いておく。
@@ -344,8 +347,10 @@ FPS<mint> exp_sparse(const FPS<mint>& f, int deg)
 f.exp_sparse(deg)
 ```
 
+`f[0] == 0` を満たす `f` の指数関数を先頭 `deg` 項返す。`deg > 0` とし、係数体で $1,\ldots,deg-1$ の逆元が存在すること。
+
 ### 計算量
-- $O(NK)$
+入力 `f` の非ゼロ項数を $K$、出力項数を $N=deg$ として、時間 $O(NK)$、空間 $O(N)$。
 
 ### 原理
 $f = f[0] + f[1] x + f[2] x^2 + \dots$
@@ -365,8 +370,10 @@ FPS<mint> log_sparse(const FPS<mint>& f, int deg)
 f.log_sparse(deg)
 ```
 
+`f[0] == 1` を満たす `f` の対数を先頭 `deg` 項返す（返り値の定数項は 0）。`deg > 0` は出力項数。
+
 ### 計算量
-- $O(NK)$
+入力 `f` の非ゼロ項数を $K$、出力項数を $N=deg$ として、時間 $O(NK)$、空間 $O(N)$。
 
 ### 原理
 $\log(f) = \int (f' / f) dx$ を利用する。$f$がスパースでも$f^{-1}$はスパースとは限らないので、愚直に$f^{-1}$を計算すると$O(N \log N)$かかる。
@@ -379,8 +386,10 @@ FPS<mint> pow_sparse(const FPS<mint>& f, long long k, int deg)
 f.pow_sparse(k, deg)
 ```
 
+非負整数 `k` に対して `f^k` の先頭 `deg` 項を返す。`deg > 0` は出力項数。`k == 0` の場合は定数項 1 の級数を返す。
+
 ### 計算量
-- $O(NK)$
+入力 `f` の非ゼロ項数を $K$、出力項数を $N=deg$ として、時間 $O(NK)$、空間 $O(N)$。
 
 ### 原理
 $g = f^k$ とすると、$g' = k f^{k-1} f' = k g f^{-1} f'$ となる。
@@ -393,6 +402,4 @@ FPS<mint> multiply_sparse(const FPS<mint>& f, const FPS<mint>& g, int deg = -1)
 f.mul_sparse(g, deg)
 ```
 
-### 計算量
-$f$ の非ゼロ項数を $K_f$, $g$ の非ゼロ項数を $K_g$ として、
-- $O(N K_g)$ または $O(M K_f)$ (N, Mは次数)
+`deg` は返す係数の個数。既定値 `-1` は積の全項を求める。`g` の非ゼロ項数を $K_g$ とすると、時間計算量は $O(|f|K_g)$、空間計算量は $O(deg)$。`FPS` 同士のオーバーロードでは $g$ の非ゼロ項を列挙する $O(|g|)$ もかかる。
